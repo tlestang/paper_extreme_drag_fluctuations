@@ -1,6 +1,6 @@
 % \include{header_p2.tex}
 
-\documentclass[pre,aps,floatfix,10pt,superscriptaddress]{revtex4-1}
+\documentclass[pre,aps,floatfix,10pt,superscriptaddress, notitlepage]{revtex4-1}
 \pdfoutput=1
 \usepackage[english]{babel}
 \usepackage[T1]{fontenc}
@@ -116,6 +116,9 @@ The outlet is modelled as an open boundary, where a zero momentum flux along the
 %% Méthode Boltzmann sur réseau
 The flow dynamics are computed by means of the \ac{lbm}~\cite{ref1,ref2}.
 [[Paragraphe LBM]]
+
+\subsection{The drag force}
+\label{sec:drag_force}
 
 %% Descritpion d'une fluctuations de trainée typique
 The interaction of the incoming turbulent flow with the square obstacle results in fluctuating mechanical efforts exterted on the obstacle.
@@ -346,9 +349,46 @@ The remaining $20\%$ of the sampled events correspond to slightly different dynm
 In this case the vorticity responsible for the base pressure drop is not created along the top or bottom boundary, but directly through viscous shear alongside the base boundary of the obstacle.
 This viscous shear is induced by a large vortex detached from the obstacle.
 
-\subsubsection{conclusion}
-On the basis 
+\subsection{Extreme fluctuations of the time-averaged drag }
+\label{sec:time_avg}
 
+% Motivation
+In the previous section, we observed that rare events corresponding to extremely high values of the drag acting on the square obstacle have a lifetime of about $2\tau_c$.
+In many applications, this duration is much smaller than the timescale of interest.
+This is for instance the case when considering the interaction of a deformable structure with a turbulent flow: the typical response time may be much larger than the lifetime of drag fluctuations.
+
+In such cases, a relevant observable is the \textit{time-averaged} drag
+\begin{equation}
+  \label{eq:def_time_averaged_drag}
+  F_T(t) = \frac{1}{T}\int_t^{t+T} f_d(t) \mathrm{d}t,
+\end{equation}
+where $f_d$ denotes the instantaneous drag and $T\leq \tau_c$ a timescale of interest.
+In the following we consider the case where $T \gg \tau_c$, typically $T=10\tau_c$.
+In this context, a fluctuation of the average $F_T(t)$ is relatex to roughly $T / 2\tau_c$ independant fluctuations of $f_d$ over the time interval $[t;t+T]$.
+What is the phenomenology leading to extreme values of $F_T(t)$ ?
+Do an exceptionally large value of the average drag result from a single excpetionally large value of the instantaneous drag (case (1)) ?
+Or from a succession of rather typical fluctuations, however all in the same direction (case (2)) ?
+From the timeseries $\{f_d(t)\}_{0 \leq t \leq T_{tot}}$ we deduced the timeseries $\{F_T(t)\}_{0 \leq t \leq T_{tot}-T}$ and identified extreme positive fluctuations for which the drag exceeds a fixed threshold $a$ in the same way as described in section~\ref{sec:extreme_extraction}.
+Setting $a=5.2\sigma _T$ leads to $84$ independant events, with $\sigma_T$ the standard deviation of the random process describing the time evolution of $F_T$.
+
+Figure~\ref{fig:extreme_avg} displays the timeseries $\{f_d(t^{\star})\}_{t^{\star} \leq t \leq t^{\star}+T}$ for four of the highest fluctuations in the timeseries.
+It illustrates that the phenomenology of the extreme fluctuations of the time-averaged drag cannot be reduced to the two above scenarios. 
+Indeed, both case (1) and case (2) are featured in figure~\ref{fig:extreme_avg}, as well as intermediate cases where the very large value of the drag results from both a very large fluctuation and a large number of positive, rather typical, fluctuations.
+
+
+This marginal phenomenology can be connected to the form of the tail of the \ac{pdf} describing extreme positive drag fluctations, illustrated in figure~\ref{fig:pdf_drag}. Let $X$ be a random variable whose \ac{pdf} is denoted $\mathbb{P}$ and standard deviation $\sigma_X$.
+Considering an extreme positive value $a$ of $S_N=\sum_{n=1}{N}X_n$, the probability $p_1$(resp. $p_2$) of case (1) (resp. case (2)) writes:   
+\begin{equation}
+  \label{eq:indep}
+  p_{1}(\sum_{1}^{N} X_n=a) \approx \mathcal{P}\left(\frac{a}{N}\right)^{N} \,\,\, \text{and} \,\,\, p_{2}(\sum_{1}^{N} X_n=a)\approx \mathcal{P}(a)  
+\end{equation}
+If $\mathbb{P}$ has an exponential posititve tail, \textit{i.e.} $\mathbb{P}(X=x) \underset{x \ll \sigma_X}{\propto} e^{-\alpha x}$, then both cases (1) and (2) are equiprobable, provided that the average $a=S_N/N$ is very large:
+\begin{equation}
+  \frac{p_{2}}{p_{1}} \underset{a\to \infty}{\sim} C\left(e^{-\alpha \frac{a}{N}}\right)^{N} e^{-\alpha a} = 1.
+  \label{eq:ratio_exp}
+\end{equation}
+
+Past this duration, the blocking eddy responsible for the accumulation of vortity in the base of the obstacle is advected downstream. The high local vorticity is turn advected and the base pressure goes back to typical values.
 
 \end{document}
 %%% Local Variables:
