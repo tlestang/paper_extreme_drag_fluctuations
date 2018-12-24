@@ -388,7 +388,37 @@ If $\mathbb{P}$ has an exponential posititve tail, \textit{i.e.} $\mathbb{P}(X=x
   \label{eq:ratio_exp}
 \end{equation}
 
-Past this duration, the blocking eddy responsible for the accumulation of vortity in the base of the obstacle is advected downstream. The high local vorticity is turn advected and the base pressure goes back to typical values.
+\section{Rare event algorithms}
+\label{sec:rare_events_algorithms}
+
+In the limit of very rare events, direct sampling approaches become unrealistic. As an example, consider the drag process $t \to f_d(t)$.
+In the limit of extreme positive fluctuations, the return time of a fluctuations $f_d \geq a$ verifies
+\begin{equation}
+  \label{eq:return_time_scaling}
+  r(a) \underset{a\to\infty}{\propto} \frac{1}{\mathbb{P}(f_d\geq a)} \propto e^{\alpha a}
+\end{equation}
+where $\alpha$ is the rate describing the positive tail of the drag \ac{pdf}, see figure~\ref{fig:pdf_drag}.
+The computational cost required to sample events $f_d \geq a$ therefore scales like $e^{\alpha a}$.
+
+In this section we discuss the application of rare event algorithms to the numerical sampling of extreme drag forces on immersed objects, on the example
+of the flow presented in section~\ref{sec:test_flow}.
+The purpose of these algorithm is to sample rare events for a computational cost well inferior to their return time.
+Many of them rely on the simulation of an ensemble of trajectories in parallel, which can be duplicated or discarded from the ensemble depending on their relevance to
+the realisation of extreme events of interest. 
+Numerous algorithms and applications have been proposed since the original ideas of Kahn and Harris in the early 50s~\cite{kahnharris}, which can be sorted in two categories. On the one hand, \textit{splitting} approaches decompose rare events into a succession of less rare events that can be sampled with a higher probability.
+On the other hand, \textit{importance sampling} relies on the sampling of trajectories according to a modified distribution, that is biased towards the rare events of interest.
+In section~\ref{sec:ams}, we highlight that sampling  extreme flucutations of the instantaneous drag with the \ac{ams} algorithm is a difficult task.
+In section~\ref{sec:gktl}, we apply an importance sampling algorithm, the \ac{gktl} algorithm, and efficiently sample rare trajectories corresponding to extreme flucutations of the time-averaged drag.
+As an application, we use the \ac{gktl} algorithm to compute return times of very rare drag fluctuations.
+
+\subsection{Extreme instantaneous drag forces with the \acl{ams} algorithm}
+\label{sec:ams}
+
+\subsection{Extreme time-averaged drag forces with the \acl{gktl} algorithm}
+\label{sec:gktl}
+
+
+
 
 \end{document}
 %%% Local Variables:
