@@ -403,7 +403,12 @@ The computational cost required to sample events $f_d \geq a$ therefore scales l
 In this section we discuss the application of rare event algorithms to the numerical sampling of extreme drag forces on immersed objects, on the example
 of the flow presented in section~\ref{sec:test_flow}.
 The purpose of these algorithm is to sample rare events for a computational cost well inferior to their return time.
-Many of them rely on the simulation of an ensemble of trajectories in parallel, which can be duplicated or discarded from the ensemble depending on their relevance to
+Many of them involve keeping track of an ensemble of $N$ trajectories $\{x_n(t)\}_{n}$.
+Over the iterations of the algorithm, trajectories are duplicated or discarded from the ensemble according to precise selection rules that bias the sampling towards the rare events of interest.
+Such selection rules are designed in such a way that the sampling bias is known at each iteration of the algorithm.
+In other words, generated trajectories are given a weight which knowledge allow for the computation of their probability and expectation values according to the unbiased stationary distribution of the dynamics.
+
+depending on their relevance to
 the realisation of extreme events of interest. 
 Numerous algorithms and applications have been proposed since the original ideas of Kahn and Harris in the early 50s~\cite{kahnharris}, which can be sorted in two categories. On the one hand, \textit{splitting} approaches decompose rare events into a succession of less rare events that can be sampled with a higher probability.
 On the other hand, \textit{importance sampling} relies on the sampling of trajectories according to a modified distribution, that is biased towards the rare events of interest.
@@ -413,6 +418,49 @@ As an application, we use the \ac{gktl} algorithm to compute return times of ver
 
 \subsection{Extreme instantaneous drag forces with the \acl{ams} algorithm}
 \label{sec:ams}
+The \acl{ams}~\cite{amspaper} inherits from the base ideas of \textit{splitting} algorithms~\cite{kahnharris}: the sampling of a rare event can be made easier by splitting the event
+into a sequence of events that can be sampled with a higher probabilbity.
+Even though a large body of variants have been proposed since the early 50s, the \ac{ams} appears as the most advanced formulation of multilevel splitting to date.
+In recent years, it was applied to several problems
+
+In the present paper we use a variant of the \ac{ams} algorithm called the \ac{tams}.
+The algorithm is sketched in figure~\ref{figure_AMS}.
+For further details about the algorithm and assoiated mathematical results, see~\cite{lestang2018} and references therein.
+In the remainder of this section, we illustrate that the application of the \ac{TAMS}, fails to easily and efficiently sample rare drag fluctuations occuring in the test flow described in section~\ref{sec:test_flow}.
+We analyse those difficulties in light of the conclusions of sections~\ref{sec:instantaneous_drag} and~\ref{sec:time_avg} on the dynamics of extreme drags.
+
+To begin with, figure~\ref{fig:comparaison_temps_retour} illustrate expected results from the \ac{tams}, based on a one-dimensional \ac{ou} process.
+In this case, it is clear that the algorithm allows for the sampling of very rare fluctuations for a computational cost that is many order of magnitude lower than their return time.
+
+We then apply the \ac{tams} to the test flow, to sample extreme drag fluctuations on the square obstacle. 
+
+  \centering
+  \includegraphics[width=.7\linewidth]{ams/figure_AMS}
+  \caption{Illustration of one selection-mutation step in the \ac{ams} algorithm for the computation of the probability that an observable $A:\mathbb{R}^d\to \mathbb{R}$  reaches values larger than $Q$ over a trajectory of duration $T_a$.}
+\end{figure}
+\begin{figure}
+  \centering
+  \includegraphics[width=.7\linewidth]{ams/comparaison_temps_de_retour}
+    \caption{Illustration of the efficiency of the \ac{tams} algorithm with respect to direct sampling. The amplitude of fluctuations for the \ac{ou} process~\eqref{eq:OUprocess_chap_ams} are represented along the Y-axis. Along the X-axis is represented the typical computational cost required to sample fluctuations of the corresponding amplitude in both the \ac{tams} and direct sampling. In the latter, the typical computational cost is simply the return time $r(a)$. The computational cost associated to a level $a$ is the \ac{tams} is denoted by $C(a)$. The orange line represents the evolution of the level $\mathcal{Q}_j^{\star}$ as a function of the cost $C(a)$. The blue stars represent the maximum of $x(t)$ over the resampled trajectory \emph{after} it is resampled, that is at iteration $j+1$. Finally, the solid black line is the analytical solution for the return time of amplitude $a$~\cite{lestang_computing_2018}.}
+  \label{fig:comparaison_temps_de_retour}
+\end{figure}
+
+\begin{figure}
+  \centering
+  \includegraphics[width=.7\linewidth]{ams/instant_256_20}
+    \caption{Maximum of the instantaneous drag along the resampled trajectories, denoted by $\tilde{f}_d^{(j)}$, as a function of the corresponding computational cost $C_j$, defined in~\eqref{eq:comp_cost_iterations}. In both figures, the \ac{tams} is iterated until extinction. 
+    The solid black line indicates the typical fluctuation amplitude $a$ as a function of the corresponding  \textit{return time} $r(a)$. It is the typical timescale of occurrence of fluctuations above $a$. Furthermore, the square markers depict the maximum $\tilde{f}_{d,n}^{(0)},\,\, 1\leq n \leq N_c$ over the initial trajectories.
+    This figure illustrates that in both experiments the \ac{tams} does not improve the sampling of rare fluctuations. On can see that the maximum values among the resampled trajectories concentrates on values already sampled over the initial trajectories. Eventually, extinction is reached as the algorithm is unable to generate a fluctuation higher than the maximum fluctuation in the initial ensemble of trajectories.
+    This behaviour is illustrated in figure~\ref{fig:extinction_32_5} on the basis of the drag timeseries involved in the experiment of figure~\ref{fig:comparaison_ams_return_time_instant_a}.}
+\end{figure}
+
+\begin{figure}
+  \centering
+  \includegraphics[width=.7\linewidth]{ams/iter_181}
+    \caption{Visualisation of the drag timeseries corresponding to the set of trajectories in the ensemble, at different iterations along the algorithm. In this experiment, the \ac{tams} is used with the instantaneous drag $f_d$ as a score function. Trajectories have a duration $T_a = 5\tau_c$ and their number is $N_c = 32$.
+    One can see that, as the number of iterations increases, the number of independent resampled trajectories drastically decreases until extinction at iteration $181$. The timeseries corresponding to the two initial trajectories exhibiting the highest fluctuations are displayed in colour. In all four figures, colour is inherited from the parent trajectory. It illustrates that the two strongest initial trajectories quickly become predominant in the ensemble, as the other are discarded.
+    As can be seen in figure~\ref{fig:subfigc}, trajectories only separate well after the maximum is reached. Therefore, resampling the blue trajectories based on the red trajectories can only change the overall maximum by a very small amount. Consequently, blue trajectories are discarded one after the other, each time resampled into another instance of the red trajectory. This new instance has roughly the same maximum as the others.}
+\end{figure}
 
 \subsection{Extreme time-averaged drag forces with the \acl{gktl} algorithm}
 \label{sec:gktl}
