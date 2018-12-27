@@ -518,9 +518,186 @@ Indeed, fluid structures responsible for a particular value of the drag on the o
 \subsection{Extreme time-averaged drag forces with the \acl{gktl} algorithm}
 \label{sec:gktl}
 
+We now turn to the sampling of extreme fluctuations of the time-averaged drag $F_T$.
+The \ac{ams} could be used in the same way as described in section~\ref{sec:ams} for the instantaneous drag, choosing $F_T$ itself as a score function.
+However, we observed a similar behaviour: the \ac{tams} resampling procedure fails to yield trajectories with higher fluctuations of $F_T$.
+
+When it comes to time-averaged observable, one can make use of a different algorithm the \acf{gktl} algorithm~\cite{Giardina2006,Tailleur2007,Giardina2011}.
+It was originally designed to compute large deviations of time-averaged dynamical observables.
+By contrast with the \ac{ams} and \ac{tams}, the \ac{gktl} algorithm does not belong to the family of splitting algorithms.
+Instead, it implements \textit{importance sampling}, \textit{i.e.} sampling a modified distribution that is biased towards the rare events of interest.
+The idea of importance sampling is very general and was used in many different contexts (see e.g.~\cite{Berg1992,Hartmann2002} and the general references~\cite{Bucklew2004,RubinoTuffin2009}). 
+The \ac{gktl} algorithm performs importance sampling in the space of trajectories, which is relevant for out-of-equilibrium systems.
+
+\subsubsection{The algorithm}
+\label{sec:gktl_description}
+Similarly to the \ac{tams} algorithm, the \ac{gktl} relies on the simulation of a population of trajectories.
+In this case however, they interact dynamically: at regular time intervals, some members of the ensemble are killed and some are cloned according to a weight which depends on the history of the replica.
+The weights are chosen such that, after several iterations of the algorithm, generated trajectories are distributed according to a probability distribution that is tilted in order to favour trajectories with large values of a chosen time averaged observable.
+This sort of algorithm has first been proposed by~\cite{Giardina2006} and has been used to study rare events in both stochastic~\cite{Giardina2006,Lecomte2007b,Garrahan2007,Hurtado2009b} and deterministic systems~\cite{Giardina2006,Tailleur2007}.
+
+More precisely, we perform simulations of an ensemble of $N$ trajectories $\left\{ X_{n}(t)\right\}$ (with $n=1,2,...,N$) starting from random initial conditions.
+Like in section~\ref{sec:ams}, the total integration time of the trajectories is denoted $T_{a}$.
+We consider an observable of interest $A(X(t))$ and a resampling time $\tau$.
+At times $t_{i}=i\tau$ (with $i=1,2,...,T_{a}/\tau$) we assign to each trajectory $n$ a weight $W_{n}^{i}$ defined as
+\begin{equation}
+W_{n}^{i}=\frac{e^{k\intop_{t_{i-1}}^{t_{i}}A(X_{n}(t))dt}}{R_{i}}\,\,\,\mbox{with}\,\,\,R_{i}=\frac{1}{N}\sum_{n=1}^{N}e^{k\int_{t_{i-1}}^{t_{i}}A(X_{n}(t))dt}.\label{eq:Weight}
+\end{equation}
+For each trajectory $X_{n}$, a random number of copies of the trajectory are generated, on average proportional to the weight $W_{n}^{i}$ and such that the total number of trajectories produced at each event is equal to $N$.
+For deterministic systems, a small perturbation is introduced for clones at times $t_i$, so that clones separate from their parent. 
+The parameter $k$ is chosen by the user in order to control the strength of the selection and thus to target a class of extreme events of interest.
+The larger the value of $k$, the more trajectories with large values of the time average observable will survive the selection.
+
+Let us denote formally $\mathbb{P}_{0}\left(\left\{ X(t)\right\} _{0\leq t\leq T_{a}} = \left\{ x(t)\right\} _{0\leq t\leq T_{a}}\right)$ the probability to observe a trajectory $\left\{ x(t)\right\} _{0\leq t\leq T_{a}}$ in the model, and $\mathbb{P}_{k}\left(\left\{ X(t)\right\} _{0\leq t\leq T_{a}} = \left\{ x(t)\right\} _{0\leq t\leq T_{a}} \right)$ the probability to observe the same trajectory with the algorithm.
+By construction of the algorithm through the weights~\eqref{eq:Weight}, we have
+\begin{align}
+\mathbb{P}_{k}\left(\left\{ X(t)\right\} _{0\leq t\leq T_{a}}=\left\{ x(t)\right\} _{0\leq t\leq T_{a}}\right) &\underset{N\rightarrow\infty}{\sim} \frac{e^{k\int_{0}^{T_{a}}A(x(t))dt}}{Z(k,T_a)}\mathbb{\mathbb{P}}_{0}\left(\left\{ X(t)\right\} _{0\leq t\leq T_{a}}=\left\{ x(t)\right\} _{0\leq t\leq T_{a}}\right).\label{eq:Biased_Path_Approximation}
+\end{align}
+where the normalisation factor is given by $Z(k,T_a)=\mathbb{E}_{0}\left[e^{k\int_{0}^{T_{a}}A(X(t))dt}\right]$, denoting by $\mathbb{E}_{0}$ the expectation value with respect to $\mathbb{P}_{0}$, and $\underset{N\rightarrow\infty}{\sim}$ means that this is true only asymptotically for large $N$.
+The typical error is of order $1/\sqrt{N}$ when evaluating averages over observables.
+Equation~\eqref{eq:Biased_Path_Approximation} is obtained by assuming the mean field approximation
+\begin{equation}
+R_{1}=\frac{1}{N}\sum_{n=1}^{N}e^{k\int_{0}^{t_{_{1}}}A(X_{n}(t))dt}\underset{N\rightarrow\infty}{\sim} Z(k,t_1)= \mathbb{E}_{0}\left[e^{k\int_{0}^{t_{1}}A(X(t))dt}\right],\label{eq:Mean_Field_Approximation}
+\end{equation}
+which, by induction, and using a formula similar to~\eqref{eq:Mean_Field_Approximation} at each step of the induction, leads to~\cite{Giardina2006,Giardina2011}:
+\begin{equation}
+\prod_{i=1}^{T_{a}/\tau}R_{i}\underset{N\rightarrow\infty}{\sim} Z(k,T_a) =\mathbb{E}_{0}\left[e^{k\int_{0}^{T_a}A(X(t))dt}\right].\label{eq:Estimate_Lambda}
+\end{equation}
+The validity of the mean field approximation and the fact that the typical relative error due to this approximation is of order $1/\sqrt{N}$ has been proven~\cite{DelMoralBook,DelMoral2013} to be true for a family of rare event algorithms including the one adopted in this paper.
+
+Formula~\eqref{eq:Biased_Path_Approximation} is valid only for times $T_{a}$ that are integer multiples of the resampling time $\tau$.
+The killed trajectories have to be discarded from the statistics.
+Starting from the final $N$ trajectories at time $T_{a}$, one goes backwards in time through the selection events attaching to each piece of trajectory its ancestor.
+In this way one obtains an effective ensemble of $N$ trajectories from time 0 to time $T_{a}$, distributed according to $\mathbb{P}_{k}$.
+All trajectories reconstructed in this way are real solutions of the model: we have not modified the dynamics, but only sampled trajectories according to the distribution $\mathbb{P}_{k}$ rather than according to the distribution $\mathbb{P}_{0}$.
+
+The sampled trajectories can be used to compute the statistical properties of any observable with respect to the distribution $\mathbb{P}_{0}$, from the distribution $\mathbb{P}_{k}$.
+This is done using the backward reconstructed trajectories and inverting formula~\eqref{eq:Biased_Path_Approximation}.
+For more details concerning the implementation of the algorithm and the corresponding data analysis, see~\ref{these_lestang,nemoto_bouchet2016}
+As an example, say one wants to estimate the expectation value of an observable $O\left(\left\{ X(t)\right\} _{0\leq t\leq T_{a}}\right)$.
+An estimator is then given by
+\begin{equation}
+\mathbb{E}_{0}\left[O\left(\left\{ X(t)\right\} _{0\leq t\leq T_{a}}\right)\right]\underset{N\rightarrow\infty}{\sim}\frac{1}{N}\sum_{n=1}^{N}O\left(\left\{ X_{n}(t)\right\} _{0\leq t\leq T_{a}}\right)\mbox{e}^{-k\int_{0}^{T_{a}}A(X_{n}(t))dt}\mbox{e}^{T_{a}\lambda(k,T_{a})},\label{eq:GK_O_estimator}
+\end{equation}
+where the $X_{n}$ are the $N$ backward reconstructed trajectories.
+Events that can be considered rare with respect to $\mathbb{\mathbb{P}}_{0}$ are oversampled following $\mathbb{P}_{k}$.
+As a result, the effective ensemble of trajectories generated by the \ac{gktl} algorithm contains a larger amount of such events, and empirical estimators such as~\eqref{eq:GK_O_estimator} have a dramatically lower statistical error.
+
+\subsubsection{Application to extreme fluctuations of the time-averaged drag}
+\label{sec:gktl_drag}
+
+We now discuss the application the \ac{gktl} algorithm to the flow dynamics introduced in section~\ref{sec:test_flow}.
+The objective is to sample trajectories displaying extreme fluctuations of the \textit{time-averaged} drag~\eqref{eq:def_time_averaged_drag}.
+Consistenly with section~\ref{sec:time_avg}, we choose the averaging window $T=10\tau_c$.
+
+% Choice of parameters and perturbation
+The computational cost $C_{gktl}$ of a \ac{gktl} experiment is determined by both the duration of the trajectories $T_a$ and the number of trajectories $N_c$: $C = N_c \times T_a$.
+In the following series of experiements we set $T_a = T = 10\tau_c$.
+The sampling from the \ac{gktl} alorithm will be compared to the sampling from a direct simulation of the flow over $T_{tot}=10^6\tau_c$.
+To match this computational cost with the \ac{gktl} experiments, we set $N_c=16384$.
+Lastly, one must set the cloning period $\tau$.
+On the one hand, too small a cloning period may result in unfortunate loss of information as clones do not separate from their parent over a cloning period.
+On the other hand, choosing $\tau \gg \tau_c$ leads to too few cloning stages.
+As a consequence, we set $\tau = \tau_c /2$.
+
+% Commentaire de la figure illustration_IS
 
 
+Figure~\ref{fig:illustration_IS} illustrates the importance sampling performed by the \ac{gktl} algorithm.
+illustrates the amplitude of the fluctuations of $F_{T_a}$ corresponding to the sampled trajectories for each three experiments.
+More precisely, it illustrates the estimate of the biased drag \ac{pdf} $\rho_k$ in each case:
+\begin{multline}
+  \label{eq:estimate_biased_measure}
+  \rho_k(F) = \mathbb{E}_{\set{P}_k}[\delta(F_{T_a}[\{\mathbf{x}\}_{0\leq t \leq T_a}]-F)] \\
+  \approx \frac{1}{N_c}\sum_{j=1}^{N_c}\delta(F^{(j)}_{T_{a}}[\{\mathbf{x}\}_{0\leq t \leq T_a}] - F).
+\end{multline}
+Moreover, figure~\ref{fig:illustration_IS_drag} displays an estimate of the unbiased drag \ac{pdf} $\rho_0(F) = \mathbb{E}_{\set{P}_0}[\delta(F_{T_a} - F)]$.
+Note that this figure is analogous to figure~\ref{fig:illstration_importance_sampling} on page \pageref{fig:illstration_importance_sampling}.
+One can see that, as $k$ is increased, the biased \ac{pdf} is shifted towards extreme values.
+However, the experiment with $k=0.03$ does not seem to increase the sampling of rare event with respect to the experiment with $k=0.025$.
+Actually, the shape of the estimate of the biased \ac{pdf} shows that the reconstructed trajectories concentrate around a single value of the fluctuation $F'_{T_a} = F_{T_a}-\overline{F_{T_a}} \approx 5\sigma_{T_a}$, where $\overline{F_{T_a}}$ and $\sigma_{T_a}$ denote the average and standard deviation of $F_{T_a}$, respectively.
+This suggests a strong overlap of trajectories in the reconstructed ensemble, which we address next.
 
+\paragraph{}
+Figure~\ref{fig:nbIndep} illustrates the overlap of trajectories in the reconstructed ensemble.
+Along the X-axis, we represent the $M = T_a / \tau$ iterations of the evolution/selection procedure.
+For each iteration $m$ we plot the number of independent trajectories, \textit{i.e.} the number of trajectories that exhibit different paths $\{X(t)\}_{(m-1)\tau \leq t \leq m\tau}$ over the interval $t\in [(m-1)\tau;m\tau]$.
+In practice we trace back the history of the trajectories backward in time starting from the final time $T_a = M\tau$, in a way very similar to the \emph{Method 1} presented in section~\ref{sec:reconstruction_practice}.
+Figure~\ref{fig:nbIndep} illustrates that, at early times, the vast majority of the trajectories in the reconstructed ensemble overlap.
+This is also illustrated, in a different way, by the red trajectories in figure~\ref{fig:schema_algo_b}.
+Say $N$ trajectories of the reconstructed ensemble overlap over the interval $[0;m\tau]$, with $1\leq m \leq M$.
+Among these $N$ trajectories, only one trajectory $j$ actually originates from $t=0$.
+Indeed, the $N-1$ others have been discarded following the selection stage of a given iteration $\tilde{m}\geq m$, and replaced by a clone of trajectory $j$ over the interval $[0;\tilde{m}\tau]$.
+In the following we call \emph{fully independent trajectories} the trajectories that do not overlap at all over $[0;T_a]$, \textit{i.e.} trajectories that do not overlap over the first period $[0;\tau]$.
+From figure~\ref{fig:nbIndep} one can see that the number of fully independent trajectories is very small compared to the total number of trajectories $N_c$.
+
+\paragraph{}
+In this context, can the \ac{gktl} yield more \emph{independent} events than a direct sampling based on a long simulation ?
+If yes, how much more ?
+\begin{table}
+  \centering
+  \subfloat[$k=0.02$]{
+  \begin{tabular}{l|ccccc}
+    Overlap & $\sigma$ & $2\sigma$ & $3\sigma$ & $4\sigma$ & $5\sigma$ \\
+    \hline
+    0\% & 759 & 258 & 32 & 5 & 0  \\ 
+    25\% & 942 & 372 & 62 & 9 & 0  \\ 
+    50\% & 1594 & 799 & 155 & 22 & 0  \\ 
+    $N_{N_c}^{(gauss)}$ & 2599.408 & 372.738 & 22.117 & 0.519 & 0.005  \\ 
+  \end{tabular}}\\
+\subfloat[$k=0.025$]{\label{tbl:nbTraj_tbl_b}
+  \begin{tabular}{l|ccccc}
+    Overlap & $\sigma$ & $2\sigma$ & $3\sigma$ & $4\sigma$ & $5\sigma$ \\
+    \hline
+    0\% & 305 & 179 & 52 & 5 & 0  \\ 
+    25\% & 451 & 310 & 144 & 39 & 4  \\ 
+    50\% & 1019 & 834 & 521 & 198 & 27  \\ 
+    $N_{N_c}^{(gauss)}$ & 2599.408 & 372.738 & 22.117 & 0.519 & 0.005  \\ 
+  \end{tabular}}\\
+\subfloat[$k=0.03$]{\label{tbl:nbTraj_tbl_c}
+  \begin{tabular}{l|ccccc}
+    Overlap & $\sigma$ & $2\sigma$ & $3\sigma$ & $4\sigma$ & $5\sigma$ \\
+    \hline
+    0\% & 100 & 80 & 33 & 8 & 1  \\ 
+    25\% & 186 & 166 & 110 & 46 & 7  \\ 
+    50\% & 539 & 510 & 391 & 205 & 36  \\ 
+    $N_{N_c}^{(gauss)}$ & 2599.408 & 372.738 & 22.117 & 0.519 & 0.005  \\ 
+  \end{tabular}}
+\caption{Number of independent trajectories corresponding to fluctuations $F'_{T_a} \geq a$ with a=$\sigma,2\sigma...$ in the reconstructed ensemble, for the three experiments $k=0.02,0.025,0.03$. Parameters of the \ac{gktl} experiments are $N_c = 16384$, $T_a=10\tau_c$, $\tau = \tau_c /2$ and $\epsilon = 0.02$. In each case we count as independent trajectories with an overlap of $0\%$ (zero overlap), $25\%$ and $50\%$, respectively. In addition, $N_{N_c}^{(gauss)}$ is the average number of fluctuations $F'_{T_a} \geq a$ on can expect from $N_c$ realisations obtained from a direct sampling approach. This number is based on the fact that the \ac{pdf} of $F_{T_a}$ is Gaussian. It is defined in~\eqref{eq:gaussian_number}.}
+\label{tbl:nbTraj_tbl}
+\end{table}
+Table~\ref{tbl:nbTraj_tbl} displays the number of independent trajectories that correspond to fluctuations $F'_{T_a} \geq a$ with $a=\sigma_{T_a}, 2\sigma_{T_a},3\sigma_{T_a}...$, for each of the three experiments.
+In each case, we count the number of trajectories according to the allowed degree of overlap.
+For instance, allowing a $25\%$ overlap, we consider trajectories that overlap over $[0;T_a/4]$ as independent.
+In order to compare with a direct sampling approach, we could perform a very long simulation of computational cost $N_c\times T_a$, divide it into $N_c$ realisations $F_{T_a}$ and count the number of fluctuations $F'_{T_a} \geq a$ above a given threshold value $a$.
+However, we found that the \ac{pdf} describing the statistics of fluctuations $F'_{T_a}$---with $T_a = 10\tau_c$--- is very close to a Gaussian \ac{pdf}.
+As a result, the expected number of fluctuations $F'_{T_a} \geq a$ among $N_c$ realisations is
+\begin{equation}
+  N^{(gauss)}_{N_c} \approx N_c \times \set{P}(F'_{T_a} \geq a) = N_c \times \frac{1}{\sqrt{2\pi \sigma_{T_a}}}\int_{a}^{\infty}e^{-x^2/2\sigma^2_{T_a}}\mathrm{d}x.
+  \label{eq:gaussian_number}
+\end{equation}
+Considering small fluctuations $F'_{T_a} \geq a$ with $a = \sigma$ and $a = 2\sigma$, one can see in table~\ref{tbl:nbTraj_tbl} that the number of sampled independent trajectories actually decreases as $k$ is increased. This results from the fact that the overall number of independent trajectories decreases as $k$ is increased, as illustrated in figure~\ref{fig:nbIndep}.
+More importantly, considering fluctuations above $3\sigma$, the \ac{gktl} experiments for $k=0.025$ and $k=0.03$ provide a larger number of fluctuations than a direct sampling approach with similar computational cost.
+For instance, table~\ref{tbl:nbTraj_tbl_b} shows that the experiment with $k=0.025$ provides $5$ fully independent trajectories corresponding to fluctuations $F'_{T_a} \geq 3\sigma$.
+This is ten times more than what can be expected from a direct sampling.
+Notice however how drastic is the reduction of the number of independent trajectories as the allowed degree of overlap is diminished.
+Allowing for a $50\%$ overlap, the reconstructed ensemble for the experiment $k=0.025$ contains roughly $200$ independent trajectories corresponding to fluctuations $F'_{T_a} \geq 3\sigma$.
+Generally speaking, we observe in all three experiments that the number of independent trajectories is very small compared to the total number of trajectories $N_c = 16384$.
+For instance, table~\ref{tbl:nbTraj_tbl_c} shows that, allowing a $50\%$ overlap between independent trajectories, $521$ trajectories can be used to study the dynamics leading to fluctuations $F'_{T_a} \geq 3\sigma$.
+This represents $521 / N_c \approx 3\%$ of the overall computational cost of the experiment.
+We stress that, in spite of this rather poor yield, the \ac{gktl} still results in a larger amount of extreme fluctuations, with respect to a direct sampling approach.
+However, there is clearly room from improvement.
+
+\begin{figure}
+  \centering
+  \includegraphics[width=0.7\linewidth]{illustration_IS}
+  \caption{\textbf{(a)}: Importance sampling for the time-averaged drag acting on the obstacle embedded in the test flow. The drag is averaged over $T=10\tau_c$. 
+  The \ac{gktl} algorithm is used with $N_c = 16384$ copies and $T_a = T= 10\tau_c$ for three increasing values of the bias $k$. Additionally, the cloning period is $\tau = \tau_c/2$, resulting in $M=20$ iterations of the evolution/selection procedure. Note that in this particular example the last cloning stage at $t_{19}$ is not performed.
+  As $k$ is increased, the sampled \ac{pdf} is shifted towards extreme values.
+  Along the X-axis we display the fluctuation $F'_{T} = F_{T} - \overline{F_{T}}$, where the average $\overline{F_{T}}$ and standard deviation $\sigma_{T}$ have been computed over a timeseries spanning $10^6\tau_c$.
+  One can see that the distribution for $k=0.03$ is peaked for a particular value of the fluctuation. This indicates that a significant part of the sampled trajectories actually overlap over the major part if their history.
+  A a result, the average drag only differ by a small amount.}
+\end{figure}
 \end{document}
 %%% Local Variables:
 %%% mode: latex
