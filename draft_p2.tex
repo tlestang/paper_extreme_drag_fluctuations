@@ -79,7 +79,7 @@
 }
 
 \begin{document}
-\title{A statistical mechanics approach to the simulation of extreme fluctuations of the time-averaged drag acting on an obstacle immersed in a turbulent flow}
+\title{Brouillon PoF,PRF..}
 
 \author{Thibault Lestang}
 \email{thibault.lestang@ens-lyon.fr}
@@ -206,16 +206,25 @@ This means that the drag decorrelates after only a few number of eddies interact
 \section{Direct sampling of extreme fluctuations of the drag acting on a square cylinder in two-dimensional turbulence}
 \label{sec:direct_sampling}
 
-\paragraph*{Paragraphe d'introduction: les motivations d'un étude directe ?}
-%% TODO: Introduire la notion de temps de retour
-Rare event algorithms relies on the simulation of an ensemble of trajectories.
-Members of the ensemble can be duplicated or removed from the ensemble, based on the evaluation of a \textit{score function}.
-A score function is an observable of the trajectories that can quantify how interesting is a trajectory with respect to the realisation of a rare event.
-For instance, if one is interested in a rare transition between two region of phase space, a possible choice for the score function is the minimal distance to the target set achieved by the trajectory.
-In cases where one is interested in computing rare trajectories over which a given observable reaches a fixed threshold, an obvious score function is the maximum value of the observable over the trajectory.
-However, for high-dimensional dynamics with a very complex phase space, the simple distance to the target event is likely to be a very poor criterion for selecting rare trajectories.
-\textbf{[...]}
+In this section we describe the phenomenology of extreme fluctuations of the drag that acts on the square cylinder mounted in the flow described in section~\ref{sec:test_flow}.
 
+How rare is a fluctuation $f_d \geq a$ can be determined by computing its \textit{return time} $r(a)$.
+It is defined as the average time between two consecutive occurrences of a fluctuation $f_d \geq a$.
+Extreme drag fluctuations are \textit{rare events}, that is fluctuations for which $r(a) \gg \tau_c$.
+In this context, the occurrence of the fluctuations follows a Poisson process and~\cite{lestang2018}
+\begin{equation}
+  \label{eq:return_time}
+  r(a) \underset{a\to\infty}{\propto} \frac{1}{\mathbb{P}(f_d\geq a)} \propto e^{\alpha a}
+\end{equation}
+where $\alpha$ is the rate describing the positive tail of the drag \ac{pdf}, see figure~\ref{fig:pdf_drag}.
+Figure~\ref{fig:return_time_instant} illustrates the fluctuation amplitude $a$ as a function of the return time $r(a)$, for the drag process $f_d(t)$.
+Such plot can be obtained from a sample timeseries following a simple procedure~\cite{lestang2018}.
+
+In the following we discuss extreme fluctuations of both the instantaneous drag $f_d$ and time-averaged drag with return times larger than $10^4\tau_c$.
+In this section extreme drag fluctuations are simply sampled by simulating the flow over a very long duration.
+This approach is referred to as \textit{direct sampling}, as opposed to approaches involving the use of rare events algorithms, discussed in section~\ref{sec:rare_events_algorithms}.
+Such approach is made possible by the relative simplicity of the flow described in section~\ref{sec:test_flow}.
+The control run mentioned in the previous section, spanning $T_{tot} = 10^6 \tau_c$, could be achieved in a wall-clock time of a few weeks and gives access to extreme fluctuations $f_d \geq a$ with a return time $r(a) \leq 10^6\tau_c$.
 \subsection{Extracting extreme drag fluctuations from a very long timeseries}
 \label{sec:extreme_extraction}
 
@@ -230,7 +239,7 @@ events.
 
 \begin{figure}
   \centering
-  \includegraphics[width=\linewidth]{return_time_drag}
+  \includegraphics[width=.6\linewidth]{return_time_drag}
   \caption{Drag fluctuation amplitude as a function the corresponding return time. The return time $r(a)$ is the typical timescale of occurrence of a fluctuation of amplitude larger than $a$.}
   \label{fig:return_time_instant}
 \end{figure}
@@ -397,12 +406,7 @@ If $\mathbb{P}$ has an exponential positive tail, \textit{i.e.} $\mathbb{P}(X=x)
 
 %% Limites de l'approche par échantillonnage direct
 In the limit of very rare events and/or very complex dynamics such as turbulent flows in industrial contexts, a direct sampling approach is unrealistic.
-For instance, in the limit of extreme positive fluctuations, the return time of a fluctuations $f_d \geq a$ verifies~\ref{sec:lestang2018}
-\begin{equation}
-  \label{eq:return_time_scaling}
-  r(a) \underset{a\to\infty}{\propto} \frac{1}{\mathbb{P}(f_d\geq a)} \propto e^{\alpha a}
-\end{equation}
-where $\alpha$ is the rate describing the positive tail of the drag \ac{pdf}, see figure~\ref{fig:pdf_drag}.
+Indeed, according to equation~\eqref{eq:return_time_scaling}, the return time of a fluctuation $f_d \geq a$ verifies $r(a) \propto e^{\alpha a}$.
 As a result, the computational cost required to sample events $f_d \geq a$ scales like $e^{\alpha a}$.
 
 %% Objectif des algo.
