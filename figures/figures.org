@@ -1,0 +1,18 @@
+* [[./illustr_vort]]
+* [[./typical_drag_signal]]
+* [[./PDF_drag]]
+* [[./autocorr_drag]]
+* [[./return_time]]
+* [[./pressure_ratio]]
+* [[./illustr_extrms_vorticity]]
+* [[./dynamics_extremes]]
+* [[./timeseries_extremes]]
+* [[./shear_asof_drag]]
+Pas de script python pour le moment
+Je ne comprends plus ce que sont 'inverse events'
+* timeseries_extrms_AVG
+* [[./illustr_AMS]]
+* [[./AMS_OU]]
+* [[./AMS_drag_resampling
+* AMS_drag_trajectories
+* IS_GKTL

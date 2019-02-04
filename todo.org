@@ -1,0 +1,15 @@
+* TODO Mettre à jour les figures qui peuvent l'être
+* TODO Include la figure illustrant l'évolution du cisaillement en fonction de la trainée
+  Pas forcément besoin de refaire le script en python, d'autant plus que c'est compliqué
+* Illustration des séries temporelles pour les extremes de trainée intégrée
+** TODO retrouver le script
+** TODO Le réecrire en python
+* Plots AMS
+** TODO Récupérer et ranger les données 
+** TODO Trajectoires finales
+** TODO Evolution du max sur les trajectoires re-échantillonneés
+* Récupérer mon code GKTL et le versionner
+* Evaluer l'effort nécéssaire pour refaire une experience GKTL pour l'article.
+
+
+
