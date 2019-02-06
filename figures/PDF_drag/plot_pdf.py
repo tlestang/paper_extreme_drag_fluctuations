@@ -25,4 +25,7 @@ ax.set_xlabel('$f_d$',fontsize=16)
 plt.ylabel('$\log(PDF)$',fontsize=16)
 ax.legend(loc='upper right')
 
+fname = 'PDF_drag.png'
+plt.savefig(fname)
+
 plt.show()

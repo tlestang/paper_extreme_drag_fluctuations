@@ -1,5 +1,5 @@
 import numpy as np
-import matplotlib.pyplot as plt
+1;4601;0cimport matplotlib.pyplot as plt
 
 plt.style.use('ggplot')
 
@@ -46,8 +46,6 @@ killedTraj = np.fromfile(prefix+'killedTraj.dat', dtype='int32')
 for t in range(1,182):
     for i in range(0,nbKilledTraj[t-1]):
         ktIdx = killedTraj[t+i-1]
-        print(ktIdx)
-        print('traj_{:d}_costFunc_iter_{:d}.dat'.format(ktIdx,t))
         x = np.fromfile(prefix+'traj_{:d}_costFunc_iter_{:d}.dat'.format(ktIdx,t))
         x=(x-m)/sig
         ax.lines[ktIdx].set_ydata(x)
@@ -60,7 +58,7 @@ ax.tick_params(axis="y", labelsize=16)
 ax.legend(loc='best', fontsize=12)
 ax.set_xlim((0,5))
 
-fname = 'plot_extinction.png'
+fname = 'AMS_drag_trajectories.png'
 plt.savefig(fname)
 
 plt.show()

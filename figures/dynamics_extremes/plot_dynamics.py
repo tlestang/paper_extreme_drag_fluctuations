@@ -93,7 +93,9 @@ for i in range(0,nplots):
 #cbar.ax.tick_params(labelsize=16)
 
 
-plt.show()
-fname = 'plot_dynamics_extreme.png'
+
+fname = 'dynamics_extremes.png'
 plt.savefig(fname)
+
+plt.show()
             

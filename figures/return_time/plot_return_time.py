@@ -29,4 +29,7 @@ ax.set_ylabel('$a$',fontsize=16)
 ax.set_yticks([3,5,7,9])
 ax.set_yticklabels((r'$3\sigma$',r'$5\sigma$',r'$7\sigma$',r'$9\sigma$'))
 
+fname = 'return_time.png'
+plt.savefig(fname)
+
 plt.show()

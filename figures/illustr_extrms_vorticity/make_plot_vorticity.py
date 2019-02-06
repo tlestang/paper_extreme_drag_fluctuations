@@ -88,6 +88,6 @@ cbar.ax.tick_params(labelsize=16)
 
 
 plt.show()
-fname = 'plot_vorticity.png'
+fname = 'illustr_extrms_vorticity.png'
 plt.savefig(fname)
             

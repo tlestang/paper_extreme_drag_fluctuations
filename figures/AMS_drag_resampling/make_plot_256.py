@@ -65,5 +65,7 @@ ax.tick_params(axis="y", labelsize=16)
 
 ax.legend(loc=7, fontsize=12)
 
+fname = 'AMS_drag_resampling.png'
+plt.savefig(fname)
 
 plt.show()

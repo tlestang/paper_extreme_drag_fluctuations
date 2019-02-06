@@ -20,4 +20,7 @@ line0.set_linewidth(0.7)
 ax.set_xlabel(r'$\tau$',fontsize=16)
 plt.ylabel(r'$C(\tau)$',fontsize=16)
 
+fname = 'autocorr_drag.png'
+plt.savefig(fname)
+
 plt.show()

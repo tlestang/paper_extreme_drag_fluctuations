@@ -18,4 +18,7 @@ line.set_linewidth(.7)
 ax.set_xlabel(r'$t / \tau_0$',fontsize=16)
 plt.ylabel('$f_d(t)$',fontsize=16)
 
+fname= 'typical_drag_signal.png'
+plt.savefig(fname)
+
 plt.show()

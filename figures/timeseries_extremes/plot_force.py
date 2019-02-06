@@ -34,4 +34,8 @@ plt.text(-0.1, -0.05, r'$\tau_c$', fontsize=18)
 ax.legend(loc='best',fontsize=12)
 ax.set_ylabel('$f_d(t)$',fontsize=16)
 ax.set_xlabel('$t$',fontsize=16)
+
+fname = 'timeseries_extremes.png'
+plt.savefig(fname)
+
 plt.show()

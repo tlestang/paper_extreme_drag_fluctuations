@@ -33,4 +33,8 @@ ax.set_xticks([1e2,1e8,1e14,1e20])
 ax.set_xticklabels((r'$10^2\tau_c$',r'$10^8\tau_c$',r'$10^{14}\tau_c$',r'$10^{20}\tau_c$'))
 ax.set_yticklabels((r'$0$',r'$2\sigma$',r'$4\sigma$',r'$6\sigma$',r'$8\sigma$',r'$10\sigma$'))
 ax.legend(loc='best')
+
+fname = 'AMS_OU.png'
+plt.savefig(fname)
+
 plt.show()

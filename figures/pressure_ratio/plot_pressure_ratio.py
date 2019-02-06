@@ -35,7 +35,7 @@ for i in range(0,NbEvents):
 
 maxDrag = (maxDrag-mu) / sig
     
-fig,ax = plt.subplots(1,1)
+fig,ax = plt.subplots(figsize=(9,5), constrained_layout=True)
 
 
 lineRear, =ax.plot(maxDrag, rearContrib, marker='o', label=r'$\tilde{p}^{\star}_{base}$')
@@ -64,5 +64,8 @@ fitRear.set_linewidth(0.7)
 
 ax.set_xlabel(r'$\tilde{f}_d$',fontsize=16)
 ax.legend(loc='best', fontsize=16)
+
+fname = 'pressure_ratio.png'
+plt.savefig(fname)
 
 plt.show()
