@@ -85,9 +85,8 @@ for i in range(0,Nevents):
 cbar=fig.colorbar(im, ax=ax_list)
 cbar.ax.tick_params(labelsize=16)
 
-
-
-plt.show()
 fname = 'illustr_extrms_vorticity.png'
 plt.savefig(fname)
+
+plt.show()
             
