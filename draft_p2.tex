@@ -288,6 +288,10 @@ In addition, figure~\ref{fig:pressure_ratio} hints that, the larger the fluctuat
   \includegraphics[width=.5\linewidth]{timeseries_extremes/timeseries_extremes.png}
 \end{figure}
 
+\begin{figure}
+  \centering
+  \includegraphics[width=.8\linewidth]{dynamics_extremes/dynamics_extremes.png}
+\end{figure}
 
 % \begin{figure}
 %   \centering
@@ -336,24 +340,34 @@ In addition, figure~\ref{fig:pressure_ratio} hints that, the larger the fluctuat
 % \end{figure}
 
 
-We now turn to a description of the flow dynamics for some of the extreme drag fluctuations, sampled in the control timeseries.
-Figure~\ref{fig:top_four_events} displays the vorticity field at $t=t^{\star}$ for the four events corresponding to the largest fluctuation amplitudes.
-One can see that they correspond to very similar flow configurations.
-In each case, a strong vorticity region is located in the vicinity of the base of the obstacle, where vorticity levels typically reach twice as much as the typical vorticity fluctuations displayed in figure~\ref{fig:typical_event}.
-Such strong vorticity is produced through viscous shear along either the bottom or top boundary of the obstacle.
+We now turn to a description of the flow dynamics that correspond to extremely high values of the drag acting on the square obstacle.
 
-By contrast with typical configurations, we observe that this vorticity is not directly advected by the mean flow, but instead constrained in the vicinity of the base of the obstacle.
-Indeed, in each of the four examples displayed in figure~\ref{fig:top_four_events}, a large vortical region is located at roughly one obstacle length of the base.
-As illustrated by figure~\ref{fig:top_four_events_streamlines}, vorticity generated alongside the boundary has no other choice but to concentrate close to the base of the obstacle.
+Figure~\ref{fig:timeseries_extremes} displays the average of the drag timeseries corresponding to the 104 extreme events sampled in the control run, in the vicinity of the fluctuation.
+It illustrates that extreme drag fluctuations are very local in time, with a lifetime of roughly one correlation time unit.
+Starting from typical values, extreme drags are typically reached in less than a correlation time.
+Moreover, such very high drag levels do not persist over time.
+To understand why it is so, it is useful to visualize the corresponding flow fields.
 
-Figure~\ref{fig:top_four_events_timeseries} displays the drag timeseries corresponding to the four events illustrated in figure~\ref{fig:top_four_events}.
-It illustrates that the lifetime of such fluctuations temporal extension is roughly one correlation time unit $\tau_c$.
-It is the time it takes for the block eddy to form and be advected away by the mean flow, thus freeing the vorticity concentrated in the vicinity of the base of the obstacle.
-This can be seen in figure~\ref{fig:dynamics}, which illustrate the vorticty dynamics from $t^{\star}-\tau_c/2$ to $t^{\star}$ on a particular example of an extreme drag fluctuation. 
-On can see in figures~\ref{fig:dynamics_a} to~\ref{fig:dynamics_g} that, from roughly $t^{\star}-\tau_c/2$ to $t^{\star}-\tau_c/3$, the top boundary layer is perturbed by an incoming eddy.
-This interaction eventually leads to the formation of a region of negative vorticity at roughly one square length of the base of the obstacle.
-This can be seen see in figure~\ref{fig:dynamics_k}.
-Although this vorticity is too far from the base to directly affect the base pressure, and thus the drag, it constrains the positive vorticity generated alongside the bottom boundary of the obstacle---see figures~\ref{fig:dynamics_k} to~\ref{fig:dynamics_p}.
+To begin with, figure~\ref{fig:top_four_events} displays the vorticity field corresponding to the peak drag value, for a subset of the extreme events sampled in the control simulation.
+We observe that, in each case, extreme drag flcutuations correspond to very similar flow configurations.
+More precisely, a region of strong vorticity is located in the vicinity of the base of the obstacle, where vorticity levels typically reach twice as much as the typical vorticity fluctuations displayed in figure~\ref{fig:typical_event}.
+This vorticity results from a boundary layer, along either the top or bottom side of the obstacle.
+Such extreme vorticity is responsible for a significant pressure drop in the vicinity of the base of the obstacle, which in turn leads to an extreme value of the drag, see figure~\ref{fig:pressure_ratio}.
+
+How are such vorticity reached ?
+In contrast with the typical flow dynamics, illustrated in figure~\ref{vorticity_typical}, the vorticity generated within the boundary layers is not directly advectd by the means flow.
+Figure~\ref{fig:illustr_density_streamlines} shows that, instead, this vorticity is constrained in the vicinity of the base of the obstacle.
+Such constraint results from a large vortical region located roughly one obstacle length of the base, that prevents vorticity to be advected downstream.
+
+Figure~\ref{fig:dynamics} illustrate the time evolution of the vorticity field, in the vicinity of the drag fluctuation, for the event depicted in figure~\ref{fig:illustr_density_streamlines}.
+From $t^{\star}-0.4\tau_c$ to $t^{\star}-0.16\tau_c$, a strong negative eddy is generated along the bottom boundary layer of the obstacle and advected downstream by the mean flow.
+This leads to a region of negative vorticity at roughly one obstacle length of the base of the obstacle, constraining the positive vorticity generated along the top boundary.
+However, it can be seen in figure~\ref{fig:dynamics} that the positive vorticity only accumulates for a short duration.
+The blocking negative vortex is in turn advected downstream, thus freeing the trapped positive vorticity.
+
+The lifetime of an extreme drag fluctuation therefore corresponds to the duration over which the blocking vortex remains in the vicinity of the base.
+Consistently with figure~\ref{fig:timeseries_extremes}, this duration is roughly one correlation time unit $\tau_c$.
+
 
 We found that $80\%$ of the extreme events sampled from the control timeseries can be related to very similar dynamics.
 In order to identify such events, we monitored the averaged shear along the top or bottom boundary
@@ -364,7 +378,7 @@ In order to identify such events, we monitored the averaged shear along the top 
 where $L$ denotes the diameter of the cylinder, $u_x$ the longitudinal component of the velocity field and $\mathcal{S}_b$ the surface of either the top or the bottom boundary.
 % Figure~\ref{fig:type_1_and_type_2_a} displays the label of the 104 sampled events, sorted according to the amplitude of the corresponding fluctuation.
 % It illustrates that the dynamics corresponding to the large majority of events also corresponds to the events with the highest fluctuation amplitude.
-Figure~\ref{fig:gamma_asof_fd} shows $\overline{\gamma}$ as a function of the instantaneous drag $f_d$, for $t^{\star}-2\tau_c \leq t \leq  t^{\star}+2\tau_c$, for each of the sampled events that follow the previously described dynamics..
+Figure~\ref{fig:shear_asof_drag} shows $\overline{\gamma}$ as a function of the instantaneous drag $f_d$, for $t^{\star}-2\tau_c \leq t \leq  t^{\star}+2\tau_c$, for each of the sampled events that follow the previously described dynamics..
 For $t^{\star}-2\tau_c \leq t \leq t^{\star}-\tau_c$ and $t^{\star}+\tau_c \leq t \leq t^{\star}+2\tau_c$, paths concentrate in the region describing typical values for both $\overline{\gamma}$ and $f_d$.
 As illustrated in figure~\ref{fig:extremes_timeseries}, the drag abruptly varies for $t^{\star}-\tau_c \leq t \leq t^{\star}+\tau_c$.
 As a consequence, paths in the $(f_d, \bar{\gamma})$ space display excursions to atypical values for both $\bar{\gamma}$ and $f_d$.
@@ -375,6 +389,12 @@ The remaining $20\%$ of the sampled events correspond to slightly different dyna
 In this case the vorticity responsible for the base pressure drop is not created along the top or bottom boundary, but directly through viscous shear alongside the base boundary of the obstacle.
 This viscous shear is induced by a large vortex detached from the obstacle.
 For a more detailed description of such dynamics, see the chapter 3 of ~\ref{ref:these_lestang}.
+
+\begin{figure}
+  \centering
+  \includegraphics[width=.7\linewidth]{shear_asof_drag/shear_asof_drag}
+  \caption{\label{fig:shear_asof_drag}}
+\end{figure}
 
 \subsection{Extreme fluctuations of the time-averaged drag }
 \label{sec:time_avg}
