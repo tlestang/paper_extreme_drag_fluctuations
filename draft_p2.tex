@@ -1,6 +1,4 @@
-% \include{header_p2.tex}
-
-\documentclass[pre,aps,floatfix,10pt,superscriptaddress, notitlepage]{revtex4-1}
+\documentclass[pre,aps,floatfix,10pt,superscriptaddress, notitlepage,preprint]{revtex4-1}
 \pdfoutput=1
 \usepackage[english]{babel}
 \usepackage[T1]{fontenc}
@@ -11,7 +9,7 @@
 \usepackage{acro}
 \usepackage{subfig}
 \usepackage{caption}
-\graphicspath{{./figures/}}
+\graphicspath{{figures/}}
 
 \captionsetup[figure]{justification=raggedright}
 
@@ -79,67 +77,153 @@
 }
 
 \begin{document}
-\title{Brouillon PoF,PRF..}
+	
+\title{Importance sampling applied to the simulation of extreme mechanical efforts exerted by a turbulent flow on a bluff body}
 
 \author{Thibault Lestang}
 \email{thibault.lestang@ens-lyon.fr}
-\affiliation{Univ Lyon, ENS de Lyon, Univ Claude Bernard, CNRS, Laboratoire de Physique, F-69342 Lyon, France}
-\affiliation{Univ Lyon, Ecole Centrale de Lyon, Univ Claude Bernard, CNRS, Laboratoire de M\'ecanique des Fluides et d'Acoustique, F-69134 Ecully cedex, France}
+\affiliation{Univ Lyon, ENS de Lyon, Univ Claude Bernard de Lyon, CNRS, Laboratoire de Physique, F-69342 Lyon, France}
+\affiliation{Univ Lyon, Ecole Centrale de Lyon, Univ Claude Bernard de Lyon, Insa de Lyon, CNRS, Laboratoire de M\'ecanique des Fluides et d'Acoustique, F-69134 Ecully cedex, France}
 \author{Freddy Bouchet}
 \email{freddy.bouchet@ens-lyon.fr}
-\affiliation{Univ Lyon, ENS de Lyon, Univ Claude Bernard, CNRS, Laboratoire de Physique, F-69342 Lyon, France}
+\affiliation{Univ Lyon, ENS de Lyon, Univ Claude Bernard de Lyon, CNRS, Laboratoire de Physique, F-69342 Lyon, France}
 \author{Emmanuel Lévêque}
 \email{emmanuel.leveque@ec-lyon.fr}
-\affiliation{Univ Lyon, Ecole Centrale de Lyon, Univ Claude Bernard, CNRS, Laboratoire de M\'ecanique des Fluides et d'Acoustique, F-69134 Ecully cedex, France}
+\affiliation{Univ Lyon, Ecole Centrale de Lyon, Univ Claude Bernard de Lyon, Insa de Lyon, CNRS, Laboratoire de M\'ecanique des Fluides et d'Acoustique, F-69134 Ecully cedex, France}
+
+
+
+\begin{abstract}
+This study evaluates the relevance of importance sampling techniques to optimize the numerical simulation of extreme mechanical efforts exerted by a turbulent flow impinging onto a bluff body. The main idea behind importance sampling is here to replace a long simulation by a set of shorter simulations running in parallel with dynamics that are replicated or abandoned in order to sample large events more frequently. 
+%
+Such techniques have already proved their efficiency for simulating extreme events in... with significant run-time savings.
+Application to turbulent fluid-mechanical systems remains mainly open. 
+%
+The drag experienced by a squared obstacle placed in a turbulent flow (in two dimensions) is taken as a representative case study to investigate the performance of two important sampling algorithms, namely .... 
+Practical evidence is given that these algorithms allow for the correct sampling of rare large-amplitude drag events and the estimation of return times with a reduced computational effort... However, limitations... pitfalls... 
+Importantly, such techniques also provide access to the flow scenario yielding extreme events. In the present case, it is found that... blocking effect
+\end{abstract}
+
 \maketitle
+
 \section{Introduction}
-The purpose of this paper is twofold.
-\section{Description of the test case for extreme drag fluctuations sampling}
+
+// Recall the previous success of importance sampling techniques with references. //
+Explain why interesting to test application for turbulent systems. // To what extent a turbulent system is different from previous case studies? // 
+\\
+
+Turbulent flows are important in a variety of natural phenomena, industrial and civil applications with the characteristic feature to spontaneously develop intense and sporadic fluid motions associated with enormous internal forces. In the turbulence literature, ``extreme'' can refer to fluctuations that deviate from the mean value by $O(10)$ standard deviations. // true ? //
+The nature of such extreme dynamical events and their statistics are of crucial interest to predict excessive mechanical efforts that may cause damages and threaten the structural integrity of embedded structures.
+\\
+
+From the viewpoint of dynamical systems, turbulence in fluids has to do with non-linearity and strong departure from statistical equilibrium. The use of perturbative methods in identifying resonant interactions (among degrees of freedom)  leading to extreme fluctuations is not successful. 
+In this context, simulation offers a practical means to gain insight into the extreme events. However, their numerical sampling requires long simulation since these events are rare as well. 
+\\
+
+
+// Our motivations and expectations. // 
+
+
+\section{Description of the case study}
 \label{sec:test_flow}
 
 \begin{figure}
   \centering
-  \includegraphics[width=\linewidth]{illustr_vort/illustration_vorticity_tf2}
-  \caption{Typical vorticity field in the computational domain. The square obstacle is represented by the gray area in the center of the channel.}
+  \includegraphics[width=\linewidth]{illustration_vorticity_tf2}
+  \caption{Our case study is a grid-generated turbulent flow impinging a squared obstacle located at the center of a channel (in two dimensions).  The vorticity is displayed with an arbitrary colormap from blue (negative values) to red (positive values). The Reynolds number based on the grid spacing is $Re=...$.  // no color bar, show the grid //}
+  \label{fig:computational_domain}
 \end{figure}
-%% Description de la géométrie
-We consider the interaction of a two dimensional turbulent channel flow with a square cylinder, illustrated in figure~\ref{fig:computational_domain}.
-A constant parabolic velocity profile is imposed at the inlet of the channel and turbulence is
-generated by means of a grid.
-A square obstacle is mounted at the center of the channel.
-Eddies are created in the vicinity of the grid with a typical size that correspond to the step of the grid.
-As they are advected downstream, eddies interact with each other and grow in size, until they interact with the obstacle.
-The distance separating the obstacle from the grid is such that the typical size of the eddies it interacts with is close to the size of the obstacle itself.
-The flow in the vicinity of the outlet is regularized by means of a \textit{sponge layer}~\cite{ref1,ref2}, \textit{i.e.} a region where the viscosity is progressivaly increased.
-Such sponge layer facilitates the implementation of an open boundary at the outlet, where a zero momentum flux along the mean-flow direction in imposed.
 
-%% Méthode Boltzmann sur réseau
-The flow dynamics are computed by means of the \ac{lbm}~\cite{ref1,ref2}.
-[[Paragraphe LBM]]
+The drag exerted by a grid-generated turbulent flow onto a squared obstacle is considered as our representative case study. The flow is contained in a long channel as illustrated in Fig.~\ref{fig:computational_domain}. Although real-world applications would eventually imply three-dimensional dynamics, a simplified two-dimensional setting has been chosen here to reduce the computational cost and make possible a systematic study. 
+Nevertheless, this fluid-mechanical system exhibits the characteristic features of turbulent fluid-structure interaction. // true even if 2d? // In the present situation, the obstacle does not deform or move. Through  this specific setting, our main motivation is to evaluate the operability of importance sampling techniques to capture extreme events with a significant run-time savings.  
+\\
+
+A constant parabolic profile is imposed for the streamwise velocity at the inlet of the channel and turbulence is generated by means of a grid. 
+At the outlet of the channel, the flow is progressively damped within a \textit{sponge layer}~\cite{ref1,ref2} where the viscosity is artificially enhanced. 
+% Such sponge layer facilitates the implementation of an open boundary at the outlet, where a zero momentum flux along the mean-flow direction in imposed.
+\\
+
+Turbulent eddies are generated in the near-wake of the grid and carried downstream. // grid is usually characterized by the spacing and the mesh size, are they equal here? //
+They interact with each other and grow in size as expected in two-dimensional turbulence. 
+The size of the eddies that eventually hit the square (at the center of the channel) is comparable to the size of this obstacle, which results in strong fluctuations of the drag acting on the square. 
+\\
+
+
+The flow dynamics are computed by the lattice Boltzmann (LB) method ~\cite{ref1,ref2}. 
+While standard numerical methods rely on the discretization of the Navier-Stokes equations, the LB method emerged in the late 80s as a conceptually different approach. Fluid motions are simulated at a mesoscopic level that is intermediate between the microscopic and the macroscopic. Capturing the kinetic behavior of collections of fluid particles distributed on a lattice is here preferred to solving non-linear PDEs. This seems crazy, however, most details at the mesoscopic level play actually no role at the macroscopic level. Therefore, kinetic equations simpler than the original Boltzmann equation may be designed by retaining only the basic features that pertain at the macroscopic level. This is, in short, the rationale behind the LB approach. In our situation, the LB method has been chosen principally for its outstanding computational efficiency.  
+%
+More precisely, the fluid is viewed as populations of particles
+that collide, redistribute and propagate along the different links of a discrete lattice. 
+In our two-dimensional situation, the so-called D2Q9 lattice with only nine possible velocities $\{\mathbf{c_i}\}_{i=0...8}$ at each node has been adopted (see Fig.~\ref{fig:D2Q9}).
+Locally, the macroscopic flow variables (per unit volume) are recovered by summing over the densities of particles $\{f_i\}_{i=0...8}$ moving with the different velocities, i.e.
+\[
+\rho(\mathbf{x},t) = \sum_i f_i(\mathbf{x},t) \quad \mathrm{and}\quad \rho(\mathbf{x},t) \mathbf u(\mathbf{x},t) = \sum_i f_i(\mathbf{x},t) \mathbf{c_i}
+\]
+for the mass density and the fluid momentum respectively. The assumption of weak compressibility (for an ideal gas) is made so that the pressure is directly proportional to the mass density: $p = c_s^2 \rho$ where $c_s$ is interpreted as a speed of sound.  
+
+\begin{figure}
+	\centering
+	\includegraphics[width=0.7\linewidth]{D2Q9}
+	\caption{Sketch of the D2Q9 lattice. Particles move exactly from a lattice node towards one of its nine neighbours (including the node itself) during one time step. By definition, the lattice spacing is related to the time step by $\Delta x/ \Delta t = \sqrt{3} c_s$, where $c_s$ is interpreted as a speed of sound.}
+	\label{fig:D2Q9}
+\end{figure}
+
+
+The complexity of the flow emerges from the repeated application of simple rules of streaming and collision. Therefore, the LB scheme advances the local densities of particles $f_i(\mathbf{x},t)$ moving with velocities $\mathbf{c}_i$  in a two-step procedure. Namely, an \emph{exact} streaming step 
+\[
+f_i(\mathbf{x}+\mathbf{c}_i \Delta t, t + \Delta t) = f_i^{\mathrm{out}}(\mathbf{x},t)
+\]
+during which particles move with their own velocity to a neighboring node, is consecutive to an instantaneous collision step
+\[
+f_i^{\mathrm{out}}(\mathbf{x},t) = -\frac 1 {\tau_\nu} \left(f_i(\mathbf{x},t) - f_i^\mathrm{eq}(\mathbf{x},t) \right)
+\]
+which can be viewed as the relaxation of local densities towards an absolute equilibrium at the macroscopic level; the time-scale $\tau_\nu$ is related to the kinematic viscosity of the fluid by 
+\[
+\nu = \left( {\tau_\nu} - \frac 1 2 \right) c_s^2 ~\Delta t
+\]
+This simplification of the collision kernel is known as the BGK approximation in the kinetic theory of gas. The equilibrium function is given (assuming Einstein summation convention) by
+\[
+f_i^\mathrm{eq}(\mathbf{x},t) = w_i  \rho(\mathbf{x},t) \left( 1 + \frac{\mathrm u(\mathbf{x},t) \cdot \mathbf{c_i}}{c_s^2} +
+\frac{u_\alpha(\mathbf{x},t) u_\beta(\mathbf{x},t)({c_i}_\alpha {c_i}_\beta - c_s^2 \delta_{\alpha\beta})}{2 c_s^4} \right)
+\] 
+with the weight factors $w_0=4/9,~w_{1...4} = 1/9$ and $w_{5...8}=1/36$ for the D2Q9 lattice. 
+Finally, let us mention that this discrete LB scheme is second-order accurate in $\Delta x $ and compliant to the weakly-compressible Navier-Stokes equations (with a third-order error in $\mathrm{Ma}=|\mathbf{u}|/c_s$) as the lattice spacing vanishes, i.e. $\Delta x \to 0$. 
+
+
+// algorithm for boundary conditions // computation of the stress with LBM // grid resolution, number of grid points in each direction, Reynolds, Mach numbers, etc. // low Mach number approaches the nearly-incompressible limit
+\\
+
+As mentioned before, the pressure is directly accessible from the mass density: $p = \rho c_s^2$. The viscous stress is also obtained easily from the densities of particles by
+\[
+\tau^\mathrm{visc.}_{\alpha \beta} = -\frac{\nu}{\tau_\nu ~ c_s^2 \Delta t} \sum_i  {c_i}_\alpha {c_i}_\beta (f_i - f_i^\mathrm{eq})
+\]
+so that the total stress expresses as
+\begin{equation}\label{eq:def_stress}
+\tau_{\alpha \beta} = -  c_s^2 \sum_i f_i ~ \delta_{\alpha\beta}  - \frac{\nu}{\tau_\nu ~ c_s^2 \Delta t} \sum_i  {c_i}_\alpha {c_i}_\beta (f_i - f_i^\mathrm{eq})
+\end{equation}
 
 \subsection{The drag force}
 \label{sec:drag_force}
 
-%% Descritpion d'une fluctuations de trainée typique
-The interaction of the incoming turbulent flow with the square obstacle results in fluctuating mechanical efforts.
-In particular, the \textit{drag force} is defined as the result of both pressure and viscous constraints, projected along the mean-flow direction.
-It reads
+The incoming turbulent flow exerts fluctuating mechanical efforts onto the squared obstacle. The \textit{drag} is defined as the resulting force in the streamwise $x$-direction and reads 
 \begin{equation}
   \label{eq:drag_definition}
-  f_d = \int_{\mathcal{S}}(-p(\boldsymbol{x})\boldsymbol{I} + \boldsymbol{\tau}) \mathrm{d}\boldsymbol{\mathcal{S}} \cdot \boldsymbol{e}_x,
+  f_d(t) = \int_{\mathcal{S}} \boldsymbol{\tau}_{x \beta}(\mathbf{x},t) ~ \mathrm{d}{\mathcal{S}}_\beta(\mathbf{x})  
 \end{equation}
-where $\mathcal{S}$ is the surface of the obstacle, $p(\boldsymbol{x})$ is the pressure acting at location $\boldsymbol{x}$, $\boldsymbol{I}$ is the identity matrix, $\boldsymbol{\tau}$ denotes the viscous stress tensor and $\boldsymbol{e}_x$ is the unit vector pointing in the mean-flow direction.
-
-%% Viscous effects are negligible
-The value of the drag $f_d$ mainly depends on the local pressure and velocity gradients in the vicinity of the obstacle.
-Furthermore, because of the blunt shape of the obstacle, the contribution of viscous constraints to the overall drag is negligage with respect to pressure constraints.
-As a result, the drag mainly originates from the pressure difference between the \textit{forebody}---the upstream boundary---and the \textit{base}---the downstream boundary.
-Consequently, the drag acting on the square cylinder is very well approximated by
+where $\mathcal{S}$ is the surface of the obstacle. 
+In our situation, the viscous stress makes a negligible contribution to the drag. This latter therefore results mostly from pressure forces, which are closely related to the distribution of velocity gradients in the vicinity of the obstacle (in the nearly-incompressible limit). 
+%
+Since the pressure on the top and bottom sides of the square applies in the normal direction, they do not contribute to the drag. 
+As a consequence, the drag may be viewed as the pressure difference 
 \begin{equation}
   \label{eq:drag_approx}
   f_d(t) = p_{fb}(t) - p_{b}(t)
 \end{equation}
-where $p_{fb}(t)$ and $p_{b}(t)$ denote the pressure integrated over the forebody and the base, respectively.
+where $p_{fb}(t)$ and $p_{b}(t)$ denote the pressure integrated over the forebody and the base of the obstacle, respectively.
+
+\vskip 5cm
+END CORRECTIONS EMMANUEL
+\vskip 5cm
 
 %% The phenomenology of typical drag fluctuations
 The typical timescale of variation of the drag therefore corresponds to the timescale of pressure fluctuations in the vicinity of the obstacle.
@@ -160,7 +244,7 @@ In particular, we show that extreme fluctuations mainly result from fluctuations
 
 \begin{figure}
   \centering
-  \includegraphics[width=0.7\linewidth]{typical_drag_signal/typical_drag_signal.png}
+  % \includegraphics[width=0.7\linewidth]{illustration_signal_drag_1}
   \caption{Typical temporal evolution of the drag acting on the square cylinder pictured in figure~\ref{fig:computational_domain}. The correlation time $\tau_c$ is defined further in this text and correspond to the typical fluctuation timescale of the drag.}
   \label{fig:typical_drag_signal}
 \end{figure}
@@ -170,8 +254,8 @@ In particular, we show that extreme fluctuations mainly result from fluctuations
 
 \begin{figure}
   \centering
-    \subfloat[\ac{pdf} for the drag fluctuations $f'_d$]{\label{fig:pdf_drag_a}\includegraphics[width=.5\linewidth]{./PDF_drag/PDF_drag.png}}
-    \subfloat[Autocorrelation function of the the instantaneous drag $f_d$]{\label{fig:pdf_drag_b}\includegraphics[width=.5\linewidth]{autocorr_drag/autocorr_drag.png}}  
+    \subfloat[\ac{pdf} for the drag fluctuations $f'_d$]{\label{fig:pdf_drag_a}\includegraphics[width=.5\linewidth]{../figures/pdf_drag_SQ_asymetry_expo}}
+    \subfloat[Autocorrelation function of the the instantaneous drag $f_d$]{\label{fig:pdf_drag_b}\includegraphics[width=.5\linewidth]{../figures/correlation_with_log}}  
   \caption{\textbf{(a)} \ac{pdf} describing the statistics of the instantaneous drag fluctuations $f'_d = (f_d - \bar{f_d})/\sigma$. This \ac{pdf} has been estimated on the basis of a timeseries spanning $T_{tot} = 10^6 \tau_c$. $\bar{f_d}$ and $\sigma$ denote the average and the standard deviation computed over the whole timeseries, respectively. The linear fits highlight the exponential behaviour of the the \ac{pdf} for rare events. \textbf{(b)} Autocorrelation function for the instantaneous drag $f_d$, defined as $(\mathbb{E}[f_d(t+\tau)f_d(t)]-\mathbb{E}[f_d]^2)/\sigma^2$ and estimated from a timeseries spanning $T_{tot} = 10^6 \tau_c$. This figure shows the exponential decay of the correlations over time.}
   \label{fig:pdf_drag}
 \end{figure}
@@ -202,6 +286,23 @@ This means that the drag decorrelates after only a few number of eddies interact
 
 % From the point of view of the drag process, the system lost its memory after only a few eddies interacted with the obstacle.
 % This observation has important consequences for the application of rare event algorithms, as will be discussed in section~\ref{sec:rare_events_algorithms}.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 \section{Direct sampling of extreme fluctuations of the drag acting on a square cylinder in two-dimensional turbulence}
 \label{sec:direct_sampling}
@@ -239,7 +340,7 @@ events.
 
 \begin{figure}
   \centering
-  \includegraphics[width=.6\linewidth]{return_time/return_time.png}
+ % \includegraphics[width=.6\linewidth]{return_time_drag}
   \caption{Drag fluctuation amplitude as a function the corresponding return time. The return time $r(a)$ is the typical timescale of occurrence of a fluctuation of amplitude larger than $a$.}
   \label{fig:return_time_instant}
 \end{figure}
@@ -260,51 +361,31 @@ where $\tilde{p}_{fb}^{\star}$ and $\tilde{p}_{base}^{\star}$ denote the fluctua
 Figure~\ref{fig:contribution_forebody_and_base_pressure} shows the relative contributions $\tilde{p}_{base}^{\star}/\tilde{f}_d^{\star}$ and $\tilde{p}_{fb}^{\star}/\tilde{f}_d^{\star}$ to the overall drag fluctuation for the base and forebody pressure fluctuations, respectively.  
 \begin{figure}
   \centering
-  \includegraphics{pressure_ratio/pressure_ratio.png}
-  \label{fig:pressure_ratio}
+  \label{fig:contribution_forebody_and_base_pressure}
 \end{figure}
 It shows that among the 104 sampled extreme events, the base pressure fluctuation typically contributes for $80\%$ of the overall drag fluctuation.
 By contrast with typical drag fluctuations, extreme fluctuations of the drag acting on the square cylinder are dominated by the variation of the pressure in the vicinity of the base of the obstacle.
-In addition, figure~\ref{fig:pressure_ratio} hints that, the larger the fluctuation, the more important is the contribution of the base pressure fluctuation, relatively to the forebody pressure fluctuation.
+In addition, figure~\ref{fig:contribution_forebody_and_base_pressure} hints that, the larger the fluctuation, the more important is the contribution of the base pressure fluctuation, relatively to the forebody pressure fluctuation.
 
 \subsubsection{Dynamical aspects of extreme drag fluctuations}
 \label{sec:dynamical_aspects}
 
 \begin{figure}
   \centering
-  \includegraphics[width=.8\linewidth]{illustr_extrms_vorticity/illustr_extrms_vorticity.png}
-  \caption{\label{fig:top_4_events_vorticity} Vorticity field at $t=t^{\star}$ for the four highest drag fluctuations in the timeseries. The corresponding drag timeseries can be found in figure~\ref{fig:extremes_timeseries}.
-    The high value for the drag results from the formation of a strong negative (red) vortex inducing a pressure drop at the base of the obstacle. The formation of such a structure is aided by important vorticity production at the bottom boundary of the obstacle coupled with the influence of positive vorticity in the vicinity of the base.}
-\end{figure}
-
-
-\begin{figure}
+  \begin{minipage}{0.85\linewidth}
+    \begin{tabular}{c|c}
+%    \subfloat[$f'_d = 11.6\sigma$]{\label{fig:top_4_events_vorticity_a}\includegraphics[width=0.4\linewidth]{event_95_vort.png}} \hspace{0.5cm} & \hspace{0.5cm} \subfloat[$f'_d = 11.2\sigma$]{\includegraphics[width=0.4\linewidth]{event_69_vort.png}} \\
+    \hline
+%    \subfloat[$f'_d = 10.6\sigma$]{\includegraphics[width=0.4\linewidth]{event_53_vort.png}} \hspace{0.5cm} & \hspace{0.5cm} \subfloat[$10\sigma$]{\includegraphics[width=0.4\linewidth]{event_20_vort.png}}
+    \end{tabular}
+  \end{minipage}
+\begin{minipage}[h]{0.1\linewidth}
   \centering
-  \includegraphics[width=.5\linewidth]{illustr_density_streamlines/illustr_density_streamlines.png}
-\end{figure}
-
-\begin{figure}
-  \centering
-  \includegraphics[width=.5\linewidth]{timeseries_extremes/timeseries_extremes.png}
-\end{figure}
-
-
-% \begin{figure}
-%   \centering
-%   \begin{minipage}{0.85\linewidth}
-%     \begin{tabular}{c|c}
-%     \subfloat[$f'_d = 11.6\sigma$]{\label{fig:top_4_events_vorticity_a}\includegraphics[width=0.4\linewidth]{event_95_vort.png}} \hspace{0.5cm} & \hspace{0.5cm} \subfloat[$f'_d = 11.2\sigma$]{\includegraphics[width=0.4\linewidth]{event_69_vort.png}} \\
-%     \hline
-%     \subfloat[$f'_d = 10.6\sigma$]{\includegraphics[width=0.4\linewidth]{event_53_vort.png}} \hspace{0.5cm} & \hspace{0.5cm} \subfloat[$10\sigma$]{\includegraphics[width=0.4\linewidth]{event_20_vort.png}}
-%     \end{tabular}
-%   \end{minipage}
-% \begin{minipage}[h]{0.1\linewidth}
-%   \centering
-%   \includegraphics[width=\linewidth]{scale_vorticity.png}
-% \end{minipage}
-% \caption{\label{fig:top_4_events_vorticity} Vorticity field at $t=t^{\star}$ for the four highest drag fluctuations in the timeseries. The corresponding drag timeseries can be found in figure~\ref{fig:extremes_timeseries}.
-%   The high value for the drag results from the formation of a strong negative (red) vortex inducing a pressure drop at the base of the obstacle. The formation of such a structure is aided by important vorticity production at the bottom boundary of the obstacle coupled with the influence of positive vorticity in the vicinity of the base.}
-% \end{figure}  
+%  \includegraphics[width=\linewidth]{scale_vorticity.png}
+\end{minipage}
+\caption{\label{fig:top_4_events_vorticity} Vorticity field at $t=t^{\star}$ for the four highest drag fluctuations in the timeseries. The corresponding drag timeseries can be found in figure~\ref{fig:extremes_timeseries}.
+  The high value for the drag results from the formation of a strong negative (red) vortex inducing a pressure drop at the base of the obstacle. The formation of such a structure is aided by important vorticity production at the bottom boundary of the obstacle coupled with the influence of positive vorticity in the vicinity of the base.}
+\end{figure}  
 
 % \begin{figure}
 %   \centering
@@ -537,19 +618,19 @@ In this way, it gives the opportunity for new events, associated to a higher flu
 However, such modification(s) of the resampling procedure must be implemented with care, so as to preserve the mathematical properties of the \ac{ams} and \ac{tams}.
 \begin{figure}
   \centering
-  \includegraphics[width=.7\linewidth]{illustr_AMS/figure_AMS}
+%  \includegraphics[width=.7\linewidth]{ams/figure_AMS}
   \caption{Illustration of one selection-mutation step in the \ac{ams} algorithm for the computation of the probability that an observable $A:\mathbb{R}^d\to \mathbb{R}$  reaches values larger than $Q$ over a trajectory of duration $T_a$.}
 \end{figure}
 \begin{figure}
   \centering
-  \includegraphics[width=.7\linewidth]{AMS_OU/AMS_OU.png}
+%  \includegraphics[width=.7\linewidth]{ams/comparaison_temps_de_retour}
     \caption{Illustration of the efficiency of the \ac{tams} algorithm with respect to direct sampling. The amplitude of fluctuations for the \ac{ou} process~\eqref{eq:OUprocess_chap_ams} are represented along the Y-axis. Along the X-axis is represented the typical computational cost required to sample fluctuations of the corresponding amplitude in both the \ac{tams} and direct sampling. In the latter, the typical computational cost is simply the return time $r(a)$. The computational cost associated to a level $a$ is the \ac{tams} is denoted by $C(a)$. The orange line represents the evolution of the level $\mathcal{Q}_j^{\star}$ as a function of the cost $C(a)$. The blue stars represent the maximum of $x(t)$ over the resampled trajectory \emph{after} it is resampled, that is at iteration $j+1$. Finally, the solid black line is the analytical solution for the return time of amplitude $a$~\cite{lestang_computing_2018}.}
   \label{fig:comparaison_temps_de_retour}
 \end{figure}
 
 \begin{figure}
   \centering
-  \includegraphics[width=.7\linewidth]{AMS_drag_resampling/AMS_drag_resampling.png}
+%  \includegraphics[width=.7\linewidth]{ams/instant_256_20}
     \caption{Maximum of the instantaneous drag along the resampled trajectories, denoted by $\tilde{f}_d^{(j)}$, as a function of the corresponding computational cost $C_j$, defined in~\eqref{eq:comp_cost_iterations}. In both figures, the \ac{tams} is iterated until extinction. 
     The solid black line indicates the typical fluctuation amplitude $a$ as a function of the corresponding  \textit{return time} $r(a)$. It is the typical timescale of occurrence of fluctuations above $a$. Furthermore, the square markers depict the maximum $\tilde{f}_{d,n}^{(0)},\,\, 1\leq n \leq N_c$ over the initial trajectories.
     This figure illustrates that in both experiments the \ac{tams} does not improve the sampling of rare fluctuations. On can see that the maximum values among the resampled trajectories concentrates on values already sampled over the initial trajectories. Eventually, extinction is reached as the algorithm is unable to generate a fluctuation higher than the maximum fluctuation in the initial ensemble of trajectories.
@@ -558,7 +639,7 @@ However, such modification(s) of the resampling procedure must be implemented wi
 
 \begin{figure}
   \centering
-  \includegraphics[width=.7\linewidth]{AMS_drag_trajectories/AMS_drag_trajectories.png}
+%  \includegraphics[width=.7\linewidth]{ams/iter_181}
     \caption{Visualisation of the drag timeseries corresponding to the set of trajectories in the ensemble, at different iterations along the algorithm. In this experiment, the \ac{tams} is used with the instantaneous drag $f_d$ as a score function. Trajectories have a duration $T_a = 5\tau_c$ and their number is $N_c = 32$.
     One can see that, as the number of iterations increases, the number of independent resampled trajectories drastically decreases until extinction at iteration $181$. The timeseries corresponding to the two initial trajectories exhibiting the highest fluctuations are displayed in colour. In all four figures, colour is inherited from the parent trajectory. It illustrates that the two strongest initial trajectories quickly become predominant in the ensemble, as the other are discarded.
     As can be seen in figure~\ref{fig:subfigc}, trajectories only separate well after the maximum is reached. Therefore, resampling the blue trajectories based on the red trajectories can only change the overall maximum by a very small amount. Consequently, blue trajectories are discarded one after the other, each time resampled into another instance of the red trajectory. This new instance has roughly the same maximum as the others.}
