@@ -516,6 +516,13 @@ In other words, generated trajectories are given a statistical weight, which kno
 
 \subsection{Extreme instantaneous drag forces with the \acl{ams} algorithm}
 \label{sec:ams}
+
+\begin{figure}
+  \centering
+  \includegraphics[width=.7\linewidth]{illustr_AMS/figure_AMS}
+  \caption{Illustration of one selection-mutation step in the \ac{ams} algorithm for the computation of the probability that an observable $A:\mathbb{R}^d\to \mathbb{R}$  reaches values larger than $Q$ over a trajectory of duration $T_a$. The initial ensemble of blue trajectories is first generated. These trajectories are independant and can be simulated in parallel. On the basis of the respective maxima $Q_1$, $Q_2$ and $Q_3$, the trajectory with the lowest maximum is discarded from the ensemble (dashed blue line). Among the two remaining trajectories, trajectory 3 is chosen at random and copied until $Q_1$. It is then freely simulated from the branching poin to $T_a$. In case of deterministic dynamics, as samll perturbation is introduced at the branching. This procedure is typically iterated $J$ times, or until all trajectories go beyond a fixed threshold $Q$.}
+\end{figure}
+
 % Introduction to AMS
 The \acl{ams}~\cite{amspaper} inherits from the basic ideas of \textit{splitting} algorithms~\cite{kahnharris}: the sampling of a rare event is made easier by splitting the corresponding dynamical path into a sequence of events that can be sampled with a higher probability~\cite{glasserman,rolland_simonnet}.
 Even though a large body of variants have been proposed since the early 50s, the \ac{ams} appears as the most advanced formulation of multilevel splitting to date (\textbf{Sans doute un peu <<too-much>>. Avec cette phrase je voudrais justifier que l'on s'intéresse à l'AMS et pas à un autre algo.}).
@@ -530,6 +537,12 @@ As an illustration, a particular iteration of the \ac{tams} algorithm is sketche
 For further details about the algorithm and corresponding mathematical results, see~\cite{lestang2018} and references therein.
 
 % Example: OU process
+\begin{figure}
+  \centering
+  \includegraphics[width=.7\linewidth]{AMS_OU/AMS_OU.png}
+    \caption{Illustration of the efficiency of the \ac{tams} algorithm with respect to direct sampling. The orange line represents the evolution of the maximum over resampled trajectories as a function of the computational cost $C_{TAMS}$ (iterations of the the selection-mutation step). The solid blue line is the analytical solution for the return time of amplitude $a$ for the \ac{ou} process~\cite{lestang_computing_2018}.}
+  \label{fig:comparaison_temps_de_retour}
+\end{figure}
 We first describe results of the \ac{tams} on a simple case.
 We temporarily let fluid dynamics aside and consider a one-dimensional \ac{ou} process
 \begin{equation}
@@ -540,7 +553,8 @@ We apply the \ac{tams} to simulate trajectories $\{x(t)\}_{0\leq t \leq T_a}$ wi
 For the sake of simplicity, a single trajectory is resampled at each iteration of the \ac{tams}.
 We denote by $a_j$ the maximum of the resampled trajectory at iteration $j$.
 The computational cost of the algorithm after iteration $j$ is the computational cost of simulating the $N$ initial trajectories, as well as the resampling of the $j$ trajectories.
-Figure~\ref{fig:compraison_temps_de_retour} illustrates that the successice resamplings of the \ac{tams} algorithm leads to trajectories displaying extreme fluctuations $x \geq a$.
+Figure~\ref{fig:compraison_temps_de_retour} compares the typical computational cost required to sample fluctuations above a given amplitude $a$ using the \ac{tams} and a direct sampling approach. In the latter, the typical computational cost is simply the return time $r(a)$.
+illustrates that the successice resamplings of the \ac{tams} algorithm leads to trajectories displaying extreme fluctuations $x \geq a$.
 More importantly, these very rare trajectories are sampled for a computational cost that several order of magnitude lower than the return time of the corresponding fluctuations.
 
 Undoubtedly, an \ac{ou} process is an oversimplified dynamics to showcase the efficiency of the \ac{ams} and \ac{tams}.
@@ -604,17 +618,8 @@ Resampled trajectories have no chance to display a significantly higher maximum 
 As an example, the resampling procedure could be modified so that new trajectories are resampled roughly a Lyapunov time \textit{before} the maximum is attained.
 In this way, it gives the opportunity for new events, associated to a higher fluctuations, to occur.
 However, such modification(s) of the resampling procedure must be implemented with care, so as to preserve the mathematical properties of the \ac{ams} and \ac{tams}.
-\begin{figure}
-  \centering
-  \includegraphics[width=.7\linewidth]{illustr_AMS/figure_AMS}
-  \caption{Illustration of one selection-mutation step in the \ac{ams} algorithm for the computation of the probability that an observable $A:\mathbb{R}^d\to \mathbb{R}$  reaches values larger than $Q$ over a trajectory of duration $T_a$. The initial ensemble of blue trajectories is first generated. These trajectories are independant and can be simulated in parallel. On the basis of the respective maxima $Q_1$, $Q_2$ and $Q_3$, the trajectory with the lowest maximum is discarded from the ensemble (dashed blue line). Among the two remaining trajectories, trajectory 3 is chosen at random and copied until $Q_1$. It is then freely simulated from the branching poin to $T_a$. In case of deterministic dynamics, as samll perturbation is introduced at the branching. This procedure is typically iterated $J$ times, or until all trajectories go beyond a fixed threshold $Q$.}
-\end{figure}
-\begin{figure}
-  \centering
-  \includegraphics[width=.7\linewidth]{AMS_OU/AMS_OU.png}
-    \caption{Illustration of the efficiency of the \ac{tams} algorithm with respect to direct sampling. The amplitude of fluctuations for the \ac{ou} process~\eqref{eq:OUprocess_chap_ams} are represented along the Y-axis. Along the X-axis is represented the typical computational cost required to sample fluctuations of the corresponding amplitude in both the \ac{tams} and direct sampling. In the latter, the typical computational cost is simply the return time $r(a)$. The computational cost associated to a level $a$ is the \ac{tams} is denoted by $C(a)$. The orange line represents the evolution of the level $\mathcal{Q}_j^{\star}$ as a function of the cost $C(a)$. The blue stars represent the maximum of $x(t)$ over the resampled trajectory \emph{after} it is resampled, that is at iteration $j+1$. Finally, the solid black line is the analytical solution for the return time of amplitude $a$~\cite{lestang_computing_2018}.}
-  \label{fig:comparaison_temps_de_retour}
-\end{figure}
+
+
 
 \begin{figure}
   \centering
