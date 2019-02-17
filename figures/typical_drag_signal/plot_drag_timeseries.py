@@ -15,8 +15,12 @@ ax.set_xlim(0, 1000)
 line, = ax.plot(tspan, f)
 line.set_linewidth(.7)
 
-ax.set_xlabel(r'$t / \tau_0$',fontsize=16)
-plt.ylabel('$f_d(t)$',fontsize=16)
+ax.set_xlabel(r'$t / \tau_c$',fontsize=22)
+plt.ylabel('$f_d(t)$',fontsize=22)
+ax.set_yticks(np.arange(-0.10,0.30,0.10))
+plt.xticks(fontsize=16)
+plt.yticks(fontsize=16)
+
 
 fname= 'typical_drag_signal.png'
 plt.savefig(fname)
