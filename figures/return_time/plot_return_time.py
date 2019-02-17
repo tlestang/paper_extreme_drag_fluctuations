@@ -17,17 +17,19 @@ mu = 0.0252;
 sig = 0.0412;
 avec = (avec-mu)/sig;
 
-fig,ax = plt.subplots(1,1,figsize=(6,4),constrained_layout=True)
+fig,ax = plt.subplots(1,1,figsize=(7,3),constrained_layout=True)
 ax.set_xlim(10, 1e5)
 ax.set_ylim(2.7, 9)
 line, = ax.plot(r, avec)
 ax.set_xscale('log')
 #line.set_linewidth(.7)
 
-ax.set_xlabel(r'$r(f_d \geq a) / \tau_c$',fontsize=16)
-ax.set_ylabel('$a$',fontsize=16)
+ax.set_xlabel(r'$r(f_d \geq a) / \tau_c$',fontsize=22)
+ax.set_ylabel('$a$',fontsize=22)
 ax.set_yticks([3,5,7,9])
 ax.set_yticklabels((r'$3\sigma$',r'$5\sigma$',r'$7\sigma$',r'$9\sigma$'))
+plt.xticks(fontsize=16)
+plt.yticks(fontsize=16)
 
 fname = 'return_time.png'
 plt.savefig(fname)
