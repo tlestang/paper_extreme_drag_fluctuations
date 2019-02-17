@@ -2,6 +2,7 @@
 * [[./typical_drag_signal]]
 * [[./PDF_drag]]
 * [[./autocorr_drag]]
+* [[./ecoulement_typique]]
 * [[./return_time]]
 * [[./pressure_ratio]]
 * [[./illustr_extrms_vorticity]]
@@ -17,3 +18,4 @@ Je ne comprends plus ce que sont 'inverse events'
 * [[./AMS_drag_resampling]]
 * [[AMS_drag_trajectories]]
 * IS_GKTL
+* [[./PDF_AVG]]

@@ -244,6 +244,12 @@ In particular, we show that extreme fluctuations mainly result from fluctuations
   \caption{Typical temporal evolution of the drag acting on the square cylinder pictured in figure~\ref{fig:computational_domain}. The correlation time $\tau_c$ is defined further in this text and correspond to the typical fluctuation timescale of the drag.}
   \label{fig:typical_drag_signal}
 \end{figure}
+\begin{figure}
+  \centering
+  \includegraphics[width=\linewidth]{ecoulement_typique/ecoulement_typique.png}
+  \caption{Typical temporal evolution of the drag acting on the square cylinder pictured in figure~\ref{fig:computational_domain}. The correlation time $\tau_c$ is defined further in this text and correspond to the typical fluctuation timescale of the drag.}
+  \label{fig:typical_drag_signal}
+\end{figure}
 
 \subsection{The drag random process: Probability Density Function, time correlations}
 \label{sec:pdfs}
@@ -791,8 +797,14 @@ not be sampled through a direct sampling with equal computational cost.
 Table~\ref{tbl:nbTraj_tbl} displays the number of trajectories that correspond to a time-average $F_{T_a} \geq a$, for several values of $a$.
 As a comparison, it also displays the average number of such fluctuations in a control timeseries of duration $C_{gktl}$, divided in $N_c = C_{gktl} / T_a$ events.
 This number is computed based on the assumption that the \ac{pdf} describing the random variable $F_T$ with $T=10\tau_c$ is Gaussian.
-This hypothesis is motivated by figure~\ref{fig:pdf_averared} (\textbf{figure manquante}).
-While this assumption does not hold for $F_T \geq 4\sigma_T$, it may still provide numbers relevant to the comparison with the algorithm. 
+This hypothesis is motivated by figure~\ref{fig:PDF_AVG}.
+While this assumption does not hold for $F_T \geq 4\sigma_T$, it may still provide numbers relevant to the comparison with the algorithm.
+\begin{figure}
+  \centering
+  \includegraphics[width=.7\linewidth]{PDF_AVG/PDF_AVG}
+  \caption{PDF of average drag over $10\tau_c$}
+  \label{fig:PDF_AVG}
+\end{figure}
 
 In section~\ref{sec:time_avg} we observed that extremely large values of the time-averaged drag can either result from a succession of rather typical---however all positive---fluctuations of the instantaneous drag $f_d$, or from a small number of extremely large fluctuations of the instantaneous drag.
 In the latter case, each fluctuation typically lasts a correlation time $\tau_c$.
