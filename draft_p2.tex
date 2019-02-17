@@ -256,15 +256,16 @@ In particular, we show that extreme fluctuations mainly result from fluctuations
 
 \begin{figure}
   \centering
-    \subfloat[\ac{pdf} for the drag fluctuations $f'_d$]{\label{fig:pdf_drag_a}\includegraphics[width=.5\linewidth]{./PDF_drag/PDF_drag.png}}
-    \subfloat[Autocorrelation function of the the instantaneous drag $f_d$]{\label{fig:pdf_drag_b}\includegraphics[width=.5\linewidth]{autocorr_drag/autocorr_drag.png}}  
-  \caption{\textbf{(a)} \ac{pdf} describing the statistics of the instantaneous drag fluctuations $f'_d = (f_d - \bar{f_d})/\sigma$. This \ac{pdf} has been estimated on the basis of a timeseries spanning $T_{tot} = 10^6 \tau_c$. $\bar{f_d}$ and $\sigma$ denote the average and the standard deviation computed over the whole timeseries, respectively. The linear fits highlight the exponential behaviour of the the \ac{pdf} for rare events. \textbf{(b)} Autocorrelation function for the instantaneous drag $f_d$, defined as $(\mathbb{E}[f_d(t+\tau)f_d(t)]-\mathbb{E}[f_d]^2)/\sigma^2$ and estimated from a timeseries spanning $T_{tot} = 10^6 \tau_c$. This figure shows the exponential decay of the correlations over time.}
+    \subfloat[]{\label{fig:pdf_drag_a}\includegraphics[width=.5\linewidth]{./PDF_drag/PDF_drag.png}}
+    \subfloat[]{\label{fig:pdf_drag_b}\includegraphics[width=.5\linewidth]{autocorr_drag/autocorr_drag.png}}  
+  \caption{\textbf{(a)} \ac{pdf} describing the statistics of the instantaneous drag fluctuations, computed on the basis of the control timeseries. \textbf{(b)} Autocorrelation function for the instantaneous drag $f_d$, defined as $(\mathbb{E}[f_d(t+\tau)f_d(t)]-\mathbb{E}[f_d]^2)/\sigma^2$, computed over the control run. It shows the exponential decay of the correlations over time.}
   \label{fig:pdf_drag}
 \end{figure}
 
 In the following we consider the drag force acting on the obstacle as a scalar random process $f_d(t)$.
-In order to estimate its statistical properties, we performed a simulation of the dynamics over a duration $T_{tot} = 4\times 10^6\tau_c$.
+In order to estimate its statistical properties, we performed a simulation of the dynamics over a duration $T_{tot} = 4\times 10^6\tau_0$.
 In the following of this paper we refer to this long simulation as the \textit{control run}.
+Furthermore, we denote by $\bar{f}_d$ and $\sigma$ the average and variance computed over the control run, respectively.
 Figure~\ref{fig:pdf_drag} displays an estimate of the \ac{pdf} for the drag process, computed on the basis of the control timeseries $\{f_d(t)\}_{0\leq t \leq T_{tot}}$ obtained from the control run.
 One can see that the tails of this distribution, that describe the probability of very rare events, can be very well modelled by an exponential \ac{pdf} of the form $p(f_d) = \lambda^{-1}e^{-\lambda f_d}$.
 In addition, figure~\ref{fig:pdf_drag} displays an estimate of the \ac{pdf} of the process describing the drag acting on a control surface equivalent to the surface of  the obstacle, in a flow \textit{without obstacle}.
@@ -274,9 +275,8 @@ We conclude that the interation of the flow with the square obstacle is responsi
 In section~\ref{sec:time_avg}, we relate this very particular shape of the \ac{pdf} describing extreme drag fluctuations to the phenomenology of extreme fluctuations of the time-average of the drag process. 
 
 Lastly, figure~\ref{fig:correlation_function} illustrates that the drag process has exponentially decaying time correlations.
-In the following, we call \textit{correlation time}, the typical time it takes for the drag process to decorrelate.
-We note it $\tau_c$.
-From figure~\ref{fig:correlation_function}, one can see that $\tau_c \approx 4\tau_0$.
+In the following we call \textit{correlation time}, denoted by $\tau_c$, the typical time it takes for the drag process to decorrelate.
+We observe that $\tau_c \approx \tau_0$.
 This means that the drag decorrelates after only a few number of eddies interacted with the square obstacle.
 
 % \begin{equation}
@@ -292,7 +292,7 @@ This means that the drag decorrelates after only a few number of eddies interact
 \section{Direct sampling of extreme fluctuations of the drag acting on a square cylinder in two-dimensional turbulence}
 \label{sec:direct_sampling}
 
-In this section we describe the phenomenology of extreme fluctuations of the drag that acts on the square cylinder mounted in the flow described in section~\ref{sec:test_flow}.
+We now turn to a description of the phenomenology of extreme fluctuations of the drag that acts on the square cylinder mounted in the flow described in section~\ref{sec:test_flow}.
 
 How rare is a fluctuation $f_d \geq a$ can be determined by computing its \textit{return time} $r(a)$.
 It is defined as the average time between two consecutive occurrences of a fluctuation $f_d \geq a$.
