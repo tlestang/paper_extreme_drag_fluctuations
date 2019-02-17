@@ -31,9 +31,11 @@ ax.set_yticklabels(['${:2.1f}\\sigma$'.format(y) for y in ax.get_yticks()], font
 ax.set_xlim((-2,2))
 plt.annotate('', xy=(-0.5,-0.35), xytext=(0.5,-0.35), arrowprops=dict(arrowstyle='<->',lw=2))
 plt.text(-0.1, -0.05, r'$\tau_c$', fontsize=18)
-ax.legend(loc='best',fontsize=12)
-ax.set_ylabel('$f_d(t)$',fontsize=16)
-ax.set_xlabel('$t$',fontsize=16)
+ax.legend(loc='best',fontsize=16)
+ax.set_ylabel('$f_d(t)$',fontsize=22)
+ax.set_xlabel('$t$',fontsize=22)
+plt.xticks(fontsize=18)
+plt.yticks(fontsize=18)
 
 fname = 'timeseries_extremes.png'
 plt.savefig(fname)
