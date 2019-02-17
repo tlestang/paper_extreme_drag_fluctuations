@@ -378,12 +378,15 @@ In addition, figure~\ref{fig:pressure_ratio} hints that, the larger the fluctuat
 \begin{figure}
   \centering
   \includegraphics[width=.7\linewidth]{timeseries_extremes/timeseries_extremes.png}
+  \label{fig:timeseries_extremes}
   \caption{Average drag timeseries in the vicinity of an extreme drag fluctuation at $t=t^{\star}$. The blue continuous line results from an average over the 104 extreme events sampled in the control run. This illustrates that extreme drag variations are very local in time, with a typical lifetime of one correlation time unit $\tau_c$.}
 \end{figure}
 
 \begin{figure}
   \centering
   \includegraphics[width=.8\linewidth]{dynamics_extremes/dynamics_extremes.png}
+  \label{fig:vorticity_dynamics}
+  \caption{Vorticity dynamics associated to an extreme fluctuation of the drag acting on the square obstacle at $t=t^{\star}$.}
 \end{figure}
 
 We now turn to a description of the flow dynamics that correspond to extremely high values of the drag acting on the square obstacle.
@@ -405,10 +408,10 @@ In contrast with the typical flow dynamics, illustrated in figure~\ref{vorticity
 Figure~\ref{fig:illustr_density_streamlines} shows that, instead, this vorticity is constrained in the vicinity of the base of the obstacle.
 Such constraint results from a large vortical region located roughly one obstacle length of the base, that prevents vorticity to be advected downstream.
 
-Figure~\ref{fig:dynamics} illustrate the time evolution of the vorticity field, in the vicinity of the drag fluctuation, for the event depicted in figure~\ref{fig:illustr_density_streamlines}.
+Figure~\ref{fig:vorticity_dynamics} illustrate the time evolution of the vorticity field, in the vicinity of the drag fluctuation, for the event depicted in figure~\ref{fig:illustr_density_streamlines}.
 From $t^{\star}-0.4\tau_c$ to $t^{\star}-0.16\tau_c$, a strong negative eddy is generated along the bottom boundary layer of the obstacle and advected downstream by the mean flow.
 This leads to a region of negative vorticity at roughly one obstacle length of the base of the obstacle, constraining the positive vorticity generated along the top boundary.
-However, it can be seen in figure~\ref{fig:dynamics} that the positive vorticity only accumulates for a short duration.
+However, it can be seen in figure~\ref{fig:vorticity_dynamics} that the positive vorticity only accumulates for a short duration.
 The blocking negative vortex is in turn advected downstream, thus freeing the trapped positive vorticity.
 
 The lifetime of an extreme drag fluctuation therefore corresponds to the duration over which the blocking vortex remains in the vicinity of the base.
@@ -439,7 +442,7 @@ For a more detailed description of such dynamics, see the chapter 3 of ~\ref{ref
 \begin{figure}
   \centering
   \includegraphics[width=.7\linewidth]{shear_asof_drag/shear_asof_drag}
-  \caption{\label{fig:shear_asof_drag}}
+  \caption{\label{fig:shear_asof_drag} Evolution of the shear alongised the top or bottom boundary of the obsatcle as a function of the drag, for $t^{\star}-2\tau_c \leq t \leq t^{\star}-2\tau_c$. To each oneof the grey lines correspond a unique extreme event. The blue line is the average over the 104 extreme event sampled in the control run.  }
 \end{figure}
 
 \subsection{Extreme fluctuations of the time-averaged drag }
