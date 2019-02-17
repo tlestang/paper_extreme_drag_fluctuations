@@ -62,8 +62,11 @@ fitRear.set_linestyle('--')
 fitRear.set_linewidth(0.7)
 
 
-ax.set_xlabel(r'$\tilde{f}_d$',fontsize=16)
-ax.legend(loc='best', fontsize=16)
+ax.set_xlabel(r'$\tilde{f}^{\star}_d / \sigma$',fontsize=22)
+ax.legend(loc='best', fontsize=22)
+plt.xticks(fontsize=16)
+plt.yticks(fontsize=16)
+ax.set_xlim((7.5,12))
 
 fname = 'pressure_ratio.png'
 plt.savefig(fname)

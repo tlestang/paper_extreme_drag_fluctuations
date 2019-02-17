@@ -334,21 +334,25 @@ events.
 
 \subsubsection{Contribution of forebody and base pressure fluctuations to the overall drag fluctuation}
 \label{sec:forebody_and_base_contribution}
+
+\begin{figure}
+  \centering
+  \includegraphics[width=.8\linewidth]{pressure_ratio/pressure_ratio.png}
+  \label{fig:pressure_ratio}
+  \caption{Contribution of the forebody and base pressure fluctuation to the overall drag fluctuation for the 104 sampled extreme drag fluctuations in the control run. To each of these fluctuation correspond a unique value of the drag $f^{\star}_d$, and a unique pair ($\tilde{p}^{\star}_{base}$,$\tilde{p}^{\star}_{fb}$). The dashed lines are first order least square fits of the data. They highlight that, as the value of the fluctuation increases, so is the relative contribution of the forebody pressure fluctuation. }
+\end{figure}
+
 In section~\ref{sec:test_flow}, we pointed out that typical drag fluctuations mainly originate from fluctuations of the forebody pressure, \textit{i.e.} pressure fluctuations resulting from the upstream turbulent flow.
 We now investigate the relative contribution of forebody and base pressure fluctuations to the overall drag fluctuations, in the case of the sampled \textit{extreme} drag fluctuations.
 Let $(t^{\star}, f_d^{\star})$ be an extreme drag event.
-In the following we consider the effective fluctuation $\tilde{f}_d^{\star} = f_d^{\star} - \langle f_d \rangle$.
+In the following we consider the effective fluctuation $\tilde{f}_d^{\star} = f_d^{\star} - \bar{f}_d$.
 It can be further decomposed into 
 \begin{equation}
   \tilde{f}_d^{\star} = \tilde{p}_{fb}^{\star} - \tilde{p}_{base}^{\star},
 \end{equation}
-where $\tilde{p}_{fb}^{\star}$ and $\tilde{p}_{base}^{\star}$ denote the fluctuation of the forebody pressure and base pressure, respectively, that is $\tilde{p}_{base}^{\star} = p_{base}^{\star} - \langle p_{base} \rangle$ .
+where $\tilde{p}_{fb}^{\star}$ and $\tilde{p}_{base}^{\star}$ denote the fluctuation of the forebody pressure and base pressure, respectively, that is $\tilde{p}_{base}^{\star} = p_{base}^{\star} - \bar{p}_{base}$ .
 Figure~\ref{fig:contribution_forebody_and_base_pressure} shows the relative contributions $\tilde{p}_{base}^{\star}/\tilde{f}_d^{\star}$ and $\tilde{p}_{fb}^{\star}/\tilde{f}_d^{\star}$ to the overall drag fluctuation for the base and forebody pressure fluctuations, respectively.  
-\begin{figure}
-  \centering
-  \includegraphics{pressure_ratio/pressure_ratio.png}
-  \label{fig:pressure_ratio}
-\end{figure}
+
 It shows that among the 104 sampled extreme events, the base pressure fluctuation typically contributes for $80\%$ of the overall drag fluctuation.
 By contrast with typical drag fluctuations, extreme fluctuations of the drag acting on the square cylinder are dominated by the variation of the pressure in the vicinity of the base of the obstacle.
 In addition, figure~\ref{fig:pressure_ratio} hints that, the larger the fluctuation, the more important is the contribution of the base pressure fluctuation, relatively to the forebody pressure fluctuation.
