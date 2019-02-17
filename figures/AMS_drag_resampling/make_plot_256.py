@@ -32,7 +32,7 @@ Nresamp = len(amax)
 Cvec = Nc*Ta*np.ones(Nresamp) + Ta*np.arange(1,Nresamp+1)
 
 # Init. figure
-fig,ax = plt.subplots(figsize=(9,5), constrained_layout=True)
+fig,ax = plt.subplots(figsize=(8,5), constrained_layout=True)
 
 # Gathers the maxima over the initial ensemble
 maxArray = np.zeros(Nc)
@@ -58,12 +58,12 @@ resamp.set_markeredgecolor(resamp.get_markerfacecolor())
 resamp.set_label('Maxima over resampled trajectories')
 
 ax.set_xscale('log')
-ax.set_xlabel(r'$C_{TAMS} / \tau_c$',fontsize=16)
-ax.set_ylabel(r'$f_d^{\star} / \sigma$',fontsize=18)
-ax.tick_params(axis="x", labelsize=16)
-ax.tick_params(axis="y", labelsize=16)
+ax.set_xlabel(r'$C_{TAMS} / \tau_c$',fontsize=22)
+ax.set_ylabel(r'$f_d / \sigma$',fontsize=22)
+ax.tick_params(axis="x", labelsize=18)
+ax.tick_params(axis="y", labelsize=18)
 
-ax.legend(loc=7, fontsize=12)
+ax.legend(loc='best', fontsize=18)
 
 fname = 'AMS_drag_resampling.png'
 plt.savefig(fname)

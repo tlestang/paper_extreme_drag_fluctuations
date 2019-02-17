@@ -1,5 +1,5 @@
 import numpy as np
-1;4601;0cimport matplotlib.pyplot as plt
+import matplotlib.pyplot as plt
 
 plt.style.use('ggplot')
 
@@ -26,7 +26,7 @@ Ta = 5;
 tspan = np.linspace(0,5,5000)
 maxArray=np.zeros(Nc)
 # Init. figure
-fig,ax = plt.subplots(figsize=(9,5), constrained_layout=True)
+fig,ax = plt.subplots(figsize=(8,5), constrained_layout=True)
 
 for i in range(0,Nc):
     x = np.fromfile(prefix+'traj_{:d}_costFunc_iter_0.dat'.format(i))
@@ -50,12 +50,12 @@ for t in range(1,182):
         x=(x-m)/sig
         ax.lines[ktIdx].set_ydata(x)
 
-ax.set_xlabel(r'$t / \tau_c$',fontsize=16)
-ax.set_ylabel(r'$f_d(t) / \sigma$',fontsize=18)
-ax.tick_params(axis="x", labelsize=16)
-ax.tick_params(axis="y", labelsize=16)
+ax.set_xlabel(r'$t / \tau_c$',fontsize=22)
+ax.set_ylabel(r'$f_d(t) / \sigma$',fontsize=22)
+ax.tick_params(axis="x", labelsize=18)
+ax.tick_params(axis="y", labelsize=18)
 
-ax.legend(loc='best', fontsize=12)
+ax.legend(loc='best', fontsize=18)
 ax.set_xlim((0,5))
 
 fname = 'AMS_drag_trajectories.png'
