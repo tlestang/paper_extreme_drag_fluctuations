@@ -1,15 +1,22 @@
-* TODO Mettre à jour les figures qui peuvent l'être
-* TODO Include la figure illustrant l'évolution du cisaillement en fonction de la trainée
-  Pas forcément besoin de refaire le script en python, d'autant plus que c'est compliqué
-* Illustration des séries temporelles pour les extremes de trainée intégrée
-** TODO retrouver le script
-** TODO Le réecrire en python
-* Plots AMS
-** TODO Récupérer et ranger les données 
-** TODO Trajectoires finales
-** TODO Evolution du max sur les trajectoires re-échantillonneés
-* Récupérer mon code GKTL et le versionner
-* Evaluer l'effort nécéssaire pour refaire une experience GKTL pour l'article.
+* TODO Introduction
+* TODO Partie I
+** TODO II Description of the case study
+*** TODO A. The drag force
+*** TODO B. The drag  random process: PDF and time correlations
+** TODO III. Direct sampling of extremes
+*** TODO A. Extracting extremes from a long timeseries
+*** TODO B. Instant. drag
+**** TODO 1. Contrib. of forebody and base pressure
+**** TODO 2. Dynamical aspects of extremes
+*** TODO C. Extreme fluctuations of the time-avg drag
 
-
-
+* TODO Partie II
+** TODO IV. Rare event algorithms
+*** TODO A. Extreme instant. drag forces with the AMS 
+- [ ] Diviser en deux parties: 1.OU et 2.drag
+**** TODO 1. A simple example: OU process
+**** TODO 2. Application to extremes of the drag
+*** TODO B. Extreme time-avg forces with GKTL
+**** TODO 1. The GKTL algorithm
+**** TODO 2. Application to extremes of the time-avg drag
+** TODO V. Conclusion 
