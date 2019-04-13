@@ -644,15 +644,6 @@ The \ac{tams} algorithm could be used in the same way as described in section~\r
 However, this leads to the same problem: the resampling fails to efficiently generate new, higher fluctuations of $F_T$.
 
 For time-averaged observables, one can make use of a different algorithm: the \acf{gktl} algorithm~\cite{Giardina2006,Tailleur2007,Giardina2011}.
-It was originally designed to compute large deviations rate functions of time-averaged dynamical observables, that describe the probability density of both typical of rare events in the limit of large
-averaging time~\cite{ref_large_dev}.
-By contrast with the \ac{ams} and \ac{tams}, the \ac{gktl} algorithm does not follow the strategy of splitting algorithms.
-Instead, it implements \textit{importance sampling}, \textit{i.e.} sampling a modified distribution that is biased towards the rare events of interest.
-The idea of importance sampling is very general and was used in many different contexts (see e.g.~\cite{Berg1992,Hartmann2002} and the general references~\cite{Bucklew2004,RubinoTuffin2009}). 
-The \ac{gktl} algorithm performs importance sampling in the space of trajectories, which is relevant for out-of-equilibrium systems.
-
-\subsubsection{The \ac{gktl} algorithm}
-\label{sec:gktl_description}
 Similarly to the \ac{tams} algorithm, the \ac{gktl} relies on the simulation of a ensemble of trajectories.
 In this case however, they interact dynamically: at regular time intervals, some members of the ensemble are killed and some are cloned according to a weight which depends on the history of the replica.
 The weights are chosen such that, after several iterations of the algorithm, generated trajectories are distributed according to a probability distribution that is biased in favour of trajectories with large values of the time-averaged observable of interest.
@@ -660,7 +651,15 @@ The \ac{gktl} algorithm belong to a family of algorithms known as <<Go with the 
 Similar ideas have been applied in a wide range of fields over the past 50 years, under different names, depending of the specific application domain~\cite{delMoral_Feynman_Kac_book}.
 The application of a Go with the winners approach to the computation of large deviations in non-equilibrium systems has first been proposed in 2006~\cite{Giardina2006}.
 Over the past ten years, it has successfully been applied to investigate rare events in both stochastic~\cite{Giardina2006,Lecomte2007b,Garrahan2007,Hurtado2009b} and deterministic systems~\cite{Giardina2006,Tailleur2007}.
+% It was originally designed to compute large deviations rate functions of time-averaged dynamical observables, that describe the probability density of both typical of rare events in the limit of large
+% averaging time~\cite{ref_large_dev}.
+% By contrast with the \ac{ams} and \ac{tams}, the \ac{gktl} algorithm does not follow the strategy of splitting algorithms.
+% Instead, it implements \textit{importance sampling}, \textit{i.e.} sampling a modified distribution that is biased towards the rare events of interest.
+% The idea of importance sampling is very general and was used in many different contexts (see e.g.~\cite{Berg1992,Hartmann2002} and the general references~\cite{Bucklew2004,RubinoTuffin2009}). 
+% The \ac{gktl} algorithm performs importance sampling in the space of trajectories, which is relevant for out-of-equilibrium systems.
 
+\subsubsection{The \ac{gktl} algorithm}
+\label{sec:gktl_description}
 The \ac{gktl} algorithm consists in simulation an ensemble of $N$ trajectories $\left\{\mathbf{x}_{n}(t)\right\}_{1 \leq n \leq N}$ starting from independant random initial conditions.
 Similarly to section~\ref{sec:ams}, the total integration time of the trajectories is denoted $T_{a}$.
 We consider an observable of interest $A(\mathbf{x}(t))$ and a cloning period $\tau$.
