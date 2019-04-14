@@ -112,12 +112,12 @@ Importantly, such techniques also provide access to the flow scenario yielding e
 Explain why interesting to test application for turbulent systems. // To what extent a turbulent system is different from previous case studies? // 
 \\
 
-Turbulent flows are important in a variety of natural phenomena, industrial and civil applications with the characteristic feature to spontaneously develop intense and sporadic fluid motions associated with enormous internal forces. In the turbulence literature, ``extreme'' can refer to fluctuations that deviate from the mean value by $O(10)$ standard deviations. // true ? //
-The nature of such extreme dynamical events and their statistics are of crucial interest to predict excessive mechanical efforts that may cause damages and threaten the structural integrity of embedded structures.
+Turbulent flows are important in a variety of natural phenomena, industrial and civil applications with the characteristic feature to spontaneously develop intense and sporadic motions associated with extreme internal forces. In the turbulence literature, ``extreme'' can refer to fluctuations that deviate from the mean value by $O(10)$ standard deviations. // true ? //
+In an engineering context, the nature of such extreme dynamical events and their statistics are of crucial interest to predict excessive mechanical efforts that may cause damages and threaten the structural integrity of embedded structures.
 \\
 
-From the viewpoint of dynamical systems, turbulence in fluids has to do with non-linearity and strong departure from statistical equilibrium. The use of perturbative methods in identifying resonant interactions (among degrees of freedom)  leading to extreme fluctuations is not successful. 
-In this context, simulation offers a practical means to gain insight into the extreme events. However, their numerical sampling requires long simulation since these events are rare as well. 
+From the viewpoint of dynamical systems, turbulence in fluids has to do with non-linearity and strong departure from statistical equilibrium. The use of perturbative methods in identifying resonant interactions (among degrees of freedom) leading to extreme fluctuations is not successful.
+In this context, simulation offers a practical means to gain physical insight into these events and estimate their frequency of occurrence, or return times. Nevertheless, this requires very long simulation since these events are also very rare. It is here our motivation to evaluate the practicality and efficiency of importance sampling techniques to sample extreme events in developed turbulent flows. 
 \\
 
 
@@ -221,33 +221,38 @@ As a consequence, the drag may be viewed as the pressure difference
 \end{equation}
 where $p_{fb}(t)$ and $p_{b}(t)$ denote the pressure integrated over the forebody and the base of the obstacle, respectively.
 
-%% The phenomenology of typical drag fluctuations
-The typical timescale of variation of the drag therefore corresponds to the timescale of pressure fluctuations in the vicinity of the obstacle.
-An estimate of such timescale is the \textit{turnover time}
+%% Definition du turnover time
+The typical timescale of drag fluctuations may be estimated from dimensional analysis as
 \begin{equation}
   \label{eq:turnover_time}
   \tau_0 = \frac{R}{U},
 \end{equation}
 where $R$ is the diameter of the cylinder and $U$ the mean-flow velocity.
-Figure~\ref{fig:typical_drag_signal} illustrates the time evolution of the drag acting on the square obstacle over a few thousands turnover times.
-The evolution over a few turnover times of the vorticity field around the obstacle is displayed in figure~\ref{fig:typical_vorticity}.
-One can see that the interaction of the incoming flow with the square obstacle primarily results in boundary layers along the top and bottom boundaries.
-However, the vorticity corresponding to these boundary layers only have a small impact on the the pressure field in the vicinity of the obstacle, because it is rapidly advected dowmstream by the mean-flow.
+Let us mention that the viscosity is here discarded since viscous stress is negligible as compared to pressure forces.
+
+% Description du signal de trainee typique
+Figure~\ref{fig:typical_drag_signal} illustrates the time evolution of the drag acting on the square obstacle over a one thousands turnover times.
+The signal appears unpredictable in details and exhibits repeated bursts of high amplitude that deviate significantly from the averaged value.
+
+% Description du champ de vort. correspondant a une fluctuation typique
+Figure~\ref{fig:typical_vorticity} displays the evolution of the vorticity field around the obstacle over a few turnover times.
+The vorticity generated along the boundaries of the obstacle is advected downstream by the mean flow.
 As a consequence, the base pressure varies much less than the forebody pressure, and typical drag fluctuations mostly result from the fluctuating pressure at the front of the obstacle.
 
-In the following section~\ref{sec:direct_sampling}, we highlight a very different phenomenology for \textit{extreme} fluctuations of the drag acting on the obstacle.
-In particular, we show that extreme fluctuations mainly result from fluctuations of the base pressure, whereas forebody pressure fluctuations play a smaller role.
+In the section~\ref{sec:direct_sampling}, we highlight a very different phenomenology for \textit{extreme} fluctuations of the drag acting on the obstacle.
+In particular, we show that extreme fluctuations mainly result from fluctuations of the base pressure, whereas forebody pressure fluctuations play a lesser role.
 
 \begin{figure}
   \centering
   \includegraphics[width=0.7\linewidth]{typical_drag_signal/typical_drag_signal.png}
-  \caption{Typical temporal evolution of the drag acting on the square cylinder pictured in figure~\ref{fig:computational_domain}. The correlation time $\tau_c$ is defined further in this text and correspond to the typical fluctuation timescale of the drag.}
+  \caption{Temporal evolution of the drag acting on the square under the action of the incident turbulent flow. The time is normalized by the turnover time related the mean-flow velocity and the size of the obstacle: $\tau_0=R/U$.}
   \label{fig:typical_drag_signal}
 \end{figure}
+
 \begin{figure}
   \centering
   \includegraphics[width=\linewidth]{ecoulement_typique/ecoulement_typique.png}
-  \caption{Vorticity dynamics corresponding to typical drag fluctuations over one correlation time unit $\tau_c$. Negative vorticity is generated along the bottom boundary, and advected away from the the obstacle by the mean flow.}
+  \caption{Vorticity dynamics corresponding to typical drag fluctuations over four turnover times~\eqref{eq:turnover_time}. Negative vorticity is generated along the bottom boundary, and advected away from the the obstacle by the mean flow.}
   \label{fig:typical_drag_signal}
 \end{figure}
 
@@ -256,43 +261,40 @@ In particular, we show that extreme fluctuations mainly result from fluctuations
 
 \begin{figure}
   \centering
-    \subfloat[]{\label{fig:pdf_drag_a}\includegraphics[width=.5\linewidth]{./PDF_drag/PDF_drag.png}}
-    \subfloat[]{\label{fig:pdf_drag_b}\includegraphics[width=.5\linewidth]{autocorr_drag/autocorr_drag.png}}  
-  \caption{\textbf{(a)} \ac{pdf} describing the statistics of the instantaneous drag fluctuations, computed on the basis of the control timeseries. \textbf{(b)} Autocorrelation function for the instantaneous drag $f_d$, defined as $(\mathbb{E}[f_d(t+\tau)f_d(t)]-\mathbb{E}[f_d]^2)/\sigma^2$, computed over the control run. It shows the exponential decay of the correlations over time.}
+    \subfloat[\ac{pdf} of drag fluctuations around mean.]
+    {\label{fig:pdf_drag_a}
+    	\includegraphics[width=.45\linewidth]{./PDF_drag/PDF_drag.png}}
+    \subfloat[Autocorrelation of drag.]
+    {\label{fig:pdf_drag_b}
+    	\includegraphics[width=.45\linewidth]{./autocorr_drag/autocorr_drag.png}}  
+      \caption{\textbf{(a)} Estimate of the zero-mean \ac{pdf} for drag fluctuations $f'_d = (f_d - \bar{f_d})$ where $\bar{f_d}$ denotes the averaged value. The drag is evaluated both in the presence and absence of the obstacle. Note that both \acsp{pdf} have different variance, and are here not normalized.
+  \textbf{(b)} Autocorrelation function of the drag defined as $\left( \overline{f_d(t+\tau)f_d(t)}-\overline{f_d}^2 \right) /\sigma^2$. The lag $\tau$ is normalized by the turnover-time~\eqref{eq:turnover_time}.}
   \label{fig:pdf_drag}
 \end{figure}
 
-In the following we consider the drag force acting on the obstacle as a scalar random process $f_d(t)$.
-In order to estimate its statistical properties, we performed a simulation of the dynamics over a duration $T_{tot} = 4\times 10^6\tau_0$.
-In the following of this paper we refer to this long simulation as the \textit{control run}.
-Furthermore, we denote by $\bar{f}_d$ and $\sigma$ the average and variance computed over the control run, respectively.
-Figure~\ref{fig:pdf_drag} displays an estimate of the \ac{pdf} for the drag process, computed on the basis of the control timeseries $\{f_d(t)\}_{0\leq t \leq T_{tot}}$ obtained from the control run.
-One can see that the tails of this distribution, that describe the probability of very rare events, can be very well modelled by an exponential \ac{pdf} of the form $p(f_d) = \lambda^{-1}e^{-\lambda f_d}$.
-In addition, figure~\ref{fig:pdf_drag} displays an estimate of the \ac{pdf} of the process describing the drag acting on a control surface equivalent to the surface of  the obstacle, in a flow \textit{without obstacle}.
-This different setup is illustrated in figure~\ref{fig:no_square}.
-In this case, the corresponding \ac{pdf} estimate for the drag process is quasi-symmetric and, more importantly, does not display exponential tails.
-We conclude that the interation of the flow with the square obstacle is responsible for the exponential tails of the \ac{pdf} of the drag process.
-In section~\ref{sec:time_avg}, we relate this very particular shape of the \ac{pdf} describing extreme drag fluctuations to the phenomenology of extreme fluctuations of the time-average of the drag process. 
+Fig.~\ref{fig:typical_drag_signal} illustrates the time evolution of the drag acting on the square obstacle.
+The signal appears unpredictable in details and exhibits repeated bursts of high amplitude that deviate significantly from the averaged value.
+It is therefore natural to model the drag as a scalar random process $f_d(t)$.
 
-Lastly, figure~\ref{fig:correlation_function} illustrates that the drag process has exponentially decaying time correlations.
-In the following we call \textit{correlation time}, denoted by $\tau_c$, the typical time it takes for the drag process to decorrelate.
-We observe that $\tau_c \approx \tau_0$.
-This means that the drag decorrelates after only a few number of eddies interacted with the square obstacle.
+Drag fluctuations have been sampled along a long simulation of duration $T_{tot} = 4\times 10^6~\tau_0$, which will be referred to as the \textit{control run} in the following.
+The \ac{pdf} of drag fluctuations deviates from a normal law and shows an exponential tail for large positive fluctuations, i.e.  ${\cal P}(f_d) = \lambda^{-1}e^{-\lambda f_d}$.
+%
+Fig.~\ref{fig:pdf_drag_a} also displays the \ac{pdf} of drag fluctuations acting on a control surface equivalent to the periphery of the obstacle but in the absence of the obstacle. 
+%
+In that case, the \ac{pdf} is quasi-symmetric and does not display exponential tails, indicating that the asymmetry of the \ac{pdf} and the development of positive exponential tail are closely related to the no-slip condition on the obstacle.
+%
+Lastly, the autocorrelation function of the drag is shown in Fig.~\ref{fig:pdf_drag_b}. It is found drag fluctuations are correlated over a time scale of the order of $\tau_0$, suggesting that the drag signal looses its memory typically after the sweeping of a few eddies past the obstacle.
+%
+This observation has important consequences for the application of rare event algorithms, as will be discussed in section~\ref{sec:rare_events_algorithms}.
+%
+In the following we define the \textit{correlation time} $\tau_c = 4\tau_0$.
+Note that the ratio $tau_0 / tau_c$ may be viewed as a \textit{Strouhal number} $St$.
+A value $St=0.25$ is consistent with commonly observed values for flows past blunt structures.
 
-% \begin{equation}
-%   \label{eq:correlation_def}
-%   C(\tau) = \frac{\mathbb{E}[f_d(t)f_d(t+\tau)] - \mathbb{E}^2[f_d]}{\sigma ^2} \quad \mbox{with} \quad \sigma^2 = \mathbb{f_d^2} - \mathbb{f_d}^2.
-% \end{equation}
-
-% As a consequence, temporal correlations in the drag process have a finite life time $\tau_c$---the \textit{correlation time}.
-
-% From the point of view of the drag process, the system lost its memory after only a few eddies interacted with the obstacle.
-% This observation has important consequences for the application of rare event algorithms, as will be discussed in section~\ref{sec:rare_events_algorithms}.
-
-\section{Direct sampling of extreme fluctuations of the drag acting on a square cylinder in two-dimensional turbulence}
+\section{Extreme fluctuations of the drag by means of direct sampling}
 \label{sec:direct_sampling}
 
-We now turn to a description of the phenomenology of extreme fluctuations of the drag that acts on the square cylinder mounted in the flow described in section~\ref{sec:test_flow}.
+In this section we describe the phenomenology of extreme fluctuations of the drag that acts on the square cylinder mounted in the flow described in section~\ref{sec:test_flow}.
 
 How rare is a fluctuation $f_d \geq a$ can be determined by computing its \textit{return time} $r(a)$.
 It is defined as the average time between two consecutive occurrences of a fluctuation $f_d \geq a$.
@@ -326,33 +328,32 @@ events.
 \begin{figure}
   \centering
   \includegraphics[width=.6\linewidth]{return_time/return_time.png}
-  \caption{Drag fluctuation amplitude as a function the corresponding return time. Here $f_d$ denotes the centered and reduced drag with $f_d=0$ and $\sigma = 1$.}
+  \caption{Drag fluctuation amplitude as a function the corresponding return time. The return time $r(a)$ is the typical timescale of occurrence of a fluctuation of amplitude larger than $a$.}
   \label{fig:return_time_instant}
 \end{figure}
+
 \subsection{Instantaneous drag}
 \label{sec:instantaneous_drag}
 
 \subsubsection{Contribution of forebody and base pressure fluctuations to the overall drag fluctuation}
 \label{sec:forebody_and_base_contribution}
+In section~\ref{sec:test_flow}, we pointed out that typical drag fluctuations mainly originate from fluctuations of the forebody pressure, \textit{i.e.} pressure fluctuations resulting from the upstream turbulent flow.
+We now investigate the relative contribution of forebody and base pressure fluctuations to the overall drag fluctuations, in the case of the sampled \textit{extreme} drag fluctuations.
+Let $(t^{\star}, f_d^{\star})$ be an extreme drag event.
+In the following we consider the effective fluctuation $\tilde{f}_d^{\star} = f_d^{\star} - \langle f_d \rangle$.
+It can be further decomposed into 
+\begin{equation}
+  \tilde{f}_d^{\star} = \tilde{p}_{fb}^{\star} - \tilde{p}_{base}^{\star},
+\end{equation}
+where $\tilde{p}_{fb}^{\star}$ and $\tilde{p}_{base}^{\star}$ denote the fluctuation of the forebody pressure and base pressure, respectively, that is $\tilde{p}_{base}^{\star} = p_{base}^{\star} - \langle p_{base} \rangle$ .
 
+Figure~\ref{fig:contribution_forebody_and_base_pressure} shows the relative contributions $\tilde{p}_{base}^{\star}/\tilde{f}_d^{\star}$ and $\tilde{p}_{fb}^{\star}/\tilde{f}_d^{\star}$ to the overall drag fluctuation for the base and forebody pressure fluctuations, respectively.  
 \begin{figure}
   \centering
   \includegraphics[width=.8\linewidth]{pressure_ratio/pressure_ratio.png}
   \label{fig:pressure_ratio}
   \caption{Contribution of the forebody and base pressure fluctuation to the overall drag fluctuation for the 104 sampled extreme drag fluctuations in the control run. To each of these fluctuation correspond a unique value of the drag $f^{\star}_d$, and a unique pair ($\tilde{p}^{\star}_{base}$,$\tilde{p}^{\star}_{fb}$). The dashed lines are first order least square fits of the data. They highlight that, as the value of the fluctuation increases, so is the relative contribution of the forebody pressure fluctuation. }
 \end{figure}
-
-In section~\ref{sec:test_flow}, we pointed out that typical drag fluctuations mainly originate from fluctuations of the forebody pressure, \textit{i.e.} pressure fluctuations resulting from the upstream turbulent flow.
-We now investigate the relative contribution of forebody and base pressure fluctuations to the overall drag fluctuations, in the case of the sampled \textit{extreme} drag fluctuations.
-Let $(t^{\star}, f_d^{\star})$ be an extreme drag event.
-In the following we consider the effective fluctuation $\tilde{f}_d^{\star} = f_d^{\star} - \bar{f}_d$.
-It can be further decomposed into 
-\begin{equation}
-  \tilde{f}_d^{\star} = \tilde{p}_{fb}^{\star} - \tilde{p}_{base}^{\star},
-\end{equation}
-where $\tilde{p}_{fb}^{\star}$ and $\tilde{p}_{base}^{\star}$ denote the fluctuation of the forebody pressure and base pressure, respectively, that is $\tilde{p}_{base}^{\star} = p_{base}^{\star} - \bar{p}_{base}$ .
-Figure~\ref{fig:contribution_forebody_and_base_pressure} shows the relative contributions $\tilde{p}_{base}^{\star}/\tilde{f}_d^{\star}$ and $\tilde{p}_{fb}^{\star}/\tilde{f}_d^{\star}$ to the overall drag fluctuation for the base and forebody pressure fluctuations, respectively.  
-
 It shows that among the 104 sampled extreme events, the base pressure fluctuation typically contributes for $80\%$ of the overall drag fluctuation.
 By contrast with typical drag fluctuations, extreme fluctuations of the drag acting on the square cylinder are dominated by the variation of the pressure in the vicinity of the base of the obstacle.
 In addition, figure~\ref{fig:pressure_ratio} hints that, the larger the fluctuation, the more important is the contribution of the base pressure fluctuation, relatively to the forebody pressure fluctuation.
@@ -363,16 +364,15 @@ In addition, figure~\ref{fig:pressure_ratio} hints that, the larger the fluctuat
 \begin{figure}
   \centering
   \includegraphics[width=.8\linewidth]{illustr_extrms_vorticity/illustr_extrms_vorticity.png}
-  \caption{\label{fig:top_4_events_vorticity} Vorticity field at $t=t^{\star}$ for some of the highest drag fluctuations in the control timeseries.
-    The extreme value for the drag results from the concentration of vorticity in the vicinity of the base of the obstacle, causing a pressure drop.}
+  \caption{\label{fig:top_4_events_vorticity} Vorticity field at $t=t^{\star}$ for the four highest drag fluctuations in the timeseries.
+    The high value for the drag results from the generation of an intense vortex inducing a pressure drop at the base of the obstacle. The formation of such a structure is aided by important negative (positive) vorticity production at the bottom (top) boundary of the obstacle coupled with the influence of positive (negative) vorticity in the vicinity of the base.}
 \end{figure}
-
 
 \begin{figure}
   \centering
   \includegraphics[width=.5\linewidth]{illustr_density_streamlines/illustr_density_streamlines.png}
   \label{density+streamlines}
-  \caption{Pressure field and velocity streamlines in the vicinity of the obstacle at $t=t^{\star}$. Becasue of the blocking vortex, vorticity produced along the top boundary of the obsatcle has no other choice but to accumulate at the base of the obstacle.}
+  \caption{Pressure field and velocity streamlines in the vicinity of the obstacle at $t=t^{\star}$. Because of the blocking vortex, vorticity produced along the top boundary of the obsatcle has no other choice but to accumulate at the base of the obstacle.}
 \end{figure}
 
 \begin{figure}
