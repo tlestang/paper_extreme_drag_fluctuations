@@ -230,10 +230,6 @@ The typical timescale of drag fluctuations may be estimated from dimensional ana
 where $R$ is the diameter of the cylinder and $U$ the mean-flow velocity.
 Let us mention that the viscosity is here discarded since viscous stress is negligible as compared to pressure forces.
 
-% Description du signal de trainee typique
-Figure~\ref{fig:typical_drag_signal} illustrates the time evolution of the drag acting on the square obstacle over a one thousands turnover times.
-The signal appears unpredictable in details and exhibits repeated bursts of high amplitude that deviate significantly from the averaged value.
-
 % Description du champ de vort. correspondant a une fluctuation typique
 Figure~\ref{fig:typical_vorticity} displays the evolution of the vorticity field around the obstacle over a few turnover times.
 The vorticity generated along the boundaries of the obstacle is advected downstream by the mean flow.
@@ -241,13 +237,6 @@ As a consequence, the base pressure varies much less than the forebody pressure,
 
 In the section~\ref{sec:direct_sampling}, we highlight a very different phenomenology for \textit{extreme} fluctuations of the drag acting on the obstacle.
 In particular, we show that extreme fluctuations mainly result from fluctuations of the base pressure, whereas forebody pressure fluctuations play a lesser role.
-
-\begin{figure}
-  \centering
-  \includegraphics[width=0.7\linewidth]{typical_drag_signal/typical_drag_signal.png}
-  \caption{Temporal evolution of the drag acting on the square under the action of the incident turbulent flow. The time is normalized by the turnover time related the mean-flow velocity and the size of the obstacle: $\tau_0=R/U$.}
-  \label{fig:typical_drag_signal}
-\end{figure}
 
 \begin{figure}
   \centering
@@ -259,6 +248,24 @@ In particular, we show that extreme fluctuations mainly result from fluctuations
 \subsection{The drag random process: Probability Density Function, time correlations}
 \label{sec:pdfs}
 
+% Description du signal de trainee typique
+Fig.~\ref{fig:typical_drag_signal} illustrates the time evolution of the drag acting on the square obstacle.
+The signal appears unpredictable in details and exhibits repeated bursts of high amplitude that deviate significantly from the averaged value.
+It is therefore natural to model the drag as a scalar random process $f_d(t)$.
+\begin{figure}
+  \centering
+  \includegraphics[width=0.7\linewidth]{typical_drag_signal/typical_drag_signal.png}
+  \caption{Temporal evolution of the drag acting on the square under the action of the incident turbulent flow. The time is normalized by the turnover time related the mean-flow velocity and the size of the obstacle: $\tau_0=R/U$.}
+  \label{fig:typical_drag_signal}
+\end{figure}
+
+Drag fluctuations have been sampled along a long simulation of duration $T_{tot} = 4\times 10^6~\tau_0$, which will be referred to as the \textit{control run} in the following.
+The corresponding estimate of the \ac{pdf} of drag fluctuations is shown in figure~\ref{fig:pdf_drag_a}.
+It deviates from a normal law and shows an exponential tail for large positive fluctuations, \textit{i.e.}  ${\cal P}(f_d) = \lambda^{-1}e^{-\lambda f_d}$.
+%
+Fig.~\ref{fig:pdf_drag_a} also displays the \ac{pdf} of drag fluctuations acting on a control surface equivalent to the periphery of the obstacle but in the absence of the obstacle. 
+%
+In that case, the \ac{pdf} is quasi-symmetric and does not display exponential tails, indicating that the asymmetry of the \ac{pdf} and the development of positive exponential tail are closely related to the no-slip condition on the obstacle.
 \begin{figure}
   \centering
     \subfloat[\ac{pdf} of drag fluctuations around mean.]
@@ -271,17 +278,6 @@ In particular, we show that extreme fluctuations mainly result from fluctuations
   \textbf{(b)} Autocorrelation function of the drag defined as $\left( \overline{f_d(t+\tau)f_d(t)}-\overline{f_d}^2 \right) /\sigma^2$. The lag $\tau$ is normalized by the turnover-time~\eqref{eq:turnover_time}.}
   \label{fig:pdf_drag}
 \end{figure}
-
-Fig.~\ref{fig:typical_drag_signal} illustrates the time evolution of the drag acting on the square obstacle.
-The signal appears unpredictable in details and exhibits repeated bursts of high amplitude that deviate significantly from the averaged value.
-It is therefore natural to model the drag as a scalar random process $f_d(t)$.
-
-Drag fluctuations have been sampled along a long simulation of duration $T_{tot} = 4\times 10^6~\tau_0$, which will be referred to as the \textit{control run} in the following.
-The \ac{pdf} of drag fluctuations deviates from a normal law and shows an exponential tail for large positive fluctuations, i.e.  ${\cal P}(f_d) = \lambda^{-1}e^{-\lambda f_d}$.
-%
-Fig.~\ref{fig:pdf_drag_a} also displays the \ac{pdf} of drag fluctuations acting on a control surface equivalent to the periphery of the obstacle but in the absence of the obstacle. 
-%
-In that case, the \ac{pdf} is quasi-symmetric and does not display exponential tails, indicating that the asymmetry of the \ac{pdf} and the development of positive exponential tail are closely related to the no-slip condition on the obstacle.
 %
 Lastly, the autocorrelation function of the drag is shown in Fig.~\ref{fig:pdf_drag_b}. It is found drag fluctuations are correlated over a time scale of the order of $\tau_0$, suggesting that the drag signal looses its memory typically after the sweeping of a few eddies past the obstacle.
 %
