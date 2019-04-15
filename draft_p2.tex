@@ -446,9 +446,9 @@ For a more detailed description of such dynamics, see the chapter 3 of ~\ref{ref
 
 % Motivation
 In section~\ref{sec:instantaneous_drag}, we discussed the phenomenology of rare events corresponding to extremely high values of the drag acting on the square obstacle mounted in the flow described in section~\ref{sec:test_flow}.
-In particular, it was pointed out that such extreme drag fluctuations have a lifetime of, roughly, one correlation time unit $tau_c$.
+In particular, it was pointed out that such extreme drag fluctuations have a lifetime of, roughly, one correlation time unit $\tau_c$.
 However, In many applications, this duration is much smaller than the timescale of interest.
-Consider for insatnce the interaction of a deformable structure with a turbulent flow: the typical response time may be much larger than the lifetime of drag fluctuations.
+Consider for instance the interaction of a deformable structure with a turbulent flow: the typical response time may be much larger than the lifetime of drag fluctuations.
 
 %% Definition de la trainée intégrée
 In such cases, a relevant observable is the \textit{time-averaged} drag
@@ -495,7 +495,7 @@ Indeed, according to equation~\eqref{eq:return_time_scaling}, the return time of
 As a result, the computational cost required to sample events $f_d \geq a$ scales like $e^{\alpha a}$.
 
 %% Objectif des algo.
-In this section we discuss the application of \textbf{rare event algorithms} to the numerical sampling of extreme drag forces on immersed objects, on the example
+In this section we discuss the application of \textit{rare event algorithms} to the numerical sampling of extreme drag forces on immersed objects, on the example
 of the flow presented in section~\ref{sec:test_flow}.
 The purpose of rare events algorithms is to make it possible to sample rare events for a computational cost well inferior to their return time.
 In sections~\ref{sec:ams} and~\ref{sec:gktl} we consider the \acl{ams} and \acl{gktl} algorithms, respectively.
@@ -563,7 +563,7 @@ Can the \ac{tams} achieve similar results when applied to complex chaotic dynami
 To answer this question, we consider again the two-dimensional test flow introduced in section~\ref{sec:test_flow}.
 Our aim is to sample trajectories that display extreme fluctuations of the drag $f_d$ acting on the square obstacle.
 However, by contrast with a simple \ac{ou} process, the phase space is higly-dimensional and the dynamics complex.
-As a consequence the choice of the score function $xi (\mathbf{x}(t),t)$ is not so clear.
+As a consequence the choice of the score function $\xi (\mathbf{x}(t),t)$ is not so clear.
 In the following we use the \ac{tams} with $\xi \equiv f_d$, which is the most simple choice for the score function.
 For such complex dynamics however, there is no reasons for the drag itself to be a good measure of how far is a given state to regions of phase space where the drag is extreme.
 Unfortunately, the choice of better score functions rely on a deep understanding of the physics of the rare events of interest, which is precisely what we are trying to achieve.
