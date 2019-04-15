@@ -1,15 +1,45 @@
-* TODO Mettre à jour les figures qui peuvent l'être
-* TODO Include la figure illustrant l'évolution du cisaillement en fonction de la trainée
-  Pas forcément besoin de refaire le script en python, d'autant plus que c'est compliqué
-* Illustration des séries temporelles pour les extremes de trainée intégrée
-** TODO retrouver le script
-** TODO Le réecrire en python
-* Plots AMS
-** TODO Récupérer et ranger les données 
-** TODO Trajectoires finales
-** TODO Evolution du max sur les trajectoires re-échantillonneés
-* Récupérer mon code GKTL et le versionner
-* Evaluer l'effort nécéssaire pour refaire une experience GKTL pour l'article.
-
-
-
+#+TODO: RELIRE TODO NEXT | DONE
+* TODO Introduction
+** NEXT Integrer [[./brouillon_intro.tex]] et [[./biblio.bib]]
+** TODO Merger avec les notes dEmmanuel
+* TODO Partie I
+** TODO II Description of the case study
+*** RELIRE A. The drag force
+*** TODO B. The drag  random process: PDF and time correlations
+**** NEXT typical_drag_signal: modify unit of time
+**** TODO figure PDF_autocorrelation \overline --> <>
+** TODO III. Direct sampling of extremes
+*** RELIRE Intro de la section
+*** TODO A. Extracting extremes from a long timeseries
+**** NEXT Reparer references aux figures
+*** RELIRE B. Instant. drag
+**** RELIRE 1. Contrib. of forebody and base pressure
+**** RELIRE 2. Dynamical aspects of extremes
+*** TODO C. Extreme fluctuations of the time-avg drag
+**** NEXT Faire la figure time_series_extrms_AVG
+[[./figures/timeseries_extrms_AVG/timeseries_extrms_AVG.py]]
+* TODO Partie II
+** TODO IV. Rare event algorithms
+*** RELIRE Intro de la section
+Elaguer ?? Cest un peu long
+*** TODO A. Extreme instant. drag forces with the AMS 
+**** NEXT Diviser en deux parties: 1.OU et 2.drag
+**** TODO Justifier du choix de lAMS.. est-ce necessaire ?
+**** RELIRE 1. A simple example: OU process
+**** TODO 2. Application to extremes of the drag
+***** NEXT Fixer Y label figure AMS_drag_resampling (figure 15)
+*** TODO B. Extreme time-avg forces with GKTL
+**** RELIRE 1. The GKTL algorithm
+**** TODO 2. Application to extremes of the time-avg drag
+***** NEXT Enlever les references au run de controle.
+Lefficacite de GKTL est evalue par rapport a lestimation de la PDF de la trainee
+integree.
+***** TODO Trouver lequivalent de polyfit en python
+***** Fitter la queue positive de la PDF avec une exponentielle de polynome
+log(PDF) = ax2+bx+c
+***** TODO Mettre a jour le plot et le tableau du nombre devenement
+***** TODO Mettre ajour le texte
+***** TODO Localiser les donnees des runs GKTL pour la courbe IS_GKTL
+***** TODO Recuperer le script matlab de la courbe IS_GKTL
+***** TODO Transcrire le script en python
+** TODO V. Conclusion 
