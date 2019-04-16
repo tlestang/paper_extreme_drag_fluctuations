@@ -15,8 +15,8 @@
 *** RELIRE B. Instant. drag
 **** RELIRE 1. Contrib. of forebody and base pressure
 **** RELIRE 2. Dynamical aspects of extremes
-*** TODO C. Extreme fluctuations of the time-avg drag
-**** NEXT Faire la figure time_series_extrms_AVG
+*** RELIRE C. Extreme fluctuations of the time-avg drag
+**** DONE Faire la figure time_series_extrms_AVG
 [[./figures/timeseries_extrms_AVG/timeseries_extrms_AVG.py]]
 * TODO Partie II
 ** TODO IV. Rare event algorithms
@@ -31,10 +31,10 @@ Elaguer ?? Cest un peu long
 *** TODO B. Extreme time-avg forces with GKTL
 **** RELIRE 1. The GKTL algorithm
 **** TODO 2. Application to extremes of the time-avg drag
-***** NEXT Enlever les references au run de controle.
+***** DONE Enlever les references au run de controle.
 Lefficacite de GKTL est evalue par rapport a lestimation de la PDF de la trainee
 integree.
-***** TODO Trouver lequivalent de polyfit en python
+***** NEXT Trouver lequivalent de polyfit en python
 ***** Fitter la queue positive de la PDF avec une exponentielle de polynome
 log(PDF) = ax2+bx+c
 ***** TODO Mettre a jour le plot et le tableau du nombre devenement

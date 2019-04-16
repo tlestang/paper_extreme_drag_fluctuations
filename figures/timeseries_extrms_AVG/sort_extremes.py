@@ -27,20 +27,7 @@ for i in range(0,Nevents):
     fileName=prefix+'event_{:d}_AVG/'.format(i+1)+'data_force.datout'
     # Reads instant. drag
     f = np.fromfile(fileName, float, -1, "")
-
-    # Substract mean value
-    f = f-m
-    # Computes average
     F[i] = np.mean(f)
-    # Records min and max over signal, normalized to std dev
-    maxArray[i]=np.amax(f)/sig
-    minArray[i]=np.amin(f)/sig
-    
-globalDragMaximum = np.amax(maxArray)
-globalDragMinimum = np.amax(minArray)
-
-print globalDragMaximum
-print globalDragMinimum
 
 np.savetxt('list.txt', np.argsort(-F), '%0.2d')
 
