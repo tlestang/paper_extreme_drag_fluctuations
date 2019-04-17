@@ -34,10 +34,17 @@ Elaguer ?? Cest un peu long
 ***** DONE Enlever les references au run de controle.
 Lefficacite de GKTL est evalue par rapport a lestimation de la PDF de la trainee
 integree.
-***** NEXT Trouver lequivalent de polyfit en python
-***** Fitter la queue positive de la PDF avec une exponentielle de polynome
+***** DONE Trouver lequivalent de polyfit en python
+[[https://docs.scipy.org/doc/numpy/reference/generated/numpy.polyfit.html][numpy.polyfit]]
+***** DONE Fitter la queue positive de la PDF avec une exponentielle de polynome
 log(PDF) = ax2+bx+c
-***** TODO Mettre a jour le plot et le tableau du nombre devenement
+***** NEXT Mettre a jour le plot et le tableau du nombre devenement
+[[./figures/table_nb_traj/compute_efficiency.m]]
+- [ ] Transcrire =compute_efficiency.m= en python, comprendre
+- [ ] Pour le calcul du nb de traj. moyen par estimation directe,
+      utiliser le fit moindres carres de la PDF en lieu et place de 
+      l'approx gaussiene.
+- [ ] Comprendre la difference avec =compute_efficiency_normalized.m=
 ***** TODO Mettre ajour le texte
 ***** TODO Localiser les donnees des runs GKTL pour la courbe IS_GKTL
 ***** TODO Recuperer le script matlab de la courbe IS_GKTL
