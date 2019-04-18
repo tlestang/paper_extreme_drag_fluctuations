@@ -38,15 +38,15 @@ integree.
 [[https://docs.scipy.org/doc/numpy/reference/generated/numpy.polyfit.html][numpy.polyfit]]
 ***** DONE Fitter la queue positive de la PDF avec une exponentielle de polynome
 log(PDF) = ax2+bx+c
-***** NEXT Mettre a jour le plot et le tableau du nombre devenement
+***** DONE Mettre a jour le plot et le tableau du nombre devenement
 [[./figures/table_nb_traj/compute_efficiency.m]]
 - [ ] Transcrire =compute_efficiency.m= en python, comprendre
 - [ ] Pour le calcul du nb de traj. moyen par estimation directe,
       utiliser le fit moindres carres de la PDF en lieu et place de 
       l'approx gaussiene.
 - [ ] Comprendre la difference avec =compute_efficiency_normalized.m=
-***** TODO Mettre ajour le texte
-***** TODO Localiser les donnees des runs GKTL pour la courbe IS_GKTL
+***** NEXT Mettre ajour le texte
+***** DONE Localiser les donnees des runs GKTL pour la courbe IS_GKTL
 ***** TODO Recuperer le script matlab de la courbe IS_GKTL
 ***** TODO Transcrire le script en python
 ** TODO V. Conclusion 
