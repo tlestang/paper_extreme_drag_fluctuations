@@ -32,7 +32,8 @@ line.set_label('PDF of $F_T$')
 lineGauss, = ax.plot(xi,ret_gaussian(xi), label='Gaussian PDF')
 
 # Plots the local least-square fit for the positive tail
-lineFit, = ax.plot(xiTrunc,np.exp(p(xiTrunc)))
+lineFit, = ax.plot(xiTrunc,np.exp(p(xiTrunc)), linewidth=2, \
+                   color='k')
 
 # Set figure parameters
 ax.set_yscale('log')
