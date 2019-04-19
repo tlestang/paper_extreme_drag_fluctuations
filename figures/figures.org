@@ -17,5 +17,5 @@ Je ne comprends plus ce que sont 'inverse events'
 * [[./AMS_OU]]
 * [[./AMS_drag_resampling]]
 * [[AMS_drag_trajectories]]
-* IS_GKTL
+* [[./IS_GKTL]]
 * [[./PDF_AVG]]

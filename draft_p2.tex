@@ -798,13 +798,9 @@ In this context, the \ac{gktl} algorithm is particularly suited to sample trajec
 
 \begin{figure}
   \centering
-%  \includegraphics[width=0.7\linewidth]{illustration_IS}
-  \caption{\textbf{(a)}: Importance sampling for the time-averaged drag acting on the obstacle embedded in the test flow. The drag is averaged over $T=10\tau_c$. 
-  The \ac{gktl} algorithm is used with $N_c = 16384$ copies and $T_a = T= 10\tau_c$ for three increasing values of the bias $k$. Additionally, the cloning period is $\tau = \tau_c/2$, resulting in $M=20$ iterations of the evolution/selection procedure. Note that in this particular example the last cloning stage at $t_{19}$ is not performed.
-  As $k$ is increased, the sampled \ac{pdf} is shifted towards extreme values.
-  Along the X-axis we display the fluctuation $F'_{T} = F_{T} - \overline{F_{T}}$, where the average $\overline{F_{T}}$ and standard deviation $\sigma_{T}$ have been computed over a timeseries spanning $10^6\tau_c$.
-  One can see that the distribution for $k=0.03$ is peaked for a particular value of the fluctuation. This indicates that a significant part of the sampled trajectories actually overlap over the major part if their history.
-  A a result, the average drag only differ by a small amount.}
+  \includegraphics[width=0.7\linewidth]{IS_GKTL/IS_GKTL}
+  \caption{Importance sampling for the time-averaged drag acting on the obstacle embedded in the test flow. The drag is averaged over $T=10\tau_c$. 
+  The \ac{gktl} algorithm is used with $N_c = 16384$ copies and $T_a = T= 10\tau_c$ for three increasing values of the bias $k$. Additionally, the cloning period is $\tau = \tau_c/2$, resulting in $M=20$ iterations of the evolution/selection procedure.}
 \end{figure}
 
 \section{Conclusion}
