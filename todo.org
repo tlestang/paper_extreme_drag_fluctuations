@@ -3,6 +3,7 @@
 ** NEXT Integrer [[./brouillon_intro.tex]] et [[./biblio.bib]]
 ** TODO Merger avec les notes dEmmanuel
 * TODO Partie I
+** NEXT Figure 1
 ** TODO II Description of the case study
 *** RELIRE A. The drag force
 *** TODO B. The drag  random process: PDF and time correlations
@@ -26,8 +27,9 @@ Elaguer ?? Cest un peu long
 **** NEXT Diviser en deux parties: 1.OU et 2.drag
 **** TODO Justifier du choix de lAMS.. est-ce necessaire ?
 **** RELIRE 1. A simple example: OU process
-**** TODO 2. Application to extremes of the drag
-***** NEXT Fixer Y label figure AMS_drag_resampling (figure 15)
+**** TODO 2. Applicatioxn to extremes of the drag
+***** NEXT Fixer Y label figure AMS_drag_resampling (figure 16)
+***** TODO Fixer couleurs figure AMS_drag_resampling (figure 16)
 *** TODO B. Extreme time-avg forces with GKTL
 **** RELIRE 1. The GKTL algorithm
 **** TODO 2. Application to extremes of the time-avg drag
@@ -47,6 +49,6 @@ log(PDF) = ax2+bx+c
 - [ ] Comprendre la difference avec =compute_efficiency_normalized.m=
 ***** NEXT Mettre ajour le texte
 ***** DONE Localiser les donnees des runs GKTL pour la courbe IS_GKTL
-***** TODO Recuperer le script matlab de la courbe IS_GKTL
-***** TODO Transcrire le script en python
+***** DONE Recuperer le script matlab de la courbe IS_GKTL
+***** DONE Transcrire le script en python
 ** TODO V. Conclusion 
