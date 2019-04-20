@@ -734,6 +734,12 @@ In general the value of $k$ must be set empirically, unless a \textit{large devi
 In the latter case, the parameter $k$ can be related to the typical amplitude of the sampled fluctuations through the Gartner-Ellis theorem~\cite{GEref}.
 
 % Commentaire de la figure IS_GKTL
+\begin{figure}
+  \centering
+  \includegraphics[width=0.7\linewidth]{IS_GKTL/IS_GKTL}
+  \caption{Importance sampling for the time-averaged drag $F_T$ with $T=10\tau_c$. The shaded \ac{pdf} estimates are computed on the biased ensemble resutling from the \ac{gktl} algorithm.
+The dashed line denotes the unbiased \ac{pdf} describing $F_T$, \textit{i.e.} statistics sampled without the \ac{gktl} algorithm, or with $k=0$ (no bias)}
+\end{figure}
 Figure~\ref{fig:illustration_IS} illustrates the importance sampling achieved by the \ac{gktl} algorithm for the time-averaged drag $F_T$ with $T = T_a = 10\tau_c$.
 For each of the three experiments, it displays the estimate of the biased \ac{pdf} of the time-average drag
 \begin{equation}
@@ -760,24 +766,13 @@ This diversity can be monitored at each selection stage of the algorithm, by com
 
 % Malgré les limitations, c'est toujours mieux
 % qu'un échantillonnage direct
-Table~\ref{tbl:nbTraj_tbl} shows that the \ac{gktl} algorithm is able to sample fluctuations of the time-averaged drag that could not be sampled through a direct sampling with equal computational cost.
+We now assess the efficiency of the \ac{gktl} algorithm, with respect to a direct sampling approach. 
 For each three \ac{gktl} experiments, table~\ref{tbl:nbTraj_tbl} displays the number of trajectories that correspond to a time-average $F_{T} \geq a$.
 Note that we count as one trajectories that overlap over more than $50\%$ of their total duration~\footnote{Trajectories that overlap over an interval $[O;t]$, with $t\geq T_a / 2$.}.
 As a comparison, table~\ref{tbl:nbTraj_tbl} indicates the average number of fluctuations one can expect from simulating $N_c$ independant trajectories of duration $T_a$ $\{f_d(t)\}_{0\leq t \leq T_a}$, this with the same computational cost $C_{gktl}$.
 This number assumes that the values of the time-average drag $F_T$, with $T=10\tau_c$, are Gaussian distributed.
 This hypothesis is motivated by figure~\ref{fig:PDF_AVG}.
 
-\begin{figure}
-  \centering
-  \includegraphics[width=.7\linewidth]{PDF_AVG/PDF_AVG}
-  \caption{PDF of average drag over $10\tau_c$}
-  \label{fig:PDF_AVG}
-\end{figure}
-
-In section~\ref{sec:time_avg} we observed that extremely large values of the time-averaged drag can either result from a succession of rather typical---however all positive---fluctuations of the instantaneous drag $f_d$, or from a small number of extremely large fluctuations of the instantaneous drag.
-In the latter case, each fluctuation typically lasts a correlation time $\tau_c$.
-In this context, the \ac{gktl} algorithm is particularly suited to sample trajectories that display a succession of these fluctuations.
-(\textbf{conclusion à développer.})
 \begin{table}
   \centering
   \begin{tabular}{l|ccccc}
@@ -796,10 +791,18 @@ In this context, the \ac{gktl} algorithm is particularly suited to sample trajec
 
 \begin{figure}
   \centering
-  \includegraphics[width=0.7\linewidth]{IS_GKTL/IS_GKTL}
-  \caption{Importance sampling for the time-averaged drag $F_T$ with $T=10\tau_c$. The shaded \ac{pdf} estimates are computed on the biased ensemble resutling from the \ac{gktl} algorithm.
-The dashed line denotes the unbiased \ac{pdf} describing $F_T$, \textit{i.e.} statistics sampled without the \ac{gktl} algorithm, or with $k=0$ (no bias)}
+  \includegraphics[width=.7\linewidth]{PDF_AVG/PDF_AVG}
+  \caption{PDF of average drag over $10\tau_c$}
+  \label{fig:PDF_AVG}
 \end{figure}
+
+% Conclusion de cette partie
+Table~\ref{tbl:nbTraj_tbl} shows that the \ac{gktl} algorithm is able to sample drag fluctuations that are far from reach from a direct sampling approach of similar computational cost.
+In section~\ref{sec:time_avg} we observed that extremely large values of the time-averaged drag can either result from a succession of rather typical---however all positive---fluctuations of the instantaneous drag $f_d$, or from a small number of extremely large fluctuations of the instantaneous drag.
+By selecting trajectories based on the previous average value of the drag over a duration $\tau \approx \tau_c$, the \ac{gktl} algorithm is well suited for the preferential selection of trajectories of the former kind.
+However, such selection strategy does not appear equally as favourable to trajectories of the latter type, for which all of the drag density is located in one or two vert large fluctuations of the instantaneous drag.
+Further works must now investigate the nature of the sampled trajectories, and determine the amount of discrepancy concerning their respective phenomenology.
+
 
 \section{Conclusion}
 \label{conlusion}
