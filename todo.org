@@ -24,8 +24,8 @@
 *** RELIRE Intro de la section
 Elaguer ?? Cest un peu long
 *** TODO A. Extreme instant. drag forces with the AMS 
-**** NEXT Diviser en deux parties: 1.OU et 2.drag
-**** TODO Justifier du choix de lAMS.. est-ce necessaire ?
+**** DONE Diviser en deux parties: 1.OU et 2.drag
+**** NEXT Justifier du choix de lAMS.. est-ce necessaire ?
 **** RELIRE 1. A simple example: OU process
 **** TODO 2. Applicatioxn to extremes of the drag
 ***** NEXT Fixer Y label figure AMS_drag_resampling (figure 16)

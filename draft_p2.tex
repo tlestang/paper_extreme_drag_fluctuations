@@ -540,6 +540,8 @@ Discarded trajectories are resampled based on member of the ensemble of trajecto
 As an illustration, a particular iteration of the \ac{tams} algorithm is sketched in figure~\ref{figure_AMS}.
 For further details about the algorithm and corresponding mathematical results, see~\cite{lestang2018} and references therein.
 
+\subsubsection{Illustration of the \ac{ams} on a simple case: the \acl{ou} process}
+\label{sec:ams_ou}
 % Example: OU process
 \begin{figure}
   \centering
@@ -547,7 +549,6 @@ For further details about the algorithm and corresponding mathematical results, 
     \caption{Illustration of the efficiency of the \ac{tams} algorithm with respect to direct sampling. The orange line represents the evolution of the maximum over resampled trajectories as a function of the computational cost $C_{TAMS}$ (iterations of the the selection-mutation step). The solid blue line is the analytical solution for the return time of amplitude $a$ for the \ac{ou} process~\cite{lestang_computing_2018}.}
   \label{fig:comparaison_temps_de_retour}
 \end{figure}
-We first describe results of the \ac{tams} on a simple case.
 We temporarily let fluid dynamics aside and consider a one-dimensional \ac{ou} process
 \begin{equation}
   \label{eq:ou}
@@ -565,6 +566,8 @@ Undoubtedly, an \ac{ou} process is an oversimplified dynamics to showcase the ef
 Indeed, the state space is one-dimensional and the choice of the score function poses no questions: it is simply the observable $x$ itself.
 In addition, the noise term in~\eqref{eq:ou} has no correlations in time, which means that newly generated trajectories will quickly separate from their ancestors.
 
+\subsubsection{The \ac{ams} for extreme drag fluctuations}`
+\label{sec:ams_drag}
 % Application to turbulent flow past an obstacle
 Can the \ac{tams} achieve similar results when applied to complex chaotic dynamics, such as turbulent flows around objects ?
 To answer this question, we consider again the two-dimensional test flow introduced in section~\ref{sec:test_flow}.
