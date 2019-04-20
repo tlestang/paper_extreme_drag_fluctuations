@@ -4,11 +4,11 @@
 ** TODO Merger avec les notes dEmmanuel
 * TODO Partie I
 ** NEXT Figure 1
-** TODO II Description of the case study
+** RELIRE II Description of the case study
 *** RELIRE A. The drag force
-*** TODO B. The drag  random process: PDF and time correlations
+*** RELIRE B. The drag  random process: PDF and time correlations
 **** DONE typical_drag_signal: modify unit of time
-**** NEXT figure PDF_autocorrelation \overline --> <>
+**** DONE figure PDF_autocorrelation \overline --> <>
 ** TODO III. Direct sampling of extremes
 *** RELIRE Intro de la section
 *** TODO A. Extracting extremes from a long timeseries
