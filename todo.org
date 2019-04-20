@@ -3,7 +3,7 @@
 ** NEXT Integrer [[./brouillon_intro.tex]] et [[./biblio.bib]]
 ** TODO Merger avec les notes dEmmanuel
 * TODO Partie I
-** NEXT Figure 1
+** DONE Figure 1
 ** RELIRE II Description of the case study
 *** RELIRE A. The drag force
 *** RELIRE B. The drag  random process: PDF and time correlations
