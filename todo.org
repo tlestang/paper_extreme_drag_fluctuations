@@ -23,9 +23,10 @@
 ** TODO IV. Rare event algorithms
 *** RELIRE Intro de la section
 Elaguer ?? Cest un peu long
-*** TODO A. Extreme instant. drag forces with the AMS 
+*** RELIRE A. Extreme instant. drag forces with the AMS 
 **** DONE Diviser en deux parties: 1.OU et 2.drag
-**** NEXT Justifier du choix de lAMS.. est-ce necessaire ?
+**** DONE Justifier du choix de lAMS.. est-ce necessaire ?
+NON
 **** RELIRE 1. A simple example: OU process
 **** RELIRE 2. Applicatioxn to extremes of the drag
 ***** DONE Fixer Y label figure AMS_drag_resampling (figure 16)
