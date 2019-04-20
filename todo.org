@@ -1,15 +1,18 @@
-#+TODO: RELIRE TODO NEXT | DONE
-* TODO Introduction
-** NEXT Integrer [[./brouillon_intro.tex]] et [[./biblio.bib]]
-** TODO Merger avec les notes dEmmanuel
-* TODO Partie I
-** DONE Figure 1
+#+TODO: RELIRE TODO NEXT WAITING | DONE 
+* WAITING Introduction
+** DONE Integrer [[./brouillon_intro.tex]] et [[./biblio.bib]]
+** DONE Merger avec les notes dEmmanuel
+** WAITING Input Emmanuel
+* WAITING Partie I
 ** RELIRE II Description of the case study
+** DONE Figure 1
+** WAITING Input Emmanuel caption figure 1
+** WAITING Input Emmanuel descritpion boundary conditions
 *** RELIRE A. The drag force
 *** RELIRE B. The drag  random process: PDF and time correlations
 **** DONE typical_drag_signal: modify unit of time
 **** DONE figure PDF_autocorrelation \overline --> <>
-** TODO III. Direct sampling of extremes
+** RELIRE III. Direct sampling of extremes
 *** RELIRE Intro de la section
 *** RELIRE A. Extracting extremes from a long timeseries
 *** RELIRE B. Instant. drag
@@ -53,3 +56,6 @@ log(PDF) = ax2+bx+c
 ***** DONE Transcrire le script en python
 ***** DONE Conclusion
 * TODO V. Conclusion 
+* TODO General 
+** TODO References
+** TODO Citations

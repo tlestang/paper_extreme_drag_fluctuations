@@ -112,16 +112,39 @@ Importantly, such techniques also provide access to the flow scenario yielding e
 Explain why interesting to test application for turbulent systems. // To what extent a turbulent system is different from previous case studies? // 
 \\
 
-Turbulent flows are important in a variety of natural phenomena, industrial and civil applications with the characteristic feature to spontaneously develop intense and sporadic motions associated with extreme internal forces. In the turbulence literature, ``extreme'' can refer to fluctuations that deviate from the mean value by $O(10)$ standard deviations. // true ? //
+Turbulent flows are important in a variety of natural phenomena, industrial and civil applications with the characteristic feature to spontaneously develop intense and sporadic motions associated with extreme internal forces. In the turbulence literature, ``extreme'' can refer to fluctuations that deviate from the mean value by $O(10)$ standard deviations.
 In an engineering context, the nature of such extreme dynamical events and their statistics are of crucial interest to predict excessive mechanical efforts that may cause damages and threaten the structural integrity of embedded structures.
 \\
 
 From the viewpoint of dynamical systems, turbulence in fluids has to do with non-linearity and strong departure from statistical equilibrium. The use of perturbative methods in identifying resonant interactions (among degrees of freedom) leading to extreme fluctuations is not successful.
 In this context, simulation offers a practical means to gain physical insight into these events and estimate their frequency of occurrence, or return times. Nevertheless, this requires very long simulation since these events are also very rare. It is here our motivation to evaluate the practicality and efficiency of importance sampling techniques to sample extreme events in developed turbulent flows. 
 \\
-
-
-// Our motivations and expectations. // 
+Rare event sampling for turbulence has traditionally been approached from simplified dynamics, such as Burger's turbulence with a stochastic forcing~\cite{bec_burgers_2007}.
+In this context it is possible to describe the dynamics through an action analoguous to a Gibbs measure for an equilibrium sytem.
+This action can then be sampled by a Markoy chain Monte Carlo (MCMC) algorithm~\cite{duben_monte_2008,mesterhazy_anomalous_2011,mesterhazy_lattice_2013}.
+Even though Monte Carlo simulations are not expected to be competitive with traditional approaches such as finite difference or pseudo-spectral methods, they provide a simulation framework in which constraints can be applied so as to certain events preferentially.
+A different approach is the Instanton method~\cite{grafke_instanton_2015}, also relying on the knowledge of an action for the dynamics.
+For stochastically driven systms, in the limit of weak noise, it can be shown that the probability of extreme events is dominated by the action minima~\cite{freidlin2013random}.
+The trajectory that that minimizes the action is referred to as the \textit{instanton}~\cite{gurarie_instantons_1996}.
+The instanton approach consists in using suitable numerical methods to minimize the action and compute the instanton, as well as the associated probability~\cite{chernykh_large_2001,grafke_instanton_2013,grafke_relevance_2015,grigorio_instantons_2017}.
+Such approaches are however limited to stochastically driven dynamics, simple enough so that an action can be derived and sampled, or minimized. This is for instance the case of the stochastically driven 1D Burger's equation.
+\\
+Whilst Burgers turbulence provids an interesting model framework for the investigation of the properties of small scale turbulence, it is of little relevance to more realistic situations, such as industrial or geophysical flows.
+In this paper, we discuss a thrid approach to the numerical simulation of rare events in turbuent flows, that aims at flows for which an action cannot be derived.
+It is based on the application of \textit{rare event algorithms}, coupled with a numerical simulation of the flow dynamics.
+Even though the original ideads can be traced back to the early 1950's, rare event algorithms have been of ever-growing interest voer the last 20 years. Successful application of such algorithms can be found in various domains such as chemistry~\cite{van_erp_elaborating_2005,escobedo_transition_2009,teo_adaptive_2016},biophysics~\cite{huber_weighted-ensemble_1996,zuckerman2017weighted,bolhuis2005kinetic}, nuclear phsics~\cite{louvin2017}, nonlinear dynamical systems~\cite{tailleur_probing_2007}, communication networks simulation~\cite{villen-altamirano_restart:_1994}.
+\\
+However, a large body of algorithms are limited to systems at equilibrium, for which the statioany ry measure can be sampled by means of Monte Carlo methods.
+For systems far from equilibrium, such as turbulent flows, the sampling of rare events must be done at the level of the trajectories.
+In the present paper with discuss two different algorithms suitable to out-of-equilibrum dynamics.
+The Adaptive Multilevel Algorithm (2006)~\cite{cerou_adaptive_2007} inherits from older ideas about splitting approaches~\cite{KahnHarris1951,glasserman_look_1998,glasserman_multilevel_1999}.
+In recent years, it allowed the computation of rare events in problems involving a large number of degrees of freedom, such as Nolecular Dynamics simulations~\cite{aristoff_adaptive_2015}, the computation of rare trajectoris in the Allen-Cahn equations~\cite{rolland_computing_2016} or rare re-laminarisation in a stochastic model of wall-turbulence~\cite{rolland_extremely_2018}.
+Over the last decade, the main theoritical framework for the study of rare events in statistical physics has been the one of large deviation theory~\cite{touchette_large_2009}.
+Alongside, numerical methods have been developed to sample rare events based on general ideas and algorithms~\cite{moral_feynman-kac_2004}. Among them, the \ac{gktl} algorithm~\cite{giardina_direct_2006} is particularly suited to rare events in dynamical systems~\cite{giardina_simulating_2011,Laffargue_2013}.
+\\
+The applicability of such algorithms to flows relevant to envorinmental or industrial applications remains open.
+Recently, the \cite{gktl} allowed to perorm the cumerical simulation of extreme heat waves in a simplified model of the atmosphere~\cite{ragone_computation_2018}. Such application represent a great leap in term of complexity with respect to previous application of rare event algorithms.
+In the present paper, we consider a different context of application: turbulent flows around objects.
 
 
 \section{Description of the case study}
