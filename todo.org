@@ -7,8 +7,8 @@
 ** TODO II Description of the case study
 *** RELIRE A. The drag force
 *** TODO B. The drag  random process: PDF and time correlations
-**** NEXT typical_drag_signal: modify unit of time
-**** TODO figure PDF_autocorrelation \overline --> <>
+**** DONE typical_drag_signal: modify unit of time
+**** NEXT figure PDF_autocorrelation \overline --> <>
 ** TODO III. Direct sampling of extremes
 *** RELIRE Intro de la section
 *** TODO A. Extracting extremes from a long timeseries
@@ -20,7 +20,7 @@
 **** DONE Faire la figure time_series_extrms_AVG
 [[./figures/timeseries_extrms_AVG/timeseries_extrms_AVG.py]]
 * TODO Partie II
-** TODO IV. Rare event algorithms
+** RELIRE IV. Rare event algorithms
 *** RELIRE Intro de la section
 Elaguer ?? Cest un peu long
 *** RELIRE A. Extreme instant. drag forces with the AMS 
