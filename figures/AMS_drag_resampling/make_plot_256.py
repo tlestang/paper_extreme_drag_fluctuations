@@ -2,7 +2,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 
 plt.style.use('ggplot')
-
+color_list = plt.rcParams['axes.prop_cycle'].by_key()['color']
 # This scripts produces a figure that illustrates how the maximum over the resamplied trajectories
 # saturates. It shows that that the TAMS does not lead to higher fluctuations, with respect to the
 # initial ensemble of trajectories.
@@ -11,7 +11,7 @@ plt.style.use('ggplot')
 # transition_hdd/thibault/These/AMS/libTAMS/tests/experience_lbm/courbe_efficacite_instant
 # Original MATLAB script is make_plot_256.m
 
-prefix = '/home/thibault/transition_hdd/thibault/These/AMS/libTAMS/tests/experience_lbm/' \
+prefix = '/home/tlestang/transition_hdd/thibault/These/AMS/libTAMS/tests/experience_lbm/' \
         +'data/instant_256_20/'
 
 # Defines average and std of drag process, compute over the control run
@@ -50,10 +50,10 @@ init.set_color(line.get_color())
 init.set_label('Maxima over initial trajectories')
 
 # Plots maxima over resampled trajectories
-resamp, =ax.plot(Cvec, amax, linestyle='None')
+resamp, = ax.plot(Cvec, amax, linestyle='None')
 resamp.set_marker('o')
 resamp.set_markersize(3)
-resamp.set_markerfacecolor('#6666ff');
+resamp.set_markerfacecolor(color_list[1]);
 resamp.set_markeredgecolor(resamp.get_markerfacecolor())
 resamp.set_label('Maxima over resampled trajectories')
 

@@ -27,9 +27,9 @@ Elaguer ?? Cest un peu long
 **** DONE Diviser en deux parties: 1.OU et 2.drag
 **** NEXT Justifier du choix de lAMS.. est-ce necessaire ?
 **** RELIRE 1. A simple example: OU process
-**** TODO 2. Applicatioxn to extremes of the drag
-***** NEXT Fixer Y label figure AMS_drag_resampling (figure 16)
-***** TODO Fixer couleurs figure AMS_drag_resampling (figure 16)
+**** RELIRE 2. Applicatioxn to extremes of the drag
+***** DONE Fixer Y label figure AMS_drag_resampling (figure 16)
+***** DONE Fixer couleurs figure AMS_drag_resampling (figure 16)
 *** RELIRE B. Extreme time-avg forces with GKTL
 **** RELIRE 1. The GKTL algorithm
 **** RELIRE 2. Application to extremes of the time-avg drag
