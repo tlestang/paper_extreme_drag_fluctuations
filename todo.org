@@ -11,15 +11,14 @@
 **** DONE figure PDF_autocorrelation \overline --> <>
 ** TODO III. Direct sampling of extremes
 *** RELIRE Intro de la section
-*** TODO A. Extracting extremes from a long timeseries
-**** NEXT Reparer references aux figures
+*** RELIRE A. Extracting extremes from a long timeseries
 *** RELIRE B. Instant. drag
 **** RELIRE 1. Contrib. of forebody and base pressure
 **** RELIRE 2. Dynamical aspects of extremes
 *** RELIRE C. Extreme fluctuations of the time-avg drag
 **** DONE Faire la figure time_series_extrms_AVG
 [[./figures/timeseries_extrms_AVG/timeseries_extrms_AVG.py]]
-* TODO Partie II
+* RELIRE Partie II
 ** RELIRE IV. Rare event algorithms
 *** RELIRE Intro de la section
 Elaguer ?? Cest un peu long
@@ -53,4 +52,4 @@ log(PDF) = ax2+bx+c
 ***** DONE Recuperer le script matlab de la courbe IS_GKTL
 ***** DONE Transcrire le script en python
 ***** DONE Conclusion
-** TODO V. Conclusion 
+* TODO V. Conclusion 
