@@ -270,7 +270,7 @@ In particular, we show that extreme fluctuations mainly result from fluctuations
   \centering
   \includegraphics[width=\linewidth]{ecoulement_typique/ecoulement_typique.png}
   \caption{Vorticity dynamics corresponding to typical drag fluctuations over four turnover times~\eqref{eq:turnover_time}. Negative vorticity is generated along the bottom boundary, and advected away from the the obstacle by the mean flow.}
-  \label{fig:typical_drag_signal}
+  \label{fig:typical_vorticity}
 \end{figure}
 
 \subsection{The drag random process: Probability Density Function, time correlations}
@@ -312,7 +312,7 @@ Lastly, the autocorrelation function of the drag is shown in Fig.~\ref{fig:pdf_d
 This observation has important consequences for the application of rare event algorithms, as will be discussed in section~\ref{sec:rare_events_algorithms}.
 %
 In the following we define the \textit{correlation time} $\tau_c = 4\tau_0$.
-Note that the ratio $tau_0 / tau_c$ may be viewed as a \textit{Strouhal number} $St$.
+Note that the ratio $\tau_0 / \tau_c$ may be viewed as a \textit{Strouhal number} $St$.
 A value $St=0.25$ is consistent with commonly observed values for flows past blunt structures.
 
 \section{Extreme fluctuations of the drag by means of direct sampling}
@@ -342,9 +342,9 @@ The control run mentioned in the previous section, spanning $T_{tot} = 10^6 \tau
 
 On the basis of the control timeseries $\{f_d(t)\}_{0 \leq t \leq T_{tot}}$, we tracked every drag fluctuation with an amplitude greater than a fixed threshold amplitude $a$.
 The value of this threshold was chosen so that the return time of fluctuations with an amplitude larger than $a$ is $T_{tot}/100$.
-Figure~\ref{return_time_instant} displays the fluctuation amplitude $a$ as a function of the return time.
-According to Figure~\ref{return_time_instant}, the threshold amplitude $a$ is set to $7.6\sigma$ with $\sigma$ the standard deviation of the drag process.
-We denote by $(t^{\star}, f_d^{\star})$ a fluctuation of peak amplitude $f_d^{\star}$ occurring at time $t^{\star}$, as illustrated in figure~\ref{fig:extraction}.
+Figure~\ref{fig:return_time_instant} displays the fluctuation amplitude $a$ as a function of the return time.
+According to figure~\ref{fig:return_time_instant}, the threshold amplitude $a$ is set to $7.6\sigma$ with $\sigma$ the standard deviation of the drag process.
+We denote by $(t^{\star}, f_d^{\star})$ a fluctuation of peak amplitude $f_d^{\star}$ occurring at time $t^{\star}$.
 From the control timeseries, we identified $104$ independent extreme drag fluctuations whith an amplitude greater than $7.6\sigma$, \textit{i.e.} with a return time greater than $10^4\tau_c$.
 In the following sections~\ref{sec:forebody_and_base_contribution} and~\ref{sec:instantaneous_drag}, we describe the phenomenology of extreme drag fluctuations on the basis of this set of
 events.
@@ -371,12 +371,11 @@ It can be further decomposed into
 \end{equation}
 where $\tilde{p}_{fb}^{\star}$ and $\tilde{p}_{base}^{\star}$ denote the fluctuation of the forebody pressure and base pressure, respectively, that is $\tilde{p}_{base}^{\star} = p_{base}^{\star} - \langle p_{base} \rangle$ .
 
-Figure~\ref{fig:contribution_forebody_and_base_pressure} shows the relative contributions $\tilde{p}_{base}^{\star}/\tilde{f}_d^{\star}$ and $\tilde{p}_{fb}^{\star}/\tilde{f}_d^{\star}$ to the overall drag fluctuation for the base and forebody pressure fluctuations, respectively.  
+Figure~\ref{fig:pressure_ratio} shows the relative contributions $\tilde{p}_{base}^{\star}/\tilde{f}_d^{\star}$ and $\tilde{p}_{fb}^{\star}/\tilde{f}_d^{\star}$ to the overall drag fluctuation for the base and forebody pressure fluctuations, respectively.  
 \begin{figure}
   \centering
   \includegraphics[width=.8\linewidth]{pressure_ratio/pressure_ratio.png}
-  \label{fig:pressure_ratio}
-  \caption{Contribution of the forebody and base pressure fluctuation to the overall drag fluctuation for the 104 sampled extreme drag fluctuations in the control run. To each of these fluctuation correspond a unique value of the drag $f^{\star}_d$, and a unique pair ($\tilde{p}^{\star}_{base}$,$\tilde{p}^{\star}_{fb}$). The dashed lines are first order least square fits of the data. They highlight that, as the value of the fluctuation increases, so is the relative contribution of the forebody pressure fluctuation. }
+  \caption{\label{fig:pressure_ratio} Contribution of the forebody and base pressure fluctuation to the overall drag fluctuation for the 104 sampled extreme drag fluctuations in the control run. To each of these fluctuation correspond a unique value of the drag $f^{\star}_d$, and a unique pair ($\tilde{p}^{\star}_{base}$,$\tilde{p}^{\star}_{fb}$). The dashed lines are first order least square fits of the data. They highlight that, as the value of the fluctuation increases, so is the relative contribution of the forebody pressure fluctuation. }
 \end{figure}
 It shows that among the 104 sampled extreme events, the base pressure fluctuation typically contributes for $80\%$ of the overall drag fluctuation.
 By contrast with typical drag fluctuations, extreme fluctuations of the drag acting on the square cylinder are dominated by the variation of the pressure in the vicinity of the base of the obstacle.
@@ -395,22 +394,19 @@ In addition, figure~\ref{fig:pressure_ratio} hints that, the larger the fluctuat
 \begin{figure}
   \centering
   \includegraphics[width=.5\linewidth]{illustr_density_streamlines/illustr_density_streamlines.png}
-  \label{density+streamlines}
-  \caption{Pressure field and velocity streamlines in the vicinity of the obstacle at $t=t^{\star}$. Because of the blocking vortex, vorticity produced along the top boundary of the obsatcle has no other choice but to accumulate at the base of the obstacle.}
+  \caption{\label{fig:density+streamlines} Pressure field and velocity streamlines in the vicinity of the obstacle at $t=t^{\star}$. Because of the blocking vortex, vorticity produced along the top boundary of the obsatcle has no other choice but to accumulate at the base of the obstacle.}
 \end{figure}
 
 \begin{figure}
   \centering
   \includegraphics[width=.7\linewidth]{timeseries_extremes/timeseries_extremes.png}
-  \label{fig:timeseries_extremes}
-  \caption{Average drag timeseries in the vicinity of an extreme drag fluctuation at $t=t^{\star}$. The blue continuous line results from an average over the 104 extreme events sampled in the control run. This illustrates that extreme drag variations are very local in time, with a typical lifetime of one correlation time unit $\tau_c$.}
+  \caption{\label{fig:timeseries_extremes} Average drag timeseries in the vicinity of an extreme drag fluctuation at $t=t^{\star}$. The blue continuous line results from an average over the 104 extreme events sampled in the control run. This illustrates that extreme drag variations are very local in time, with a typical lifetime of one correlation time unit $\tau_c$.}
 \end{figure}
 
 \begin{figure}
   \centering
   \includegraphics[width=.8\linewidth]{dynamics_extremes/dynamics_extremes.png}
-  \label{fig:vorticity_dynamics}
-  \caption{Vorticity dynamics associated to an extreme fluctuation of the drag acting on the square obstacle at $t=t^{\star}$.}
+  \caption{\label{fig:vorticity_dynamics} Vorticity dynamics associated to an extreme fluctuation of the drag acting on the square obstacle at $t=t^{\star}$.}
 \end{figure}
 
 We now turn to a description of the flow dynamics that correspond to extremely high values of the drag acting on the square obstacle.
@@ -421,18 +417,18 @@ Starting from typical values, extreme drags are typically reached in less than a
 Moreover, such very high drag levels do not persist over time.
 To understand why it is so, it is useful to visualize the corresponding flow fields.
 
-To begin with, figure~\ref{fig:top_four_events} displays the vorticity field corresponding to the peak drag value, for a subset of the extreme events sampled in the control simulation.
+To begin with, figure~\ref{fig:top_4_events_vorticity} displays the vorticity field corresponding to the peak drag value, for a subset of the extreme events sampled in the control simulation.
 We observe that, in each case, extreme drag flcutuations correspond to very similar flow configurations.
-More precisely, a region of strong vorticity is located in the vicinity of the base of the obstacle, where vorticity levels typically reach twice as much as the typical vorticity fluctuations displayed in figure~\ref{fig:typical_event}.
+More precisely, a region of strong vorticity is located in the vicinity of the base of the obstacle, where vorticity levels typically reach twice as much as the typical vorticity fluctuations displayed in figure~\ref{fig:typical_vorticity}.
 This vorticity results from a boundary layer, along either the top or bottom side of the obstacle.
 Such extreme vorticity is responsible for a significant pressure drop in the vicinity of the base of the obstacle, which in turn leads to an extreme value of the drag, see figure~\ref{fig:pressure_ratio}.
 
 How are such vorticity reached ?
-In contrast with the typical flow dynamics, illustrated in figure~\ref{vorticity_typical}, the vorticity generated within the boundary layers is not directly advectd by the means flow.
-Figure~\ref{fig:illustr_density_streamlines} shows that, instead, this vorticity is constrained in the vicinity of the base of the obstacle.
+In contrast with the typical flow dynamics, illustrated in figure~\ref{fig:typical_vorticity}, the vorticity generated within the boundary layers is not directly advectd by the means flow.
+Figure~\ref{fig:density+streamlines} shows that, instead, this vorticity is constrained in the vicinity of the base of the obstacle.
 Such constraint results from a large vortical region located roughly one obstacle length of the base, that prevents vorticity to be advected downstream.
 
-Figure~\ref{fig:vorticity_dynamics} illustrate the time evolution of the vorticity field, in the vicinity of the drag fluctuation, for the event depicted in figure~\ref{fig:illustr_density_streamlines}.
+Figure~\ref{fig:vorticity_dynamics} illustrate the time evolution of the vorticity field, in the vicinity of the drag fluctuation, for the event depicted in figure~\ref{fig:density+streamlines}.
 From $t^{\star}-0.4\tau_c$ to $t^{\star}-0.16\tau_c$, a strong negative eddy is generated along the bottom boundary layer of the obstacle and advected downstream by the mean flow.
 This leads to a region of negative vorticity at roughly one obstacle length of the base of the obstacle, constraining the positive vorticity generated along the top boundary.
 However, it can be seen in figure~\ref{fig:vorticity_dynamics} that the positive vorticity only accumulates for a short duration.
@@ -451,9 +447,14 @@ In order to identify such events, we monitored the averaged shear along the top 
 where $L$ denotes the diameter of the cylinder, $u_x$ the longitudinal component of the velocity field and $\mathcal{S}_b$ the surface of either the top or the bottom boundary.
 % Figure~\ref{fig:type_1_and_type_2_a} displays the label of the 104 sampled events, sorted according to the amplitude of the corresponding fluctuation.
 % It illustrates that the dynamics corresponding to the large majority of events also corresponds to the events with the highest fluctuation amplitude.
+\begin{figure}
+  \centering
+  \includegraphics[width=.7\linewidth]{shear_asof_drag/shear_asof_drag}
+  \caption{\label{fig:shear_asof_drag} Evolution of the shear alongised the top or bottom boundary of the obsatcle as a function of the drag, for $t^{\star}-2\tau_c \leq t \leq t^{\star}-2\tau_c$. To each oneof the grey lines correspond a unique extreme event. The blue line is the average over the 104 extreme event sampled in the control run.}
+\end{figure}
 Figure~\ref{fig:shear_asof_drag} shows $\overline{\gamma}$ as a function of the instantaneous drag $f_d$, for $t^{\star}-2\tau_c \leq t \leq  t^{\star}+2\tau_c$, for each of the sampled events that follow the previously described dynamics..
 For $t^{\star}-2\tau_c \leq t \leq t^{\star}-\tau_c$ and $t^{\star}+\tau_c \leq t \leq t^{\star}+2\tau_c$, paths concentrate in the region describing typical values for both $\overline{\gamma}$ and $f_d$.
-As illustrated in figure~\ref{fig:extremes_timeseries}, the drag abruptly varies for $t^{\star}-\tau_c \leq t \leq t^{\star}+\tau_c$.
+As illustrated in figure~\ref{fig:timeseries_extremes}, the drag abruptly varies for $t^{\star}-\tau_c \leq t \leq t^{\star}+\tau_c$.
 As a consequence, paths in the $(f_d, \bar{\gamma})$ space display excursions to atypical values for both $\bar{\gamma}$ and $f_d$.
 These excursions always go clockwise, that is, $\overline{\gamma}$ attains its maximum value before $f_d$ does.
 This is consistent with an increase of $\overline{\gamma}$ acting as a precursor for extreme drag fluctuations.
@@ -461,13 +462,9 @@ This is consistent with an increase of $\overline{\gamma}$ acting as a precursor
 The remaining $20\%$ of the sampled events correspond to slightly different dynamics.
 In this case the vorticity responsible for the base pressure drop is not created along the top or bottom boundary, but directly through viscous shear alongside the base boundary of the obstacle.
 This viscous shear is induced by a large vortex detached from the obstacle.
-For a more detailed description of such dynamics, see the chapter 3 of ~\ref{ref:these_lestang}.
+For a more detailed description of such dynamics, see the chapter 3 of ~\cite{ref:these_lestang}.
 
-\begin{figure}
-  \centering
-  \includegraphics[width=.7\linewidth]{shear_asof_drag/shear_asof_drag}
-  \caption{\label{fig:shear_asof_drag} Evolution of the shear alongised the top or bottom boundary of the obsatcle as a function of the drag, for $t^{\star}-2\tau_c \leq t \leq t^{\star}-2\tau_c$. To each oneof the grey lines correspond a unique extreme event. The blue line is the average over the 104 extreme event sampled in the control run.}
-\end{figure}
+
 
 \subsection{Extreme fluctuations of the time-averaged drag }
 \label{sec:time_avg}
@@ -526,7 +523,7 @@ If $\mathbb{P}$ has an exponential positive tail, \textit{i.e.} $\mathbb{P}(X=x)
 
 %% Limites de l'approche par échantillonnage direct
 In the limit of very rare events and/or very complex dynamics such as turbulent flows in industrial contexts, a direct sampling approach is unrealistic.
-Indeed, according to equation~\eqref{eq:return_time_scaling}, the return time of a fluctuation $f_d \geq a$ verifies $r(a) \propto e^{\alpha a}$.
+Indeed, according to equation~\eqref{eq:return_time}, the return time of a fluctuation $f_d \geq a$ verifies $r(a) \propto e^{\alpha a}$.
 As a result, the computational cost required to sample events $f_d \geq a$ scales like $e^{\alpha a}$.
 
 %% Objectif des algo.
@@ -551,8 +548,7 @@ In other words, generated trajectories are given a statistical weight, which kno
 \begin{figure}
   \centering
   \includegraphics[width=.7\linewidth]{illustr_AMS/figure_AMS}
-  \label{fig:illustr_AMS}
-  \caption{Illustration of one selection-mutation step in the \ac{ams} algorithm for the computation of the probability that an observable $A:\mathbb{R}^d\to \mathbb{R}$  reaches values larger than $Q$ over a trajectory of duration $T_a$. The initial ensemble of blue trajectories is first generated. These trajectories are independant and can be simulated in parallel. On the basis of the respective maxima $Q_1$, $Q_2$ and $Q_3$, the trajectory with the lowest maximum is discarded from the ensemble (dashed blue line). Among the two remaining trajectories, trajectory 3 is chosen at random and copied until $Q_1$. It is then freely simulated from the branching poin to $T_a$. In case of deterministic dynamics, as samll perturbation is introduced at the branching. This procedure is typically iterated $J$ times, or until all trajectories go beyond a fixed threshold $Q$.}
+  \caption{\label{fig:illustr_AMS} Illustration of one selection-mutation step in the \ac{ams} algorithm for the computation of the probability that an observable $A:\mathbb{R}^d\to \mathbb{R}$  reaches values larger than $Q$ over a trajectory of duration $T_a$. The initial ensemble of blue trajectories is first generated. These trajectories are independant and can be simulated in parallel. On the basis of the respective maxima $Q_1$, $Q_2$ and $Q_3$, the trajectory with the lowest maximum is discarded from the ensemble (dashed blue line). Among the two remaining trajectories, trajectory 3 is chosen at random and copied until $Q_1$. It is then freely simulated from the branching poin to $T_a$. In case of deterministic dynamics, as samll perturbation is introduced at the branching. This procedure is typically iterated $J$ times, or until all trajectories go beyond a fixed threshold $Q$.}
 \end{figure}
 
 % Introduction to AMS
@@ -564,7 +560,7 @@ In the present paper we use a variant of the \ac{ams} algorithm called the \ac{t
 The \ac{tams} relies on the definition of a time-dependant \textit{score function} $\xi (\mathbf{x}(t),t)$, as well as an iterative procedure starting from an ensemble $\{\mathbf{x}_n(t)\}_{1\leq n \leq N, 0\leq t T_a}$ of independant trajectories.
 Each iteration consists in discarding the trajectories with the lowest maxima of the score function $\xi$ over the whole trajectory of duration $[0;T_a]$.
 Discarded trajectories are resampled based on member of the ensemble of trajectories that achieved a higher value of the score function at some point of their history.
-As an illustration, a particular iteration of the \ac{tams} algorithm is sketched in figure~\ref{figure_AMS}.
+As an illustration, a particular iteration of the \ac{tams} algorithm is sketched in figure~\ref{fig:illustr_AMS}.
 For further details about the algorithm and corresponding mathematical results, see~\cite{lestang2018} and references therein.
 
 \subsubsection{Illustration of the \ac{ams} on a simple case: the \acl{ou} process}
@@ -585,7 +581,7 @@ We apply the \ac{tams} to simulate trajectories $\{x(t)\}_{0\leq t \leq T_a}$ wi
 For the sake of simplicity, a single trajectory is resampled at each iteration of the \ac{tams}.
 We denote by $a_j$ the maximum of the resampled trajectory at iteration $j$.
 The computational cost of the algorithm after iteration $j$ is the computational cost of simulating the $N$ initial trajectories, as well as the resampling of the $j$ trajectories.
-Figure~\ref{fig:compraison_temps_de_retour} compares the typical computational cost required to sample fluctuations above a given amplitude $a$ using the \ac{tams} and a direct sampling approach. In the latter, the typical computational cost is simply the return time $r(a)$.
+Figure~\ref{fig:comparaison_temps_de_retour} compares the typical computational cost required to sample fluctuations above a given amplitude $a$ using the \ac{tams} and a direct sampling approach. In the latter, the typical computational cost is simply the return time $r(a)$.
 illustrates that the successice resamplings of the \ac{tams} algorithm leads to trajectories displaying extreme fluctuations $x \geq a$.
 More importantly, these very rare trajectories are sampled for a computational cost that several order of magnitude lower than the return time of the corresponding fluctuations.
 
@@ -609,21 +605,20 @@ Unfortunately, the choice of better score functions rely on a deep understanding
 \begin{figure}
   \centering
   \includegraphics[width=.7\linewidth]{AMS_drag_resampling/AMS_drag_resampling.png}
-    \caption{Maximum of the instantaneous drag along the resampled trajectories as a function of the corresponding computational cost $C_{TAMS}$. For these particular dynamics, the \ac{tams} is unable to efficiently sample rare trajectories associated to drag fluctuations higher than the largest fluctuation in the initial ensemble.}
+  \caption{\label{fig:AMS_drag_resampling} Maximum of the instantaneous drag along the resampled trajectories as a function of the corresponding computational cost $C_{TAMS}$. For these particular dynamics, the \ac{tams} is unable to efficiently sample rare trajectories associated to drag fluctuations higher than the largest fluctuation in the initial ensemble.}
 \end{figure}
 We apply the \ac{tams} with $N=256$ initial trajectories, with a duration $T_a = 20 \tau_c$.
-Similarly to figure~\ref{fig:comparaison_temps_de_retour}, figure~\ref{fig:instant_256_20} displays the maximum drag achieved by resampled trajectories.
-In addition, figure~\ref{fig:instant_256_20} shows the distribution of the maximum achieved drag for the $N$ \textit{initial} trajectories.
+Similarly to figure~\ref{fig:comparaison_temps_de_retour}, figure~\ref{fig:AMS_drag_resampling} displays the maximum drag achieved by resampled trajectories.
+In addition, figure~\ref{fig:AMS_drag_resampling} shows the distribution of the maximum achieved drag for the $N$ \textit{initial} trajectories.
 Over the first iterations of the algorithm, trajectories with the lowest maximum of the score function are discarded, and new trajectories with higher maximum are resampled.
-These maxima are depicted by the stars in figure~\ref{fig:instant_256_20}.
+These maxima are depicted by the stars in figure~\ref{fig:AMS_drag_resampling}.
 However, one can see that resampled trajectories never exceeds the amplitude of the highest maximum in the initial set of trajectories.
 
 % Commentaire de la figure iter_181
 \begin{figure}
   \centering
   \includegraphics[width=.7\linewidth]{AMS_drag_trajectories/AMS_drag_trajectories.png}
-  \label{fig:AMS_drag_trajectories}
-  \caption{Ensemble of trajectories after $181$ iterations of the selection-mutation procedure.In this experiment, the \ac{tams} is used with the instantaneous drag $f_d$ as a score function. Trajectories have a duration $T_a = 5\tau_c$ and their number is $N_c = 32$.
+  \caption{\label{fig:AMS_drag_trajectories} Ensemble of trajectories after $181$ iterations of the selection-mutation procedure.In this experiment, the \ac{tams} is used with the instantaneous drag $f_d$ as a score function. Trajectories have a duration $T_a = 5\tau_c$ and their number is $N_c = 32$.
     The \ac{tams} fails to efficiently sample rare trajectories, because all trajectories are ultimately resampled from the trajectory displaying the highest maximum in the initial ensemble.}
 \end{figure}
 Figure~\ref{fig:AMS_drag_trajectories} can be better understood by visualising the drag signals corresponding to the last resampled trajectories.
@@ -632,7 +627,7 @@ One can see that, utimately, trajectories are resampled from one unique initial 
 This phenomenon can be explained as follows.
 Because the flow dynamics have a memory, it takes a certain time before a resampled trajectory separate from its parent.
 In our case, this memory originates from the deterministic nature of the dynamics, which implies that two trajectories starting from infinitesimally close starting points will overlap over a timescale called
-the <<Lyapunov timescale>>~\cite{lyapunovRef}.
+the \textit{Lyapunov timescale}~\cite{lyapunovRef}.
 However, we observe that, in our particular case, the duration of extreme drag fluctuations is typically 5 times smaller that the Lyapunov timescale of the drag process.
 This means that the resampling of a trajectory based on the value of the drag at $t^{\star}$ cannot lead to larger drag values for $t^{\star} \leq t \leq \tau_L$.
 For $t > \tau_L$, the drag process has no memory of the drag fluctuations on which the resampling was based.
@@ -732,7 +727,7 @@ All trajectories reconstructed in this way are real solutions of the model: we h
 
 The sampled trajectories can be used to compute the statistical properties of any observable with respect to the distribution $\mathbb{P}_{0}$, from the distribution $\mathbb{P}_{k}$.
 This is done using the backward reconstructed trajectories and inverting formula~\eqref{eq:Biased_Path_Approximation}.
-For more details concerning the implementation of the algorithm and the corresponding data analysis, see~\ref{these_lestang,nemoto_bouchet2016}
+For more details concerning the implementation of the algorithm and the corresponding data analysis, see~\cite{these_lestang,nemoto_bouchet2016}.
 As an example, say one wants to estimate the expectation value of an observable $O\left(\left\{ X(t)\right\} _{0\leq t\leq T_{a}}\right)$.
 An estimator is then given by
 \begin{equation}
@@ -767,10 +762,10 @@ In the latter case, the parameter $k$ can be related to the typical amplitude of
 \begin{figure}
   \centering
   \includegraphics[width=0.7\linewidth]{IS_GKTL/IS_GKTL}
-  \caption{Importance sampling for the time-averaged drag $F_T$ with $T=10\tau_c$. The shaded \ac{pdf} estimates are computed on the biased ensemble resutling from the \ac{gktl} algorithm.
+  \caption{\label{fig:IS_GKTL} Importance sampling for the time-averaged drag $F_T$ with $T=10\tau_c$. The shaded \ac{pdf} estimates are computed on the biased ensemble resutling from the \ac{gktl} algorithm.
 The dashed line denotes the unbiased \ac{pdf} describing $F_T$, \textit{i.e.} statistics sampled without the \ac{gktl} algorithm, or with $k=0$ (no bias)}
 \end{figure}
-Figure~\ref{fig:illustration_IS} illustrates the importance sampling achieved by the \ac{gktl} algorithm for the time-averaged drag $F_T$ with $T = T_a = 10\tau_c$.
+Figure~\ref{fig:IS_GKTL} illustrates the importance sampling achieved by the \ac{gktl} algorithm for the time-averaged drag $F_T$ with $T = T_a = 10\tau_c$.
 For each of the three experiments, it displays the estimate of the biased \ac{pdf} of the time-average drag
 \begin{equation}
   \label{eq:estimate_biased_measure}
@@ -778,7 +773,7 @@ For each of the three experiments, it displays the estimate of the biased \ac{pd
   \approx \frac{1}{N}\sum_{j=1}^{N_c}\delta(F^{(j)}_{T}[\{\mathbf{x}\}_{0\leq t \leq T_a}] - F),
 \end{equation}
 computed over the set of $N_c=16384$ trajectories sampled by the algorithm.
-Moreover, figure~\ref{fig:illustration_IS_drag} displays an estimate of the unbiased \ac{pdf} describing the time-averaged drag process.
+Moreover, figure~\ref{fig:IS_GKTL} displays an estimate of the unbiased \ac{pdf} describing the time-averaged drag process.
 This estimate was computed on the basis the control run, see section~\ref{sec:pdfs}.
 Note that the unbiased \ac{pdf} could also be estimated using the \ac{gktl} algorithm with $k=0$.
 
@@ -786,7 +781,7 @@ Note that the unbiased \ac{pdf} could also be estimated using the \ac{gktl} algo
 
 For a fixed number of trajectories $N_c$, there is however an upper bound $k_{max}$ on the parameter $k$ above which finite size effects harm the efficiency and accuracy of the selection procedure.
 For $k \gtrapprox k_{max}$ the resampling is based on a very small subset of the ensemble of trajectories, and most of the trajectories in the biased ensemble overlap.
-This effect is visible in figure~\ref{fig:illustration_IS}, where the \ac{pdf} estimate for $k=0.03$ is peaked.
+This effect is visible in figure~\ref{fig:IS_GKTL}, where the \ac{pdf} estimate for $k=0.03$ is peaked.
 Note that in practice,there is no such sharp upper bound $k_{max}$: finite size effects become gradually relevant as the bias $k$ is increased.
 An important question regarding the application of the \ac{gktl} algorithm is therefore that of the scaling of $k_{max}$ as a function of the ensemble size $N$. 
 See~\cite{ref1,ref2,ref3} for further details.
