@@ -831,6 +831,40 @@ Further works must now investigate the nature of the sampled trajectories, and d
 
 \section{Conclusion}
 \label{conlusion}
+We assessedthe application of two rare event algorithms for the numerical simulation of extreme mechanical efforts on structures immersed in a turbulent flow, a situation relevant to many industrial applications.
+\\
+In a first part, we investigated the dynamics and statistics of extreme fluctuations of the drag acting on a square mounted in a turbulent channel flow, in two dimensions.
+By means of very long simulations---without rare event algorithm---we observed that such extreme events are caused by the concentration of vorticity very close to the base of the square.
+Because of the sweeping of the fluid structure responsible for such a situation, extreme drag levels do not persist over time.
+The lifetime of extreme drag fluctuations is of the order of the turnover time, and the corresponding drag signal is very peaked around the extreme value.
+Our long drag timeseries also reveal that the tails of the \ac{pdf} for the drag are very well described by an exponential \ac{pdf}.
+This property can be linked to the phenomenology of extremes of the time-averaged drag.
+Indeed, we observed that such extreme values for the average do not preferentially result from a small number of very large fluctuations or an exceptional succession of typical fluctuations that
+add up forming an extremely large value of the average.
+Such a phenomenology can be described by a stochastic process with an exponential \ac{pdf}.
+\\
+On the basis of the same two-dimensional test flow, we then applied the \ac{ams} algorithm choosing the drag itself as a score function.
+In this case, our results illustrate that the selection-mutation procedure is unable to generate rare trajectories at a better rate than a direct sampling approach.
+This can be related to the phenomenology of extreme drag fluctuations, which lifetime is shorter than the timescale over which resampled trajectories separate from their parent following the
+addition of a small perturbation in the initial conditions.
+The \ac{gktl} has been applied to the sampling of trajectories displaying extreme fluctuations of the time averaged drag.
+In this case, we showed that using the \ac{gktl} leads to a tremendous improvement with respect to a direct approach, allowing the simulation of trajectories that are out of reach without algorithm.
+\\
+The application of rare event algorithms relies on the definition of a score function, on which the selection of trajectories is based upon.
+Although the dynamics itself is a black-box from the point of view of the algorithm, the efficiency of the sampling depends on the phenomenology.
+For complex dynamics, including turbulent flows, the choice of the score function is made difficult by the very little knowledge one has of the rare events of interest.
+This is, after all, our motivation for the simulation of these events.
+In such situations, it is then tempting to settle for a straightforward choice for the score function.
+This is the approach we followed in this work, setting the score function to the drag itself.
+However, for dynamics as complex as the turbulent flow around an obstacle, it is unlikely that selecting trajectories based on the value of the drag favours the occurrence of extreme drag fluctuations
+in the future.
+Under such circumstances, the \ac{tams} fails drastically.
+Successful usage of the \ac{tams} and similar splitting algorithms for complex flows relevant to industrial or environmental situations will require coping with the fact that good score functions
+are very difficult to identify, if even possible.
+A popular direction in current research involves taking advantage of the recent advances in learning methods to compute score functions beforehand.
+For the time-averaged drag, we showed that the \ac{gktl} algorithm is able to greatly outperform a direct sampling approach.
+This is because the sampling of extreme time-averages is aided by the selection of trajectories displaying an exceptional succession of drag fluctuations, resulting in a an extreme value for the average.
+
 
 
 \end{document}
