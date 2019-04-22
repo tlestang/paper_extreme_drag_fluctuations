@@ -3,11 +3,11 @@
 ** DONE Integrer [[./brouillon_intro.tex]] et [[./biblio.bib]]
 ** DONE Merger avec les notes dEmmanuel
 ** WAITING Input Emmanuel
-* WAITING Partie I
+* RELIRE Partie I
 ** RELIRE II Description of the case study
 ** DONE Figure 1
-** WAITING Input Emmanuel caption figure 1
-** WAITING Input Emmanuel descritpion boundary conditions
+** DONE Input Emmanuel caption figure 1
+** DONE Input Emmanuel descritpion boundary conditions
 *** RELIRE A. The drag force
 *** RELIRE B. The drag  random process: PDF and time correlations
 **** DONE typical_drag_signal: modify unit of time
@@ -55,10 +55,10 @@ log(PDF) = ax2+bx+c
 ***** DONE Recuperer le script matlab de la courbe IS_GKTL
 ***** DONE Transcrire le script en python
 ***** DONE Conclusion
-* TODO V. Conclusion 
-* TODO General 
-** TODO References
-** TODO Citations
+* RELIRE V. Conclusion 
+* DONE General 
+** DONE References
+** DONE Citations
 * Questions
 - [ ] Reference Lyapunov, section AMS
 - [ ] References Del Moral
