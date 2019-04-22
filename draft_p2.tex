@@ -121,15 +121,15 @@ In this context, simulation offers a practical means to gain physical insight in
 \\
 Rare event sampling for turbulence has traditionally been approached from simplified dynamics, such as Burger's turbulence with a stochastic forcing~\cite{bec_burgers_2007}.
 In this context it is possible to describe the dynamics through an action analoguous to a Gibbs measure for an equilibrium sytem.
-This action can then be sampled by a Markoy chain Monte Carlo (MCMC) algorithm~\cite{duben_monte_2008,mesterhazy_anomalous_2011,mesterhazy_lattice_2013}.
+This action can then be sampled by a Markoy chain Monte Carlo (MCMC) algorithm~\cite{duben_monte_2008,mesterhazy2011anomalous,mesterhazy2013lattice}.
 Even though Monte Carlo simulations are not expected to be competitive with traditional approaches such as finite difference or pseudo-spectral methods, they provide a simulation framework in which constraints can be applied so as to certain events preferentially.
-A different approach is the Instanton method~\cite{grafke_instanton_2015}, also relying on the knowledge of an action for the dynamics.
+A different approach is the Instanton method~\cite{grafke2015instanton}, also relying on the knowledge of an action for the dynamics.
 For stochastically driven systms, in the limit of weak noise, it can be shown that the probability of extreme events is dominated by the action minima~\cite{freidlin2013random}.
 The trajectory that that minimizes the action is referred to as the \textit{instanton}~\cite{gurarie_instantons_1996}.
-The instanton approach consists in using suitable numerical methods to minimize the action and compute the instanton, as well as the associated probability~\cite{chernykh_large_2001,grafke_instanton_2013,grafke_relevance_2015,grigorio_instantons_2017}.
+The instanton approach consists in using suitable numerical methods to minimize the action and compute the instanton, as well as the associated probability~\cite{grafke2015instanton,chernykh_large_2001,grafke_instanton_2013,grigorio_instantons_2017}.
 Such approaches are however limited to stochastically driven dynamics, simple enough so that an action can be derived and sampled, or minimized. This is for instance the case of the stochastically driven 1D Burger's equation.
 \\
-Whilst Burgers turbulence provids an interesting model framework for the investigation of the properties of small scale turbulence, it is of little relevance to more realistic situations, such as industrial or geophysical flows.
+Although Burgers turbulence provides an interesting model framework for the investigation of the properties of small scale turbulence, it is of little relevance to more realistic situations, such as industrial or geophysical flows.
 In this paper, we discuss a thrid approach to the numerical simulation of rare events in turbuent flows, that aims at flows for which an action cannot be derived.
 It is based on the application of \textit{rare event algorithms}, coupled with a numerical simulation of the flow dynamics.
 Even though the original ideads can be traced back to the early 1950's, rare event algorithms have been of ever-growing interest voer the last 20 years. Successful application of such algorithms can be found in various domains such as chemistry~\cite{van_erp_elaborating_2005,escobedo_transition_2009,teo_adaptive_2016},biophysics~\cite{huber_weighted-ensemble_1996,zuckerman2017weighted,bolhuis2005kinetic}, nuclear phsics~\cite{louvin2017}, nonlinear dynamical systems~\cite{tailleur_probing_2007}, communication networks simulation~\cite{villen-altamirano_restart:_1994}.
@@ -138,12 +138,12 @@ However, a large body of algorithms are limited to systems at equilibrium, for w
 For systems far from equilibrium, such as turbulent flows, the sampling of rare events must be done at the level of the trajectories.
 In the present paper with discuss two different algorithms suitable to out-of-equilibrum dynamics.
 The Adaptive Multilevel Algorithm (2006)~\cite{cerou_adaptive_2007} inherits from older ideas about splitting approaches~\cite{KahnHarris1951,glasserman_look_1998,glasserman_multilevel_1999}.
-In recent years, it allowed the computation of rare events in problems involving a large number of degrees of freedom, such as Nolecular Dynamics simulations~\cite{aristoff_adaptive_2015}, the computation of rare trajectoris in the Allen-Cahn equations~\cite{rolland_computing_2016} or rare re-laminarisation in a stochastic model of wall-turbulence~\cite{rolland_extremely_2018}.
+In recent years, it allowed the computation of rare events in problems involving a large number of degrees of freedom, such as Nolecular Dynamics simulations~\cite{aristoff_adaptive_2015}, the computation of rare trajectoris in the Allen-Cahn equations~\cite{rolland2016computing} or rare re-laminarisation in a stochastic model of wall-turbulence~\cite{rolland_extremely_2018}.
 Over the last decade, the main theoritical framework for the study of rare events in statistical physics has been the one of large deviation theory~\cite{touchette_large_2009}.
 Alongside, numerical methods have been developed to sample rare events based on general ideas and algorithms~\cite{moral_feynman-kac_2004}. Among them, the \ac{gktl} algorithm~\cite{giardina_direct_2006} is particularly suited to rare events in dynamical systems~\cite{giardina_simulating_2011,Laffargue_2013}.
 \\
 The applicability of such algorithms to flows relevant to envorinmental or industrial applications remains open.
-Recently, the \cite{gktl} allowed to perorm the cumerical simulation of extreme heat waves in a simplified model of the atmosphere~\cite{ragone_computation_2018}. Such application represent a great leap in term of complexity with respect to previous application of rare event algorithms.
+Recently, the \ac{gktl} algorithm allowed to perorm the cumerical simulation of extreme heat waves in a simplified model of the atmosphere~\cite{ragone_computation_2018}. Such application represent a great leap in term of complexity with respect to previous application of rare event algorithms.
 In the present paper, we consider a different context of application: turbulent flows around objects.
 
 
@@ -167,7 +167,7 @@ Through  this specific setting, our main motivation is to evaluate the operabili
 \\
 
 A constant parabolic profile is imposed for the streamwise velocity at the inlet of the channel and turbulence is generated by means of a grid. 
-At the outlet of the channel, the flow is progressively damped within a \textit{sponge layer}~\cite{ref1,ref2} where the viscosity is artificially enhanced. 
+At the outlet of the channel, the flow is progressively damped within a \textit{sponge layer}~\cite{vergnault_lattice_2012} where the viscosity is artificially increased. 
 % Such sponge layer facilitates the implementation of an open boundary at the outlet, where a zero momentum flux along the mean-flow direction in imposed.
 \\
 
@@ -176,8 +176,7 @@ They interact with each other and grow in size as expected in two-dimensional tu
 The size of the eddies that eventually hit the square (at the center of the channel) is comparable to the size of this obstacle, which results in strong fluctuations of the drag acting on the square. 
 \\
 
-
-The flow dynamics are computed by the lattice Boltzmann (LB) method ~\cite{ref1,ref2}. 
+The flow dynamics are computed by the~\ac{lbm} method~\cite{kruger_lattice_2017}. 
 While standard numerical methods rely on the discretization of the Navier-Stokes equations, the LB method emerged in the late 80s as a conceptually different approach. Fluid motions are simulated at a mesoscopic level that is intermediate between the microscopic and the macroscopic. Capturing the kinetic behavior of collections of fluid particles distributed on a lattice is here preferred to solving non-linear PDEs. This seems crazy, however, most details at the mesoscopic level play actually no role at the macroscopic level. Therefore, kinetic equations simpler than the original Boltzmann equation may be designed by retaining only the basic features that pertain at the macroscopic level. This is, in short, the rationale behind the LB approach. In our situation, the LB method has been chosen principally for its outstanding computational efficiency.  
 %
 More precisely, the fluid is viewed as populations of particles
@@ -323,14 +322,14 @@ In this section we describe the phenomenology of extreme fluctuations of the dra
 How rare is a fluctuation $f_d \geq a$ can be determined by computing its \textit{return time} $r(a)$.
 It is defined as the average time between two consecutive occurrences of a fluctuation $f_d \geq a$.
 Extreme drag fluctuations are \textit{rare events}, that is fluctuations for which $r(a) \gg \tau_c$.
-In this context, the occurrence of the fluctuations follows a Poisson process and~\cite{lestang2018}
+In this context, the occurrence of the fluctuations follows a Poisson process and~\cite{lestang_computing_2018}
 \begin{equation}
   \label{eq:return_time}
   r(a) \underset{a\to\infty}{\propto} \frac{1}{\mathbb{P}(f_d\geq a)} \propto e^{\alpha a}
 \end{equation}
 where $\alpha$ is the rate describing the positive tail of the drag \ac{pdf}, see figure~\ref{fig:pdf_drag}.
 Figure~\ref{fig:return_time_instant} illustrates the fluctuation amplitude $a$ as a function of the return time $r(a)$, for the drag process $f_d(t)$.
-Such plot can be obtained from a sample timeseries following a simple procedure~\cite{lestang2018}.
+Such plot can be obtained from a sample timeseries following a simple procedure~\cite{lestang_computing_2018}.
 
 In the following we discuss extreme fluctuations of both the instantaneous drag $f_d$ and time-averaged drag with return times larger than $10^4\tau_c$.
 In this section extreme drag fluctuations are simply sampled by simulating the flow over a very long duration.
@@ -462,7 +461,7 @@ This is consistent with an increase of $\overline{\gamma}$ acting as a precursor
 The remaining $20\%$ of the sampled events correspond to slightly different dynamics.
 In this case the vorticity responsible for the base pressure drop is not created along the top or bottom boundary, but directly through viscous shear alongside the base boundary of the obstacle.
 This viscous shear is induced by a large vortex detached from the obstacle.
-For a more detailed description of such dynamics, see the chapter 3 of ~\cite{ref:these_lestang}.
+For a more detailed description of such dynamics, see chapter 3 of~\cite{lestang:tel-01974316}.
 
 
 
@@ -504,7 +503,7 @@ Indeed, both cases are featured in figure~\ref{fig:extreme_avg}, along with inte
   \label{fig:extreme_avg}
 \end{figure}
 
-This marginal phenomenology can be connected to the exponential shape of the tail of the \ac{pdf} describing extreme positive drag fluctuations~\cite{papier_JSTAT}.
+This marginal phenomenology can be connected to the exponential shape of the tail of the \ac{pdf} describing extreme positive drag fluctuations~\cite{lestang_computing_2018}.
 An estimate of this \ac{pdf} is displayed in figure~\ref{fig:pdf_drag}.
 Let $X$ be a random variable whose \ac{pdf} is denoted $\mathbb{P}$ and standard deviation $\sigma_X$.
 Considering an extreme positive value $a$ of $S_N=\sum_{n=1}{N}X_n$, the probability $p_1$(resp. $p_2$) of case (1) (resp. case (2)) writes:   
@@ -552,8 +551,8 @@ In other words, generated trajectories are given a statistical weight, which kno
 \end{figure}
 
 % Introduction to AMS
-The \acl{ams}~\cite{amspaper} inherits from the basic ideas of \textit{splitting} algorithms~\cite{kahnharris}: the sampling of a rare event is made easier by splitting the corresponding dynamical path into a sequence of events that can be sampled with a higher probability~\cite{glasserman,rolland_simonnet}.
-Over the past ten years the \ac{ams} has been successfully applied to a large body of problems, including the computation of the dissociation time of biomolecules~\cite{teo2016} or the simulation of rare relaminarizations in a stochastic model of wall turbulence~\cite{rolland2017}.
+The \acl{ams}~\cite{cerou_adaptive_2007} inherits from the basic ideas of \textit{splitting} algorithms~\cite{KahnHarris1951}: the sampling of a rare event is made easier by splitting the corresponding dynamical path into a sequence of events that can be sampled with a higher probability~\cite{glasserman_multilevel_1999,rolland_statistical_2015}.
+Over the past ten years the \ac{ams} has been successfully applied to a large body of problems, including the computation of the dissociation time of biomolecules~\cite{teo_adaptive_2016} or the simulation of rare relaminarizations in a stochastic model of wall turbulence~\cite{rolland_extremely_2018}.
 
 % Quick description of TAMS
 In the present paper we use a variant of the \ac{ams} algorithm called the \ac{tams}.
@@ -561,7 +560,7 @@ The \ac{tams} relies on the definition of a time-dependant \textit{score functio
 Each iteration consists in discarding the trajectories with the lowest maxima of the score function $\xi$ over the whole trajectory of duration $[0;T_a]$.
 Discarded trajectories are resampled based on member of the ensemble of trajectories that achieved a higher value of the score function at some point of their history.
 As an illustration, a particular iteration of the \ac{tams} algorithm is sketched in figure~\ref{fig:illustr_AMS}.
-For further details about the algorithm and corresponding mathematical results, see~\cite{lestang2018} and references therein.
+For further details about the algorithm and corresponding mathematical results, see~\cite{lestang_computing_2018} and references therein.
 
 \subsubsection{Illustration of the \ac{ams} on a simple case: the \acl{ou} process}
 \label{sec:ams_ou}
@@ -671,14 +670,14 @@ We now turn to the sampling of extreme fluctuations of the time-averaged drag $F
 The \ac{tams} algorithm could be used in the same way as described in section~\ref{sec:ams} for the instantaneous drag, choosing $F_T$ itself as a score function.
 However, this leads to the same problem: the resampling fails to efficiently generate new, higher fluctuations of $F_T$.
 
-For time-averaged observables, one can make use of a different algorithm: the \acf{gktl} algorithm~\cite{Giardina2006,Tailleur2007,Giardina2011}.
+For time-averaged observables, one can make use of a different algorithm: the \acf{gktl} algorithm~\cite{giardina_direct_2006,tailleur_probing_2007,giardina_simulating_2011}.
 Similarly to the \ac{tams} algorithm, the \ac{gktl} relies on the simulation of a ensemble of trajectories.
 In this case however, they interact dynamically: at regular time intervals, some members of the ensemble are killed and some are cloned according to a weight which depends on the history of the replica.
 The weights are chosen such that, after several iterations of the algorithm, generated trajectories are distributed according to a probability distribution that is biased in favour of trajectories with large values of the time-averaged observable of interest.
-The \ac{gktl} algorithm belong to a family of algorithms known as <<Go with the winners>>~\cite{aldous_varizani,grassberger}.
-Similar ideas have been applied in a wide range of fields over the past 50 years, under different names, depending of the specific application domain~\cite{delMoral_Feynman_Kac_book}.
-The application of a Go with the winners approach to the computation of large deviations in non-equilibrium systems has first been proposed in 2006~\cite{Giardina2006}.
-Over the past ten years, it has successfully been applied to investigate rare events in both stochastic~\cite{Giardina2006,Lecomte2007b,Garrahan2007,Hurtado2009b} and deterministic systems~\cite{Giardina2006,Tailleur2007}.
+The \ac{gktl} algorithm belong to a family of algorithms known as <<Go with the winners>>~\cite{aldous1994go,grassberger2002go}.
+Similar ideas have been applied in a wide range of fields over the past 50 years, under different names, depending of the specific application domain~\cite{moral_feynman-kac_2004}.
+The application of a Go with the winners approach to the computation of large deviations in non-equilibrium systems has first been proposed in 2006~\cite{giardina_direct_2006}.
+Over the past ten years, it has successfully been applied to investigate rare events in both stochastic~\cite{giardina_direct_2006,lecomte_numerical_2007,garrahan2007dynamical} and deterministic systems~\cite{giardina_direct_2006,tailleur_probing_2007}.
 % It was originally designed to compute large deviations rate functions of time-averaged dynamical observables, that describe the probability density of both typical of rare events in the limit of large
 % averaging time~\cite{ref_large_dev}.
 % By contrast with the \ac{ams} and \ac{tams}, the \ac{gktl} algorithm does not follow the strategy of splitting algorithms.
@@ -713,7 +712,7 @@ Equation~\eqref{eq:Biased_Path_Approximation} is obtained by assuming the mean f
 \begin{equation}
 R_{1}=\frac{1}{N}\sum_{n=1}^{N}e^{k\int_{0}^{t_{_{1}}}A(X_{n}(t))dt}\underset{N\rightarrow\infty}{\sim} Z(k,t_1)= \mathbb{E}_{0}\left[e^{k\int_{0}^{t_{1}}A(X(t))dt}\right],\label{eq:Mean_Field_Approximation}
 \end{equation}
-which, by induction, and using a formula similar to~\eqref{eq:Mean_Field_Approximation} at each step of the induction, leads to~\cite{Giardina2006,Giardina2011}:
+which, by induction, and using a formula similar to~\eqref{eq:Mean_Field_Approximation} at each step of the induction, leads to~\cite{giardina_direct_2006,giardina_simulating_2011}:
 \begin{equation}
 \prod_{i=1}^{T_{a}/\tau}R_{i}\underset{N\rightarrow\infty}{\sim} Z(k,T_a) =\mathbb{E}_{0}\left[e^{k\int_{0}^{T_a}A(X(t))dt}\right].\label{eq:Estimate_Lambda}
 \end{equation}
@@ -727,7 +726,7 @@ All trajectories reconstructed in this way are real solutions of the model: we h
 
 The sampled trajectories can be used to compute the statistical properties of any observable with respect to the distribution $\mathbb{P}_{0}$, from the distribution $\mathbb{P}_{k}$.
 This is done using the backward reconstructed trajectories and inverting formula~\eqref{eq:Biased_Path_Approximation}.
-For more details concerning the implementation of the algorithm and the corresponding data analysis, see~\cite{these_lestang,nemoto_bouchet2016}.
+For more details concerning the implementation of the algorithm and the corresponding data analysis, see~\cite{lestang:tel-01974316,brewer2018efficient}.
 As an example, say one wants to estimate the expectation value of an observable $O\left(\left\{ X(t)\right\} _{0\leq t\leq T_{a}}\right)$.
 An estimator is then given by
 \begin{equation}
@@ -755,8 +754,8 @@ As a consequence, a rule of thumb is to set $\tau \approx \tau_c$.
 In the following, $\tau = \tau_c /2$.
 
 We performed three experiments, corresponding to three different values of the parameter $k$.
-In general the value of $k$ must be set empirically, unless a \textit{large deviation regime} $T_a \to \infty$ is verified~\cite{ref_ld_regime}.
-In the latter case, the parameter $k$ can be related to the typical amplitude of the sampled fluctuations through the Gartner-Ellis theorem~\cite{GEref}.
+In general the value of $k$ must be set empirically, unless a \textit{large deviation regime} $T_a \to \infty$ is verified~\cite{touchette_large_2009}.
+In the latter case, the parameter $k$ can be related to the typical amplitude of the sampled fluctuations through the Gartner-Ellis theorem~\cite{touchette_large_2009}.
 
 % Commentaire de la figure IS_GKTL
 \begin{figure}
@@ -784,7 +783,7 @@ For $k \gtrapprox k_{max}$ the resampling is based on a very small subset of the
 This effect is visible in figure~\ref{fig:IS_GKTL}, where the \ac{pdf} estimate for $k=0.03$ is peaked.
 Note that in practice,there is no such sharp upper bound $k_{max}$: finite size effects become gradually relevant as the bias $k$ is increased.
 An important question regarding the application of the \ac{gktl} algorithm is therefore that of the scaling of $k_{max}$ as a function of the ensemble size $N$. 
-See~\cite{ref1,ref2,ref3} for further details.
+See~\cite{nemoto2017finite,Guevara_Hidalgo_2018} for further details.
 % how to assess the value of k_max ?
 For the application discussed in this paper, the order of magnitude of $k_{max}$ was assessed empirically, by assessing the diversity of the trajectories in the biased ensemble.
 This diversity can be monitored at each selection stage of the algorithm, by computing the proportion of trajectories that share the same ancestor trajectory.
@@ -831,7 +830,7 @@ Further works must now investigate the nature of the sampled trajectories, and d
 
 \section{Conclusion}
 \label{conlusion}
-We assessedthe application of two rare event algorithms for the numerical simulation of extreme mechanical efforts on structures immersed in a turbulent flow, a situation relevant to many industrial applications.
+We assessed the application of two rare event algorithms for the numerical simulation of extreme mechanical efforts on structures immersed in a turbulent flow, a situation relevant to many industrial applications.
 \\
 In a first part, we investigated the dynamics and statistics of extreme fluctuations of the drag acting on a square mounted in a turbulent channel flow, in two dimensions.
 By means of very long simulations---without rare event algorithm---we observed that such extreme events are caused by the concentration of vorticity very close to the base of the square.
@@ -865,7 +864,8 @@ A popular direction in current research involves taking advantage of the recent 
 For the time-averaged drag, we showed that the \ac{gktl} algorithm is able to greatly outperform a direct sampling approach.
 This is because the sampling of extreme time-averages is aided by the selection of trajectories displaying an exceptional succession of drag fluctuations, resulting in a an extreme value for the average.
 
-
+\bibliographystyle{unsrt}
+\bibliography{draft_p2}
 
 \end{document}
 %%% Local Variables:

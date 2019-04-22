@@ -59,3 +59,6 @@ log(PDF) = ax2+bx+c
 * TODO General 
 ** TODO References
 ** TODO Citations
+* Questions
+- [ ] Reference Lyapunov, section AMS
+- [ ] References Del Moral
