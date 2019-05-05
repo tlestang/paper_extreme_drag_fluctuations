@@ -12,7 +12,8 @@ N = Dx*Dy
 F = np.zeros(104)
 idx = np.zeros(104)
 
-prefix = './'
+prefix = '/home/tlestang/transition_hdd/thibault/These/' \
+         + 'articles/data/ecoulement_typique/'
 
 fig = plt.figure(figsize=(16,7), constrained_layout=True)
 # Declares a 2x5 grid.

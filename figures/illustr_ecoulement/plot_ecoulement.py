@@ -10,7 +10,8 @@ F = np.zeros(104)
 idx = np.zeros(104)
 
 # Make use of flow data generated for figure ecoulement typique
-prefix = '../ecoulement_typique/'
+prefix = '/home/tlestang/transition_hdd/thibault/These/' \
+         + 'articles/data/ecoulement_typique/'
 
 fig, ax = plt.subplots(figsize=(16,7), constrained_layout=True)
 # Declares a 2x5 grid.
