@@ -4,9 +4,11 @@ import matplotlib.pyplot as plt
 
 plt.style.use('ggplot')
 
+prefix = '/home/tlestang/transition_hdd/thibault/These/lbm_code/seq/' \
+         + 'draft/scripts/plot_pdf/'
 
-buf = np.fromfile("pdfData_SQ_centered.dat", float, -1, "");
-n=len(buf)/2
+buf = np.fromfile(prefix+'pdfData_SQ_centered.dat', float, -1, "");
+n=int(len(buf)/2)
 f = buf[0:n]
 xi = buf[n:]
 
@@ -14,7 +16,7 @@ fig,ax = plt.subplots(1,1, figsize=(7.5,5), constrained_layout=True)
 lineSQ, = ax.plot(xi,f)
 lineSQ.set_label('With obstacle')
 
-buf = np.fromfile("pdfData_NOSQ.dat", float, -1, "");
+buf = np.fromfile(prefix+'pdfData_NOSQ.dat', float, -1, "");
 n=len(buf)/2
 f = buf[0:n]
 xi = buf[n:]
