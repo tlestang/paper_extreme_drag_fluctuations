@@ -11,7 +11,7 @@ Dy = 129
 N = Dx*Dy
 F = np.zeros(104)
 idx = np.zeros(104)
-prefix = '/home/thibault/transition_hdd/thibault/These/lbm_code/seq/draft/etude_dynamique/instant_events/'
+prefix = '/home/tlestang/transition_hdd/thibault/These/lbm_code/seq/draft/etude_dynamique/instant_events/'
 # Files extremes.csv contains the index of the events and the corresponding
 # peak drag amplitude, in units of sigma
 # First row is lowest fluctuation
@@ -59,6 +59,9 @@ for i in range(0,Nevents):
         dxy = (uy[ymin:ymax, xmin+1:xmax+1] - uy[ymin:ymax, xmin-1:xmax-1])*0.5
         dyx = (ux[ymin+1:ymax+1, xmin:xmax] - ux[ymin-1:ymax-1, xmin:xmax])*0.5
         vort = dxy - dyx
+        # The sign of the vorticity is wrong if using a right-handed coord. system.
+        # The velocity field should probably be flipped upside-down
+        vort = - vort
 
         # Print fluctuation amplitude as title
         tit='{:2.1f}$\\sigma$'.format(F[Nevents-i-1])

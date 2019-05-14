@@ -12,7 +12,8 @@ N = Dx*Dy
 F = np.zeros(104)
 idx = np.zeros(104)
 
-prefix = './'
+prefix = '/home/tlestang/transition_hdd/thibault/These/' \
+         + 'articles/data/ecoulement_typique/'
 
 fig = plt.figure(figsize=(16,7), constrained_layout=True)
 # Declares a 2x5 grid.
@@ -51,6 +52,9 @@ for i in range(0,nplots-1):
         dxy = (uy[ymin:ymax, xmin+1:xmax+1] - uy[ymin:ymax, xmin-1:xmax-1])*0.5
         dyx = (ux[ymin+1:ymax+1, xmin:xmax] - ux[ymin-1:ymax-1, xmin:xmax])*0.5
         vort = dxy - dyx
+        # The sign of the vorticity is wrong if using a right-handed coord. system.
+        # The velocity field should probably be flipped upside-down
+        vort = - vort
 
         # Print time as title
         timeFromBeg=0.1+i*0.2
