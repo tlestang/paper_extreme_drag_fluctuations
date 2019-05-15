@@ -42,8 +42,6 @@ for i, bundle in enumerate(list_of_bundles):
     point_array[i] = tspan[np.argmax(f[bundle])+bundle[0]]
     value_array[i] = np.amax(f[bundle])
 
-
-
 fig,ax = plt.subplots(1,1,figsize=(12,4), constrained_layout=True)
 ax.set_xlim(0, T)
 line, = ax.plot(tspan, f)
@@ -51,6 +49,16 @@ line2, = ax.plot(point_array, value_array, 'o', linestyle='None', markersize=4)
 line3, = ax.plot([tspan[0], tspan[-1]], [a, a], linestyle='--', linewidth=.7)
 line3.set_color(line2.get_color())
 line.set_linewidth(.8)
+
+y0 = 0.20
+eps = 10
+props=dict(arrowstyle="->", color=line2.get_color(),
+                length_includes_head=True, width=0.002,
+                head_width=0.01, head_length=5)
+
+for x_point, x_point_fwd in zip(point_array, point_array[1:]):
+    plt.annotate('', xy=(x_point+eps, y0), xytext=(x_point_fwd-eps, y0),
+                 arrowprops=props)
 
 ax.set_xlabel(r'$t / \tau_0$',fontsize=22)
 plt.ylabel('$f_d(t)$',fontsize=22)
