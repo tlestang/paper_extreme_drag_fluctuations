@@ -3,6 +3,19 @@ import matplotlib.style
 import matplotlib.pyplot as plt
 
 def bundle_nearest_points(I, dist):
+    """
+       Given a list of number I (int or floats), return a list of lists, each sublist containing
+       subsequent elements distant from less than dist of the next one.
+
+       Parameters
+       -----------
+       I: list
+       dist: int or float
+
+       Returns
+       --------
+       list of lists
+    """
     bundle = []
     list_of_bundles = []
     bundle.append(I[0])
@@ -29,10 +42,11 @@ T = 1000
 f = np.fromfile(path_to_file, float, T*tau_0, "");
 tspan = np.linspace(0,T,len(f))
 
-a = 0.15
-I = np.argwhere(f>a)
+a = 0.17 # threshold
+I = np.argwhere(f>a) # find all indices where f>a
 
-list_of_bundles = bundle_nearest_points(I, 2000)
+tau_c = 4*tau_0
+list_of_bundles = bundle_nearest_points(I, tau_c)
 
 point_array = np.zeros(len(list_of_bundles))
 value_array = np.zeros(len(list_of_bundles))                    
@@ -50,15 +64,22 @@ line3, = ax.plot([tspan[0], tspan[-1]], [a, a], linestyle='--', linewidth=.7)
 line3.set_color(line2.get_color())
 line.set_linewidth(.8)
 
-y0 = 0.20
-eps = 10
-props=dict(arrowstyle="->", color=line2.get_color(),
-                length_includes_head=True, width=0.002,
-                head_width=0.01, head_length=5)
+y0 = 0.22 # height of the arrows
+dy0 = 0.017 # How higher is the tau letters wrt arrows
+dx0 = 10 # Shift tau letters to the left
+eps = 1 # Shorten the arrows on both sides
+props=dict(arrowstyle="<->", color=line2.get_color(), linewidth=1.5)
 
-for x_point, x_point_fwd in zip(point_array, point_array[1:]):
+# Plot the arrows and text
+for i, tup in enumerate(zip(point_array, point_array[1:])):
+    x_point, x_point_fwd = tup
     plt.annotate('', xy=(x_point+eps, y0), xytext=(x_point_fwd-eps, y0),
                  arrowprops=props)
+    plt.text((x_point+x_point_fwd)/2-dx0, y0+dy0, '$\\tau_{}$'.format(i), fontsize=14)
+
+# Plot the letter a at the left hand side of the plot slightly above
+# the threshold line
+plt.text(15, a+0.005, '$a$', color=line2.get_color(), fontsize=18)    
 
 ax.set_xlabel(r'$t / \tau_0$',fontsize=22)
 plt.ylabel('$f_d(t)$',fontsize=22)
@@ -66,7 +87,7 @@ plt.xticks(fontsize=16)
 plt.yticks(fontsize=16)
 
 
-# fname= 'typical_drag_signal.png'
-# plt.savefig(fname)
+fname= 'illustrate_return_time.png'
+plt.savefig(fname)
 
 plt.show()
