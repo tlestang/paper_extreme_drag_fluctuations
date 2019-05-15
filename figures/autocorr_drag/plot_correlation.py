@@ -6,7 +6,7 @@ plt.style.use('ggplot')
 
 
 buf = np.fromfile("correlationData.dat", float, -1, "");
-n=len(buf)/2
+n=int(len(buf)/2)
 tDomain = buf[0:n]
 c = buf[n:]
 
@@ -17,7 +17,7 @@ lineC, = ax.plot(tDomain/2000,c)
 line0.set_linestyle('--')
 line0.set_linewidth(0.7)
 
-ax.set_xlabel(r'$\tau$',fontsize=22)
+ax.set_xlabel(r'$\tau / \tau_c$',fontsize=22)
 plt.ylabel(r'$C(\tau)$',fontsize=22)
 plt.xticks(fontsize=16)
 plt.yticks(fontsize=16)
