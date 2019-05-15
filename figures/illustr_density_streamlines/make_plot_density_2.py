@@ -13,7 +13,7 @@ y = np.asarray(range(0,64))
 N = Dx*Dy
 F = np.zeros(104)
 idx = np.zeros(104)
-prefix = '/home/thibault/transition_hdd/thibault/These/lbm_code/seq/draft/etude_dynamique/instant_events/'
+prefix = '/home/tlestang/transition_hdd/thibault/These/lbm_code/seq/draft/etude_dynamique/instant_events/'
 # Files extremes.csv contains the index of the events and the corresponding
 # peak drag amplitude, in units of sigma
 # First row is lowest fluctuation
@@ -67,7 +67,7 @@ rhoCropped = rho[ymin:ymax,xmin:xmax]
 im = ax_list.imshow(rhoCropped, interpolation='spline36', cmap='RdBu', vmin=0.85, vmax=1.15)
     
 # Print fluctuation amplitude as title
-tit='$f_d = {:2.1f}\\sigma$'.format(F[0])
+tit='$\\tilde{f}'+'_d = {:2.1f}\\sigma$'.format(F[0])
 ax_list.set_title(tit,fontsize=22)
 
 # Adds a filled Rectangle to mark the square obstacle
