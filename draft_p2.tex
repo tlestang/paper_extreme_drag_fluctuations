@@ -585,7 +585,7 @@ These selection rules are designed so that the introduced statistical bias is kn
 \begin{figure}
   \centering
   \includegraphics[width=.7\linewidth]{illustr_AMS/figure_AMS}
-  \caption{\label{fig:illustr_AMS} Selection-mutation procedure of the \ac{ams} \EL{ou TAMS?} algorithm to compute the probability that a real-valued observable $A(\mathbf{x}(t))$ reaches values larger than $Q$ throughout a trajectory of duration $T_a$.\EL{QUID of the score function mentioned in the text: is the observable?} The initial ensemble of blue trajectories (associated with the time evolution of the observable $A$) is first generated. These trajectories are independent and can be simulated in parallel. On the basis of the respective maxima $Q_1$, $Q_2$ and $Q_3$, the trajectory with the lowest maximum is discarded in the ensemble (dashed blue line). Among the two remaining trajectories, trajectory 3 is chosen randomly and copied until it reaches the value $Q_1$. It is then freely simulated from the branching point to the final time $T_a$. In case of deterministic dynamics, a small perturbation is introduced at the branching to separate the trajectories. This procedure is iterated $J$ times or until all trajectories exceed a fixed threshold $Q$.}
+  \caption{\label{fig:illustr_AMS} Selection-mutation procedure of the \ac{ams} algorithm to compute the probability that a real-valued observable $A(\mathbf{x}(t))$ reaches values larger than $Q$ throughout a trajectory of duration $T_a$.\EL{QUID of the score function mentioned in the text: is the observable?} The initial ensemble of blue trajectories (associated with the time evolution of the observable $A$) is first generated. These trajectories are independent and can be simulated in parallel. On the basis of the respective maxima $Q_1$, $Q_2$ and $Q_3$, the trajectory with the lowest maximum is discarded in the ensemble (dashed blue line). Among the two remaining trajectories, trajectory 3 is chosen randomly and copied until it reaches the value $Q_1$. It is then freely simulated from the branching point to the final time $T_a$. In case of deterministic dynamics, a small perturbation is introduced at the branching to separate the trajectories. This procedure is iterated $J$ times or until all trajectories exceed a fixed threshold $Q$.}
 \end{figure}
 
 % Introduction of AMS
@@ -600,19 +600,21 @@ a sequence of ``short-cuts'' that lead more rapidly to the realization of this e
 %
 % Quick description of TAMS
 %
-We consider here a variant \EL{generalization?} of \ac{ams} called \ac{tams}, in which the branching procedure relies on a time-dependent \textit{score function} $\xi (\mathbf{x}(t),t)$. Each iteration therefore consists in discarding the trajectories with the lowest maxima of the score function $\xi (\mathbf{x}(t),t)$ during the time interval $0\leq t \leq T_a$. Discarded trajectories are re-sampled according to the remaining trajectories.
-% As an illustration, a particular iteration of the \ac{tams} algorithm is sketched in figure~\ref{fig:illustr_AMS} .
-Further details about the algorithm and corresponding mathematical results are provided in \cite{lestang_computing_2018} and references therein.
-\EL{What is the difference between AMS and TAMS? why do we need TAMS rather than AMS, This is not mentioned in text.} 
+\TL{The selection of trajectories rely on a \textit{score function} $\xi (\mathbf{x}(t),t)$.}
+Iterations of the algorithm consist in discarding the trajectories with the lowest maxima of the score function $\xi (\mathbf{x}(t),t)$ during the time interval $0\leq t \leq T_a$.
+Discarded trajectories are re-sampled according to the remaining trajectories.
+\TL{For a recent review of the \ac{ams}, its history and applications, see~\cite{cerou_2019}.}
+\TL{Note that we use a specific form of the the \ac{ams} in which trajectories have a fixed duration $T_a$.
+It can however be formulated in terms of the classical \ac{ams}~\cite{lestang_computing} and the following results are not limited to this particular variant.}
 
-\subsubsection{Application of the \ac{ams} \EL{OR TAMS?} to a simple case: the \acl{ou} process}
+\subsubsection{Application of the \ac{ams} to a simple case: the \acl{ou} process}
 \label{sec:ams_ou}
 
 % Example: OU process
 \begin{figure}
   \centering
   \includegraphics[width=.7\linewidth]{AMS_OU/AMS_OU.png}
-    \caption{Efficiency of the \ac{tams} algorithm with respect to direct sampling in the case of an Ornstein-Uhlenbeck process \cite{lestang_computing_2018}. The orange line represents the evolution of the maximum obtained from re-sampled trajectories as a function of the computational cost $C_{TAMS}$. The solid blue line is the analytical solution for the return time of amplitude $a$. \EL{how many trajectories in the ensemble? REPLACE $f_d$ with $x$ in figure} }
+    \caption{Efficiency of the \ac{tams} algorithm with respect to direct sampling in the case of an Ornstein-Uhlenbeck process \cite{lestang_computing_2018}. The orange line represents the evolution of the maximum obtained from re-sampled trajectories as a function of the computational cost $C_{TAMS}$. The solid blue line is the analytical solution for the return time of amplitude $a$. \TL{replaced $f_d$ with $x$ in figure} }
   \label{fig:comparaison_temps_de_retour}
 \end{figure}
 
@@ -624,7 +626,8 @@ Fluid dynamics is temporarily left aside and a one-dimensional \acl{ou} process 
 \end{equation}
 
 
-The \ac{tams} is applied  to a set of \EL{$N$} trajectories $\{x_n(t)\}_{0\leq t \leq T_a}$ with the objective to sample fluctuations of $x\geq a$ with $a$ being very large compared to typical values of $x$. The score function is here $x(t)$ and only one single trajectory is re-sampled at each iteration.
+\TL{The \ac{tams} is applied  to a set of $N=32$ trajectories $\{x_n(t)\}_{0\leq t \leq T_a}$ with $T_a=5$.Note that, for the process as define in~\eqref{eq:ou}, the correlation time is $\tau_c = 1$.}
+Our objective to sample fluctuations of $x\geq a$ with $a$ being very large compared to typical values of $x$. The score function is here $x(t)$ and only one single trajectory is re-sampled at each iteration.
 %
 %Let $a_j$ be the maximum of the re-sampled trajectory at iteration $j$.
 %
@@ -658,7 +661,11 @@ Our aim is now to sample flow evolution that exhibit extreme fluctuations of the
 In contrast with the \acl{ou} process, the phase space is here higlhy-dimensional with intrinsically chaotic dynamics.
 In that situation, the choice of the score function $\xi (\mathbf{x}(t),t)$ is no longer straightforward.
 However, a natural simple choice for which we will opt in this study is certainly $\xi (\mathbf{x}(t),t) = f_d(t)$. 
-\EL{say something about the perturbation applied at branching?}
+\TL{Let us stress here that the flow dynamics are deterministic.
+As a result, resampled trajectories do not differ from the parent trajectory their are resampled
+from.
+A workaround is to introduce a slight perturbation in the state of the flow at the branching point (see figure~\ref{fig:illustr_AMS}).
+Because of the flow chaoticity, resampled trajectories will separate from their parent over the \textit{Lyapunov timescale} $\tau_L$.}\EL{Freddy: provide reference for Lyapunov timescale.}
 
 
 % application
@@ -685,16 +692,16 @@ Importantly, one can see that re-sampled trajectories never exceeds the amplitud
 %
 Fig.~\ref{fig:AMS_drag_trajectories} displays the ensemble of trajectories after many iterations of the \ac{tams} re-sampling procedure. 
 %
-Let us mention that for the sake of simplicity, the trajectory of the system is  here abusively associated with the time evolution of the observed drag.  \EL{useful to mention?}
+Let us mention that for the sake of simplicity, the trajectory of the system is here abusively associated with the time evolution of the observed drag.  \EL{useful to mention?}\TL{Yes, good point!}
 %
 Interestingly, it is obtained that all trajectories ultimately originate from one unique initial trajectory. 
 %
 This feature may be explained as follows.
-Because the dynamics has a memory, it takes a certain time before a re-sampled trajectory separates from its parent. In our situation, this memory originates from the deterministic nature of fluid dynamics. 
-Two trajectories (of the drag signal) starting from infinitesimally close points typically overlap over a timescale $\tau_L$ called the \textit{Lyapunov timescale}~\cite{lyapunovRef}. \EL{Freddy: Provide citation for Lyapunov timescale}
+Because the dynamics has a memory, it takes a certain time $\tau_L$ before a re-sampled trajectory separates from its parent. In our situation, this memory originates from the deterministic nature of fluid dynamics. 
 %
-In our case, we observe in Fig.~\ref{fig:AMS_drag_trajectories} that the duration of extreme drag fluctuations is shorter than the Lyapunov timescale of the drag process.
-Therefore, the re-sampling of a trajectory branched at $t=t^{\star}$ corresponding to the maximal drag amplitude cannot lead to larger values for $t^{\star} \leq t \leq t^{\star}+\tau_L$. For $t - t^{\star} >\tau_L$, the drag process has lost the memory of the drag fluctuations on which the re-sampling was based. Therefore, the probability of observing a new extreme fluctuation is also very low.
+\TL{In our case, we observe in Fig.~\ref{fig:AMS_drag_trajectories} that the duration of extreme drag fluctuations is shorter than the Lyapunov timescale of the drag process.}
+Therefore, the re-sampling of a trajectory branched at $t=t^{\star}$ corresponding to the maximal drag amplitude cannot lead to larger values for $t^{\star} \leq t \leq t^{\star}+\tau_L$.
+For $t - t^{\star} >\tau_L$, the drag process has lost the memory of the drag fluctuations on which the re-sampling was based. Therefore, the probability of observing a new extreme fluctuation is also very low.
 %
 
 The difference between the typical duration of drag fluctuations $\tau_c$ and the Lyapunov timescale $\tau_L$ may be heuristically associated with the ``convective nature'' of the flow.
@@ -759,7 +766,7 @@ W_{n}^{i}=\frac{e^{k\intop_{t_{i-1}}^{t_{i}}A(\mathbf{x}_{n}(t))dt}}{R_{i}}\quad
 so that $\sum_{n=1}^N W_n^i = N$.
 %
 %
-Therefore, the weights $\{W_{n}^{i}\}_{n=1\cdots N}$ determine (on average \EL{vague?}) how many copies of each trajectory are produced at time $t=t_i$. 
+\TL{The weights $\{W_{n}^{i}\}_{n=1\cdots N}$ determine how many copies of each trajectory are produced at time $t=t_i$. See~\cite{brewer_efficient_2018, nemoto_population-dynamics_2016} for information on the practical implementation of the algorithm.}
 % For each t $\{\mathbf{x}_{n}\}_{0 \leq t \leq  t_i}$, a random number of copies of the trajectory are generated. This number is on average proportional to the weight $W_{n}^{i}$, such that the total number of trajectories produced at each event is equal to $N$.
 %
 For deterministic systems, a small perturbation is applied to the clones so that they can rapidly separate from their parents. 
