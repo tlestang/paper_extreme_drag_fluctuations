@@ -98,7 +98,7 @@
 	
 	
 \begin{abstract}
-	\EL{ ABSTRACT TO BE REVIEWED}
+	\EL{ ABSTRACT TO BE REVIEWED \#8}
 This study evaluates the relevance of  rare-event sampling to optimize the numerical simulation of extreme mechanical efforts exerted by a turbulent flow impinging onto a bluff body. The main idea is here to replace a long simulation by a set of much shorter simulations (running in parallel) with dynamics that are replicated or abandoned in order to sample large-amplitude events more frequently. 
 %
 Such technique has already proved its efficiency for simulating extreme events in {...} with significant run-time savings.
@@ -150,7 +150,7 @@ Even though such ideas trace back to the early 1950's, they have received ever-g
 %However, a large body of algorithms are limited to systems at equilibrium, for which the stationary measure can be sampled by means of Monte Carlo methods. 
 %
 An original contribution of the present study is certainly the application of rare-event sampling algorithms in the context of far-from-equilibrium dynamics with an irreducible very large number of degrees of freedom. 
-Let us remark that most of previous successful applications involve dynamical systems at statistical equilibrium and low-dimensional attractors. \EL{is it TRUE?}
+Let us remark that most of previous successful applications involve dynamical systems at statistical equilibrium and low-dimensional attractors. \EL{is it TRUE? \#11}
 % 
 Two different algorithms suitable for out-of-equilibrium dynamics are considered and compared. Namely, the Adaptive Multilevel Splitting algorithm and the Giardina-Kurchan-Tailleur-Lecomte algorithm.
 %
@@ -226,7 +226,7 @@ Near the end of the channel, the flow is progressively damped within a \textit{s
 	\centering
 	\includegraphics[width=\linewidth]{ecoulement_typique/ecoulement_typique.png}
 	\caption{Snapshots of the vorticity related to typical drag fluctuations (within one standard deviation) over a time interval of length $\tau_c \simeq 4\tau_0$; $\tau_c$ will be identified later as the correlation time of the drag signal.
-	The vorticity is given in lattice units. \EL{THE COLORMAP IS REVERSED IN THE WHOLE PAPER: BLUE SHOULD BE NEGATIVE AND RED POSITIVE}}
+	The vorticity is given in lattice units.}
 	\label{fig:typical_vorticity}
 \end{figure}
 
@@ -501,7 +501,7 @@ This is consistent with an increase of $\overline{\gamma}$ acting as a precursor
 \begin{figure}
 	\centering
 	%\includegraphics[width=\linewidth]{timeseries_extrms_AVG/timeseries_extrms_AVG}
-	\caption{Instantaneous drag signals $f_d(t)$ corresponding to the highest fluctuations of the time-averaged drag $F_T$ with averaging period $T=10~\tau_c$ and $\tau_c$ being the correlation time of the drag. $\sigma_T$ denotes the standard deviation of $F_T$. \EL{FIGURE IS MISSING}}
+	\caption{Instantaneous drag signals $f_d(t)$ corresponding to the highest fluctuations of the time-averaged drag $F_T$ with averaging period $T=10~\tau_c$ and $\tau_c$ being the correlation time of the drag. $\sigma_T$ denotes the standard deviation of $F_T$. \EL{FIGURE IS MISSING} \TL{Addressed in issue \#9}}
 	\label{fig:extreme_avg}
 \end{figure}
 
@@ -585,7 +585,7 @@ These selection rules are designed so that the introduced statistical bias is kn
 \begin{figure}
   \centering
   \includegraphics[width=.7\linewidth]{illustr_AMS/figure_AMS}
-  \caption{\label{fig:illustr_AMS} Selection-mutation procedure of the \ac{ams} algorithm to compute the probability that a real-valued observable $A(\mathbf{x}(t))$ reaches values larger than $Q$ throughout a trajectory of duration $T_a$.\EL{QUID of the score function mentioned in the text: is the observable?} The initial ensemble of blue trajectories (associated with the time evolution of the observable $A$) is first generated. These trajectories are independent and can be simulated in parallel. On the basis of the respective maxima $Q_1$, $Q_2$ and $Q_3$, the trajectory with the lowest maximum is discarded in the ensemble (dashed blue line). Among the two remaining trajectories, trajectory 3 is chosen randomly and copied until it reaches the value $Q_1$. It is then freely simulated from the branching point to the final time $T_a$. In case of deterministic dynamics, a small perturbation is introduced at the branching to separate the trajectories. This procedure is iterated $J$ times or until all trajectories exceed a fixed threshold $Q$.}
+  \caption{\label{fig:illustr_AMS} Selection-mutation procedure of the \ac{ams} algorithm to compute the probability that a real-valued observable $A(\mathbf{x}(t))$ reaches values larger than $Q$ throughout a trajectory of duration $T_a$.\EL{QUID of the score function mentioned in the text: is the observable? \#1} The initial ensemble of blue trajectories (associated with the time evolution of the observable $A$) is first generated. These trajectories are independent and can be simulated in parallel. On the basis of the respective maxima $Q_1$, $Q_2$ and $Q_3$, the trajectory with the lowest maximum is discarded in the ensemble (dashed blue line). Among the two remaining trajectories, trajectory 3 is chosen randomly and copied until it reaches the value $Q_1$. It is then freely simulated from the branching point to the final time $T_a$. In case of deterministic dynamics, a small perturbation is introduced at the branching to separate the trajectories. This procedure is iterated $J$ times or until all trajectories exceed a fixed threshold $Q$.}
 \end{figure}
 
 % Introduction of AMS
@@ -665,7 +665,7 @@ However, a natural simple choice for which we will opt in this study is certainl
 As a result, resampled trajectories do not differ from the parent trajectory their are resampled
 from.
 A workaround is to introduce a slight perturbation in the state of the flow at the branching point (see figure~\ref{fig:illustr_AMS}).
-Because of the flow chaoticity, resampled trajectories will separate from their parent over the \textit{Lyapunov timescale} $\tau_L$.}\EL{Freddy: provide reference for Lyapunov timescale.}
+Because of the flow chaoticity, resampled trajectories will separate from their parent over the \textit{Lyapunov timescale} $\tau_L$.}\EL{Freddy: provide reference for Lyapunov timescale. \#12}
 
 
 % application
@@ -706,7 +706,7 @@ For $t - t^{\star} >\tau_L$, the drag process has lost the memory of the drag fl
 
 The difference between the typical duration of drag fluctuations $\tau_c$ and the Lyapunov timescale $\tau_L$ may be heuristically associated with the ``convective nature'' of the flow.
 %
-As discussed previously, the duration of extreme fluctuations of the drag are closely related to the sweeping time of the flow past the obstacle, and therefore to the mean velocity $U$. On the contrary, the Lyapunov timescale is rather associated with the intrinsic evolution of turbulent fluctuations in the reference frame of the mean flow, \textit{i.e.} with the fluctuating velocity $u_{rms}$. The ratio $u_{rms}/U < 1$ in our case of grid-generated turbulence implies that $\tau_L > \tau_c$. \EL{does it make sense to you?}
+As discussed previously, the duration of extreme fluctuations of the drag are closely related to the sweeping time of the flow past the obstacle, and therefore to the mean velocity $U$. On the contrary, the Lyapunov timescale is rather associated with the intrinsic evolution of turbulent fluctuations in the reference frame of the mean flow, \textit{i.e.} with the fluctuating velocity $u_{rms}$. The ratio $u_{rms}/U < 1$ in our case of grid-generated turbulence implies that $\tau_L > \tau_c$. \EL{does it make sense to you?} \TL{A priori oui. Mais j'aimerai prendre 10-15min pour bien y réféchir \#2}
  
 %As discussed previously, extreme fluctuations of the drag $f_d$ have a lifetime of length roughly $\tau_c$.  Fluid structures responsible for a particular value of the drag on the obstacle at a time $t^{\star}$ are swept away by the mean flow over a timescale $\tau_c$, shorter than the time it takes for trajectories to separate, \textit{i.e} the Lyapunov timescale. 
 
@@ -741,7 +741,7 @@ At regular time intervals, some elements of the ensemble are killed and others a
 The weights are chosen so that, after several iterations of the algorithm, the trajectories generated are distributed according to a biased probability distribution in favor of trajectories with large values of the (time-averaged) observable of interest.
 %
 The \ac{gktl} algorithm belongs to a family of algorithms called ``go with the winners'' \cite{aldous1994go,grassberger2002go}.
-Similar ideas have been applied in a wide range of fields over the past 50 years, under different names \EL{donner des exemples}, depending of the specific application domain~\cite{moral_feynman-kac_2004}.
+Similar ideas have been applied in a wide range of fields over the past 50 years, under different names \EL{donner des exemples \#3}, depending of the specific application domain~\cite{moral_feynman-kac_2004}.
 The application of a go-with-the-winners approach to the computation of large deviations in non-equilibrium systems has first been proposed in 2006 \cite{giardina_direct_2006}.
 Over the past ten years, it has successfully been applied to investigate rare events in both stochastic \cite{giardina_direct_2006,lecomte_numerical_2007,garrahan2007dynamical} and deterministic systems \cite{giardina_direct_2006,tailleur_probing_2007}.
 % It was originally designed to compute large deviations rate functions of time-averaged dynamical observables, that describe the probability density of both typical of rare events in the limit of large
@@ -808,7 +808,7 @@ which by induction (and assuming similar relations for the successive $R_i$'s) e
 \begin{equation}
 \prod_{i=1}^{T_{a}/\tau}R_{i}\underset{N\rightarrow\infty}{\sim} Z(k,T_a) =\mathbb{E}_{0}\left[e^{k\int_{0}^{T_a}A(\mathbf{X}(t))dt}\right].\label{eq:Estimate_Lambda}
 \end{equation}
-\EL{IS IT TRUE?}
+\EL{IS IT TRUE?} \TL{Oui. Il faudrait un peu reécrire ce paragraphe pour que ca soit clair, voir issue \#5}
 The validity of this mean-field approximation and the 
 %
 %
@@ -820,7 +820,7 @@ The killed trajectories, \emph{i.e.} with a weight smaller than $1$ \EL{true?}, 
 %
 Eventually, an effective ensemble of $N$ trajectories for $0 \leq t \leq T_{a}$ is obtained, distributed according to $\mathbb{P}_{k}$.
 All trajectories are solutions of the dynamical system since we have not modified the dynamics, but only sampled trajectories according to the distribution $\mathbb{P}_{k}$ rather than according to the distribution $\mathbb{P}_{0}$.
-\EL{quid the small perturbation to separated the clones? comment required}
+\EL{quid the small perturbation to separated the clones? comment required \#6}
 %
 The sampled trajectories can be used to compute the statistical properties of any observable with respect to the distribution $\mathbb{P}_{0}$ from the distribution $\mathbb{P}_{k}$ by using Eq.~\eqref{eq:Biased_Path_Approximation}.
 %
@@ -845,7 +845,7 @@ More details concerning the implementation of the algorithm and the correspondin
 	\includegraphics[width=0.7\linewidth]{IS_GKTL/IS_GKTL}
 	\caption{\label{fig:IS_GKTL} Rare-event sampling of the (zero-mean) time-averaged drag $\tilde F_T = F_T - \overline{F_T}$ with $T=10~\tau_c$; $\tau_c$ is the correlation time of the instantaneous drag. The shaded \ac{pdf}s are estimated from the biased ensemble resulting from the \ac{gktl} algorithm applied to $16384$ trajectories of duration $T_a=T$ with the cloning period $\tau=\tau_c/2$.
 	The dashed line denotes the unbiased \ac{pdf} of $\tilde F_T$, \textit{i.e.} from direct sampling or with $k=0$ (no bias) in the \ac{gktl} algorithm.
-\EL{$F_T-\overline{F_T}$ in the figure!}}
+\EL{$F_T-\overline{F_T}$ in the figure! \#4}}
 \end{figure}
 
 The application of the \ac{gktl} algorithm is now studied for the flow dynamics introduced in section~\ref{sec:test_flow} with the aim of sampling trajectories with extreme fluctuations of the \textit{time-averaged} drag.
@@ -938,12 +938,12 @@ However, such selection strategy does not appear equally as favourable to trajec
 Further works must now investigate the nature of the sampled trajectories, and determine the amount of discrepancy concerning their respective phenomenology.
 
 
-\EL{rajouter le calcul des temps de retour par gktl pour etoffer un peu la partie du papier sur gktl -- il faudrait montrer un resultat qui montre que l'on obtient la bonne statistique}
+\EL{rajouter le calcul des temps de retour par gktl pour etoffer un peu la partie du papier sur gktl -- il faudrait montrer un resultat qui montre que l'on obtient la bonne statistique} \TL{Demande pas mal de travail en comparaison des autres points. Voir issue \#10.}
 
 \section{Conclusion}
 \label{conlusion}
 
-\EL{CONCLUSION TO BE REVIEWED}
+\EL{CONCLUSION TO BE REVIEWED \#7}
 
 We assessed the application of two rare event algorithms for the numerical simulation of extreme mechanical efforts on structures immersed in a turbulent flow, a situation relevant to many industrial applications.
 \\
