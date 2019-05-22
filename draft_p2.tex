@@ -130,9 +130,9 @@ Rare-event sampling is an umbrella term for numerical methods intended to sample
 %
 % this paragraph would certainly need to be reshaped!
 %
-In fluid turbulence, rare-event sampling has been approached mainly from simplified dynamics such as the one-dimensional Burgers' equation with a stochastic forcing \cite{bec_burgers_2007}. In that case, dynamics may be accounted for through an action that can be identified as analogous to a Gibbs measure for a system at equilibrium. This latter can be sampled by using a Markov chain Monte-Carlo  algorithm \cite{duben_monte_2008,mesterhazy_anomalous_2011,mesterhazy_lattice_2013} that provides a framework for rare-event sampling.
+In fluid turbulence, rare-event sampling has been approached mainly from simplified dynamics such as the one-dimensional Burgers' equation with a stochastic forcing \cite{bec_burgers_2007}. In that case, dynamics may be accounted for through an action that can be identified as analogous to a Gibbs measure for a system at equilibrium. This latter can be sampled by using a Markov chain Monte-Carlo  algorithm \cite{duben_monte_2008,mesterhazy2011anomalous,mesterhazy2013lattice} that provides a framework for rare-event sampling.
 %
-An alternative approach is based on \emph{instanton} \cite{grafke_instanton_2015}. For stochastically driven systems in the limit of weak noise, it can be proved that the probability of extreme events is dominated by the minima of the action \cite{freidlin2013random} -- the trajectories that achieve such minima being referred to as instantons \cite{gurarie_instantons_1996}. Therefore, suitable numerical schemes can  be used to minimize the action and evaluate instantons as well as the related probabilities of rare events \cite{chernykh_large_2001,grafke_instanton_2013,grafke_relevance_2015,grigorio_instantons_2017}.
+An alternative approach is based on \emph{instanton} \cite{grafke2015instanton}. For stochastically driven systems in the limit of weak noise, it can be proved that the probability of extreme events is dominated by the minima of the action \cite{freidlin2013random} -- the trajectories that achieve such minima being referred to as instantons \cite{gurarie_instantons_1996}. Therefore, suitable numerical schemes can  be used to minimize the action and evaluate instantons as well as the related probabilities of rare events \cite{chernykh_large_2001,grafke_instanton_2013,grafke2015relevance,grigorio_instantons_2017}.
 %
 An obvious drawback of the aforementioned approaches is their limitation to stochastically driven dynamics which, in addition, must be simple enough so that an action may be derived and sampled, or minimized. 
 %
@@ -603,9 +603,9 @@ a sequence of ``short-cuts'' that lead more rapidly to the realization of this e
 \TL{The selection of trajectories rely on a \textit{score function} $\xi (\mathbf{x}(t),t)$.}
 Iterations of the algorithm consist in discarding the trajectories with the lowest maxima of the score function $\xi (\mathbf{x}(t),t)$ during the time interval $0\leq t \leq T_a$.
 Discarded trajectories are re-sampled according to the remaining trajectories.
-\TL{For a recent review of the \ac{ams}, its history and applications, see~\cite{cerou_2019}.}
+\TL{For a recent review of the \ac{ams}, its history and applications, see~\cite{cerou2019adaptive}.}
 \TL{Note that we use a specific form of the the \ac{ams} in which trajectories have a fixed duration $T_a$.
-It can however be formulated in terms of the classical \ac{ams}~\cite{lestang_computing} and the following results are not limited to this particular variant.}
+It can however be formulated in terms of the classical \ac{ams}~\cite{lestang_computing_2018} and the following results are not limited to this particular variant.}
 
 \subsubsection{Application of the \ac{ams} to a simple case: the \acl{ou} process}
 \label{sec:ams_ou}
@@ -766,7 +766,7 @@ W_{n}^{i}=\frac{e^{k\intop_{t_{i-1}}^{t_{i}}A(\mathbf{x}_{n}(t))dt}}{R_{i}}\quad
 so that $\sum_{n=1}^N W_n^i = N$.
 %
 %
-\TL{The weights $\{W_{n}^{i}\}_{n=1\cdots N}$ determine how many copies of each trajectory are produced at time $t=t_i$. See~\cite{brewer_efficient_2018, nemoto_population-dynamics_2016} for information on the practical implementation of the algorithm.}
+\TL{The weights $\{W_{n}^{i}\}_{n=1\cdots N}$ determine how many copies of each trajectory are produced at time $t=t_i$. See~\cite{brewer2018efficient, nemoto2016population} for information on the practical implementation of the algorithm.}
 % For each t $\{\mathbf{x}_{n}\}_{0 \leq t \leq  t_i}$, a random number of copies of the trajectory are generated. This number is on average proportional to the weight $W_{n}^{i}$, such that the total number of trajectories produced at each event is equal to $N$.
 %
 For deterministic systems, a small perturbation is applied to the clones so that they can rapidly separate from their parents. 
