@@ -803,12 +803,13 @@ Eq.~\eqref{eq:Biased_Path_Approximation} relies on the mean-field approximation
 R_{1}=\frac{1}{N}\sum_{n=1}^{N}e^{k\int_{t_0}^{t_{1}}A(\mathbf{X}_{n}(t))dt}\underset{N\rightarrow\infty}{\sim} Z(k,t_1)= \mathbb{E}_{0}\left[e^{k\int_{t_0}^{t_{1}}A(\mathbf{X}(t))dt}\right]
 \label{eq:Mean_Field_Approximation}
 \end{equation}
+The typical relative error related to this approximation can be shown of being of order $1/\sqrt{N}$\cite{DelMoralBook,DelMoral2013} for a family of rare-event algorithms including the \ac{gktl} algorithm.
 which by induction (and assuming similar relations for the successive $R_i$'s) eventually leads  to~\cite{giardina_direct_2006,giardina_simulating_2011}
 \begin{equation}
 \prod_{i=1}^{T_{a}/\tau}R_{i}\underset{N\rightarrow\infty}{\sim} Z(k,T_a) =\mathbb{E}_{0}\left[e^{k\int_{0}^{T_a}A(\mathbf{X}(t))dt}\right].\label{eq:Estimate_Lambda}
 \end{equation}
 \EL{IS IT TRUE?}
-The validity of this mean-field approximation and the typical relative error related to this approximation being of order $1/\sqrt{N}$ have been proven rigorously \cite{DelMoralBook,DelMoral2013} for a family of rare-event algorithms including the \ac{gktl} algorithm.
+The validity of this mean-field approximation and the 
 %
 %
 The killed trajectories, \emph{i.e.} with a weight smaller than $1$ \EL{true?}, are discarded from the statistics.
