@@ -283,7 +283,6 @@ In section~\ref{sec:direct_sampling}, we shall highlight that the situation lead
 Fig.~\ref{fig:typical_drag_signal} shows the time signal of the drag acting on the square, $f_d(t)$, over five hundred turnover times. The signal appears unpredictable in details and exhibits repeated bursts of high amplitude that deviate significantly from the averaged value.
 It is therefore natural to consider the drag as a random process.
 
-
 \begin{figure}
   \centering
     \subfloat[\ac{pdf} of (zero-mean) drag fluctuations]
@@ -662,10 +661,15 @@ In contrast with the \acl{ou} process, the phase space is here higlhy-dimensiona
 In that situation, the choice of the score function $\xi (\mathbf{x}(t),t)$ is no longer straightforward.
 However, a natural simple choice for which we will opt in this study is certainly $\xi (\mathbf{x}(t),t) = f_d(t)$. 
 \TL{Let us stress here that the flow dynamics are deterministic.
-As a result, resampled trajectories do not differ from the parent trajectory their are resampled
-from.
-A workaround is to introduce a slight perturbation in the state of the flow at the branching point (see figure~\ref{fig:illustr_AMS}).
-Because of the flow chaoticity, resampled trajectories will separate from their parent over the \textit{Lyapunov timescale} $\tau_L$.}\EL{Freddy: provide reference for Lyapunov timescale. \#12}
+Randomness must therefore be artificially introduced for the resampling procedure to be effective, \textit{i.e.} to generate new trajectories associated to larger drag fluctuations.
+In practice we introduce a small perturbation in the state of the flow at the branching points.
+Due to the flow chaoticity, resampled trajectories will then separate from their parent, as shown in figure~\ref{fig:illustr_AMS}.
+The timescale over which two trajectories separate due to an infinitesimal perturbation of the initial state is kown as the \textit{Lyapunov timescale}.
+It is denoted $\tau_L$ in the remainder of this paper.
+We make the important assumption that such a perturbation at branching times has a negligeabale impact on the properties of the sampled rare events.
+The validity of this assumption can be verified by performing a brute force simulation of the dynamics over a long duration, regurlary perturbing the state of the flow.
+On can eventually check that the statistics of the drag are consistent with the statistics computed from the control simulation shown in section~\ref{sec:pdfs}.}
+\EL{Freddy: provide reference for Lyapunov timescale. \#12}
 
 
 % application
@@ -741,7 +745,7 @@ At regular time intervals, some elements of the ensemble are killed and others a
 The weights are chosen so that, after several iterations of the algorithm, the trajectories generated are distributed according to a biased probability distribution in favor of trajectories with large values of the (time-averaged) observable of interest.
 %
 The \ac{gktl} algorithm belongs to a family of algorithms called ``go with the winners'' \cite{aldous1994go,grassberger2002go}.
-Similar ideas have been applied in a wide range of fields over the past 50 years, under different names \EL{donner des exemples \#3}, depending of the specific application domain~\cite{moral_feynman-kac_2004}.
+\TL{Similar ideas have been applied in a wide range of fields such as polymer physics~\cite{grassberger1998perm}, out of equilibrium statistical physics~\cite{PhysRevLett.118.115702}, computer science~\cite{aldous1994go}, dynamical systems~\cite{tailleur_probing_2007}, quantum mechanics~\cite{intro_DMC_kosztin}.}
 The application of a go-with-the-winners approach to the computation of large deviations in non-equilibrium systems has first been proposed in 2006 \cite{giardina_direct_2006}.
 Over the past ten years, it has successfully been applied to investigate rare events in both stochastic \cite{giardina_direct_2006,lecomte_numerical_2007,garrahan2007dynamical} and deterministic systems \cite{giardina_direct_2006,tailleur_probing_2007}.
 % It was originally designed to compute large deviations rate functions of time-averaged dynamical observables, that describe the probability density of both typical of rare events in the limit of large
@@ -766,76 +770,44 @@ W_{n}^{i}=\frac{e^{k\intop_{t_{i-1}}^{t_{i}}A(\mathbf{x}_{n}(t))dt}}{R_{i}}\quad
 so that $\sum_{n=1}^N W_n^i = N$.
 %
 %
-\TL{The weights $\{W_{n}^{i}\}_{n=1\cdots N}$ determine how many copies of each trajectory are produced at time $t=t_i$. See~\cite{brewer2018efficient, nemoto2016population} for information on the practical implementation of the algorithm.}
-% For each t $\{\mathbf{x}_{n}\}_{0 \leq t \leq  t_i}$, a random number of copies of the trajectory are generated. This number is on average proportional to the weight $W_{n}^{i}$, such that the total number of trajectories produced at each event is equal to $N$.
-%
-For deterministic systems, a small perturbation is applied to the clones so that they can rapidly separate from their parents. 
-%
-% The parameter  is chosen by the user in order to control the strength of the selection.
-%
-The free parameter $k$ drives the amplitude of fluctuations targeted by the biased ensemble of trajectories.
-A higher value of $k$ gives a higher weight to higher fluctuations and thus drives the sampling to more extreme events.
-
-
-Let 
-$\mathbb{P}_{0}\left(\left\{ \mathbf{X}(t)\right\} _{0\leq t\leq T_{a}} = \left\{ \mathbf{x}(t)\right\} _{0\leq t\leq T_{a}}\right)$ 
-refer formally to the probability of the trajectory 
-$\left\{ \mathbf{x}(t)\right\} _{0\leq t\leq T_{a}}$ of our dynamical system.
-%
-% $\mathbb{P}_{k}\left(\left\{ \mathbf{X}(t)\right\} _{0\leq t\leq T_{a}} = \left\{ \mathbf{x}(t)\right\} _{0\leq t\leq T_{a}} \right)$ 
-%
-By construction, the probability to obtain the same trajectory by resorting to the previous cloning procedure is given by
+\TL{The weights $\{W_{n}^{i}\}_{n=1\cdots N}$ determine how many copies of each trajectory are produced at time $t=t_i$. See~\cite{brewer2018efficient, nemoto2016population} for information on the practical implementation of the algorithm.
+The application of this resampling at each step $t_i$ eventually leads to a biased sampling of trajectory space, for which trajectories corresponding to extreme values of $\int_{0}^{T_a}A(\mathbf{x}_{n}(t))dt$ have a higher probability.
+The sampled biased distribution writes
 %
 \begin{align}
 \mathbb{P}_{k}\left(\left\{ \mathbf{X}(t)\right\} _{0\leq t\leq T_{a}}=\left\{ \mathbf{x}(t)\right\} _{0\leq t\leq T_{a}}\right) &\underset{N\rightarrow\infty}{\sim} \frac{e^{k\int_{0}^{T_{a}}A(\mathbf{x}(t))dt}}{Z(k,T_a)}\mathbb{\mathbb{P}}_{0}\left(\left\{ \mathbf{X}(t)\right\} _{0\leq t\leq T_{a}}=\left\{ \mathbf{x}(t)\right\} _{0\leq t\leq T_{a}}\right)
 \label{eq:Biased_Path_Approximation}
 \end{align}
-where the normalization factor is given by $Z(k,T_a)=\mathbb{E}_{0}\left[e^{k\int_{0}^{T_{a}}A(\mathbf{X}(t))dt}\right]$ with $\mathbb{E}_{0}$ being the expectation value with respect to $\mathbb{P}_{0}$.
-%
-% obvious? 
-%and $\underset{N\rightarrow\infty}{\sim}$ meaning that this is true only asymptotically for large $N$.
-%
-%
-%The typical error is of order $1/\sqrt{N}$ when evaluating averages over observables.
-%
-Eq.~\eqref{eq:Biased_Path_Approximation} relies on the mean-field approximation
+where
+$\mathbb{P}_{0}\left(\left\{ \mathbf{X}(t)\right\} _{0\leq t\leq T_{a}} = \left\{ \mathbf{x}(t)\right\} _{0\leq t\leq T_{a}}\right)$ 
+refer formally to the probability of observing the trajectory 
+$\left\{ \mathbf{x}(t)\right\} _{0\leq t\leq T_{a}}$.
+The normalization factor is given by $Z(k,T_a)=\prod_{i=1}^{T_a/\tau}R_i$.
+Note that
 \begin{equation}
-R_{1}=\frac{1}{N}\sum_{n=1}^{N}e^{k\int_{t_0}^{t_{1}}A(\mathbf{X}_{n}(t))dt}\underset{N\rightarrow\infty}{\sim} Z(k,t_1)= \mathbb{E}_{0}\left[e^{k\int_{t_0}^{t_{1}}A(\mathbf{X}(t))dt}\right]
+  \label{eq:mean_field}
+  Z(k,T_a) \underset{N\to \infty}{\sim} \mathbb{E}_0\left[e^{k\int_{0}^{T_{a}}A(\mathbf{X}(t))dt}\right]
+\end{equation}
+with $\mathbb{E}_{0}$ being the expectation value with respect to the
+distribution $\mathbb{P}_{0}$.
+This result relies on a \textit{mean-field approximation}
+\begin{equation}
+R_{i}=\frac{1}{N}\sum_{n=1}^{N}e^{k\int_{t_{i-1}}^{t_{i}}A(\mathbf{X}_{n}(t))dt}\underset{N\rightarrow\infty}{\sim} Z(k,t_i)= \mathbb{E}_{i}\left[e^{k\int_{t_{i-1}}^{t_{i}}A(\mathbf{X}(t))dt}\right].
 \label{eq:Mean_Field_Approximation}
 \end{equation}
+where $\mathbb{E}_{i}[.]$ denote the expectation value with prespect to the biased distribtuion $\mathbb{P}_k^{(i)}$ obtained after $i$ cloning steps.
 The typical relative error related to this approximation can be shown of being of order $1/\sqrt{N}$\cite{DelMoralBook,DelMoral2013} for a family of rare-event algorithms including the \ac{gktl} algorithm.
-which by induction (and assuming similar relations for the successive $R_i$'s) eventually leads  to~\cite{giardina_direct_2006,giardina_simulating_2011}
-\begin{equation}
-\prod_{i=1}^{T_{a}/\tau}R_{i}\underset{N\rightarrow\infty}{\sim} Z(k,T_a) =\mathbb{E}_{0}\left[e^{k\int_{0}^{T_a}A(\mathbf{X}(t))dt}\right].\label{eq:Estimate_Lambda}
-\end{equation}
-\EL{IS IT TRUE?} \TL{Oui. Il faudrait un peu reécrire ce paragraphe pour que ca soit clair, voir issue \#5}
-The validity of this mean-field approximation and the 
 %
-%
-The killed trajectories, \emph{i.e.} with a weight smaller than $1$ \EL{true?}, are discarded from the statistics.
-%
-% no because the trajectories are cloned
-%
-% Starting from the final $N$ trajectories at time $T_{a}$, one goes backwards in time through the selection events attaching to each piece of trajectory its ancestor.
-%
+Pruned trajectories, are discarded from the statistics.
 Eventually, an effective ensemble of $N$ trajectories for $0 \leq t \leq T_{a}$ is obtained, distributed according to $\mathbb{P}_{k}$.
-All trajectories are solutions of the dynamical system since we have not modified the dynamics, but only sampled trajectories according to the distribution $\mathbb{P}_{k}$ rather than according to the distribution $\mathbb{P}_{0}$.
-\EL{quid the small perturbation to separated the clones? comment required \#6}
+A key feature of the \ac{gktl} algorithm is that the sampling procedure do not involve any alteration of the dynamics, and therefore all trajectories in the sampled ensemble are solutions of the dynamical system.
+This is true for stochastic dynamics.
+However, similarly to the case of \ac{ams}, randomness must be artificially introduced for the cloning procedure to be effective for determinisitc dynamics and we proceed in the same way as as described in section~\ref{sec:ams_drag}.}
+
 %
 The sampled trajectories can be used to compute the statistical properties of any observable with respect to the distribution $\mathbb{P}_{0}$ from the distribution $\mathbb{P}_{k}$ by using Eq.~\eqref{eq:Biased_Path_Approximation}.
 %
 More details concerning the implementation of the algorithm and the corresponding data analysis are provided in \cite{lestang:tel-01974316,brewer2018efficient}.
-
-%
-%\EL{next paragraph needs rephrasing or suppress}
-%
-%For instance, the expectation value of the observable $O\left(\left\{ \mathbf{X}(t)\right\} _{0\leq t\leq T_{a}}\right)$ is given by
-%\begin{equation}
-%\mathbb{E}_{0}\left[O\left(\left\{ \mathbf{X}(t)\right\} _{0\leq t\leq T_{a}}\right)\right]\underset{N\rightarrow\infty}{\sim}\frac{1}{N}\sum_{n=1}^{N}O\left(\left\{ \mathbf{X}_{n}(t)\right\} _{0\leq t\leq T_{a}}\right){e}^{-k\int_{0}^{T_{a}}A(\mathbf{X}_{n}(t))dt}{e}^{T_{a}\lambda(k,T_{a})},\label{eq:GK_O_estimator}
-%\end{equation}
-%where the $X_{n}$ are the $N$ backward reconstructed trajectories.
-%Events that can be considered rare with respect to $\mathbb{\mathbb{P}}_{0}$ are oversampled following $\mathbb{P}_{k}$. As a result, the effective ensemble of trajectories generated by the \ac{gktl} algorithm contains a larger amount of such events, and empirical estimators such as~\eqref{eq:GK_O_estimator} have a dramatically lower statistical error.
-
 
 \subsubsection{Application of the \ac{gktl} algorithm to extreme fluctuations of the time-averaged drag}
 \label{sec:gktl_drag}
