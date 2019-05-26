@@ -14,7 +14,7 @@ sortedI = np.loadtxt('list.txt', dtype=int)
 sig=0.0412
 m=0.0252
 # Gets the value of mu and sigma for time-averaged drag
-musigma = np.fromfile("../PDF_AVG/musigma_AVG_10.dat", float, -1, "");
+musigma = np.fromfile("musigma_AVG_10.dat", float, -1, "");
 
 T = 10 # Physical duration of instant. trajectories
 
@@ -38,7 +38,7 @@ for i in range(0,Nsubplots):
     col = i % 3
     drag_signal, = axes[row,col].plot(np.linspace(0,T,N),f)
     axes[row,col].set_xlim((0, T))
-    axes[row,col].set_title(r"$F = {:2.1f}\sigma _T$".format(F_avg))
+    axes[row,col].set_title(r"$F_T = {:2.1f}\sigma _T$".format(F_avg), fontsize=26)
     # Compute min and max for instant drag signal to
     # impose common ylim to all subplots (see below)
     maxArray[i]=np.amax(f)
@@ -55,12 +55,12 @@ for i in range(0,6):
     row = i // 3
     col = i % 3
     axes[row,col].set_ylim((globalDragMinimum,globalDragMaximum))
-    axes[row,col].set_xlabel(r'$t/ \tau_c$',fontsize=18)
-    axes[row,col].set_ylabel(r'$f_d(t)$',fontsize=18)
+    axes[row,col].set_xlabel(r'$t/ \tau_c$',fontsize=28)
+    axes[row,col].set_ylabel(r'$f_d(t)$',fontsize=28)
     axes[row,col].set_yticks([0,2,4,6])
     axes[row,col].set_yticklabels(['${:2.0f}\\sigma$'.format(x) \
                                    for x in axes[row,col].get_xticks()])
-    axes[row,col].tick_params(axis='both', which='major', labelsize=16)
+    axes[row,col].tick_params(axis='both', which='major', labelsize=22)
 
 fname = 'timeseries_extrms_AVG.png'
 plt.savefig(fname)
