@@ -15,7 +15,7 @@ Z = np.fromfile("./Z.dat", float, -1, "")
 xx = Ta*Nc + np.cumsum(compTime);
 
 buf = np.fromfile("./return_time_analytical.dat", float, -1, "")
-n = len(buf)/2
+n = int(len(buf)/2)
 avec = buf[0:n]
 rtheo = buf[n:]
 
@@ -26,7 +26,7 @@ ax.plot(rtheo,avec/sig, linestyle='-',label='Direct sampling (return time)')
 plt.annotate('', xy=(12584,10), xytext=(1.7e19,10), arrowprops=dict(arrowstyle='<->',lw=2,color=lineLvl.get_color()))
 plt.text(1e7, 10.2, r'$C(a) = 10^{-17}r(a), a=10\sigma$', fontsize=18)
 ax.set_xscale('log')
-ax.set_xlabel(r'$r(f_d \geq a), C_{TAMS}(f_d \geq a)$',fontsize=22)
+ax.set_xlabel(r'$r(x \geq a), C_{TAMS}(x \geq a)$',fontsize=22)
 ax.set_ylabel('$a$',fontsize=22)
 ax.set_yticks([0,2,4,6,8,10])
 ax.set_xticks([1e2,1e8,1e14,1e20])

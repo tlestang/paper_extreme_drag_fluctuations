@@ -34,6 +34,10 @@ xmin=1;xmax=512
 dxy = (uy[ymin:ymax, xmin+1:xmax+1] - uy[ymin:ymax, xmin-1:xmax-1])*0.5
 dyx = (ux[ymin+1:ymax+1, xmin:xmax] - ux[ymin-1:ymax-1, xmin:xmax])*0.5
 vort = dxy - dyx
+# The sign of the vorticity is wrong if using a right-handed coord. system.
+# The velocity field should probably be flipped upside-down
+vort = - vort
+
 
 im=ax.imshow(vort, interpolation='spline36', cmap='BrBG', vmin=-0.07, vmax=0.07)
 

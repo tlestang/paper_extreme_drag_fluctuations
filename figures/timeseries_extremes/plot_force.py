@@ -2,7 +2,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 
 
-prefix = '/home/thibault/transition_hdd/thibault/These/lbm_code/seq/draft/etude_dynamique/instant_events/'
+prefix = '/home/tlestang/transition_hdd/thibault/These/lbm_code/seq/draft/etude_dynamique/instant_events/'
 
 sig=0.0412
 m=0.0252
@@ -32,7 +32,7 @@ ax.set_xlim((-2,2))
 plt.annotate('', xy=(-0.5,-0.35), xytext=(0.5,-0.35), arrowprops=dict(arrowstyle='<->',lw=2))
 plt.text(-0.1, -0.05, r'$\tau_c$', fontsize=18)
 ax.legend(loc='best',fontsize=16)
-ax.set_ylabel('$f_d(t)$',fontsize=22)
+ax.set_ylabel('$\\tilde{f}_d(t)$',fontsize=22)
 ax.set_xlabel('$t$',fontsize=22)
 plt.xticks(fontsize=18)
 plt.yticks(fontsize=18)
