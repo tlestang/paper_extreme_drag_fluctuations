@@ -99,15 +99,15 @@
 	
 	
 \begin{abstract}
-	\EL{ ABSTRACT TO BE REVIEWED \#8}
-This study evaluates the relevance of  rare-event sampling to optimize the numerical simulation of extreme mechanical efforts exerted by a turbulent flow impinging onto a bluff body. The main idea is here to replace a long simulation by a set of much shorter simulations (running in parallel) with dynamics that are replicated or abandoned in order to sample large-amplitude events more frequently. 
+\TL{  This study evaluates the relevance of rare-event sampling type approaches to make accessible the numerical simulation of extreme mechanical efforts exerted by a turbulent flow impinging onto a bluff body.
+  The main idea is here to replace a long simulation by a set of much shorter simulations, running in parallel, wich corresponding dynamics are replicated or pruned in order to sample large-amplitude events more frequently. 
 %
-Such technique has already proved its efficiency for simulating extreme events in {...} with significant run-time savings.
-Application to fluid-structure interaction problems remains mainly open. 
+  Such techniques have been shown to be efficient for a wide range of problems in statistical physics, computer science, biochemistry, enabling the simulation of events far from reach from brute force sampling approaches.
+  Application to fluid-structure interaction problems remains mainly open. 
 %
-The drag experienced by a squared obstacle placed in a turbulent flow (in two dimensions) is taken as a representative case study to investigate the performance of two major sampling algorithms, namely {...} 
-Practical evidence is given that these algorithms allow for the correct sampling of rare large-amplitude drag events and the estimation of return times with a reduced computational effort. However, {limitations and pitfalls}. 
-% Importantly, such techniques also provide direct access to the flow scenario yielding extreme events. In the present case, it is found that {<blocking effect>}.
+  The drag experienced by a squared obstacle placed in a turbulent flow (in two dimensions) is taken as a representative case study to investigate the performance of two major sampling algorithms, namely the \ac{ams} and the \ac{gktl} algorithms.
+  Practical evidence is given that the fast sweeping time of fluid structures has a drastic influence on the efficiency of the sampling with both algorithms.
+  While is is shown that the \ac{ams} resampling does not lead to rare trajectories with siginificant run-time savings, we illustrate that the \ac{gktl} algorithm allows for the simulation of extreme fluctuations of the time-averaged drag, as well as accurate computation of the associated statistics, for instance return times.}
 \end{abstract}
 	
 \maketitle
