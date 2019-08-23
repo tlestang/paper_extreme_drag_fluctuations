@@ -100,12 +100,12 @@
 	
 \begin{abstract}
 This study evaluates the relevance of rare-event sampling techniques to accelerate the simulation of extreme mechanical efforts exerted by a turbulent flow impinging onto a bluff body.
-The main idea is here to replace a long simulation by a set of much shorter ones, running in parallel, with dynamics that are replicated or pruned in order to sample large-amplitude events more frequently. 
+The main idea is to replace a long simulation by a set of much shorter ones, running in parallel, with dynamics that are replicated or pruned in order to sample large-amplitude events more frequently. 
 %
-Such techniques have been shown to be efficient for a wide range of problems in statistical physics, computer science, biochemistry, enabling the simulation of rare  events out of reach by brute-force direct sampling.
-Application to fluid-structure interaction problems remains mainly open. 
+Such techniques have been shown to be efficient for a wide range of problems in statistical physics, computer science, biochemistry, enabling the simulation of rare  events out of reach by direct sampling.
+This work is the first application to fluid-structure interaction problems. 
 %
-The drag experienced by a squared obstacle placed in a turbulent flow (in two dimensions) is here taken as a representative case study to investigate the performance of two major rare-event sampling algorithms, namely the \ac{ams} and the \ac{gktl} algorithms.
+The drag experienced by a squared obstacle placed in a turbulent flow (in two dimensions) is taken as a representative case study to investigate the performance of two major rare-event sampling algorithms, namely the \ac{ams} and the \ac{gktl} algorithms.
 Practical evidence is given that the fast sweeping-time of fluid structures past the obstacle has a drastic influence on the efficiency of these two algorithms.
 While it is shown that the \ac{ams} algorithm does not yield significant run-time savings, the \ac{gktl} algorithm appears to be efficient to sample extreme fluctuations of the time-averaged drag and estimate related statistics such as return times.
 \end{abstract}
@@ -162,7 +162,7 @@ Two different algorithms suitable for out-of-equilibrium dynamics are considered
 %
 	
 The Adaptive Multilevel Splitting (AMS) algorithm \cite{cerou_adaptive_2007} inherits from old ideas about splitting approaches \cite{KahnHarris1951,glasserman_look_1998,glasserman_multilevel_1999} -- a detailed description will be given later.  
-In recent years, it has allowed for the computation of rare events in problems involving a large number of degrees of freedom such as molecular dynamics simulations \cite{aristoff_adaptive_2015,teo_adaptive_2016}, the computation of rare trajectories in the Allen-Cahn equations \cite{rolland_computing_2016} or rare events of re-laminarization in a stochastic model of wall-turbulence \cite{rolland_extremely_2018}.
+In recent years, it has allowed for the computation of rare events in problems involving a large number of degrees of freedom such as molecular dynamics simulations \cite{aristoff_adaptive_2015,teo_adaptive_2016}. The first use of the AMS algorithms for more complex dynamics, for instance stochastic partial differential equations was for the computation of rare trajectories in the Allen-Cahn equations \cite{rolland_computing_2016}. More recently is has been applied to rare events of re-laminarization in a stochastic model of wall-turbulence \cite{rolland_extremely_2018}.
 
 During the last decade, the main theoretical framework for the study of rare events in statistical physics has been the theory of large deviations \cite{touchette_large_2009}.
 Alongside, numerical methods have been developed to sample rare events \cite{moral_feynman-kac_2004}. 
@@ -315,7 +315,7 @@ In that case, the \ac{pdf} is quasi-symmetric and does not display exponential t
     {\label{fig:pdf_drag_b}
     	\includegraphics[width=.45\linewidth]{./autocorr_drag/autocorr_drag.png}}  
       \caption{\textbf{(a)} \ac{pdf} of (zero-mean) drag fluctuations $\tilde f_d \equiv f_d - \bar{f_d}$ where $\bar{f_d}$ denotes the time-averaged value. The drag is evaluated both in the presence (red) and in the absence (blue) of the obstacle. %Note that the amplitudes have not been normalized.
-  \textbf{(b)} Autocorrelation function of the drag defined as $C(\tau) = \overline{ \tilde f_d(t+\tau)\tilde f_d(t)} ~/~ \overline{{\tilde f_d}^2}$. The correlation time $\tau_c\simeq 4 \tau_0$ is obtained by the condition $C(\tau_c)=0$.
+  \textbf{(b)} Autocorrelation function of the drag defined as $C(\tau) = \overline{ \tilde f_d(t+\tau)\tilde f_d(t)} ~/~ \overline{{\tilde f_d}^2}$. The correlation time $\tau_c\simeq 4 \tau_0$ is defined by the condition $C(\tau_c)=0$.
   %$\tau_c$ may therefore be considered as the correlation time of the drag signal.
 }
   \label{fig:pdf_drag}
@@ -353,19 +353,19 @@ In the following, $\tau_c$ will be referred to as the \textit{correlation time} 
 The phenomenology of extreme fluctuations of the drag is first investigated through brute-force direct sampling applied to the control run.
 Direct sampling is here used as opposed to approaches involving rare-events algorithms discussed in section~\ref{sec:rare_events_algorithms}.
 It will provide a trustworthy baseline for the validation of rare-events algorithms. 
-How rare is a fluctuation $f_d \geq a$ can be quantified by its \textit{return time} $r(a)$. This latter is defined as the averaged time between two consecutive occurrences of peak fluctuations with amplitude $f_d \geq a$, as illustrated in Fig.~\ref{fig:illustrate_return_time}.
 
+{\bf The waiting times $\tau$ are defined as the time between two consecutive occurrences of peak fluctuations with amplitude $f_d \geq a$, as illustrated in Fig.~\ref{fig:illustrate_return_time}.  The mixing time $\tau_m$ is the time needed for the dynamics to loose the memory of its initial conditions. As soon as the typical waiting times are much larger than than the mixing time $\tau_m$, the occurrences of such events follow a Poisson process and the distribution of the waiting times is exponential: $P(\tau)=\lambda(a)\exp(-\lambda(a)\tau)$, where $r(a)=1/\lambda(a)$ is the average waiting time \cite{lestang_computing_2018}. $r(a)$ is called the {\it return time} of the level $a$. For systems without multistability, it is often the case that the mixing time $\tau_m$ is of the order of the correlation time $\tau_c$. 
 
-Extreme drag fluctuations are \textit{rare events} in the sense that the return time is much larger than the correlation time, \emph{i.e.} $r(a) \gg \tau_c$.
-In that case, the occurrence of such events follows a Poisson process \cite{lestang_computing_2018} and
+How rare is a fluctuation $a$ is quantified by its return time $r(a)$. We can define extreme drag fluctuations as \textit{rare events} in the sense that the return time is much larger than the correlation time, \emph{i.e.} $r(a) \gg \tau_c$.
 
+The shape of the return time $r$ as a function of the return level $a$ is system dependent. It is often the case that  $r(a) = t(a)/\mathbb{P}(f_d\geq a)$, where the level dependent time scale $t(a)$, expected to be of order $\tau_c$, changes much more slowly with $a$ that the PDF ${\mathbb{P}(f_d\geq a)}$, for large values of $a$. As the PDF ${\mathbb{P}(f_d\geq a)}$ was shown to be well approximated by an exponential (see figure Fig.~\ref{fig:pdf_drag}), we might expect that 
 \begin{equation}
-  \label{eq:return_time}
-  r(a) \underset{a\to\infty}{\propto} \frac{1}{\mathbb{P}(f_d\geq a)} \propto e^{\lambda a}
+ \label{eq:return_time}
+r(a) \underset{a\to\infty}{\propto} \exp(-la)
 \end{equation}
-where $\lambda$ is the rate describing the positive tail of the \ac{pdf} of the drag (shown in Fig.~\ref{fig:pdf_drag}).
-%
-Fig.~\ref{fig:return_time_instant} shows the evolution of the return time $r(a)$ with the amplitude of fluctuation $a$ computed from {direct sampling} of the drag signal $f_d(t)$ \cite{lestang_computing_2018}. It is consistently found that the return time  diverges  exponentially with the amplitude of fluctuation. Let us also remark that under-sampling effects explain some deviation from the exponential law at the largest amplitudes.
+where $l$ is the rate describing the positive tail of the \ac{pdf} of the drag (shown in Fig.~\ref{fig:pdf_drag}).
+Fig.~\ref{fig:return_time_instant} shows the evolution of the return time $r(a)$ with the amplitude of fluctuation $a$, computed from {direct sampling} of the drag signal $f_d(t)$ \cite{lestang_computing_2018}. It is consistently found that the return time $r(a)$ is well approximated by an exponential for large levels $a$. Let us also remark some deviation from the exponential law at the largest levels, that are probably the consequence of undersampling.
+}
 % typically for $a \gtrsim 8 \sigma$ with $\sigma$ being the standard deviation. 
 
 
@@ -499,7 +499,7 @@ where $R$ denotes the size of the square, $u$ is the streamwise component of the
 % Figure~\ref{fig:type_1_and_type_2_a} displays the label of the 104 sampled events, sorted according to the amplitude of the corresponding fluctuation.
 % It illustrates that the dynamics corresponding to the large majority of events also corresponds to the events with the highest fluctuation amplitude.
 %
-Fig.~\ref{fig:shear_asof_drag} shows $\overline{\gamma}(t)$ as a function of the instantaneous drag $f_d$(t) for $t^{\star}-2\tau_c \leq t \leq  t^{\star}+2\tau_c$ for the sampled extreme events.
+Fig.~\ref{fig:shear_asof_drag} shows $\overline{\gamma}(t)$ as a function of the instantaneous drag $f_d$(t) for $t^{\star}-2\tau_c \leq t \leq  t^{\star}+2\tau_c$ for the 104 sampled extreme events.
 Before and after the extremal fluctuation, \textit{i.e.} for $t^{\star}-2\tau_c \leq t \leq t^{\star}-\tau_c$ and $t^{\star}+\tau_c \leq t \leq t^{\star}+2\tau_c$, paths wander in a region related to typical values of both $\overline{\gamma}$ and $f_d$.
 On the contrary, the drag abruptly varies for $t^{\star}-\tau_c \leq t \leq t^{\star}+\tau_c$ near the extremal amplitude.
 %Paths in the $(f_d, \bar{\gamma})$ space display excursions to atypical values for both $\bar{\gamma}$ and $f_d$.
@@ -546,7 +546,7 @@ Therefore, a relevant observable is the \textit{time-averaged} drag defined as
   \label{eq:def_time_averaged_drag}
   F_T(t) = \frac{1}{T}\int_t^{t+T} f_d(t) \mathrm{d}t,
 \end{equation}
-where $f_d(t)$ denotes the instantaneous drag and $T$ is the investigated timescale (response time). We shall consider $T=10\tau_c$ in the following.
+where $f_d(t)$ denotes the instantaneous drag and $T$ is the investigated timescale (response time). Relevant values of $T$ are application dependant. We shall consider $T=10\tau_c$ in the following.
 
 %
 During a time interval $[t;t+T]$, a fluctuation of $F_T(t)$ may be roughly viewed as the overall contribution of  $T / \tau_c$ independent fluctuations of the {instantaneous} drag $f_d$.  
@@ -572,7 +572,6 @@ Indeed, both cases are equally featured in Fig.~\ref{fig:extreme_avg}.  Very lar
 This observation can be related to the exponential shape of the tail of the \ac{pdf} describing extreme positive drag fluctuations. 
 Indeed, let $X$ be a random variable with a \ac{pdf} $\mathbb{P}(X)$ and a standard deviation $\sigma_X$.
 Considering an extreme positive value of $S_N=\sum_{n=1}^{N}X_n$, the probability $p_1$ (resp. $p_2$) of case (1) (resp. case (2)) writes   
-
 \begin{equation}
   \label{eq:indep}
   p_{1}  \left(\sum_{n=1}^{N} X_n = S_N\right) \propto \mathbb{P} \left({S_N}/{N} \right)^{N} \quad \text{and} \quad p_{2}  \left(\sum_{n=1}^{N} X_n= S_N\right) \propto \mathbb{P}(S_N)  
@@ -589,8 +588,8 @@ The observation is therefore well supported theoretically.
 \label{sec:rare_events_algorithms}
 % limitation of direct sampling
 %
-In the limit of very rare events and complex dynamics such as turbulent flows in industrial or environmental domains, the computational cost of  direct sampling becomes prohibitive. According to Eq.~\eqref{eq:return_time}, the return time of fluctuations $f_d \geq a$ scales as $r(a) \propto e^{\lambda a}$.
-As a consequence, the computational cost required to sample events of amplitude $f_d \geq a$ through brute-force sampling diverges exponentially as $e^{\lambda a}$.
+In the limit of very rare events and complex dynamics such as turbulent flows in industrial or environmental domains, the computational cost of  direct sampling becomes prohibitive. According to Eq.~\eqref{eq:return_time}, the return time of fluctuations $f_d \geq a$ scales as $r(a) \propto e^{l a}$.
+As a consequence, the computational cost required to sample events of amplitude $f_d \geq a$ through brute-force sampling diverges exponentially as $e^{l a}$.
 %% objective
 % In this section we discuss the application of \textit{rare event algorithms} to the numerical sampling of extreme drag forces on immersed objects, on the example of the flow presented in section~\ref{sec:test_flow}.
 The motivation behind rare-events algorithms is to sample extreme fluctuations for a computational cost much lower than their related return times.
@@ -669,7 +668,7 @@ The computational cost of the algorithm after $J$ iterations is therefore relate
 Fig.~\ref{fig:comparaison_temps_de_retour} compares the computational cost of the \ac{ams} algorithm with that of a direct sampling. 
 In the latter, the typical computational cost is simply the return time $r(a)$.
 Obviously, the successive re-samplings of the \ac{ams} algorithm lead rapidly to trajectories exhibiting extreme fluctuations.
-The computational cost is many orders of magnitude lower than that obtained by direct sampling.
+For large $a$, the computational cost is many orders of magnitude lower than that obtained by direct sampling.
 
 Undoubtedly, the \acl{ou} process has oversimplified dynamics to showcase the efficiency of the \ac{ams} algorithm.
 The state space is one-dimensional and the choice of the score function is straightforward: It is $x$ itself.
@@ -702,7 +701,7 @@ In practice, a small perturbation in the state of the flow has been introduced a
 %
 Due to the chaotic behavior of the flow, re-sampled trajectories then separate from their parents.
 % The timescale over which two trajectories separate due to an infinitesimal perturbation is known as the \textit{Lyapunov timescale}. It is denoted $\tau_L$ in the remainder of this paper.
-We assume that this perturbation at branching times has a negligible impact on the properties of the sampled rare events.
+We assume that this perturbation at branching times has a negligible impact on the statistical properties of the sampled rare events.
 The validity of this assumption has been tested by performing a long simulation of the dynamics and by regularly perturbing the flow.
 It was checked that the obtained statistics of the drag were consistent with the statistics computed from the (unperturbed) control simulation described in section~\ref{sec:pdfs}.}
 %\EL{Freddy: provide reference for Lyapunov timescale. \#12}
@@ -738,7 +737,7 @@ Let us mention that for the sake of simplicity, the trajectory of the system is 
 Interestingly, all trajectories ultimately originate from one unique initial trajectory. 
 %
 This feature may be explained as follows.
-It takes a certain time $\tau_L$ (called Liapunov's timescale) before a re-sampled trajectory separates from its parent. In our situation, this ``memory effect'' originates from the deterministic nature of fluid dynamics. 
+It takes a certain time $\tau_L$ (called Liapunov's timescale) before a re-sampled trajectory separates from its parent. In our situation, this ``memory effect'' originates from the fact that the score function is of dimension smaller (here 1) than the dimension of the phase space (very large for this fluid dynamics problem). 
 %
 We observe in Fig.~\ref{fig:AMS_drag_trajectories} that the duration of extreme drag fluctuations, $\tau_c$, is much shorter than the Lyapunov's timescale $\tau_L$.
 As a consequence, the re-sampling of a trajectory branched close to $t=t^{\star}$ (when the maximum drag occurs) cannot lead to larger values at $t^{\star} \leq t \leq t^{\star}+\tau_L$.
@@ -757,7 +756,7 @@ As discussed previously, the duration of extreme fluctuations of the drag are cl
 In summary, it appears that a straightforward application of the \ac{ams} algorithm with the score function being the drag itself, does not allow us to efficiently sample extreme fluctuations.
 %
 Retrospectively, there is \textit{a priori} no reason for the drag itself to be a good indicator of how likely next drag fluctuations will develop.
-On the other hand, finding a better score function would require an intricate understanding of the flow scenario leading to extreme events.
+On the other hand, finding a better score function would require a precise qualitative understanding of the flow scenario leading to extreme events.
 %which is certainly beyond the phenomenological description developed in section~\ref{sec:dynamical_aspects}.
 %
 %Furthermore, such ``tuning'' is problem dependent.
@@ -845,7 +844,7 @@ Rejected trajectories are discarded from the statistics.
 Eventually, an effective ensemble of $N$ trajectories of duration $T_{a}$ is obtained, distributed according to $\mathbb{P}_{k}$.
 
 
-A key feature of the \ac{gktl} algorithm is that the sampling procedure do not involve any alteration of the dynamics. All trajectories in the resampled ensemble are solutions of the original dynamical. 
+A key feature of the \ac{gktl} algorithm is that the sampling procedure does not involve any alteration of the dynamics. All trajectories in the resampled ensemble are solutions of the original dynamical. 
 %This is true for stochastic dynamics.
 {Nevertheless, it should be noted that a (small) random perturbation is introduced in the cloning procedure to allow the trajectories of two clones to separate. 
 As for the \ac{ams} algorithm, it is assumed that this perturbation does not (notably) affect the statistics of the sampled trajectories.}
@@ -872,7 +871,7 @@ The application of the \ac{gktl} algorithm is now considered for the flow dynami
 
 % Choice of parameters and perturbation
 The computational cost $C_{{gktl}}$ depends on both the duration of each trajectory and the number of trajectories: $C_{gktl} = N \times T_a$.
-We have taken $N=16384$ and $T_a = 10\tau_c$ which yields $C_{gktl} \approx 1.6 \times 10^5 \tau_c$. The choice of the cloning period $\tau$ is an issue.
+We have taken $N=16384$ and $T_a = 10\tau_c$ which yields $C_{gktl} \approx 1.6 \times 10^5 \tau_c$. The choice of the cloning period $\tau$ is important in practise.
 A  cloning period too-short can result in a loss of information if the clones do not separate from their parents between two cloning steps. On the contrary, choosing $\tau \gg \tau_c$ may result in insufficient cloning steps to allow for efficient importance sampling.
 As a result, a safe rule of thumb is to take $\tau$ of the order of $\tau_c$.
 In the following experiments, $\tau = \tau_c /2$. 
@@ -1031,7 +1030,7 @@ Such a phenomenology is observed for stochastic processes with an exponential \a
 
 The application of rare event algorithms relies on the definition of a score function for the selection of trajectories.
 %Although the dynamics itself is a black-box from the point of view of the algorithm, 
-The efficiency of the algorithm depends on the phenomenology of the dynamics and, therefore, on the choice of the score function.
+The efficiency of the algorithm depends on the choice of the score function which has to be well suited to the phenomenology of the extreme dynamics.
 For complex dynamics including turbulent flows, this choice is  difficult because of the lack of characterization of rare events. These latter are expected to depend on the dynamical regime (Reynolds number), the stirring mechanism and boundary conditions of the flow. In this context, the choice of the observable itself as score function is certainly a safe fall-back option, nevertheless not optimal.
 %This is, after all, our motivation for the simulation of these events.
 \\
