@@ -660,6 +660,7 @@ The operating principle is sketched in Fig.~\ref{fig:illustr_AMS}.
 Iterations of the algorithm consist in discarding the trajectories with the lowest maxima of the score function during the time interval $0\leq t \leq T_a$.
 Discarded trajectories are re-sampled according to the remaining trajectories.
 See~\cite{cerou2019adaptive} for a review of the \ac{ams} algorithm, its history and applications.
+For recent applications of the \ac{ams} in the context of fluid turbulence, see \cite{bouchet2019rare,rolland_extremely_2018}.
 {Let us mention that we use a specific form of the \ac{ams}, in which trajectories have a fixed duration $T_a$.
 It can however be formulated in terms of the ``classical \ac{ams}''~\cite{lestang_computing_2018}. Next results are therefore not limited to this particular variant.}
 
@@ -723,9 +724,9 @@ However, a natural simple choice for which we have opted, is $\xi (\mathbf{x}(t)
 %
 {Let us also stress that the dynamics is here deterministic.
 Therefore, randomness must be artificially introduced for the re-sampling procedure to be effective, \textit{i.e.} to generate new trajectories associated to larger drag fluctuations.
-In practice, a small perturbation in the state of the flow has been introduced at the branching points (see Fig.~\ref{fig:illustr_AMS}). 
+In practice, a small perturbation in the state of the flow has been introduced at the branching points (see Fig.~\ref{fig:illustr_AMS} and~\cite{wouters2016rare}).
 %
-Due to the chaotic behavior of the flow, re-sampled trajectories then separate from their parents.
+Due to the chaotic behavior of the flow, re-sampled trajectories then sparate from their parents.
 % The timescale over which two trajectories separate due to an infinitesimal perturbation is known as the \textit{Lyapunov timescale}. It is denoted $\tau_L$ in the remainder of this paper.
 We assume that this perturbation at branching times has a negligible impact on the statistical properties of the sampled rare events.
 The validity of this assumption has been tested by performing a long simulation of the dynamics and by regularly perturbing the flow.
