@@ -378,7 +378,7 @@ The phenomenology of extreme fluctuations of the drag is first investigated thro
 Direct sampling is here used as opposed to approaches involving rare-events algorithms discussed in section~\ref{sec:rare_events_algorithms}.
 It will provide a trustworthy baseline for the validation of rare-events algorithms. 
 
-{\bf The waiting times $\tau$ are defined as the time between two consecutive occurrences of peak fluctuations with amplitude $f_d \geq a$, as illustrated in Fig.~\ref{fig:illustrate_return_time}.  The mixing time $\tau_m$ is the time needed for the dynamics to loose the memory of its initial conditions. As soon as the typical waiting times are much larger than the mixing time $\tau_m$, the occurrences of such events follow a Poisson process and the distribution of the waiting times is exponential: $P(\tau)=\lambda(a)\exp(-\lambda(a)\tau)$, where $r(a)=1/\lambda(a)$ is the average waiting time \cite{lestang_computing_2018}. $r(a)$ is called the {\it return time} of the level $a$. For systems without multistability, it is often the case that the mixing time $\tau_m$ is of the order of the correlation time $\tau_c$.
+The waiting times $\tau$ are defined as the time between two consecutive occurrences of peak fluctuations with amplitude $f_d \geq a$, as illustrated in Fig.~\ref{fig:illustrate_return_time}.  The mixing time $\tau_m$ is the time needed for the dynamics to loose the memory of its initial conditions. As soon as the typical waiting times are much larger than the mixing time $\tau_m$, the occurrences of such events follow a Poisson process and the distribution of the waiting times is exponential: $P(\tau)=\lambda(a)\exp(-\lambda(a)\tau)$, where $r(a)=1/\lambda(a)$ is the average waiting time \cite{lestang_computing_2018}. $r(a)$ is called the {\it return time} of the level $a$. For systems without multistability, it is often the case that the mixing time $\tau_m$ is of the order of the correlation time $\tau_c$.
 
 How rare is a fluctuation $a$ is quantified by its return time $r(a)$. We can define extreme drag fluctuations as \textit{rare events} in the sense that the return time is much larger than the correlation time, \emph{i.e.} $r(a) \gg \tau_c$.
 
@@ -389,7 +389,7 @@ r(a) \underset{a\to\infty}{\propto} \exp(-la)
 \end{equation}
 where $l$ is the rate describing the positive tail of the \ac{pdf} of the drag (shown in Fig.~\ref{fig:pdf_drag}).
 Fig.~\ref{fig:return_time_instant} shows the evolution of the return time $r(a)$ with the amplitude of fluctuation $a$, computed from {direct sampling} of the drag signal $f_d(t)$ \cite{lestang_computing_2018}. It is consistently found that the return time $r(a)$ is well approximated by an exponential for large levels $a$. Let us also point out some deviation from the exponential law at the largest levels, that are probably the consequence of undersampling.
-}
+
 % typically for $a \gtrsim 8 \sigma$ with $\sigma$ being the standard deviation. 
 
 
