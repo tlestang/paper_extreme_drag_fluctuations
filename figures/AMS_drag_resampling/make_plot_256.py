@@ -42,7 +42,7 @@ for j in range(0,Nc):
 # Plots a line that represents the level of the highest fluctuation in
 # the initial ensemble
 M = np.amax(maxArray)
-line, = ax.plot([Cvec[40], Cvec[Nresamp-1]], [M, M], '--')
+line, = ax.plot([Cvec[40], Cvec[Nresamp-1]], [M, M], '--', color=color_list[1])
 # Plots the maxima for Cvec = Nc*Ta (initial computational cost)
 init, = ax.plot(Nc*Ta*np.ones(Nc), maxArray, '+', linestyle='None')
 init.set_markersize(5)
@@ -53,7 +53,7 @@ init.set_label('Maxima over initial trajectories')
 resamp, = ax.plot(Cvec, amax, linestyle='None')
 resamp.set_marker('o')
 resamp.set_markersize(3)
-resamp.set_markerfacecolor(color_list[1]);
+resamp.set_markerfacecolor(color_list[0]);
 resamp.set_markeredgecolor(resamp.get_markerfacecolor())
 resamp.set_label('Maxima over resampled trajectories')
 
