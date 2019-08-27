@@ -126,7 +126,8 @@ From the viewpoint of chaotic dynamical systems, turbulence in fluids is linked 
 The use of perturbative methods in identifying resonant interactions among degrees of freedom responsible for extreme fluctuations is not successful.
 Simulation offers a practical approach to gain physical insight into these events, quantify their intensity and estimate their frequency of occurrence.
 However, this requires very long simulations since these events are also very rare.
-Our motivation is to evaluate the practicality and efficiency of rare-event sampling techniques to alleviate this prohibitive computational cost. 
+
+Our motivations is to evaluate the practicality and efficiency of rare-event sampling techniques to alleviate this prohibitive computational cost. 
 %	
 	
 % general def on rare-event sampling %
@@ -257,7 +258,9 @@ As a consequence, the drag can eventually be expressed as the difference
 f_d(t) = p_{fb}(t) - p_{base}(t)
 \end{equation}
 between the pressure integrated over the forebody, $p_{fb}(t)$, and the base of the obstacle, $p_{base}(t)$.
-	
+Pressure fluctuations are related to the dynamics of the vorticity field, as regions of strong vorticity correspond to strong local pressure gradients.
+Indeed, considering a disc of constant vorticity $\omega$ with radius $a$ (Rankine vortex model), the local pressure gradient between the vortex core and a point infinitely far grows quadratically with the vorticity.
+
 % Definition of turnover time
 %
 The typical timescale (turnover time) of drag fluctuations can be estimated from dimensional analysis as
@@ -270,10 +273,9 @@ where $R$ is the size of the square and $U$ is the averaged velocity.
 %
 % typical fluctuation of the drag
 %
-Fig.~\ref{fig:typical_vorticity} displays the typical evolution of the vorticity field around the obstacle over a few turnover times. It is observed that, typically, some vorticity  is generated near the front part of the obstacle, rapidly detaches from it, and is advected downstream by the flow.
-Therefore, the \textit{base pressure} varies much less than the \textit{forebody pressure} and typical drag fluctuations mostly result from pressure variations at the front of the obstacle.
-In section~\ref{sec:direct_sampling}, we shall highlight that the situation leading to  {extreme} fluctuations of the drag is very different.
-
+Fig.~\ref{fig:typical_vorticity} displays the typical evolution of the vorticity field around the obstacle over a few turnover times.
+Because the vorticity generated along the forebody is swept away by the mean flow, the pressure field
+in the vicinity of the base is only slightly perturbed.
 
 \subsection{The drag as a random process
 	%: Probability Density Function and correlation in time
@@ -354,7 +356,7 @@ The phenomenology of extreme fluctuations of the drag is first investigated thro
 Direct sampling is here used as opposed to approaches involving rare-events algorithms discussed in section~\ref{sec:rare_events_algorithms}.
 It will provide a trustworthy baseline for the validation of rare-events algorithms. 
 
-{\bf The waiting times $\tau$ are defined as the time between two consecutive occurrences of peak fluctuations with amplitude $f_d \geq a$, as illustrated in Fig.~\ref{fig:illustrate_return_time}.  The mixing time $\tau_m$ is the time needed for the dynamics to loose the memory of its initial conditions. As soon as the typical waiting times are much larger than than the mixing time $\tau_m$, the occurrences of such events follow a Poisson process and the distribution of the waiting times is exponential: $P(\tau)=\lambda(a)\exp(-\lambda(a)\tau)$, where $r(a)=1/\lambda(a)$ is the average waiting time \cite{lestang_computing_2018}. $r(a)$ is called the {\it return time} of the level $a$. For systems without multistability, it is often the case that the mixing time $\tau_m$ is of the order of the correlation time $\tau_c$. 
+{\bf The waiting times $\tau$ are defined as the time between two consecutive occurrences of peak fluctuations with amplitude $f_d \geq a$, as illustrated in Fig.~\ref{fig:illustrate_return_time}.  The mixing time $\tau_m$ is the time needed for the dynamics to loose the memory of its initial conditions. As soon as the typical waiting times are much larger than the mixing time $\tau_m$, the occurrences of such events follow a Poisson process and the distribution of the waiting times is exponential: $P(\tau)=\lambda(a)\exp(-\lambda(a)\tau)$, where $r(a)=1/\lambda(a)$ is the average waiting time \cite{lestang_computing_2018}. $r(a)$ is called the {\it return time} of the level $a$. For systems without multistability, it is often the case that the mixing time $\tau_m$ is of the order of the correlation time $\tau_c$.
 
 How rare is a fluctuation $a$ is quantified by its return time $r(a)$. We can define extreme drag fluctuations as \textit{rare events} in the sense that the return time is much larger than the correlation time, \emph{i.e.} $r(a) \gg \tau_c$.
 
@@ -364,7 +366,7 @@ The shape of the return time $r$ as a function of the return level $a$ is system
 r(a) \underset{a\to\infty}{\propto} \exp(-la)
 \end{equation}
 where $l$ is the rate describing the positive tail of the \ac{pdf} of the drag (shown in Fig.~\ref{fig:pdf_drag}).
-Fig.~\ref{fig:return_time_instant} shows the evolution of the return time $r(a)$ with the amplitude of fluctuation $a$, computed from {direct sampling} of the drag signal $f_d(t)$ \cite{lestang_computing_2018}. It is consistently found that the return time $r(a)$ is well approximated by an exponential for large levels $a$. Let us also remark some deviation from the exponential law at the largest levels, that are probably the consequence of undersampling.
+Fig.~\ref{fig:return_time_instant} shows the evolution of the return time $r(a)$ with the amplitude of fluctuation $a$, computed from {direct sampling} of the drag signal $f_d(t)$ \cite{lestang_computing_2018}. It is consistently found that the return time $r(a)$ is well approximated by an exponential for large levels $a$. Let us also point out some deviation from the exponential law at the largest levels, that are probably the consequence of undersampling.
 }
 % typically for $a \gtrsim 8 \sigma$ with $\sigma$ being the standard deviation. 
 
@@ -405,12 +407,12 @@ In section~\ref{sec:test_flow}, it was pointed out that typical drag fluctuation
 Let $(t^{\star}, f_d^{\star})$ refer to an extreme drag event.
 The (zero-mean) fluctuation $\tilde{f}_d^{\star} = f_d^{\star} - \overline{f_d}$ can be  decomposed into 
 \begin{equation}
-  \tilde{f}_d^{\star} = \tilde{p}_{fb}^{\star} - \tilde{p}_{base}^{\star}
+  \tilde{f}_d^{\star} = \Delta p_{fb}^{\star} - \Delta p_{base}^{\star}
 \end{equation}
-where $\tilde{p}_{fb}^{\star}$ and $\tilde{p}_{base}^{\star}$ denote the variations of the forebody and base pressure, respectively.
+where $\Delta p_{fb}^{\star}$ and $\Delta p_{base}^{\star}$ denote the variations of the forebody and base pressure, respectively.
 %
 Fig.~\ref{fig:pressure_ratio} displays the relative contributions
-$\tilde{p}_{fb}^{\star}/\tilde{f}_d^{\star}$ and $-\tilde{p}_{base}^{\star}/\tilde{f}_d^{\star}$ to the overall drag fluctuation $\tilde f_d^{\star}$.
+$\Delta p_{fb}^{\star}/\tilde{f}_d^{\star}$ and $-\Delta p_{base}^{\star}/\tilde{f}_d^{\star}$ to the overall drag fluctuation $\tilde f_d^{\star}$.
 %
 It is found that the base pressure variation contributes typically to $80\%$ of the overall drag fluctuation.
 Therefore, extreme amplitudes of the drag are dominated by the variation of the pressure in the vicinity of the base of the obstacle, \emph{i.e.} downstream of the obstacle.
@@ -581,7 +583,8 @@ If $\mathbb{P}$ has an exponential positive tail, \textit{i.e.} $\mathbb{P}(X=x)
   \frac{p_{2}}{p_{1}} \underset{a\to \infty}{\to} \left(e^{\lambda a }\right)^{N} e^{-\lambda a N} = 1
   \label{eq:ratio_exp}
 \end{equation}
-The observation is therefore well supported theoretically. 
+The observation is therefore well supported theoretically.
+See~\cite{lestang2019JSTAT} for further details.
 
 
 \section{Rare-event algorithms}
@@ -634,7 +637,7 @@ The operating principle is sketched in Fig.~\ref{fig:illustr_AMS}.
 %
 Iterations of the algorithm consist in discarding the trajectories with the lowest maxima of the score function during the time interval $0\leq t \leq T_a$.
 Discarded trajectories are re-sampled according to the remaining trajectories.
-{A very recent review of the \ac{ams} algorithm, its history and applications are provided in~\cite{cerou2019adaptive}.}
+See~\cite{cerou2019adaptive} for a review of the \ac{ams} algorithm, its history and applications.
 {Let us mention that we use a specific form of the \ac{ams}, in which trajectories have a fixed duration $T_a$.
 It can however be formulated in terms of the ``classical \ac{ams}''~\cite{lestang_computing_2018}. Next results are therefore not limited to this particular variant.}
 
@@ -652,8 +655,9 @@ It can however be formulated in terms of the ``classical \ac{ams}''~\cite{lestan
 Fluid dynamics is temporarily left aside and a one-dimensional \acl{ou} process is considered:
 \begin{equation}
   \label{eq:ou}
-  \dot{x} = -x + \sqrt{2\epsilon}\eta (t).
+  \dot{x} = -x + \eta (t),
 \end{equation}
+where $\eta$ is a Gaussian noise with $\langle \eta(t)\eta(t-t')\rangle = \delta(t-t')$.
 This basic stochastic process will allow us to highlight differences with fluid dynamics.
 
 
@@ -987,14 +991,15 @@ The probability $\mathbb{P}(F_T \geq a)$ can be estimated from the biased ensemb
 with $s_j(a) = 1$ if $\max_{T\leq t \leq T_a}[F_T^{(j)}] \geq a$ and $s_j(a) = 0$ otherwise, \emph{i.e.} by summing the weights of the timeseries which maximum is larger than $a$.
 
 Fig.~\ref{fig:return_times_gktl} displays the return times for extreme fluctuations of the time-averaged drag acting on the square obstacle.
-It compares return times obtained for two values of the bias $k$ and a fixed computational cost $N \times T_a$ to the return times obtained by a direct approach applied to a single timeseries of duration corresponding to $T_{tot} = N \times T_a$.
+The figure shows two independant estimates, obtained using different values of the bias parameter $k$.
+Note that both estimates have been computed with the same computational cost $T_{tot}=N\times T_a$.
+In addition, figure~\ref{fig:return_times_gktl} shows an estimate computed through direct sampling with the same computational cost, \textit{i.e.} using a timeseries of duration $T_{tot}$.
 While a direct approach cannot access events with a return time greater than $T_{tot}$, the \ac{gktl} algorithm allows us for the computation of statistics for drag fluctuations having a return time several orders of magnitude above $T_{tot}$. This is  obviously a major advantage of this rare-event sampling algorithm. 
 
 \begin{figure}
 	\centering
 	\includegraphics[width=.7\linewidth]{return_times_GKTL/return_times_GKTL}
-	\caption{\label{fig:return_times_gktl} Return times for the time-averaged drag acting on the square obstacle. $\tilde{F}_T$ denotes the time-averaged drag with zero mean.
-		The blue and read lines are obtained from the biased ensemble of trajectories generated by the \ac{gktl} algorithm with $N=1024$ and $T_a=30\tau_c$. The green line is the return times obtained from a single timeseries of duration $T_{tot} = N\times T_a$. Uncertainty ranges are shown.}
+	\caption{\label{fig:return_times_gktl} Return times for the time-averaged drag acting on the square obstacle. $\tilde{F}_T$ denotes the time-averaged drag with zero mean. The blue and read lines are obtained from the biased ensemble of trajectories generated by the \ac{gktl} algorithm with $N=1024$ and $T_a=30\tau_c$. The green line is the return times obtained from a single timeseries of duration equal to the computational cost of both \ac{gktl} experiments. Uncertainty ranges for the \ac{gktl} estimates are computed as the standard deviation over a set of 10 independent experiments. Uncertainty ranges for the direct estimation are computed as the standard deviation over a ensemble of direct estimates resulting from 60 independent timeseries.}
 \end{figure}
 
 
