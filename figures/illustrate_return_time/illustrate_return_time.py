@@ -75,7 +75,7 @@ for i, tup in enumerate(zip(point_array, point_array[1:])):
     x_point, x_point_fwd = tup
     plt.annotate('', xy=(x_point+eps, y0), xytext=(x_point_fwd-eps, y0),
                  arrowprops=props)
-    plt.text((x_point+x_point_fwd)/2-dx0, y0+dy0, '$\\tau_{}$'.format(i), fontsize=14)
+    plt.text((x_point+x_point_fwd)/2-dx0, y0+dy0, '$\\tau_{}$'.format(i+1), fontsize=14)
 
 # Plot the letter a at the left hand side of the plot slightly above
 # the threshold line

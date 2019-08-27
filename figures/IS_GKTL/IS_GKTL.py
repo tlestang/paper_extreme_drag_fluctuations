@@ -38,7 +38,7 @@ ax.set_yticks(ax.get_yticks()[::2]) # Plot only half of ticks
 ax.set_xticklabels(['$-2\\sigma_T$','$0$','$2\\sigma_T$','$4\\sigma_T$','$6\\sigma_T$'])
 ax.tick_params(axis='both', which='major', labelsize=16)
 
-ax.set_xlabel('$\\tilde{F}_T$', fontsize=22)
+ax.set_xlabel('$F$', fontsize=22)
 ax.set_ylabel('$\\rho_{k}(\\tilde{F}_T = F)$', fontsize=22)
 ax.legend(loc='best', fontsize=16)
 
