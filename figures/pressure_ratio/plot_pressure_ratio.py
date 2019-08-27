@@ -38,10 +38,10 @@ maxDrag = (maxDrag-mu) / sig
 fig,ax = plt.subplots(figsize=(9,5), constrained_layout=True)
 
 
-lineRear, =ax.plot(maxDrag, rearContrib, marker='o', label=r'$-\tilde{p}^{\star}_{base}/\tilde{f}^{\star}_d$')
+lineRear, =ax.plot(maxDrag, rearContrib, marker='o', label=r'$-\Delta p^{\star}_{base}/\tilde{f}^{\star}_d$')
 lineRear.set_linestyle('None')
 
-lineFront, =ax.plot(maxDrag, frontContrib, marker='^', label=r'$\tilde{p}^{\star}_{fb}/\tilde{f}^{\star}_d$')
+lineFront, =ax.plot(maxDrag, frontContrib, marker='^', label=r'$\Delta p^{\star}_{fb}/\tilde{f}^{\star}_d$')
 lineFront.set_linestyle('None')
 
 coefFront = np.polyfit(maxDrag, frontContrib, 1);
