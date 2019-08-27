@@ -126,35 +126,33 @@ From the viewpoint of chaotic dynamical systems, turbulence in fluids is linked 
 The use of perturbative methods in identifying resonant interactions among degrees of freedom responsible for extreme fluctuations is not successful.
 Simulation offers a practical approach to gain physical insight into these events, quantify their intensity and estimate their frequency of occurrence.
 However, this requires very long simulations since these events are also very rare.
-
-Our motivations is to evaluate the practicality and efficiency of rare-event sampling techniques to alleviate this prohibitive computational cost. 
-%	
-	
 % general def on rare-event sampling %
 %
 {Rare-event sampling refer to a large body of methods that aim at sampling preferentially regions of phase space that correspond to rare events, that would otherwise be accessed with a very low probability through a brute-force sampling.}
 %
+Our motivation is to conduct the first computational study of extreme mechanical efforts acting on a immersed body, using both very long timeseries and rare event sampling techniques.
+%	
 	
 % next two paragraphs may be too technical -- Find a way to summarize them in a few sentences accessible to a broad audience in fluid mechanics? Notion of action will be vague for many readers
 %
-In fluid turbulence, rare-event sampling has been approached mainly from simplified dynamics such as the one-dimensional Burgers' equation with a stochastic forcing \cite{bec_burgers_2007}. In that case, dynamics may be accounted for through an action that is identified as analogous to a Gibbs measure for a system at equilibrium. This latter can be sampled by using a Markov chain Monte-Carlo  algorithm \cite{duben_monte_2008,mesterhazy2011anomalous,mesterhazy2013lattice} that provides a framework for rare-event sampling.
+In fluid turbulence, rare-event sampling has been approached mainly from simplified dynamics such as the one-dimensional Burgers' equation with a stochastic forcing \cite{bec_burgers_2007}. In that case, dynamics can be sampled by using a Markov chain Monte-Carlo algorithm \cite{duben_monte_2008,mesterhazy2011anomalous,mesterhazy2013lattice} that provides a framework for rare-event sampling.
 %
-An alternative approach is based on \emph{instantons} \cite{grafke2015instanton}. For stochastically driven systems in the limit of weak noise, it can be proved that the probability of extreme events is dominated by the minima of the action \cite{freidlin2013random} -- the trajectories that achieve such minima being referred to as instantons \cite{gurarie_instantons_1996}. Therefore, suitable numerical schemes can  be used to minimise the action and evaluate instantons as well as the related probabilities of rare events \cite{chernykh_large_2001,grafke_instanton_2013,grafke2015relevance,grigorio_instantons_2017}.
+An alternative approach is based on \emph{instantons} \cite{gurarie_instantons_1996,grafke2015instanton} and applies to stochastically driven systems in the limit of weak noise.
+Instantons refer to the most probable trajectories (in phase space) that achieve a given rare event, in the limit of weak noise. Suitable numerical schemes can be used to evaluate instantons as well as the related probabilities of rare events \cite{chernykh_large_2001,grafke_instanton_2013,grigorio_instantons_2017,laurie2015computation,bouchet2014langevin}.
+An example is the investigation of the physics of rogue waves~\cite{dematteis2018rogue,dematteis2019experimental}.
 %
-An obvious drawback of the aforementioned approaches is their limitation to stochastically driven dynamics which, in addition, must be simple enough so that an action may be derived and sampled, or minimised. 
+A drawback of the aforementioned approaches is their limitation to simple and stochastically driven dynamics.
 %
+
 %
-%Whilst Burgers' turbulence provides an interesting model framework for the investigation of the properties of small scale turbulence, it is of little relevance to more realistic situations, such as industrial or environmental flows.
-%
-In this paper, a more general approach is considered for dynamical systems for which an action cannot be easily derived or minimized. 
+In this paper, a more general approach is considered for complex, potentially deterministic dynamical systems.
 It is based on sampling algorithms relying on \emph{selection rules} applied to an ensemble of trajectories, and designed to sample rare events of some observable with a higher frequency.
 %    
 %
 Even though such ideas date back to the early 1950's, they have received ever-growing interest during the last 20 years with successful applications in various domains such as chemistry \cite{van_erp_elaborating_2005,escobedo_transition_2009,teo_adaptive_2016}, biophysics \cite{huber_weighted-ensemble_1996,zuckerman2017weighted,bolhuis2005kinetic}, nuclear physics \cite{louvin2017}, nonlinear dynamical systems \cite{tailleur_probing_2007} or communication networks simulation \cite{villen-altamirano_restart:_1994}.
+More importantly, these type of algorithms have been shown to be useful for the study of rare events in simple deterministic dynamics~\cite{wouters2016rare}.
 %
-% already mentioned in the beginning? This sentence is misleading.
-%
-%However, a large body of algorithms are limited to systems at equilibrium, for which the stationary measure can be sampled by means of Monte Carlo methods. 
+
 %
 An original contribution of the present study is certainly the application of rare-event sampling algorithms in the context of far-from-equilibrium dynamics with an irreducible very large number of degrees of freedom. 
 %Let us remark that most of previous successful applications involve dynamical systems with low-dimensional attractors. \EL{is it TRUE? \#11}
@@ -162,17 +160,41 @@ An original contribution of the present study is certainly the application of ra
 Two different algorithms suitable for out-of-equilibrium dynamics are considered and compared. Namely, the Adaptive Multilevel Splitting algorithm and the Giardina-Kurchan-Tailleur-Lecomte algorithm.
 %
 	
-The Adaptive Multilevel Splitting (AMS) algorithm \cite{cerou_adaptive_2007} inherits from old ideas about splitting approaches \cite{KahnHarris1951,glasserman_look_1998,glasserman_multilevel_1999} -- a detailed description will be given later.  
-In recent years, it has allowed for the computation of rare events in problems involving a large number of degrees of freedom such as molecular dynamics simulations \cite{aristoff_adaptive_2015,teo_adaptive_2016}. The first use of the AMS algorithms for more complex dynamics, for instance stochastic partial differential equations was for the computation of rare trajectories in the Allen-Cahn equations \cite{rolland_computing_2016}. More recently is has been applied to rare events of re-laminarization in a stochastic model of wall-turbulence \cite{rolland_extremely_2018}.
+The \acl{ams} algorithm \cite{cerou_adaptive_2007} inherits from old ideas about splitting approaches \cite{KahnHarris1951,glasserman_look_1998,glasserman_multilevel_1999} -- a detailed description will be given later.  
+In recent years, it has allowed for the computation of rare events in problems involving a large number of degrees of freedom such as molecular dynamics simulations \cite{aristoff_adaptive_2015,teo_adaptive_2016}. The first use of the \ac{ams} algorithms for more complex dynamics, for instance stochastic partial differential equations was for the computation of rare trajectories in the Allen-Cahn equations \cite{rolland_computing_2016}. More recently is has been applied to rare events in stochastic models of wall-turbulence \cite{rolland_extremely_2018} and atmospheric dynamics \cite{bouchet2019rare}.
 
 During the last decade, the main theoretical framework for the study of rare events in statistical physics has been the theory of large deviations \cite{touchette_large_2009}.
 Alongside, numerical methods have been developed to sample rare events \cite{moral_feynman-kac_2004}. 
 Among them, the \ac{gktl} algorithm \cite{giardina_direct_2006} is particularly suited for (chaotic) dynamical systems \cite{giardina_simulating_2011,Laffargue_2013}.
 %
-{Recently, \ac{gktl} has allowed to successfully perform the numerical simulation of extreme heat waves in a simplified modeling of the atmosphere \cite{ragone_computation_2018}. 
-This achievement represents a significant leap in the applicability of rare-event sampling to complex dynamical systems. Along the same line, rare-event sampling algorithms are here pushed aside traditional applications by considering fluid-structure interaction in a turbulent flow. }
+{Recently, \ac{gktl} has allowed to successfully perform the numerical simulation of extreme heat waves in a simplified modelling of the atmosphere \cite{ragone_computation_2018}. 
+This achievement represents a significant leap in the applicability of rare-event sampling to complex dynamical systems. Along the same line, rare-event sampling algorithms are here pushed aside traditional applications by considering fluid-structure interaction in a turbulent flow.}
+%
 
+{The first part of this paper presents a study of the extreme fluctuations of the drag force acting on a square in a two dimensional turbulent channel flow.
+  This study is based on the simulation of the flow over a very long duration, made possible by the simplicity of the flow.}
+%
+The motivation for this study is twofold.
+First, we provide a description of the statistics and dynamics related to extreme drag fluctuations.
+To the author's knowledge, such a description does not exist in the literature.
+Second, this study provides reference results that can be used to validate results obtained using
+rare event algorithms.
 
+% Annonce du plan
+Section~\ref{sec:test_flow} introduces the flow set-up and describes the dynamics related to typical
+drag fluctuations.
+The statistical properties of the drag are then discussed.
+In section~\ref{sec:direct_sampling} we discuss the phenomenology of extreme fluctuations of extreme
+drag fluctuations, based on a direct sampling approach.
+Both the instantaneous drag and time-averaged drag are considered.
+We find that sampled extreme events for the instantaneous drag display similar dynamics and we highlight that the phenomenology of extremes for the time-averaged drag can be related to the statistical properties of the instantaneous drag.
+This is supported by the study of extreme events for simple stochastic dynamics.
+Next, section~\ref{sec:rare_events_algorithms} describes the application of both the \ac{ams} and \ac{gktl} algorithms to the numerical simulation of extreme drag fluctuations, using the same flow set-up.
+In section~\ref{sec:ams} we show that the application of the \ac{ams} to such a flow is not straightforward and connect the difficulties to the phenomenology described in the previous sections.
+Section~\ref{sec:gktl} presents the computation of extremes of the time-averaged drag, using the \ac{gktl} algorithm.
+Its application allows an exceptional reduction of the computational cost required to simulate trajectories corresponding to extreme time-averaged drag values.
+Finally, we use the \ac{gktl} algorithm to compute the return times of extreme fluctuations of the
+time-averaged drag acting on the immersed obstacle.
 	
 \section{Description of the numerical case study}
 \label{sec:test_flow}
