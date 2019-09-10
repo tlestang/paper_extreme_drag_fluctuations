@@ -102,12 +102,14 @@
 This study evaluates the relevance of rare-event sampling techniques to accelerate the simulation of extreme mechanical efforts exerted by a turbulent flow impinging onto a bluff body.
 The main idea is to replace a long simulation by a set of much shorter ones, running in parallel, with dynamics that are replicated or pruned in order to sample large-amplitude events more frequently. 
 %
-Such techniques have been shown to be efficient for a wide range of problems in statistical physics, computer science, biochemistry, enabling the simulation of rare  events out of reach by direct sampling.
+Such techniques have been shown to be efficient for a wide range of problems in statistical physics, computer science, biochemistry, enabling the simulation of rare  events otherwise out of reach by direct sampling.
 This work is the first application to fluid-structure interaction problems. 
 %
 The drag experienced by a squared obstacle placed in a turbulent flow (in two dimensions) is taken as a representative case study to investigate the performance of two major rare-event sampling algorithms, namely the \ac{ams} and the \ac{gktl} algorithms.
 Practical evidence is given that the fast sweeping-time of fluid structures past the obstacle has a drastic influence on the efficiency of these two algorithms.
-While it is shown that the \ac{ams} algorithm does not yield significant run-time savings, the \ac{gktl} algorithm appears to be efficient to sample extreme fluctuations of the time-averaged drag and estimate related statistics such as return times.
+While it is shown that the \ac{ams} algorithm does not yield significant run-time savings, the \ac{gktl} algorithm appears to be efficient to sample extreme fluctuations of the time-averaged drag and estimate related statistics such as return times. 
+%
+Beyond the study of applicability of rare-event sampling techniques to a fluid-mechanical problem, this work also includes a detailed phenomenological description of extreme drag events of a turbulent flow on a bluff body. 
 \end{abstract}
 	
 \maketitle
@@ -124,13 +126,13 @@ Such anomalous constraints can threaten the structural integrity of embedded str
 
 From the viewpoint of chaotic dynamical systems, turbulence in fluids is linked to non-linearity and strong departure from statistical equilibrium \cite{KRAICHNAN}.
 The use of perturbative methods in identifying resonant interactions among degrees of freedom responsible for extreme fluctuations is not successful.
-Simulation offers a practical approach to gain physical insight into these events, quantify their intensity and estimate their frequency of occurrence.
+Therefore, simulation offers a practical approach to gain physical insight into these events, quantify their intensity and estimate their frequency of occurrence.
 However, this requires very long simulations since these events are also very rare.
 % general def on rare-event sampling %
 %
-{Rare-event sampling refer to a large body of methods that aim at sampling preferentially regions of phase space that correspond to rare events, that would otherwise be accessed with a very low probability through a brute-force sampling.}
+{Rare-event sampling refer to a large body of methods that aim at exploring preferentially regions of phase space corresponding to rare events, that would otherwise be accessed with a very low probability through a brute-force direct sampling.}
 %
-Our motivation is to conduct the first computational study of extreme mechanical efforts acting on a immersed body, using both very long timeseries and rare event sampling techniques.
+In the present work, a computational study of extreme mechanical efforts acting on an immersed bluff body is conducting by using both very long time-series (direct sampling) and rare-event sampling techniques.
 %	
 	
 % next two paragraphs may be too technical -- Find a way to summarize them in a few sentences accessible to a broad audience in fluid mechanics? Notion of action will be vague for many readers
@@ -138,22 +140,22 @@ Our motivation is to conduct the first computational study of extreme mechanical
 In fluid turbulence, rare-event sampling has been approached mainly from simplified dynamics such as the one-dimensional Burgers' equation with a stochastic forcing \cite{bec_burgers_2007}. In that case, dynamics can be sampled by using a Markov chain Monte-Carlo algorithm \cite{duben_monte_2008,mesterhazy2011anomalous,mesterhazy2013lattice} that provides a framework for rare-event sampling.
 %
 An alternative approach is based on \emph{instantons} \cite{gurarie_instantons_1996,grafke2015instanton} and applies to stochastically driven systems in the limit of weak noise.
-Instantons refer to the most probable trajectories (in phase space) that achieve a given rare event, in the limit of weak noise. Suitable numerical schemes can be used to evaluate instantons as well as the related probabilities of rare events \cite{chernykh_large_2001,grafke_instanton_2013,grigorio_instantons_2017,laurie2015computation,bouchet2014langevin}.
+Instantons refer to the most probable trajectories in phase space that achieve a given rare event (in the limit of weak noise). Suitable numerical schemes can be used to evaluate instantons as well as the related probabilities of rare events \cite{chernykh_large_2001,grafke_instanton_2013,grigorio_instantons_2017,laurie2015computation,bouchet2014langevin}.
 An example is the investigation of the physics of rogue waves~\cite{dematteis2018rogue,dematteis2019experimental}.
 %
 A drawback of the aforementioned approaches is their limitation to simple and stochastically driven dynamics.
 %
 
 %
-In this paper, a more general approach is considered. It is based on sampling algorithms relying on \emph{selection rules} applied to an ensemble of trajectories, and designed to sample rare events of some observable with a higher frequency. It is suited for any Markov dynamics, for example stochastic ones including diffusions or stochastic differential equations, but also potentially for chaotic deterministic dynamical systems, for example turbulent flow equations as studied in this work.
+In this paper, a more general approach is considered for complex, possibly deterministic dynamical systems.
+It is based on sampling algorithms relying on \emph{selection rules} applied to an ensemble of trajectories, and designed to sample rare events of some observable with a higher frequency.
 %    
 %
 Even though such ideas date back to the early 1950's, they have received ever-growing interest during the last 20 years with successful applications in various domains such as chemistry \cite{van_erp_elaborating_2005,escobedo_transition_2009,teo_adaptive_2016}, biophysics \cite{huber_weighted-ensemble_1996,zuckerman2017weighted,bolhuis2005kinetic}, nuclear physics \cite{louvin2017}, nonlinear dynamical systems \cite{tailleur_probing_2007} or communication networks simulation \cite{villen-altamirano_restart:_1994}.
-More importantly, these types of algorithms have been shown to be useful for the study of rare events in simple deterministic dynamics~\cite{wouters2016rare}.
+More importantly, these type of algorithms have been shown to be useful for the study of rare events in simple deterministic dynamics~\cite{wouters2016rare}.
 %
-
 %
-An original contribution of the present study is certainly the application of rare-event sampling algorithms in the context of far-from-equilibrium dynamics with an irreducible very large number of degrees of freedom. 
+An original contribution of the present work is certainly the application of rare-event sampling algorithms in the context of far-from-equilibrium dynamics with an irreducible very large number of degrees of freedom. 
 %Let us remark that most of previous successful applications involve dynamical systems with low-dimensional attractors. \EL{is it TRUE? \#11}
 % 
 Two different algorithms suitable for out-of-equilibrium dynamics are considered and compared. Namely, the Adaptive Multilevel Splitting algorithm and the Giardina-Kurchan-Tailleur-Lecomte algorithm.
@@ -166,34 +168,31 @@ During the last decade, the main theoretical framework for the study of rare eve
 Alongside, numerical methods have been developed to sample rare events \cite{moral_feynman-kac_2004}. 
 Among them, the \ac{gktl} algorithm \cite{giardina_direct_2006} is particularly suited for (chaotic) dynamical systems \cite{giardina_simulating_2011,Laffargue_2013}.
 %
-{Recently, the \ac{gktl} algorithm has allowed to successfully perform the numerical simulation of extreme heat waves in a simplified modelling of the atmosphere \cite{ragone_computation_2018}.
+{Recently, \ac{gktl} has allowed to successfully perform the numerical simulation of extreme heat waves in a simplified modelling of the atmosphere \cite{ragone_computation_2018}. 
 This achievement represents a significant leap in the applicability of rare-event sampling to complex dynamical systems. Along the same line, rare-event sampling algorithms are here pushed aside traditional applications by considering fluid-structure interaction in a turbulent flow.}
 %
 
-{The first part of this paper presents a study of the extreme fluctuations of the drag force acting on a square in a two dimensional turbulent channel flow.
-  This study is based on the simulation of the flow over a very long duration, made possible by the simplicity of the flow.}
+{The paper is organized in two parts. The first part highlights the phenomenology of extreme fluctuations of the drag force acting on a square placed in a two-dimensional turbulent channel flow. This study is based on the simulation of the flow over a very long duration, made possible by the relative simplicity of the flow.}
 %
-The motivation for this study is twofold.
-First, we provide a description of the statistics and dynamics related to extreme drag fluctuations.
-To the author's knowledge, such a description does not exist in the literature.
-Second, this study provides reference results that can be used to validate results obtained using
-rare event algorithms.
+The motivation is twofold.
+Firstly, it provides a detailed description of the statistics and dynamics related to extreme drag fluctuations. This analysis is informative from the  viewpoint of fluid mechanics and, to the best of our knowledge, has never been reported before.
+Secondly, it yields reference results that are required to validate the outputs of rare-event algorithms and to evaluate the possible gain obtained from them. This assessment is developed in the second part of the paper.
 
 % Annonce du plan
-Section~\ref{sec:test_flow} introduces the flow set-up and describes the dynamics related to typical
-drag fluctuations.
+In next section~\ref{sec:test_flow}, the flow set-up is introduced and the dynamics related to typical
+drag fluctuations is described.
 The statistical properties of the drag are then discussed.
-In section~\ref{sec:direct_sampling} we discuss the phenomenology of extreme fluctuations of extreme
-drag fluctuations, based on a direct sampling approach.
+In section~\ref{sec:direct_sampling}, the phenomenology of extreme fluctuations of extreme
+drag fluctuations is investigated based on a direct sampling approach.
 Both the instantaneous drag and time-averaged drag are considered.
-We find that sampled extreme events for the instantaneous drag display similar dynamics and we highlight that the phenomenology of extremes for the time-averaged drag can be related to the statistical properties of the instantaneous drag.
-This is supported by the study of extreme events for simple stochastic dynamics.
-Next, section~\ref{sec:rare_events_algorithms} describes the application of both the \ac{ams} and \ac{gktl} algorithms to the numerical simulation of extreme drag fluctuations, using the same flow set-up.
-In section~\ref{sec:ams} we show that the application of the \ac{ams} to such a flow is not straightforward and connect the difficulties to the phenomenology described in the previous sections.
+It is found that sampled extreme events for the instantaneous drag share very similar dynamics. Furthermore, extreme fluctuations for the time-averaged drag can be connected to the statistics of the instantaneous drag.
+This feature is well supported by theoretical arguments applied to simplified stochastic dynamics.
+Next, section~\ref{sec:rare_events_algorithms} reports the applicability of both the \ac{ams} and \ac{gktl} algorithms to the numerical simulation of extreme drag fluctuations, by using the same flow configuration.
+In section~\ref{sec:ams}, we show that the use of the \ac{ams} algorithm is not successful, or at least not straightforward. This difficulty is put in perspective with the phenomenology developed in the previous sections.
 Section~\ref{sec:gktl} presents the computation of extremes of the time-averaged drag, using the \ac{gktl} algorithm.
-Its application allows an exceptional reduction of the computational cost required to simulate trajectories corresponding to extreme time-averaged drag values.
-Finally, we use the \ac{gktl} algorithm to compute the return times of extreme fluctuations of the
-time-averaged drag acting on the immersed obstacle.
+This latter allows an exceptional reduction of the computational cost required to simulate trajectories corresponding to extreme time-averaged drag values.
+As a specific application, the \ac{gktl} algorithm is used to compute the return times of extreme fluctuations of the time-averaged drag acting on the immersed obstacle.
+Perspectives and conclusion finalize this work.
 	
 \section{Description of the numerical case study}
 \label{sec:test_flow}
@@ -230,8 +229,8 @@ The dimension of the grid is such that the size of the eddies that hit the squar
 The flow dynamics is integrated by the lattice Boltzmann (LB) method in our numerical simulations. 
 While traditional methods in \emph{computational fluid dynamics} rely on a discretization of the Navier-Stokes equations, the LB method considers the fluid at a mesoscopic level. Capturing the dynamics of collections of fluid particles distributed on a lattice is here preferred to solving non-linear PDEs. 
 %This seems crazy, however, most details at the mesoscopic level play actually no role at the macroscopic level. Therefore, the LB algorithm may be viewed as a minimal kinetic scheme compliant to the fluid dynamics at the macroscopic level.
-Further details are given in Appendix and references therein.
-In our context, the LB method has been chosen principally for its computational manageability and efficiency. 
+Further details about the LB method are given in Appendix and references therein.
+In our context, this numerical method has been chosen principally for its computational manageability and efficiency. 
 
 
 % geometry
@@ -242,8 +241,8 @@ The simulated flow develops in a long plane channel of dimension $513 \times 129
 No-slip boundary conditions are enforced on top and bottom walls of the channel and on the surface of the obstacle by using an halfway bounce-back procedure \cite{lbm_book}.  
 %
 Upstream the grid, a constant parabolic velocity profile and a constant mass density (equal to unity) are imposed as inlet condition. 
-The centerline velocity is $0.05$ in lattice units, \textit{i.e.} normalised by $\Delta x/\Delta t$ with $\Delta x$ and $\Delta t$ referring to the lattice resolution and the time-step respectively. The initial distributions are imposed at equilibrium (see Appendix). 
-In the bulk, the viscosity is adjusted to generate grid turbulence with Reynolds number $\mathrm{Re_{grid}}=1200$. The reference Mach number is equal to $0.06$ in agreement with the assumption of weak compressibility of the LB method. 
+The centerline velocity is $0.05$ in lattice units, \textit{i.e.} normalised by $\Delta x$ and $\Delta t$ referring to the lattice resolution and the time-step respectively. The initial distributions are imposed at equilibrium (see Appendix). 
+In the bulk, the viscosity is adjusted so that grid turbulence is generated with Reynolds number $\mathrm{Re_{grid}}=1200$. The reference Mach number is equal to $0.06$ in agreement with the assumption of weak compressibility of the LB method. 
 Near the end of the channel, the flow is progressively damped within a \textit{sponge layer} where the viscosity is artificially enhanced. Finally, the outlet boundary condition relies on a second-order extrapolation of the velocity and mass density. The extrapolated distributions are evaluated through a regularization procedure relying on a finite difference estimation of the local stress tensor, as introduced in \cite{latt2008straight}. 
 
 	
@@ -279,8 +278,10 @@ As a consequence, the drag can eventually be expressed as the difference
 f_d(t) = p_{fb}(t) - p_{base}(t)
 \end{equation}
 between the pressure integrated over the forebody, $p_{fb}(t)$, and the base of the obstacle, $p_{base}(t)$.
-Pressure fluctuations are related to the dynamics of the vorticity field, as regions of strong vorticity correspond to strong local pressure gradients.
-Indeed, considering a disc of constant vorticity $\omega$ with radius $a$ (Rankine vortex model), the local pressure gradient between the vortex core and a point infinitely far grows quadratically with the vorticity.
+Pressure fluctuations are related to the dynamics of the vorticity field with regions of strong vorticity corresponding to strong local pressure gradients, \emph{e.g.} as demonstrated analytically with a Rankine vortex.
+%
+% Considering a disc of constant vorticity $\omega$ with radius $a$ (Rankine vortex model), the local pressure gradient between the vortex core and a point infinitely far grows quadratically with the vorticity.
+%
 
 % Definition of turnover time
 %
@@ -338,7 +339,7 @@ In that case, the \ac{pdf} is quasi-symmetric and does not display exponential t
     {\label{fig:pdf_drag_b}
     	\includegraphics[width=.45\linewidth]{./autocorr_drag/autocorr_drag.png}}  
       \caption{\textbf{(a)} \ac{pdf} of (zero-mean) drag fluctuations $\tilde f_d \equiv f_d - \bar{f_d}$ where $\bar{f_d}$ denotes the time-averaged value. The drag is evaluated both in the presence (red) and in the absence (blue) of the obstacle. %Note that the amplitudes have not been normalized.
-  \textbf{(b)} Autocorrelation function of the drag defined as $C(\tau) = \overline{ \tilde f_d(t+\tau)\tilde f_d(t)} ~/~ \overline{{\tilde f_d}^2}$. The correlation time $\tau_c\simeq 4 \tau_0$ is defined by the condition $C(\tau_c)=0$.
+  \textbf{(b)} Autocorrelation function of the drag defined as $C(\tau) = \overline{ \tilde f_d(t+\tau)\tilde f_d(t)} ~/~ \overline{{\tilde f_d}^2}$. The correlation time $\tau_c\simeq 4 \tau_0$ is defined by $C(\tau_c)=0$.
   %$\tau_c$ may therefore be considered as the correlation time of the drag signal.
 }
   \label{fig:pdf_drag}
@@ -346,9 +347,9 @@ In that case, the \ac{pdf} is quasi-symmetric and does not display exponential t
 
 % drag statistics
 % correlation time
-Lastly, the autocorrelation function of the drag $C(\tau)$ is shown in Fig.~\ref{fig:pdf_drag_b}. It is found that drag fluctuations are correlated over a time interval $\tau_c \simeq 4\tau_0$. One can argue that the drag looses its memory  over a time scale corresponding to the sweeping of a few eddies past the obstacle.
+Lastly, the autocorrelation function of the drag $C(\tau)$ is shown in Fig.~\ref{fig:pdf_drag_b}. It is found that drag fluctuations are correlated over a time interval $\tau_c \simeq 4\tau_0$. One can then argue that the drag looses its memory  over a time scale corresponding to the sweeping of a few eddies past the obstacle.
 %
-This observation is important for the application of rare-event algorithms as will be discussed in section~\ref{sec:rare_events_algorithms}.
+This observation is important for the application of rare-event algorithms as it  will be discussed in section~\ref{sec:rare_events_algorithms}.
 %
 In the following, $\tau_c$ will be referred to as the \textit{correlation time} of the drag. The ratio $\tau_0 / \tau_c$ may be viewed as a {Strouhal number}. The value $St=0.25$ is consistent with common observations for flows past blunt structures at comparable Reynolds numbers.
 
@@ -377,17 +378,21 @@ The phenomenology of extreme fluctuations of the drag is first investigated thro
 Direct sampling is here used as opposed to approaches involving rare-events algorithms discussed in section~\ref{sec:rare_events_algorithms}.
 It will provide a trustworthy baseline for the validation of rare-events algorithms. 
 
-The waiting times $\tau$ are defined as the time between two consecutive occurrences of peak fluctuations with amplitude $f_d \geq a$, as illustrated in Fig.~\ref{fig:illustrate_return_time}.  The mixing time $\tau_m$ is the time needed for the dynamics to loose the memory of its initial conditions. As soon as the typical waiting times are much larger than the mixing time $\tau_m$, the occurrences of such events follow a Poisson process and the distribution of the waiting times is exponential: $P(\tau)=\lambda(a)\exp(-\lambda(a)\tau)$, where $r(a)=1/\lambda(a)$ is the average waiting time \cite{lestang_computing_2018}. $r(a)$ is called the {\it return time} of the level $a$. For systems without multistability, it is often the case that the mixing time $\tau_m$ is of the order of the correlation time $\tau_c$.
+The waiting times $\tau$ are defined as the time between two consecutive occurrences of peak fluctuations with amplitude $f_d \geq a$, as illustrated in Fig.~\ref{fig:illustrate_return_time}.  The mixing time $\tau_m$ is the time needed for the dynamics to loose the memory of its initial conditions. As soon as the typical waiting times are much larger than the mixing time $\tau_m$, the occurrences of such events follow a Poisson process and the distribution of the waiting times is exponential, \emph{i.e.} $P(\tau)=\lambda(a)\exp(-\lambda(a)\tau)$ where $r(a)=1/\lambda(a)$ is the averaged waiting time \cite{lestang_computing_2018}; $r(a)$ is called the {\it return time} of the level $a$. For systems without multi-stability, it is common for the mixing time $\tau_m$ to be of the order of the correlation time $\tau_c$.
 
 How rare is a fluctuation $a$ is quantified by its return time $r(a)$. We can define extreme drag fluctuations as \textit{rare events} in the sense that the return time is much larger than the correlation time, \emph{i.e.} $r(a) \gg \tau_c$.
-
-The shape of the return time $r$ as a function of the return level $a$ is system dependent. It is often the case that  $r(a) = t(a)/\mathbb{P}(f_d\geq a)$, where the level dependent time scale $t(a)$, expected to be of order $\tau_c$, changes much more slowly with $a$ that the PDF ${\mathbb{P}(f_d\geq a)}$, for large values of $a$. As the PDF ${\mathbb{P}(f_d\geq a)}$ was shown to be well approximated by an exponential (see figure Fig.~\ref{fig:pdf_drag}), we might expect that 
+%
+%
+%The shape of the return time $r$ as a function of the return level $a$ is system dependent. 
+If one assumes that  $r(a) = t(a)~/~\mathbb{P}(f_d\geq a)$   where the time scale $t(a)$ is of order $\tau_c$ and varies much more slowly with $a$ than ${\mathbb{P}(f_d\geq a)}$,
+% As the PDF ${\mathbb{P}(f_d\geq a)}$ was shown to be well approximated by an exponential (see figure Fig.~\ref{fig:pdf_drag})
+one might expect that 
 \begin{equation}
  \label{eq:return_time}
 r(a) \underset{a\to\infty}{\propto} \exp(-la)
 \end{equation}
 where $l$ is the rate describing the positive tail of the \ac{pdf} of the drag (shown in Fig.~\ref{fig:pdf_drag}).
-Fig.~\ref{fig:return_time_instant} shows the evolution of the return time $r(a)$ with the amplitude of fluctuation $a$, computed from {direct sampling} of the drag signal $f_d(t)$ \cite{lestang_computing_2018}. It is consistently found that the return time $r(a)$ is well approximated by an exponential for large levels $a$. Let us also point out some deviation from the exponential law at the largest levels, that are probably the consequence of undersampling.
+Fig.~\ref{fig:return_time_instant} shows the evolution of the return time $r(a)$ with the amplitude of fluctuation $a$, computed from {direct sampling} of the drag signal $f_d(t)$ \cite{lestang_computing_2018}. It is consistently found that the return time $r(a)$ is well approximated by an exponential for large levels $a$. Let us also point out some deviation from the exponential law at the largest levels, which are probably the consequence of undersampling.
 
 % typically for $a \gtrsim 8 \sigma$ with $\sigma$ being the standard deviation. 
 
