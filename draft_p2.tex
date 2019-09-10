@@ -145,12 +145,11 @@ A drawback of the aforementioned approaches is their limitation to simple and st
 %
 
 %
-In this paper, a more general approach is considered for complex, potentially deterministic dynamical systems.
-It is based on sampling algorithms relying on \emph{selection rules} applied to an ensemble of trajectories, and designed to sample rare events of some observable with a higher frequency.
+In this paper, a more general approach is considered. It is based on sampling algorithms relying on \emph{selection rules} applied to an ensemble of trajectories, and designed to sample rare events of some observable with a higher frequency. It is suited for any Markov dynamics, for example stochastic ones including diffusions or stochastic differential equations, but also potentially for chaotic deterministic dynamical systems, for example turbulent flow equations as studied in this work.
 %    
 %
 Even though such ideas date back to the early 1950's, they have received ever-growing interest during the last 20 years with successful applications in various domains such as chemistry \cite{van_erp_elaborating_2005,escobedo_transition_2009,teo_adaptive_2016}, biophysics \cite{huber_weighted-ensemble_1996,zuckerman2017weighted,bolhuis2005kinetic}, nuclear physics \cite{louvin2017}, nonlinear dynamical systems \cite{tailleur_probing_2007} or communication networks simulation \cite{villen-altamirano_restart:_1994}.
-More importantly, these type of algorithms have been shown to be useful for the study of rare events in simple deterministic dynamics~\cite{wouters2016rare}.
+More importantly, these types of algorithms have been shown to be useful for the study of rare events in simple deterministic dynamics~\cite{wouters2016rare}.
 %
 
 %
@@ -167,7 +166,7 @@ During the last decade, the main theoretical framework for the study of rare eve
 Alongside, numerical methods have been developed to sample rare events \cite{moral_feynman-kac_2004}. 
 Among them, the \ac{gktl} algorithm \cite{giardina_direct_2006} is particularly suited for (chaotic) dynamical systems \cite{giardina_simulating_2011,Laffargue_2013}.
 %
-{Recently, \ac{gktl} has allowed to successfully perform the numerical simulation of extreme heat waves in a simplified modelling of the atmosphere \cite{ragone_computation_2018}. 
+{Recently, the \ac{gktl} algorithm has allowed to successfully perform the numerical simulation of extreme heat waves in a simplified modelling of the atmosphere \cite{ragone_computation_2018}.
 This achievement represents a significant leap in the applicability of rare-event sampling to complex dynamical systems. Along the same line, rare-event sampling algorithms are here pushed aside traditional applications by considering fluid-structure interaction in a turbulent flow.}
 %
 
