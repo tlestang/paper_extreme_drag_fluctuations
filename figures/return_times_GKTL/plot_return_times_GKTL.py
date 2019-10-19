@@ -14,7 +14,7 @@ def get_interpolated_return_times(directories, Ta, T, k, N, nb_points=10):
         a, ra = rtt.compute_return_times_no_dups(dirname, Ta,
                                                  T, k, N)
         rmax[i] = np.amax(ra); rmin[i] = np.amin(ra)
-        interpolants.append(interpolate.interp1d(ra, a, kind='next', fill_value='extrapolate'))
+        interpolants.append(interpolate.interp1d(ra, a, kind='slinear', bounds_error=False))
     ra_interp = np.logspace(np.log(np.amin(rmin))/np.log(10),
                             np.log(np.amax(rmax))/np.log(10), nb_points)
     
