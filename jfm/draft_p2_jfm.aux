@@ -1,0 +1,370 @@
+\relax 
+\providecommand\zref@newlabel[2]{}
+\providecommand \acro@used@once [4]{}
+\providecommand \acro@used@twice [4]{}
+\providecommand \acro@pages [2]{}
+\providecommand \acro@rerun@check {}
+\providecommand \acro@print@list {}
+\providecommand \acro@barriers [2]{}
+\citation{lesieur_book}
+\citation{donzis_sreenivasan_2010}
+\citation{Yeung}
+\citation{KRAICHNAN}
+\babel@aux{english}{}
+\acro@used@once {ams}{1}{1}{0}
+\acro@used@once {gktl}{1}{1}{0}
+\acro@used@twice {ams}{1}{1}{0}
+\acro@used@twice {gktl}{1}{1}{0}
+\@writefile{toc}{\contentsline {section}{\numberline {1.}Introduction}{1}\protected@file@percent }
+\citation{bec_burgers_2007}
+\citation{duben_monte_2008}
+\citation{mesterhazy2011anomalous}
+\citation{mesterhazy2013lattice}
+\citation{gurarie_instantons_1996}
+\citation{grafke2015instanton}
+\citation{chernykh_large_2001}
+\citation{grafke_instanton_2013}
+\citation{grigorio_instantons_2017}
+\citation{laurie2015computation}
+\citation{bouchet2014langevin}
+\citation{dematteis2018rogue}
+\citation{dematteis2019experimental}
+\citation{van_erp_elaborating_2005}
+\citation{escobedo_transition_2009}
+\citation{teo_adaptive_2016}
+\citation{huber_weighted-ensemble_1996}
+\citation{zuckerman2017weighted}
+\citation{bolhuis2005kinetic}
+\citation{louvin2017}
+\citation{tailleur_probing_2007}
+\citation{villen-altamirano_restart:_1994}
+\citation{wouters2016rare}
+\citation{cerou_adaptive_2007}
+\citation{KahnHarris1951}
+\citation{glasserman_look_1998}
+\citation{glasserman_multilevel_1999}
+\citation{aristoff_adaptive_2015}
+\citation{teo_adaptive_2016}
+\citation{rolland_computing_2016}
+\citation{rolland_extremely_2018}
+\citation{bouchet2019rare}
+\citation{touchette_large_2009}
+\citation{moral_feynman-kac_2004}
+\citation{giardina_direct_2006}
+\citation{giardina_simulating_2011}
+\citation{Laffargue_2013}
+\citation{ragone_computation_2018}
+\acro@used@twice {ams}{2}{2}{1}
+\acro@used@twice {ams}{2}{2}{1}
+\acro@used@twice {gktl}{2}{2}{1}
+\acro@used@twice {gktl}{2}{2}{1}
+\acro@used@twice {ams}{3}{3}{2}
+\acro@used@twice {gktl}{3}{3}{2}
+\acro@used@twice {ams}{3}{3}{2}
+\acro@used@twice {gktl}{3}{3}{2}
+\acro@used@twice {gktl}{3}{3}{2}
+\@writefile{toc}{\contentsline {section}{\numberline {2.}Description of the numerical case study}{3}\protected@file@percent }
+\newlabel{sec:test_flow}{{2}{3}}
+\citation{lbm_book}
+\citation{latt2008straight}
+\@writefile{lof}{\contentsline {figure}{\numberline {1}{\ignorespaces Our case study is a grid-generated turbulent flow impinging onto a fixed squared obstacle (of size $R$) located at the centre of a channel in two dimensions. The flow is artificially damped near the end of the channel. In the developed flow, turbulent eddies have typically the size of the square, which results in strong fluctuations of mechanical efforts acting on the square. The vorticity is displayed with an arbitrary colour map from blue (negative values) to red (positive values).\relax }}{4}\protected@file@percent }
+\providecommand*\caption@xref[2]{\@setref\relax\@undefined{#1}}
+\newlabel{fig:illustr_ecoulement}{{1}{4}}
+\acro@used@once {lbm}{3}{3}{2}
+\acro@used@twice {lbm}{3}{3}{2}
+\acro@used@twice {lbm}{3}{3}{2}
+\acro@used@twice {lbm}{4}{4}{3}
+\@writefile{lof}{\contentsline {figure}{\numberline {2}{\ignorespaces Snapshots of the vorticity related to typical drag fluctuations (within one standard deviation) over a time interval of length $\tau _c \simeq 4\tau _0$; $\tau _c$ will later be identified as the correlation time of the drag signal. The vorticity is given in lattice units.\relax }}{5}\protected@file@percent }
+\newlabel{fig:typical_vorticity}{{2}{5}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.1.}The drag force}{5}\protected@file@percent }
+\newlabel{sec:drag_force}{{2.1}{5}}
+\newlabel{eq:drag_definition}{{2.1}{5}}
+\newlabel{eq:drag_approx}{{2.2}{5}}
+\newlabel{eq:turnover_time}{{2.3}{5}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.2.}The drag as a random process }{5}\protected@file@percent }
+\newlabel{sec:pdfs}{{2.2}{5}}
+\@writefile{lof}{\contentsline {figure}{\numberline {3}{\ignorespaces Temporal evolution of the drag (in lattice units) acting on the square under the action of the impinging turbulent flow. The time is normalised by the turnover time related the mean-flow velocity and the size of the obstacle, \emph  {i.e.} $\tau _0=R/U$.\relax }}{6}\protected@file@percent }
+\newlabel{fig:typical_drag_signal}{{3}{6}}
+\newlabel{fig:pdf_drag_a}{{4a}{6}}
+\newlabel{sub@fig:pdf_drag_a}{{(a)}{a}}
+\acro@used@twice {pdf}{5}{5}{4}
+\newlabel{fig:pdf_drag_b}{{4b}{6}}
+\newlabel{sub@fig:pdf_drag_b}{{(b)}{b}}
+\@writefile{lof}{\contentsline {figure}{\numberline {4}{\ignorespaces \textbf  {(a)} \ac {pdf} of (zero-mean) drag fluctuations $\mathaccentV {tilde}07Ef_d \equiv f_d - \mathaccentV {bar}016{f_d}$ where $\mathaccentV {bar}016{f_d}$ denotes the time-averaged value. The drag is evaluated both in the presence (red) and in the absence (blue) of the obstacle. \textbf  {(b)} Autocorrelation function of the drag defined as $C(\tau ) = \overline  { \mathaccentV {tilde}07Ef_d(t+\tau )\mathaccentV {tilde}07Ef_d(t)} ~/~ \overline  {{\mathaccentV {tilde}07Ef_d}^2}$. The correlation time $\tau _c\simeq 4 \tau _0$ is defined by $C(\tau _c)=0$. \relax }}{6}\protected@file@percent }
+\acro@used@twice {pdf}{5}{5}{4}
+\newlabel{fig:pdf_drag}{{4}{6}}
+\@writefile{lof}{\contentsline {subfigure}{\numberline{(a)}{\ignorespaces {\ac {pdf} of (zero-mean) drag fluctuations}}}{6}\protected@file@percent }
+\@writefile{lof}{\contentsline {subfigure}{\numberline{(b)}{\ignorespaces {Autocorrelation of drag fluctuations}}}{6}\protected@file@percent }
+\acro@used@once {pdf}{5}{5}{4}
+\acro@used@twice {pdf}{5}{5}{4}
+\acro@used@twice {pdf}{5}{5}{4}
+\acro@used@twice {pdf}{5}{5}{4}
+\citation{lestang_computing_2018}
+\citation{lestang_computing_2018}
+\@writefile{lof}{\contentsline {figure}{\numberline {5}{\ignorespaces  {The \textit  {return time} $r(a)$ is the averaged waiting time between the occurrence of peak fluctuations of amplitude larger than $a$. One observes that $r(a) >> \tau _c$ (correlation time) if $a$ is sufficiently large. The selected peak fluctuations are therefore well separated.} \relax }}{7}\protected@file@percent }
+\newlabel{fig:illustrate_return_time}{{5}{7}}
+\@writefile{lof}{\contentsline {figure}{\numberline {6}{\ignorespaces Amplitude of drag fluctuations as a function the corresponding return time. $\mathaccentV {tilde}07E{f}_d$ denotes the drag with zero mean, \textit  {i.e.} $\mathaccentV {tilde}07E{f}_d = f_d - \overline  {f_d}$. \relax }}{7}\protected@file@percent }
+\newlabel{fig:return_time_instant}{{6}{7}}
+\@writefile{toc}{\contentsline {section}{\numberline {3.}Extreme fluctuations of the drag by means of direct sampling}{7}\protected@file@percent }
+\newlabel{sec:direct_sampling}{{3}{7}}
+\newlabel{eq:return_time}{{3.1}{7}}
+\@writefile{lof}{\contentsline {figure}{\numberline {7}{\ignorespaces  Relative contributions of the forebody and base pressure variations to extreme amplitudes of the drag. An extreme event corresponds to an amplitude $\mathaccentV {tilde}07Ef^{\star }_d$ and a unique pair ($\mathaccentV {tilde}07E{p}^{\star }_{base}$,~$\mathaccentV {tilde}07E{p}^{\star }_{fb}$). As the amplitude of the drag increases, the relative variation of the base pressure also increases. \relax }}{8}\protected@file@percent }
+\newlabel{fig:pressure_ratio}{{7}{8}}
+\acro@used@twice {pdf}{7}{7}{6}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.1.}Extracting extreme drag fluctuations from a very long timeseries}{8}\protected@file@percent }
+\newlabel{sec:extreme_extraction}{{3.1}{8}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.2.}Instantaneous drag}{8}\protected@file@percent }
+\newlabel{sec:instantaneous_drag}{{3.2}{8}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.2.1.}Contribution of forebody and base pressure fluctuations to the overall drag fluctuation}{8}\protected@file@percent }
+\newlabel{sec:forebody_and_base_contribution}{{3.2.1}{8}}
+\@writefile{lof}{\contentsline {figure}{\numberline {8}{\ignorespaces  Ensemble average of drag signals centred around extreme fluctuations occurring at $t=t^{\star }$. The blue line shows the mean profile whereas the shaded area indicates variations (around the mean profile) within one standard deviation. Extreme-drag events exhibit a typical lifetime of one correlation time $\tau _c$. The profile is slightly skewed indicating that the step up is slower than the return to typical values.\relax }}{9}\protected@file@percent }
+\newlabel{fig:timeseries_extremes}{{8}{9}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.2.2.}Fluid dynamics related to extreme drag fluctuations}{9}\protected@file@percent }
+\newlabel{sec:dynamical_aspects}{{3.2.2}{9}}
+\@writefile{lof}{\contentsline {figure}{\numberline {9}{\ignorespaces  Vorticity field (in lattice units) around the obstacle at $t=t^{\star }$ for the highest drag amplitudes recorded in the control run. \relax }}{10}\protected@file@percent }
+\newlabel{fig:top_4_events_vorticity}{{9}{10}}
+\@writefile{lof}{\contentsline {figure}{\numberline {10}{\ignorespaces  Pressure field (in lattice units) and velocity streamlines at $t=t^{\star }$. In the near wake of the square, a (blocking) vortex blocks an intense vortex against the base of the obstacle.\relax }}{10}\protected@file@percent }
+\newlabel{fig:density+streamlines}{{10}{10}}
+\@writefile{lof}{\contentsline {figure}{\numberline {11}{\ignorespaces  Snapshots of the vorticity field (in lattice units) around $t=t^{\star }$.\relax }}{10}\protected@file@percent }
+\newlabel{fig:vorticity_dynamics}{{11}{10}}
+\@writefile{lof}{\contentsline {figure}{\numberline {12}{\ignorespaces  Evolution of the (integrated) shear along the top or bottom sides of the obstacle as a function of the drag for $t^{\star }-2\tau _c \leq t \leq t^{\star }-2\tau _c$. Each trajectory corresponds to a single event. The blue line is the mean path averaged over the set of extreme events sampled in the control run.\relax }}{11}\protected@file@percent }
+\newlabel{fig:shear_asof_drag}{{12}{11}}
+\newlabel{eq:avg_shear_def}{{3.3}{11}}
+\@writefile{lof}{\contentsline {figure}{\numberline {13}{\ignorespaces Instantaneous drag signals $f_d(t)$ corresponding to the highest fluctuations of the averaged drag $F_T$ with a time window $T = 10 \tau _c$; $\sigma $ and $\sigma _T$ denote the standard deviations of the instantaneous and averaged drag, respectively.\relax }}{12}\protected@file@percent }
+\newlabel{fig:extreme_avg}{{13}{12}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.3.}Extreme fluctuations of the time-averaged drag }{12}\protected@file@percent }
+\newlabel{sec:time_avg}{{3.3}{12}}
+\newlabel{eq:def_time_averaged_drag}{{3.4}{12}}
+\acro@used@twice {pdf}{12}{12}{11}
+\acro@used@twice {pdf}{12}{12}{11}
+\newlabel{eq:indep}{{3.5}{12}}
+\citation{lestang2019JSTAT}
+\citation{cerou_adaptive_2007}
+\citation{KahnHarris1951}
+\citation{glasserman_multilevel_1999}
+\citation{rolland_statistical_2015}
+\citation{cerou2019adaptive}
+\citation{bouchet2019rare}
+\citation{rolland_extremely_2018}
+\citation{lestang_computing_2018}
+\citation{lestang_computing_2018}
+\citation{lestang_computing_2018}
+\newlabel{eq:ratio_exp}{{3.6}{13}}
+\@writefile{toc}{\contentsline {section}{\numberline {4.}Rare-event algorithms}{13}\protected@file@percent }
+\newlabel{sec:rare_events_algorithms}{{4}{13}}
+\acro@used@twice {ams}{13}{13}{12}
+\acro@used@twice {ams}{13}{13}{12}
+\acro@used@twice {gktl}{13}{13}{12}
+\acro@used@twice {gktl}{13}{13}{12}
+\acro@used@twice {ams}{13}{13}{12}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.1.}Extreme instantaneous drag forces with the \acl {ams} algorithm}{13}\protected@file@percent }
+\newlabel{sec:ams}{{4.1}{13}}
+\acro@used@twice {ams}{13}{13}{12}
+\acro@used@twice {ams}{13}{13}{12}
+\acro@used@twice {ams}{13}{13}{12}
+\acro@used@twice {ams}{13}{13}{12}
+\acro@used@twice {ams}{13}{13}{12}
+\acro@used@twice {ams}{13}{13}{12}
+\acro@used@once {ou}{13}{13}{12}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {4.1.1.}Illustration of the \ac {ams} on a simple case: the \acl {ou} process}{13}\protected@file@percent }
+\newlabel{sec:ams_ou}{{4.1.1}{13}}
+\acro@used@twice {ou}{13}{13}{12}
+\newlabel{eq:ou}{{4.1}{13}}
+\@writefile{lof}{\contentsline {figure}{\numberline {14}{\ignorespaces  Selection-mutation procedure of the \ac {ams} algorithm with $N=3$. Lines 1, 2 and 3 represent the evolution of the score function for the current ensemble of trajectories. On the basis of their respective maximum: $Q_1$, $Q_2$ and $Q_3$, the trajectory with the lowest maximum is discarded in the ensemble (dashed line). Among the two remaining trajectories, trajectory 3 is chosen randomly and copied until it reaches the value $Q_1$. It is then simulated from the branching point to the final time $T_a$. In case of deterministic dynamics, a small perturbation is introduced at the branching to separate the trajectories. Depending on the application, this re-sampling procedure can iterated $J$ times or until all trajectories do exceed a fixed threshold $Q$.\relax }}{14}\protected@file@percent }
+\newlabel{fig:illustr_AMS}{{14}{14}}
+\acro@used@twice {ams}{13}{13}{12}
+\@writefile{lof}{\contentsline {figure}{\numberline {15}{\ignorespaces Efficiency of the \ac {tams} algorithm with respect to direct sampling in the case of an Ornstein-Uhlenbeck process \citep  {lestang_computing_2018}. The red line represents the evolution of the maximum obtained from re-sampled trajectories as a function of the computational cost $C_{TAMS}$. The blue line is the analytical solution for the return time of amplitude $a$.\relax }}{14}\protected@file@percent }
+\acro@used@twice {tams}{13}{13}{12}
+\newlabel{fig:comparaison_temps_de_retour}{{15}{14}}
+\citation{wouters2016rare}
+\@writefile{lof}{\contentsline {figure}{\numberline {16}{\ignorespaces  Maximum of the instantaneous drag throughout the re-sampled trajectories as a function of the corresponding computational cost $C_{TAMS}$. The \ac {ams} is unable to efficiently sample rare trajectories associated to drag fluctuations higher than the largest fluctuation already captured in the initial ensemble.\relax }}{15}\protected@file@percent }
+\newlabel{fig:AMS_drag_resampling}{{16}{15}}
+\acro@used@twice {ams}{15}{15}{14}
+\acro@used@twice {ams}{15}{15}{14}
+\acro@used@twice {ams}{15}{15}{14}
+\acro@used@twice {ams}{15}{15}{14}
+\acro@used@twice {ou}{15}{15}{14}
+\acro@used@twice {ams}{15}{15}{14}
+\acro@used@twice {ams}{15}{15}{14}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {4.1.2.}The \ac {ams} for extreme drag fluctuations}{15}\protected@file@percent }
+\newlabel{sec:ams_drag}{{4.1.2}{15}}
+\acro@used@twice {ams}{15}{15}{14}
+\acro@used@twice {ou}{15}{15}{14}
+\@writefile{lof}{\contentsline {figure}{\numberline {17}{\ignorespaces  Ensemble of $N = 32$ trajectories after $181$ iterations of the selection-mutation procedure. In this experiment, the \ac {ams} algorithm is used with the instantaneous drag $f_d(t)$ as score function. Each trajectory has a duration $T_a = 5\tau _c$ (correlation time of the drag). The \ac {ams} fails to efficiently sample rare trajectories. All trajectories are eventually re-sampled from the same trajectory displaying the highest maximum in the initial ensemble.\relax }}{16}\protected@file@percent }
+\newlabel{fig:AMS_drag_trajectories}{{17}{16}}
+\acro@used@twice {ams}{16}{16}{15}
+\acro@used@twice {ams}{16}{16}{15}
+\acro@used@twice {ams}{16}{16}{15}
+\acro@used@twice {ams}{16}{16}{15}
+\acro@used@twice {ou}{16}{16}{15}
+\acro@used@twice {ams}{16}{16}{15}
+\citation{giardina_direct_2006}
+\citation{tailleur_probing_2007}
+\citation{giardina_simulating_2011}
+\citation{aldous1994go}
+\citation{grassberger2002go}
+\citation{grassberger1998perm}
+\citation{PhysRevLett.118.115702}
+\citation{aldous1994go}
+\citation{tailleur_probing_2007}
+\citation{intro_DMC_kosztin}
+\citation{giardina_direct_2006}
+\citation{giardina_direct_2006}
+\citation{lecomte_numerical_2007}
+\citation{garrahan2007dynamical}
+\citation{giardina_direct_2006}
+\citation{tailleur_probing_2007}
+\acro@used@twice {ams}{17}{17}{16}
+\acro@used@twice {gktl}{17}{17}{16}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.2.}Importance sampling of extreme time-averaged drag forces with the \acl {gktl} algorithm}{17}\protected@file@percent }
+\newlabel{sec:gktl}{{4.2}{17}}
+\acro@used@twice {ams}{17}{17}{16}
+\acro@used@twice {gktl}{17}{17}{16}
+\acro@used@twice {ams}{17}{17}{16}
+\acro@used@twice {gktl}{17}{17}{16}
+\acro@used@twice {gktl}{17}{17}{16}
+\citation{brewer2018efficient}
+\citation{lestang:tel-01974316}
+\citation{DelMoralBook}
+\citation{DelMoral2013}
+\acro@used@twice {gktl}{17}{17}{16}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {4.2.1.}The \ac {gktl} algorithm}{18}\protected@file@percent }
+\newlabel{sec:gktl_description}{{4.2.1}{18}}
+\acro@used@twice {gktl}{17}{17}{16}
+\newlabel{eq:Weight}{{4.2}{18}}
+\newlabel{eq:Biased_Path_Approximation}{{4.3}{18}}
+\newlabel{eq:mean_field}{{4.4}{18}}
+\newlabel{eq:Mean_Field_Approximation}{{4.5}{18}}
+\acro@used@twice {gktl}{18}{18}{17}
+\acro@used@twice {gktl}{18}{18}{17}
+\acro@used@twice {ams}{18}{18}{17}
+\acro@used@twice {gktl}{18}{18}{17}
+\citation{nemoto2017finite}
+\citation{Guevara_Hidalgo_2018}
+\@writefile{lof}{\contentsline {figure}{\numberline {18}{\ignorespaces  Rare-event sampling of the (zero-mean) time-averaged drag $\mathaccentV {tilde}07EF_T = F_T - \overline  {F_T}$ with $T=10\tau _c$; $\tau _c$ is the correlation time of the instantaneous drag. The shaded \ac {pdf}s are estimated from the biased ensemble resulting from the \ac {gktl} algorithm applied to $16384$ trajectories of duration $T_a=T$ with the cloning period $\tau =\tau _c/2$. The dashed line refers to the unbiased \ac {pdf} of $\mathaccentV {tilde}07EF_T$, \textit  {i.e.} obtained from direct sampling or with $k=0$ (no bias) in the \ac {gktl} algorithm. \relax }}{19}\protected@file@percent }
+\newlabel{fig:IS_GKTL}{{18}{19}}
+\acro@used@twice {pdf}{18}{18}{17}
+\acro@used@twice {gktl}{18}{18}{17}
+\acro@used@twice {pdf}{18}{18}{17}
+\acro@used@twice {gktl}{18}{18}{17}
+\acro@used@twice {gktl}{18}{18}{17}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {4.2.2.}Application of the \ac {gktl} algorithm to extreme fluctuations of the time-averaged drag}{19}\protected@file@percent }
+\newlabel{sec:gktl_drag}{{4.2.2}{19}}
+\acro@used@twice {gktl}{19}{19}{18}
+\acro@used@twice {pdf}{19}{19}{18}
+\newlabel{eq:estimate_biased_measure}{{4.6}{19}}
+\acro@used@twice {pdf}{19}{19}{18}
+\acro@used@twice {gktl}{19}{19}{18}
+\citation{lestang_computing_2018}
+\@writefile{lot}{\contentsline {table}{\numberline {1}{\ignorespaces Number of fluctuations $F_{T} \geq a$ with a=$\sigma ,~2\sigma ,$ etc. captured in the biased ensemble for $k=0.02,~0.025$ and $0.03$. Note that trajectories that overlap for more than half of their duration are counted as only one. ${N}_{brute-force}$ is the number of fluctuations expected from the direct sampling of $N$ independent realizations of $F_{T}$.\relax }}{20}\protected@file@percent }
+\newlabel{tbl:nbTraj_tbl}{{1}{20}}
+\acro@used@twice {pdf}{19}{19}{18}
+\acro@used@twice {gktl}{19}{19}{18}
+\acro@used@twice {gktl}{20}{20}{19}
+\acro@used@twice {gktl}{20}{20}{19}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {4.2.3.}Computation of return times}{20}\protected@file@percent }
+\newlabel{sec:return_times}{{4.2.3}{20}}
+\acro@used@twice {gktl}{20}{20}{19}
+\newlabel{eq:time_averaged}{{4.7}{20}}
+\@writefile{lof}{\contentsline {figure}{\numberline {19}{\ignorespaces  Return times for the time-averaged drag acting on the square obstacle. $\mathaccentV {tilde}07E{F}_T$ denotes the time-averaged drag with zero mean. The blue and red lines are obtained from the biased ensemble of trajectories generated by the \ac {gktl} algorithm with $N=1024$ and $T_a=30\tau _c$. The green line is the return times obtained from a single timeseries of duration equal to the computational cost of both \ac {gktl} experiments. Uncertainty ranges for the \ac {gktl} estimates are computed as the standard deviation over a set of 10 independent experiments. Uncertainty ranges for the direct estimation are computed as the standard deviation over a ensemble of direct estimates resulting from 60 independent timeseries.\relax }}{21}\protected@file@percent }
+\newlabel{fig:return_times_gktl}{{19}{21}}
+\acro@used@twice {gktl}{21}{21}{20}
+\acro@used@twice {gktl}{21}{21}{20}
+\acro@used@twice {gktl}{21}{21}{20}
+\acro@used@twice {gktl}{21}{21}{20}
+\@writefile{toc}{\contentsline {section}{\numberline {5.}Conclusion}{21}\protected@file@percent }
+\newlabel{conlusion}{{5}{21}}
+\acro@used@twice {pdf}{21}{21}{20}
+\acro@used@twice {pdf}{21}{21}{20}
+\acro@used@twice {pdf}{21}{21}{20}
+\acro@used@twice {ams}{22}{22}{21}
+\acro@used@twice {gktl}{22}{22}{21}
+\acro@used@twice {gktl}{22}{22}{21}
+\acro@used@twice {gktl}{22}{22}{21}
+\acro@used@twice {ams}{22}{22}{21}
+\acro@used@twice {gktl}{22}{22}{21}
+\@writefile{toc}{\contentsline {section}{\numberline {6.}Acknowledgements}{22}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {20}{\ignorespaces Sketch of the D2Q9 lattice. Particles move exactly from a lattice node towards one of its nine neighbours (including the node itself) during one time step. By definition, the lattice spacing is related to the time step by $\varDelta x/ \varDelta t = \sqrt  {3} c_s$ where $c_s$ is interpreted as a speed of sound.\relax }}{23}\protected@file@percent }
+\newlabel{fig:D2Q9}{{20}{23}}
+\acro@used@twice {lbm}{22}{22}{21}
+\@writefile{toc}{\contentsline {section}{Appendix~A}{23}\protected@file@percent }
+\newlabel{sec:lbm}{{A}{23}}
+\acro@used@twice {lbm}{23}{23}{22}
+\citation{De_Rosis_2016}
+\bibstyle{jfm}
+\bibdata{../biblio}
+\bibcite{aldous1994go}{{1}{1994}{{{Aldous} \& {Vazirani}}}{{}}}
+\bibcite{aristoff_adaptive_2015}{{2}{2015}{{Aristoff {\em  et~al.\/}}}{{Aristoff, Leli\`{e}vre, Mayne \& Teo}}}
+\bibcite{bec_burgers_2007}{{3}{2007}{{Bec \& Khanin}}{{}}}
+\bibcite{bolhuis2005kinetic}{{4}{2005}{{Bolhuis}}{{}}}
+\bibcite{bouchet2014langevin}{{5}{2014}{{Bouchet {\em  et~al.\/}}}{{Bouchet, Laurie \& Zaboronski}}}
+\bibcite{bouchet2019rare}{{6}{2019}{{Bouchet {\em  et~al.\/}}}{{Bouchet, Rolland \& Simonnet}}}
+\bibcite{brewer2018efficient}{{7}{2018}{{Brewer {\em  et~al.\/}}}{{Brewer, Clark, Bradford \& Jack}}}
+\bibcite{cerou_adaptive_2007}{{8}{2007}{{C\'{e}rou \& Guyader}}{{}}}
+\bibcite{cerou2019adaptive}{{9}{2019}{{C{\'e}rou {\em  et~al.\/}}}{{C{\'e}rou, Guyader \& Rousset}}}
+\bibcite{chernykh_large_2001}{{10}{2001}{{Chernykh \& Stepanov}}{{}}}
+\bibcite{DelMoral2013}{{11}{2013}{{Del~Moral}}{{}}}
+\bibcite{dematteis2019experimental}{{12}{2019}{{Dematteis {\em  et~al.\/}}}{{Dematteis, Grafke, Onorato \& Vanden-Eijnden}}}
+\bibcite{dematteis2018rogue}{{13}{2018}{{Dematteis {\em  et~al.\/}}}{{Dematteis, Grafke \& Vanden-Eijnden}}}
+\bibcite{donzis_sreenivasan_2010}{{14}{2010}{{Donzis \& Sreenivasan}}{{}}}
+\bibcite{duben_monte_2008}{{15}{2008}{{D{\"u}ben {\em  et~al.\/}}}{{D{\"u}ben, Homeier, Jansen, Mesterhazy, M{\"u}nster \& Urbach}}}
+\newlabel{eq:def_stress}{{A\tmspace  +\thinmuskip {.1667em}1}{24}}
+\bibcite{van_erp_elaborating_2005}{{16}{2005}{{van Erp \& Bolhuis}}{{}}}
+\bibcite{escobedo_transition_2009}{{17}{2009}{{Escobedo {\em  et~al.\/}}}{{Escobedo, Borrero \& Araque}}}
+\bibcite{garrahan2007dynamical}{{18}{2007}{{Garrahan {\em  et~al.\/}}}{{Garrahan, Jack, Lecomte, Pitard, van Duijvendijk \& van Wijland}}}
+\bibcite{giardina_simulating_2011}{{19}{2011}{{Giardin\`{a} {\em  et~al.\/}}}{{Giardin\`{a}, Kurchan, Lecomte \& Tailleur}}}
+\bibcite{giardina_direct_2006}{{20}{2006}{{Giardin\`{a} {\em  et~al.\/}}}{{Giardin\`{a}, Kurchan \& Peliti}}}
+\bibcite{glasserman_look_1998}{{21}{1998}{{Glasserman {\em  et~al.\/}}}{{Glasserman, Heidelberger, Shahabuddin \& Zajic}}}
+\bibcite{glasserman_multilevel_1999}{{22}{1999}{{Glasserman {\em  et~al.\/}}}{{Glasserman, Heidelberger, Shahabuddin \& Zajic}}}
+\bibcite{grafke_instanton_2013}{{23}{2013}{{Grafke {\em  et~al.\/}}}{{Grafke, Grauer \& Sch{\"a}fer}}}
+\bibcite{grafke2015instanton}{{24}{2015}{{Grafke {\em  et~al.\/}}}{{Grafke, Grauer \& Sch{\"a}fer}}}
+\bibcite{grassberger2002go}{{25}{2002}{{Grassberger}}{{}}}
+\bibcite{grassberger1998perm}{{26}{1998}{{Grassberger {\em  et~al.\/}}}{{}}}
+\bibcite{grigorio_instantons_2017}{{27}{2017}{{Grigorio {\em  et~al.\/}}}{{Grigorio, Bouchet, Pereira \& Chevillard}}}
+\bibcite{gurarie_instantons_1996}{{28}{1996}{{Gurarie \& Migdal}}{{}}}
+\bibcite{Guevara_Hidalgo_2018}{{29}{2018}{{Hidalgo}}{{}}}
+\bibcite{huber_weighted-ensemble_1996}{{30}{1996}{{Huber \& Kim}}{{}}}
+\bibcite{KahnHarris1951}{{31}{1951}{{Kahn \& Harris}}{{}}}
+\bibcite{intro_DMC_kosztin}{{32}{1996}{{Kosztin {\em  et~al.\/}}}{{Kosztin, Faber \& Schulten}}}
+\bibcite{KRAICHNAN}{{33}{1989}{{Kraichnan \& Chen}}{{}}}
+\bibcite{Laffargue_2013}{{34}{2013}{{Laffargue {\em  et~al.\/}}}{{Laffargue, Lam, Kurchan \& Tailleur}}}
+\bibcite{latt2008straight}{{35}{2008}{{Latt {\em  et~al.\/}}}{{Latt, Chopard, Malaspinas, Deville \& Michler}}}
+\bibcite{laurie2015computation}{{36}{2015}{{Laurie \& Bouchet}}{{}}}
+\bibcite{lecomte_numerical_2007}{{37}{2007}{{Lecomte \& Tailleur}}{{}}}
+\bibcite{lesieur_book}{{38}{2011}{{Lesieur}}{{}}}
+\bibcite{lestang:tel-01974316}{{39}{2018}{{Lestang}}{{}}}
+\bibcite{lestang2019JSTAT}{{40}{2019}{{Lestang {\em  et~al.\/}}}{{Lestang, Bouchet \& Emmanuel}}}
+\bibcite{lestang_computing_2018}{{41}{2018}{{Lestang {\em  et~al.\/}}}{{Lestang, Ragone, Br\'{e}hier, Herbert \& Bouchet}}}
+\bibcite{louvin2017}{{42}{2017}{{Louvin {\em  et~al.\/}}}{{Louvin, Dumonteil \& Leli\`{e}vre}}}
+\bibcite{mesterhazy2013lattice}{{43}{2013}{{Mesterh{\'a}zy {\em  et~al.\/}}}{{Mesterh{\'a}zy, Biferale, Jansen \& Tripiccione}}}
+\bibcite{mesterhazy2011anomalous}{{44}{2011}{{Mesterh{\'a}zy \& Jansen}}{{}}}
+\bibcite{moral_feynman-kac_2004}{{45}{2004{{\em  a\/}}}{{Moral}}{{}}}
+\bibcite{DelMoralBook}{{46}{2004{{\em  b\/}}}{{Moral}}{{}}}
+\bibcite{nemoto2017finite}{{47}{2017{{\em  a\/}}}{{Nemoto {\em  et~al.\/}}}{{Nemoto, Guevara~Hidalgo \& Lecomte}}}
+\bibcite{PhysRevLett.118.115702}{{48}{2017{{\em  b\/}}}{{Nemoto {\em  et~al.\/}}}{{Nemoto, Jack \& Lecomte}}}
+\bibcite{ragone_computation_2018}{{49}{2018}{{Ragone {\em  et~al.\/}}}{{Ragone, Wouters \& Bouchet}}}
+\bibcite{rolland_extremely_2018}{{50}{2018}{{Rolland}}{{}}}
+\bibcite{rolland_computing_2016}{{51}{2016}{{Rolland {\em  et~al.\/}}}{{Rolland, Bouchet \& Simonnet}}}
+\bibcite{rolland_statistical_2015}{{52}{2015}{{Rolland \& Simonnet}}{{}}}
+\bibcite{De_Rosis_2016}{{53}{2016}{{Rosis}}{{}}}
+\bibcite{lbm_book}{{54}{2006}{{Sukop \& Jr}}{{}}}
+\bibcite{tailleur_probing_2007}{{55}{2007}{{Tailleur \& Kurchan}}{{}}}
+\bibcite{teo_adaptive_2016}{{56}{2016}{{Teo {\em  et~al.\/}}}{{Teo, Mayne, Schulten \& Leli\`{e}vre}}}
+\bibcite{touchette_large_2009}{{57}{2009}{{Touchette}}{{}}}
+\bibcite{villen-altamirano_restart:_1994}{{58}{1994}{{Villen-Altamirano \& Villen-Altamirano}}{{}}}
+\bibcite{wouters2016rare}{{59}{2016}{{Wouters \& Bouchet}}{{}}}
+\bibcite{Yeung}{{60}{2015}{{Yeung {\em  et~al.\/}}}{{Yeung, Zhai \& Sreenivasan}}}
+\bibcite{zuckerman2017weighted}{{61}{2017}{{Zuckerman \& Chong}}{{}}}
+\acro@pages{pdf}{{5}{5}{4}|{5}{5}{4}|{5}{5}{4}|{5}{5}{4}|{5}{5}{4}|{5}{5}{4}|{7}{7}{6}|{12}{12}{11}|{12}{12}{11}|{18}{18}{17}|{18}{18}{17}|{19}{19}{18}|{19}{19}{18}|{19}{19}{18}|{21}{21}{20}|{21}{21}{20}|{21}{21}{20}}
+\acro@barriers{pdf}{}
+\acro@pages{ou}{{13}{13}{12}|{13}{13}{12}|{15}{15}{14}|{15}{15}{14}|{16}{16}{15}}
+\acro@barriers{ou}{}
+\acro@pages{gktl}{{1}{1}{0}|{1}{1}{0}|{2}{2}{1}|{2}{2}{1}|{3}{3}{2}|{3}{3}{2}|{3}{3}{2}|{13}{13}{12}|{13}{13}{12}|{17}{17}{16}|{17}{17}{16}|{17}{17}{16}|{17}{17}{16}|{17}{17}{16}|{17}{17}{16}|{18}{18}{17}|{18}{18}{17}|{18}{18}{17}|{18}{18}{17}|{18}{18}{17}|{18}{18}{17}|{19}{19}{18}|{19}{19}{18}|{19}{19}{18}|{20}{20}{19}|{20}{20}{19}|{20}{20}{19}|{21}{21}{20}|{21}{21}{20}|{21}{21}{20}|{21}{21}{20}|{22}{22}{21}|{22}{22}{21}|{22}{22}{21}|{22}{22}{21}}
+\acro@barriers{gktl}{}
+\acro@pages{ams}{{1}{1}{0}|{1}{1}{0}|{2}{2}{1}|{2}{2}{1}|{3}{3}{2}|{3}{3}{2}|{13}{13}{12}|{13}{13}{12}|{13}{13}{12}|{13}{13}{12}|{13}{13}{12}|{13}{13}{12}|{13}{13}{12}|{13}{13}{12}|{13}{13}{12}|{13}{13}{12}|{15}{15}{14}|{15}{15}{14}|{15}{15}{14}|{15}{15}{14}|{15}{15}{14}|{15}{15}{14}|{15}{15}{14}|{16}{16}{15}|{16}{16}{15}|{16}{16}{15}|{16}{16}{15}|{16}{16}{15}|{17}{17}{16}|{17}{17}{16}|{17}{17}{16}|{18}{18}{17}|{22}{22}{21}|{22}{22}{21}}
+\acro@barriers{ams}{}
+\acro@pages{tams}{{13}{13}{12}}
+\acro@barriers{tams}{}
+\acro@pages{lbm}{{3}{3}{2}|{3}{3}{2}|{3}{3}{2}|{4}{4}{3}|{22}{22}{21}|{23}{23}{22}}
+\acro@barriers{lbm}{}
+\acro@rerun@check 

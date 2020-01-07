@@ -1,0 +1,54 @@
+This is BibTeX, Version 0.99d (TeX Live 2019/dev/Debian)
+Capacity: max_strings=100000, hash_size=100000, hash_prime=85009
+The top-level auxiliary file: draft_p2_jfm.aux
+The style file: jfm.bst
+Database file #1: ../biblio.bib
+Reallocated wiz_functions (elt_size=4) to 6000 items from 3000.
+`number' is a missing field, not a string, for entry glasserman_look_1998
+while executing---line 1649 of file jfm.bst
+Warning--empty journal in lestang2019JSTAT
+Warning--empty booktitle in louvin2017
+`number' is a missing field, not a string, for entry moral_feynman-kac_2004
+while executing---line 1649 of file jfm.bst
+You've used 61 entries,
+            3068 wiz_defined-function locations,
+            1059 strings with 16139 characters,
+and the built_in function-call counts, 32393 in all, are:
+= -- 2881
+> -- 1410
+< -- 35
++ -- 556
+- -- 483
+* -- 3514
+:= -- 5374
+add.period$ -- 121
+call.type$ -- 61
+change.case$ -- 471
+chr.to.int$ -- 59
+cite$ -- 63
+duplicate$ -- 1723
+empty$ -- 2676
+format.name$ -- 583
+if$ -- 6390
+int.to.chr$ -- 3
+int.to.str$ -- 1
+missing$ -- 65
+newline$ -- 188
+num.names$ -- 244
+pop$ -- 447
+preamble$ -- 1
+purify$ -- 404
+quote$ -- 0
+skip$ -- 780
+stack$ -- 0
+substring$ -- 1757
+swap$ -- 634
+text.length$ -- 4
+text.prefix$ -- 0
+top$ -- 0
+type$ -- 534
+warning$ -- 2
+while$ -- 259
+width$ -- 0
+write$ -- 670
+(There were 2 error messages)
