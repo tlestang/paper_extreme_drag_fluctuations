@@ -18,6 +18,8 @@
     "subfig"
     "caption")
    (TeX-add-symbols
+    '("TL" 1)
+    '("EL" 1)
     '("set" 1))
    (LaTeX-add-labels
     "sec:test_flow"
@@ -75,11 +77,15 @@
     "eq:time_averaged"
     "fig:return_times_gktl"
     "conlusion"
-    "sec:lbm"
+    "app:lbm"
     "fig:D2Q9"
-    "eq:def_stress")
+    "eq:def_stress"
+    "app:perturb_branching_time")
    (LaTeX-add-bibliographies
     "../biblio")
+   (LaTeX-add-xcolor-definecolors
+    "myred"
+    "mygreen")
    (LaTeX-add-acro-acronyms
     "pdf"
     "iid"
