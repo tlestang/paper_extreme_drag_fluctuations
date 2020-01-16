@@ -1,3 +1,50 @@
+import os
+import sys
+import numpy as np
+import pandas as pd
+import datetime
+
+def check_files(files, dtype=np.float32):
+    for filename in files:
+        if not (os.path.isfile(filename)):
+            raise FileNotFoundError("File {} not found.".format(filename))
+    nbpoints_in_file = int(os.path.getsize(files[0]) / np.dtype(dtype).itemsize)
+    return nbpoints_in_file
+
+def get_gktl_parameters(path_to_dir):
+
+    found_input = False
+    for filename in os.listdir(path_to_dir):
+        if filename.endswith(".input"):
+            found_input = True
+            input_filename = filename
+            print("Found input file {}".format(input_filename))
+            break
+    if not found_input:
+        sys.exit("Error: Did not find input file in {}".format(path_to_dir))
+
+    param_types = {
+        "nc": int,
+        "Ta": int,
+        "T": int,
+        "DT": int,
+        "eps": float,
+        "tau": float,
+        "U0": float,
+        "k": float,
+        "dir": str,
+        "nrep": int,
+        "snap_freq": int,
+        "incr": float,
+        "transient": int,
+    }
+    gktl_params = {}
+    with open(os.path.join(path_to_dir, input_filename), "r") as f:
+        for key in param_types.keys():
+            gktl_params[key] = param_types[key](f.readline())
+
+    return gktl_params
+
 def get_gktl_drag_trajectories(gktl_dir, T=0, dt=1, dtype=float):
     """Return a dataframe containing the drag as a function of time for
     all the copies in a GKTL run.
