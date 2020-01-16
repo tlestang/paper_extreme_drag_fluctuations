@@ -4,12 +4,14 @@ import numpy as np
 import pandas as pd
 import datetime
 
+
 def check_files(files, dtype=np.float32):
     for filename in files:
         if not (os.path.isfile(filename)):
             raise FileNotFoundError("File {} not found.".format(filename))
     nbpoints_in_file = int(os.path.getsize(files[0]) / np.dtype(dtype).itemsize)
     return nbpoints_in_file
+
 
 def get_gktl_parameters(path_to_dir):
 
@@ -44,6 +46,7 @@ def get_gktl_parameters(path_to_dir):
             gktl_params[key] = param_types[key](f.readline())
 
     return gktl_params
+
 
 def get_gktl_drag_trajectories(gktl_dir, T=0, dt=1, dtype=float):
     """Return a dataframe containing the drag as a function of time for
@@ -84,75 +87,6 @@ def get_gktl_drag_trajectories(gktl_dir, T=0, dt=1, dtype=float):
 
     return df
 
-def write_reconstructed_trajectories(
-        path_to_dir, br_end=-1, br_start=0, reps=-1, dtype=float, dt=1, dolastcloning=True, verbose=False
-):
-
-    gktl_params = get_gktl_parameters(path_to_dir)
-
-    labels_file_path = os.path.join(path_to_dir, "labels.datout")
-    labels = np.fromfile(labels_file_path, np.int32, -1, "")
-
-    # Optional parameters
-    nb_steps = gktl_params["Ta"] // gktl_params["DT"]
-    if br_end == -1:
-        br_end = nb_steps-1
-
-    if reps == -1:
-        reps = range(gktl_params["nrep"])
-
-    nc = gktl_params["nc"]
-    transient = gktl_params["transient"]
-    npoints = int(gktl_params["DT"] / dt)
-
-    def _get_previous_chunck(step, ancestor_idx):
-        traj_file_name = "rep_{}_clone_{}.traj".format(rep, ancestor_idx)
-        traj_file_path = os.path.join(path_to_dir, traj_file_name)
-        offset = (transient + step * npoints) * np.dtype(
-            dtype
-        ).itemsize
-        with open(traj_file_path, "rb") as f:
-            f.seek(offset)
-            previous_chunck = np.fromfile(f, float, npoints, "")
-
-        return previous_chunck
-
-    for rep in reps:
-        if verbose:
-            print("Reconstrucing trajectories for repetitions {}.".format(rep))
-        rep_offset = nc * rep * nb_steps
-        for j in range(nc):
-            # Get first chunck of trajectory, starting from the endpoint.
-            # Ancestors are trajectories themselves.
-            if dolastcloning:
-                ll = labels[
-                    rep_offset + br_end * nc : rep_offset + (br_end+1) * nc
-                ]
-                ancestor_idx = ll[j]
-            else:
-                ancestor_idx = j
-
-            recon_array = _get_previous_chunck(br_end, ancestor_idx)
-
-            # Now repeat the same operation on the nb_steps-1, nb_steps-2.. chuncks.
-            # Each time getting ancestor from label array
-            for step in range(br_start, br_end)[::-1]:
-                # The `labels` array contains the ancestor indexes for all
-                # repetitions.
-                # So must offset to get labels for current rep with `rep_offset`
-                ll = labels[
-                    rep_offset
-                    + (step) * nc : rep_offset
-                    + (step+1) * nc
-                ]
-                ancestor_idx = ll[ancestor_idx]
-                x = _get_previous_chunck(step, ancestor_idx)
-                recon_array = np.concatenate((x, recon_array))
-
-            recon_traj_file_name = "recon_rep_{}_clone_{}.traj".format(rep, j)
-            recon_traj_file_path = os.path.join(path_to_dir, recon_traj_file_name)
-            with open(recon_traj_file_path, "wb") as f:
-                recon_array.tofile(f)
 
 def gktl_group_trajectories(gktl_dir, br_end, br_start, rep=0, dolastcloning=False):
     """Return sets of sampled trajectories which share a common ancestor at
@@ -184,9 +118,7 @@ def gktl_group_trajectories(gktl_dir, br_end, br_start, rep=0, dolastcloning=Fal
         # Get first chunck of trajectory, starting from the endpoint.
         # Ancestors are trajectories themselves.
         if dolastcloning:
-            ll = labels[
-                rep_offset + br_end * nc : rep_offset + (br_end+1) * nc
-            ]
+            ll = labels[rep_offset + br_end * nc : rep_offset + (br_end + 1) * nc]
             ancestor_idx = ll[j]
         else:
             ancestor_idx = j
@@ -197,11 +129,7 @@ def gktl_group_trajectories(gktl_dir, br_end, br_start, rep=0, dolastcloning=Fal
                 # The `labels` array contains the ancestor indexes for all
                 # repetitions.
                 # So must offset to get labels for current rep with `rep_offset`
-                ll = labels[
-                    rep_offset
-                    + (step) * nc : rep_offset
-                    + (step + 1) * nc
-                ]
+                ll = labels[rep_offset + (step) * nc : rep_offset + (step + 1) * nc]
                 ancestor_idx = ll[ancestor_idx]
 
         if ancestor_idx in dict_of_parents:
@@ -211,37 +139,37 @@ def gktl_group_trajectories(gktl_dir, br_end, br_start, rep=0, dolastcloning=Fal
 
     return dict_of_parents
 
+
 def _get_ancestor_idx(current_idx, labels, rep_offset, step, nc):
     # The `labels` array contains the ancestor indexes for all
     # repetitions.
     # So must offset to get labels for current rep with `rep_offset`
-    ll = labels[
-        rep_offset
-        + (step) * nc : rep_offset
-        + (step+1) * nc
-    ]
+    ll = labels[rep_offset + (step) * nc : rep_offset + (step + 1) * nc]
     return ll[current_idx]
 
-def gktl_reconstruct_trajectories(gktl_dir, br_end=1, br_start=0, rep=0, dolastcloning=False):
-    gktl_params = get_gktl_parameters(path_to_dir)
 
-    labels_file_path = os.path.join(path_to_dir, "labels.datout")
+def gktl_reconstruct_trajectories(
+    gktl_dir, br_end=1, br_start=0, rep=0, dolastcloning=False
+):
+    gktl_params = get_gktl_parameters(gktl_dir)
+
+    labels_file_path = os.path.join(gktl_dir, "labels.datout")
     labels = np.fromfile(labels_file_path, np.int32, -1, "")
 
     # Optional parameters
     nb_steps = gktl_params["Ta"] // gktl_params["DT"]
     if br_end == -1:
-        br_end = nb_steps-1
+        br_end = nb_steps - 1
     nc = gktl_params["nc"]
 
     rep_offset = nc * rep * nb_steps
     history = []
     for j in range(nc):
-        history_backards = []
+        history_backwards = []
         # Get first chunck of trajectory, starting from the endpoint.
         # Ancestors are trajectories themselves.
         if dolastcloning:
-            ancestor_idx = _get_ancestor_idx[j]
+            ancestor_idx = _get_ancestor_idx(j, labels, rep_offset, step, nc)
         else:
             ancestor_idx = j
         history_backwards.append(ancestor_idx)
@@ -249,9 +177,62 @@ def gktl_reconstruct_trajectories(gktl_dir, br_end=1, br_start=0, rep=0, dolastc
         # Now repeat the same operation on the nb_steps-1, nb_steps-2.. chuncks.
         # Each time getting ancestor from label array
         for step in range(br_start, br_end)[::-1]:
-            ancestor_idx = _get_ancestor_idx[ancestor_idx]
-            history_backards.append(ancestor_idx)
+            ancestor_idx = _get_ancestor_idx(ancestor_idx, labels, rep_offset, step, nc)
+            history_backwards.append(ancestor_idx)
 
-        history[j] = history_backwards[::-1]
+        history.append(history_backwards[::-1])
 
     return history
+
+
+def write_reconstructed_trajectories(
+    gktl_dir,
+    br_end=-1,
+    br_start=0,
+    reps=-1,
+    dtype=float,
+    dt=1,
+    dolastcloning=True,
+    verbose=False,
+):
+
+    gktl_params = get_gktl_parameters(gktl_dir)
+
+    # Define inside function to read trajectory chuncks
+    transient = gktl_params["transient"]
+    npoints = int(gktl_params["DT"] / dt)
+
+    def _get_trajectory_chunck(step, ancestor_idx):
+        traj_file_name = "rep_{}_clone_{}.traj".format(rep, ancestor_idx)
+        traj_file_path = os.path.join(gktl_dir, traj_file_name)
+        offset = (transient + step * npoints) * np.dtype(dtype).itemsize
+        with open(traj_file_path, "rb") as f:
+            f.seek(offset)
+            chunck = np.fromfile(f, float, npoints, "")
+        return chunck
+
+    # Extract remaining required parameters
+    nb_steps = gktl_params["Ta"] // gktl_params["DT"]
+    nc = gktl_params["nc"]
+    if br_end == -1:
+        br_end = nb_steps - 1
+    if reps == -1:
+        reps = range(gktl_params["nrep"])
+
+    # Perform reconstruction and get assemble trajectory chunks
+    for rep in reps:
+        history = gktl_reconstruct_trajectories(
+            gktl_dir, br_end, br_start, rep, dolastcloning
+        )
+        for j in range(nc):
+            base_parent = history[j][0]
+            recon_traj = _get_trajectory_chunck(0, base_parent)
+            for step in range(nb_steps)[1:]:
+                recon_traj = np.concatenate(
+                    (recon_traj, _get_trajectory_chunck(step, history[j][step]))
+                )
+            # Write reconstructed traj on disk
+            recon_traj_file_name = "recon_rep_{}_clone_{}.traj".format(rep, j)
+            recon_traj_file_path = os.path.join(gktl_dir, recon_traj_file_name)
+            with open(recon_traj_file_path, "wb") as f:
+                recon_traj.tofile(f)
