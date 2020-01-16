@@ -106,7 +106,7 @@ def write_reconstructed_trajectories(
             recon_traj_file_path = os.path.join(path_to_dir, recon_traj_file_name)
             with open(recon_traj_file_path, "wb") as f:
                 recon_array.tofile(f)
-                
+
 def gktl_group_trajectories(gktl_dir, br_end, br_start, rep=0, dolastcloning=False):
     """Return sets of sampled trajectories which share a common ancestor at
     branching point br_start, ending at br_end.
@@ -163,3 +163,48 @@ def gktl_group_trajectories(gktl_dir, br_end, br_start, rep=0, dolastcloning=Fal
             dict_of_parents[ancestor_idx] = [j]
 
     return dict_of_parents
+
+def _get_ancestor_idx(current_idx, labels, rep_offset, step, nc):
+    # The `labels` array contains the ancestor indexes for all
+    # repetitions.
+    # So must offset to get labels for current rep with `rep_offset`
+    ll = labels[
+        rep_offset
+        + (step) * nc : rep_offset
+        + (step+1) * nc
+    ]
+    return ll[current_idx]
+
+def gktl_reconstruct_trajectories(gktl_dir, br_end=1, br_start=0, rep=0, dolastcloning=False):
+    gktl_params = get_gktl_parameters(path_to_dir)
+
+    labels_file_path = os.path.join(path_to_dir, "labels.datout")
+    labels = np.fromfile(labels_file_path, np.int32, -1, "")
+
+    # Optional parameters
+    nb_steps = gktl_params["Ta"] // gktl_params["DT"]
+    if br_end == -1:
+        br_end = nb_steps-1
+    nc = gktl_params["nc"]
+
+    rep_offset = nc * rep * nb_steps
+    history = []
+    for j in range(nc):
+        history_backards = []
+        # Get first chunck of trajectory, starting from the endpoint.
+        # Ancestors are trajectories themselves.
+        if dolastcloning:
+            ancestor_idx = _get_ancestor_idx[j]
+        else:
+            ancestor_idx = j
+        history_backwards.append(ancestor_idx)
+
+        # Now repeat the same operation on the nb_steps-1, nb_steps-2.. chuncks.
+        # Each time getting ancestor from label array
+        for step in range(br_start, br_end)[::-1]:
+            ancestor_idx = _get_ancestor_idx[ancestor_idx]
+            history_backards.append(ancestor_idx)
+
+        history[j] = history_backwards[::-1]
+
+    return history
