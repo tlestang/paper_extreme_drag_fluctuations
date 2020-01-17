@@ -169,7 +169,7 @@ def gktl_reconstruct_trajectories(
         # Get first chunck of trajectory, starting from the endpoint.
         # Ancestors are trajectories themselves.
         if dolastcloning:
-            ancestor_idx = _get_ancestor_idx(j, labels, rep_offset, step, nc)
+            ancestor_idx = _get_ancestor_idx(j, labels, rep_offset, br_end, nc)
         else:
             ancestor_idx = j
         history_backwards.append(ancestor_idx)
