@@ -1,5 +1,6 @@
 #include <iostream>
 #include <fstream>
+#include <algorithm>
 #include <python3.7/Python.h>
 
 #include "libpipeLBM.h"
@@ -7,12 +8,13 @@
 static PyObject* method_simulate(PyObject *self, PyObject *args){
 
   char* path_to_init;
-  int nb_timesteps;
-  int write_fields;
-  int write_final_state;
+  int tmin;
+  int tmax;
+  int tvismin;
+  int tvismax;
   
-  bool parse_args_error = PyArg_ParseTuple(args, "siii", &path_to_init, &nb_timesteps,
-					   &write_fields, &write_final_state);
+  bool parse_args_error = PyArg_ParseTuple(args, "siiii", &path_to_init, &tmin,
+					   &tmax, &tvismin, &tvismax);
   if (!parse_args_error)
     return NULL;
 
@@ -44,21 +46,28 @@ static PyObject* method_simulate(PyObject *self, PyObject *args){
   myLB->initFromFile(std::string(path_to_init));
   
   // -------- Simulate -------------------
-  for (int t=0;t<nb_timesteps;t++)
+  double *f = new double[tmax-tmin+1];
+  for (int t=tmin;t<tvismin;t++)
     {
       myLB->advanceOneTimestep(obs, 2);
-      if(write_fields && t%write_fields == 0){
-	myLB->writeSnapshot();
-      }
-      std::cout << "wrote snapshot" << std::endl;
+      myLB->computeStress(obs[1]);
+      f[t-tmin] = obs[1]->getDrag();
     }
-  
-  if (write_final_state){
-    std::ofstream final_state("final_state.bin", std::ios::binary);
-    final_state.write((char*)(myLB->getState()), 9*Dx*Dy);
-    final_state.close();
-  }   
+  for (int t=std::max(tmin,tvismin);t<std::min(tmax,tvismax)+1;t++)
+    {
+      myLB->advanceOneTimestep(obs, 2);
+      myLB->writeSnapshot();
+      myLB->computeStress(obs[1]);
+      f[t-tmin] = obs[1]->getDrag();
+    }
+  for (int t=tvismax+1;t<tmax;t++)
+    {
+      myLB->advanceOneTimestep(obs, 2);
+      myLB->computeStress(obs[1]);
+      f[t-tmin] = obs[1]->getDrag();
+    }
 
+  delete[] f;
   delete obs[0];
   delete obs[1];
   delete myLB;
