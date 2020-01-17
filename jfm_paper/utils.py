@@ -226,10 +226,10 @@ def write_reconstructed_trajectories(
         )
         for j in range(nc):
             base_parent = history[j][0]
-            recon_traj = _get_trajectory_chunck(0, base_parent)
-            for step in range(nb_steps)[1:]:
+            recon_traj = _get_trajectory_chunck(br_start, base_parent)
+            for step in range(br_end-br_start+1)[1:]:
                 recon_traj = np.concatenate(
-                    (recon_traj, _get_trajectory_chunck(step, history[j][step]))
+                    (recon_traj, _get_trajectory_chunck(br_start+step, history[j][step]))
                 )
             # Write reconstructed traj on disk
             recon_traj_file_name = "recon_rep_{}_clone_{}.traj".format(rep, j)
