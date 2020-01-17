@@ -192,7 +192,7 @@ def write_reconstructed_trajectories(
     reps=-1,
     dtype=float,
     dt=1,
-    dolastcloning=True,
+    dolastcloning=False,
     verbose=False,
 ):
 
