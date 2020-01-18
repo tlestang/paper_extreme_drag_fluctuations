@@ -13,25 +13,12 @@ import argparse
 import simulate
 from jfm_paper import utils
 
-description = (
-    "(re)Simulate the flow locally around maximum of trajectory sampled in a GKTL run."
-)
-parser = argparse.ArgumentParser(description=description)
-parser.add_argument(
-    "directory", type=str, help="GKTL directory location relative to current directory."
-)
-parser.add_argument(
-    "traj_index", metavar="j", type=int, help="The index of the trajectory to simulate."
-)
-args = parser.parse_args()
-
-gktl_dir = args.directory
-
+def resimulate(gktl_dir, traj_index)
 tau_c = 2000
 vis_window = 4 * tau_c
 
 # Read the drag signal
-filename = os.path.join(gktl_dir, "recon_rep_0_clone_{}.traj".format(args.traj_index))
+filename = os.path.join(gktl_dir, "recon_rep_0_clone_{}.traj".format(traj_index))
 drag_signal = np.fromfile(filename, float, -1, "")
 
 gktl_params = utils.get_gktl_parameters(gktl_dir)
@@ -64,7 +51,7 @@ history = utils.gktl_reconstruct_trajectories(gktl_dir, br_end=29, br_start=10, 
 Dx = 513
 Dy = 129
 for step in range(step_min, step_max + 1):
-    ancestor_idx = history[args.traj_index][step]
+    ancestor_idx = history[traj_index][step]
     filename = "rep_0_clone_{}.bin".format(ancestor_idx)
     # Get initial populations from GKTL ouput file
     # and write it back to disk in a separate file.
@@ -81,3 +68,18 @@ for step in range(step_min, step_max + 1):
     tmin = step * DT
     tmax = (step + 1) * DT - 1
     simulate.simulate("init_state.bin", tmin, tmax, tvismin, tvismax)
+
+if __name__ = "__main__":
+    description = (
+        "(re)Simulate the flow locally around maximum of trajectory sampled in a GKTL run."
+    )
+    parser = argparse.ArgumentParser(description=description)
+    parser.add_argument(
+        "directory", type=str, help="GKTL directory location relative to current directory."
+    )
+    parser.add_argument(
+        "traj_index", metavar="j", type=int, help="The index of the trajectory to simulate."
+    )
+    args = parser.parse_args()
+    
+    resimulate(args.directory, args.traj_index)
