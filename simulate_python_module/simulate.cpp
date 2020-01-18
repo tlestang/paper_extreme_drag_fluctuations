@@ -18,15 +18,15 @@ static PyObject* method_simulate(PyObject *self, PyObject *args){
     return NULL;
 
   // Setup LBM
-  int Dx = 257;
-  int Dy = 65;
+  int Dx = 513;
+  int Dy = 129;
   int R = (Dy-1)/16;
   int x0 = (Dx-1)/16;
   int L = 16;
   int xsq = (Dx-1)/2;
   int ysq = (Dy-1)/2 - L/2;
   double U0 = 0.05;
-  double tau = 0.5005;
+  double tau = 0.501;
   int spongeStart = (int) 3*(Dx-1)/4+1;
   double F0 = 0.0;
 
@@ -45,7 +45,7 @@ static PyObject* method_simulate(PyObject *self, PyObject *args){
   myLB->initFromFile(std::string(path_to_init));
 
   // -------- Simulate -------------------
-  int N = min(tmax,tvismax)-max(tmin,tvismin)+1;
+  int N = std::min(tmax,tvismax)-std::max(tmin,tvismin)+1;
   double *f = new double[N];
   for (int t=tmin;t<tvismin;t++)
     {
@@ -59,7 +59,7 @@ static PyObject* method_simulate(PyObject *self, PyObject *args){
       f[t-tmin] = obs[1]->getDrag();
     }
 
-  ofstream dragFile("dragFile.dat", ios::binary | ios::app);
+  std::ofstream dragFile("dragFile.dat", std::ios::binary | std::ios::app);
   dragFile.write((char*)&f[0], N*sizeof(double));
   dragFile.close();
 
