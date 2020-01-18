@@ -1,4 +1,3 @@
-#include <iostream>
 #include <fstream>
 #include <algorithm>
 #include <python3.7/Python.h>
@@ -12,7 +11,7 @@ static PyObject* method_simulate(PyObject *self, PyObject *args){
   int tmax;
   int tvismin;
   int tvismax;
-  
+
   bool parse_args_error = PyArg_ParseTuple(args, "siiii", &path_to_init, &tmin,
 					   &tmax, &tvismin, &tvismax);
   if (!parse_args_error)
@@ -30,7 +29,7 @@ static PyObject* method_simulate(PyObject *self, PyObject *args){
   double tau = 0.5005;
   int spongeStart = (int) 3*(Dx-1)/4+1;
   double F0 = 0.0;
-  
+
   pipeLBM *myLB = new pipeLBM(Dx, Dy);
   myLB->setInletBC("poiseuille");
   myLB->setOutletBC("open");
@@ -44,14 +43,13 @@ static PyObject* method_simulate(PyObject *self, PyObject *args){
 
   // -------- Initialise simulation -----------
   myLB->initFromFile(std::string(path_to_init));
-  
+
   // -------- Simulate -------------------
-  double *f = new double[tmax-tmin+1];
+  int N = min(tmax,tvismax)-max(tmin,tvismin)+1;
+  double *f = new double[N];
   for (int t=tmin;t<tvismin;t++)
     {
       myLB->advanceOneTimestep(obs, 2);
-      myLB->computeStress(obs[1]);
-      f[t-tmin] = obs[1]->getDrag();
     }
   for (int t=std::max(tmin,tvismin);t<std::min(tmax,tvismax)+1;t++)
     {
@@ -63,16 +61,18 @@ static PyObject* method_simulate(PyObject *self, PyObject *args){
   for (int t=tvismax+1;t<tmax;t++)
     {
       myLB->advanceOneTimestep(obs, 2);
-      myLB->computeStress(obs[1]);
-      f[t-tmin] = obs[1]->getDrag();
     }
+
+  ofstream dragFile("dragFile.dat", ios::binary | ios::app);
+  dragFile.write((char*)&f[0], N*sizeof(double));
+  dragFile.close();
 
   delete[] f;
   delete obs[0];
   delete obs[1];
   delete myLB;
-  
-  return PyLong_FromLong(nb_timesteps);
+
+  return PyLong_FromLong(N);
 }
 
 static PyMethodDef SimulateMethod[] = {
@@ -91,6 +91,5 @@ static struct PyModuleDef simulatemodule = {
 };
 
 PyMODINIT_FUNC PyInit_simulate(void) {
-    std::cout << "PyInit_simulate" << std::endl;
     return PyModule_Create(&simulatemodule);
 }
