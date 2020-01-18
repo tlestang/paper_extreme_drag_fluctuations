@@ -58,10 +58,6 @@ static PyObject* method_simulate(PyObject *self, PyObject *args){
       myLB->computeStress(obs[1]);
       f[t-tmin] = obs[1]->getDrag();
     }
-  for (int t=tvismax+1;t<tmax;t++)
-    {
-      myLB->advanceOneTimestep(obs, 2);
-    }
 
   ofstream dragFile("dragFile.dat", ios::binary | ios::app);
   dragFile.write((char*)&f[0], N*sizeof(double));
