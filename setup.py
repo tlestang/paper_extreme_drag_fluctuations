@@ -13,6 +13,16 @@ setuptools.setup(
     long_description_content_type="text/markdown",
     url="https://framagit.org/tlestang/jfm_paper",
     packages=setuptools.find_packages(),
+    ext_modules=[
+        setuptools.Extension(
+            "simulate",
+            sources=["jfm_paper/simulate.cpp"],
+            include_dirs=["/home/tlestang/projects/pipeLBM/src"],
+            library_dirs=["/home/tlestang/projects/pipeLBM/src"],
+            libraries=["pipeLBM"],
+            language="c++",
+        )
+    ],
     classifiers=[
         "Programming Language :: Python :: 3",
         "License :: OSI Approved :: MIT License",

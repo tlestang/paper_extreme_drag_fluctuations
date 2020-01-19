@@ -46,6 +46,7 @@ static PyObject* method_simulate(PyObject *self, PyObject *args){
 
   // -------- Simulate -------------------
   int N = std::min(tmax,tvismax)-std::max(tmin,tvismin)+1;
+  int writingPeriod = (tvismax-tvismin)/100;
   double *f = new double[N];
   for (int t=tmin;t<tvismin;t++)
     {
@@ -54,7 +55,9 @@ static PyObject* method_simulate(PyObject *self, PyObject *args){
   for (int t=std::max(tmin,tvismin);t<std::min(tmax,tvismax)+1;t++)
     {
       myLB->advanceOneTimestep(obs, 2);
-      myLB->writeSnapshot();
+      if((t-tvismin)%writingPeriod == 0){
+	myLB->writeSnapshot();
+      }
       myLB->computeStress(obs[1]);
       f[t-std::max(tmin,tvismin)] = obs[1]->getDrag();
     }
