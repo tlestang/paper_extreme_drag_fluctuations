@@ -54,8 +54,6 @@ def resimulate(gktl_dir, traj_index):
     Dx = 513
     Dy = 129
     for step in range(step_min, step_max + 1):
-        print(step)
-        print(traj_index)
         ancestor_idx = history[traj_index][step]
         filename = "rep_0_clone_{}.bin".format(ancestor_idx)
         # Get initial populations from GKTL ouput file

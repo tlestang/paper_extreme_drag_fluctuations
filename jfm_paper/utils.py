@@ -20,7 +20,6 @@ def get_gktl_parameters(path_to_dir):
         if filename.endswith(".input"):
             found_input = True
             input_filename = filename
-            print("Found input file {}".format(input_filename))
             break
     if not found_input:
         sys.exit("Error: Did not find input file in {}".format(path_to_dir))
