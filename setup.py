@@ -23,6 +23,7 @@ setuptools.setup(
         "numpy>=1.16",
         "scipy>=1.0",
         "pandas>=0.23",
+        "stochrare>=0.0.1",
         "matplotlib>=2.0",
         ],
 )
