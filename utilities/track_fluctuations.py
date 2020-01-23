@@ -5,7 +5,6 @@ from scipy.signal import find_peaks
 with open("../data/list_of_dirs.txt", "r", newline="\n") as f:
     dirs = [line.rstrip("\n") for line in f]
 
-print(dirs[0])
 sig = 0.0412
 mu = 0.0252
 
@@ -18,7 +17,7 @@ for min_height in np.arange(1, 10.5, 0.5):
     peaks = []
     file_of_peaks = []
     peaks_values = []
-    for idir, dirname in enumerate([dirs[0]]):
+    for idir, dirname in enumerate(dirs):
         f = np.fromfile(
             join("../data", dirname, "data_force.datout"),
             float,
