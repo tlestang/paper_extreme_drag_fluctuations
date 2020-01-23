@@ -37,8 +37,9 @@ static PyObject* method_simulate(PyObject *self, PyObject *args){
   myLB->setParameters(tau, U0, F0);
 
   Obstacle* obs[2];
+  squareObstacle mySquare(xsq, ysq, L);
   obs[0] = new Grid(x0, R, Dy);
-  obs[1] = new squareObstacle(xsq, ysq, L);
+  obs[1] = &mySquare;
   myLB->setObstacles(obs, 2);
 
   // -------- Initialise simulation -----------
@@ -48,27 +49,60 @@ static PyObject* method_simulate(PyObject *self, PyObject *args){
   int N = std::min(tmax,tvismax)-std::max(tmin,tvismin)+1;
   int writingPeriod = (tvismax-tvismin)/100;
   double *f = new double[N];
+  double *viscousRear = new double[N];
+  double *viscousTop = new double[N];
+  double *viscousFront = new double[N];
+  double *viscousBot = new double[N];
+  double *pRear = new double[N];
+  double *pFront = new double[N];
+
   for (int t=tmin;t<tvismin;t++)
     {
       myLB->advanceOneTimestep(obs, 2);
     }
+  int tt;
   for (int t=std::max(tmin,tvismin);t<std::min(tmax,tvismax)+1;t++)
     {
+      tt = t-std::max(tmin,tvismin);
       myLB->advanceOneTimestep(obs, 2);
       if((t-tvismin)%writingPeriod == 0){
 	myLB->writeSnapshot();
       }
       myLB->computeStress(obs[1]);
-      f[t-std::max(tmin,tvismin)] = obs[1]->getDrag();
+      f[tt] = obs[1]->getDrag();
+      viscousTop[tt] = mySquare.getViscousTop();
+      viscousBot[tt] = mySquare.getViscousBot();
+      viscousFront[tt] = mySquare.getViscousFront();
+      viscousRear[tt] = mySquare.getViscousRear();
+      pFront[tt] = mySquare.getpFront();
+      pRear[tt] = mySquare.getpRear();
     }
 
-  std::ofstream dragFile("dragFile.dat", std::ios::binary | std::ios::app);
-  dragFile.write((char*)&f[0], N*sizeof(double));
-  dragFile.close();
+  std::ofstream outputFile;
+  outputFile.open("dragFile.dat", std::ios::binary | std::ios::app);
+  outputFile.write((char*)&f[0], N*sizeof(double));
+  outputFile.close();
+  outputFile.open("viscousTop.dat", std::ios::binary | std::ios::app);
+  outputFile.write((char*)&viscousTop[0], N*sizeof(double));
+  outputFile.close();
+  outputFile.open("viscousBot.dat", std::ios::binary | std::ios::app);
+  outputFile.write((char*)&viscousBot[0], N*sizeof(double));
+  outputFile.close();
+  outputFile.open("viscousRear.dat", std::ios::binary | std::ios::app);
+  outputFile.write((char*)&viscousRear[0], N*sizeof(double));
+  outputFile.close();
+  outputFile.open("viscousFront.dat", std::ios::binary | std::ios::app);
+  outputFile.write((char*)&viscousFront[0], N*sizeof(double));
+  outputFile.close();
+  outputFile.open("pFront.dat", std::ios::binary | std::ios::app);
+  outputFile.write((char*)&pFront[0], N*sizeof(double));
+  outputFile.close();
+  outputFile.open("pRear.dat", std::ios::binary | std::ios::app);
+  outputFile.write((char*)&pRear[0], N*sizeof(double));
+  outputFile.close();
 
   delete[] f;
   delete obs[0];
-  delete obs[1];
   delete myLB;
 
   return PyLong_FromLong(N);
