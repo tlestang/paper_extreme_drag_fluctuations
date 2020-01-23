@@ -18,8 +18,7 @@ gktl_dir = "../../er_lannic"
 # First row is highest fluctuation
 with open("extremes.csv", mode="r") as extremes_file:
     extremes_reader = csv.reader(extremes_file, delimiter=",")
-    line_count = 0
-    for _idx, _F in extremes_reader:
+    for _idx, _F, t_star in extremes_reader:
         idx.append(int(_idx))
         F.append(float(_F))
 
@@ -45,9 +44,9 @@ for i in range(0, Nevents):
     # Opens the files and jump to peak drag
     # (middle of timeseries)
     # Get velocity fields
-    ux = np.fromfile(path_to_file_ux, float, N, "", offset=(nb_snapshots // 2) * N * 8)
+    ux = np.fromfile(path_to_file_ux, float, N, "", offset=(nb_snapshots // 2 - 1) * N * 8)
     ux = np.reshape(ux, (129, 513), "F")
-    uy = np.fromfile(path_to_file_uy, float, N, "", offset=(nb_snapshots // 2) * N * 8)
+    uy = np.fromfile(path_to_file_uy, float, N, "", offset=(nb_snapshots // 2 - 1) * N * 8)
     uy = np.reshape(uy, (129, 513), "F")
 
     ymin = 32
@@ -94,6 +93,6 @@ cbar = fig.colorbar(im, ax=ax_list)
 cbar.ax.tick_params(labelsize=16)
 
 fname = "illustr_extrms_vorticity.png"
-# plt.savefig(fname)
+plt.savefig(fname)
 
 plt.show()
