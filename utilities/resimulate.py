@@ -45,7 +45,7 @@ for counter, fluct in enumerate(flucts):
     path = os.path.join(args.directory, dirname, "populations", init_file)
     simulate.simulate(path, 0, tmax, tvismin, tmax)
 
-    event_dir = os.path.join(args.directory, "event_{}".format(counter))
+    event_dir = os.path.join(args.directory, "event_{}".format(args.fluct_idx[counter]))
     if not os.path.isdir(event_dir):
         os.mkdir(event_dir)
     for filename in [
