@@ -12,8 +12,8 @@ restart_pts_period = 20000000
 tau_c = 2000
 
 csv_file_handle = open("peaks.csv", "w")
-for min_height in np.arange(1, 10.5, 0.5):
-    max_height = min_height + 0.5
+for min_height in np.arange(1, 7.7, 0.025):
+    max_height = min_height + 0.025
     peaks = []
     file_of_peaks = []
     peaks_values = []
@@ -31,6 +31,7 @@ for min_height in np.arange(1, 10.5, 0.5):
         )
         peaks_values.extend(f[local_peaks])
         local_peaks = local_peaks + 25000
+
         peaks.extend(local_peaks)
         file_of_peaks.extend([idir] * len(local_peaks))
 
