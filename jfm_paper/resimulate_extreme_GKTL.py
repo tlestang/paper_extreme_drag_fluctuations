@@ -50,7 +50,7 @@ def resimulate(gktl_dir, traj_index):
 
     # Compute history for trajectory
     history = utils.gktl_reconstruct_trajectories(
-        gktl_dir, br_end=29, br_start=0, rep=0
+        gktl_dir, br_end=29, br_start=10, rep=0
     )
 
     # Now do resimulation
@@ -69,7 +69,7 @@ def resimulate(gktl_dir, traj_index):
                 float,
                 Dx * Dy * 9,
                 "",
-                offset=step * Dx * Dy * 9 * np.dtype(float).itemsize,
+                offset=(step + 10) * Dx * Dy * 9 * np.dtype(float).itemsize,
             ).tofile("init_state.bin")
             # Simulate flow for this GKTL step
             tmin = step * DT
