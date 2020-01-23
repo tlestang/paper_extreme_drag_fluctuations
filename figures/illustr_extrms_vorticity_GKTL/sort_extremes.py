@@ -55,7 +55,13 @@ for counter, common_ancestor_idx in enumerate(dict_of_parents):
 
 with open("extremes.csv", "w") as f:
     for i, idx in enumerate(np.argsort(-np.array(drag_maxima))):
-        f.write("{},{}\n".format(traj_idx[idx], drag_maxima[idx] / sig))
+        fileName = os.path.join(
+            args.directory, "recon_rep_0_clone_{}.traj".format(traj_idx[idx])
+        )
+        t_star = np.argmax(np.fromfile(fileName, float, -1, ""))
+        f.write(
+            "{:d},{:f},{:d}\n".format(traj_idx[idx], drag_maxima[idx] / sig, t_star)
+        )
 if args.resimulate:
     for i, idx in enumerate(np.argsort(-np.array(drag_maxima))):
         print(
