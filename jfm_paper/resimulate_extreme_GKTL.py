@@ -30,15 +30,19 @@ def resimulate(gktl_dir, traj_index):
     tvismin = t_star - vis_window // 2  # Min visualisation boundary window
     tvismax = t_star + vis_window // 2  # Max visualisation boundary window
     if tvismin < 0:
-        msg = "Minimum visualisation boundary should not be < 0. Its value was: {}".format(
+        msg = "Warning, minimum visualisation boundary is < 0. Its value is: {}".format(
             tvismin
         )
-        raise Exception(msg)
-    if tvismax > gktl_params["Ta"] - 1:
-        msg = "Maximum visualisation boundary should not be > {}. Its value was {}:".format(
-            gktl_params["Ta"] - 1, tvismax
+        print(msg)
+        print("Resimulating from t = 0")
+        tvismin = 0
+    if tvismax > len(drag_signal) - 1:
+        msg = "Warning, maximum visualisation boundary is beyond endpoint of trajectory. Its value is: {}".format(
+            tvismax
         )
-        raise Exception(msg)
+        print(msg)
+        tvismax = len(drag_signal) - 1
+        print("Resimulating until tvismax = {}".format(tvismax))
 
     # Compute starting and end GKTL states
     step_min = tvismin // DT
