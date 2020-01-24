@@ -1,9 +1,6 @@
 import shutil
 import os
 import csv
-import logging
-
-logging.basicConfig(filename="prepare_resimulation.log", level=logging.INFO)
 
 
 def prepare_run(fluctuations, cost, counter):
@@ -25,6 +22,7 @@ def write_batch_file(dirname, fluctuations_str):
 
 
 def prepare_resim(max_cost, t2h):
+    log = open("prepare_resimulation.log", "w")
     cost = 0
     extremes_file = open("peaks.csv", mode="r")
     fluct_iterator = csv.reader(extremes_file, delimiter=",")
@@ -37,7 +35,7 @@ def prepare_resim(max_cost, t2h):
             "resimulation cost is greater than max cost (was {:.1f}h)".format(
                 counter, nb_timesteps / t2h
             )
-            logging.info(msg)
+            log.write(msg+"\n")
         else:
             if cost + nb_timesteps > max_cost:
                 prepare_run(fluctuations, cost, counter - 1)
@@ -46,6 +44,7 @@ def prepare_resim(max_cost, t2h):
             fluctuations.append(counter)
             cost = cost + nb_timesteps
     extremes_file.close()
+    log.close()
     # Remainder
     prepare_run(fluctuations, cost, "end")
 
@@ -59,4 +58,3 @@ if __name__ == "__main__":
     max_cost = int(t2h * max_duration)
 
     prepare_resim(max_cost, t2h)
-    # write_batch_file("test_dir", ["1", "2", "3"])
