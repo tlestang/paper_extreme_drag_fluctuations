@@ -58,7 +58,7 @@ static PyObject* method_simulate(PyObject *self, PyObject *args){
 
   for (int t=tmin;t<tvismin;t++)
     {
-      myLB->displayPercentage(t-tmin, tvismin-tmin)
+      myLB->displayPercentage(t-tmin, tvismin-tmin);
       myLB->advanceOneTimestep(obs, 2);
     }
   int tt;
