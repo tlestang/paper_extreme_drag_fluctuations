@@ -33,7 +33,7 @@ def prepare_resim(max_cost, t2h):
         if nb_timesteps > max_cost:
             msg = "Leaving out fluctuation no {:d} because its " \
             "resimulation cost is greater than max cost (was {:.1f}h)".format(
-                counter, nb_timesteps / t2h
+                counter, nb_timesteps / t2h / 60
             )
             log.write(msg+"\n")
         else:
@@ -50,10 +50,10 @@ def prepare_resim(max_cost, t2h):
 
 
 if __name__ == "__main__":
-    base_duration = 2
-    base_cost = 600000
+    base_duration = 1*60+50
+    base_cost = 600211
 
-    max_duration = 6
+    max_duration = 6*60
     t2h = base_cost / base_duration
     max_cost = int(t2h * max_duration)
 
