@@ -36,6 +36,8 @@ with open("peaks.csv", mode="r") as extremes_file:
     line_count = 0
     flucts = [_tuple for i, _tuple in enumerate(extremes_reader) if i in args.fluct_idx]
 
+# Open file for logging
+log = open(os.path.basename(os.getcwd())+".log")
 for counter, fluct in enumerate(flucts):
     dirname, init_file, nb_timesteps, peak, value = fluct
     tvismin = int(nb_timesteps) - 2000
@@ -43,6 +45,8 @@ for counter, fluct in enumerate(flucts):
     if tvismin < 0:
         tvismin = 0
     path = os.path.join(args.directory, dirname, "populations", init_file)
+
+    log.write("Resimulating fluctuation {}\n".format(fluct_idx[counter]))
     simulate.simulate(path, 0, tmax, tvismin, tmax)
 
     event_dir = os.path.join(args.directory, "event_{}".format(args.fluct_idx[counter]))
@@ -61,4 +65,5 @@ for counter, fluct in enumerate(flucts):
         "pRear.dat",
     ]:
         os.rename(filename, os.path.join(event_dir, filename))
-        print("Moved {} to {}".format(filename, os.path.join(event_dir, filename)))
+        log.write("  Moved {} to {}\n".format(filename, os.path.join(event_dir, filename)))
+log.close()
