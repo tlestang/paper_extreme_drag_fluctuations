@@ -16,7 +16,7 @@ from jfm_paper import utils
 
 def resimulate(gktl_dir, traj_index):
     tau_c = 2000
-    vis_window = 4 * tau_c
+    vis_window = 4 * tau_c // 10
 
     # Read the drag signal
     filename = os.path.join(gktl_dir, "recon_rep_0_clone_{}.traj".format(traj_index))
