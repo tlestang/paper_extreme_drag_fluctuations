@@ -1,3 +1,4 @@
+import shutil
 import os
 import csv
 import logging
@@ -9,6 +10,8 @@ def prepare_run(fluctuations, cost, counter):
     if fluctuations:
         dirname = "run_{}".format(counter)
         write_batch_file(dirname, [str(idx) for idx in fluctuations])
+        shutil.copy("resimulate.py", dirname)
+        shutil.copy("peaks.csv", dirname)
 
 
 def write_batch_file(dirname, fluctuations_str):
