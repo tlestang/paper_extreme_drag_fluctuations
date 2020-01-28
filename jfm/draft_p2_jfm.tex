@@ -568,7 +568,7 @@ F_T(t) = \frac{1}{T}\int_t^{t+T} f_d(t) \mathrm{d}t,
 where $f_d(t)$ denotes the instantaneous drag and $T$ is the investigated timescale (response time).
 Relevant values of $T$ are application dependant.
 We shall consider $T=10\tau_c$ in the following.
-\EL{In that case, the PDF of $F_T$ is found nearly Gaussian as a consequence of the Central Limit theorem (see Fig.~\ref{fig:IS_GKTL}).}
+\EL{In that case, the PDF of $F_T$ is found nearly Gaussian as a consequence of the Central Limit theorem (see Fig.~\ref{fig}).}
 
 %
 During a time interval $[t;t+T]$, a fluctuation of $F_T(t)$ may be roughly viewed as the overall contribution of  $T / \tau_c$ independent fluctuations of the {instantaneous} drag $f_d$.
@@ -748,7 +748,13 @@ Then, we chose $N = 1024$ to obtain a computational cost of order $\mathcal{O}(1
 Finally, we set $\tau = \tau_c / 2$.
 \textbf{How do we set k?}
 
-Figure~\ref{sec:IS_GKTL} shows the histogram of the values of the average drag $F_{T_a} = \frac{1}{T_a}\int_{0}^{T_a}f_d(t)\mathrm{d}t$ for three ensemble of trajectories sampled with three different values of the cloning strength $k$.
+\begin{figure}
+  \centering
+  \includegraphics[width=.7\linewidth]{IS_GKTL/IS_GKTL_2}
+  \caption{Histogram of the values of the time-averaged drag $F_{T_a}$, with $T_a = 10\tau_c$, in the ensemble sampled by the cloning algorithm, for three values of the cloning strength $k$. In each case, the algorithm was applied with $N=1024$, $\tau = \tau_c / 2$. The grey histogram represents the average histogram obtained through a direct sampling, \textit{i.e.} with $k=0$. It was computed using a Gaussian approximation for the \ac{pdf} of the time-averaged drag.}
+  \label{fig:IS_GKTL}
+\end{figure}
+Figure~\ref{fig:IS_GKTL} shows the histogram of the values of the average drag $F_{T_a} = \frac{1}{T_a}\int_{0}^{T_a}f_d(t)\mathrm{d}t$ for three ensemble of trajectories sampled with three different values of the cloning strength $k$.
 It illustrates that the algorithm effectively samples preferentially trajectories with a higher value of the average.
 The higher $k$, the stronger the bias.
 The grey histogram represents the average histogram that would be obtained using a direct approach -- \textit{i.e.} with $k=0$ -- for the same computational cost.
