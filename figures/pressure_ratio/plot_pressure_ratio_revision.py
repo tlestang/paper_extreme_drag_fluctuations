@@ -57,4 +57,7 @@ ax.legend(loc='best', fontsize=22)
 plt.xticks(fontsize=16)
 plt.yticks(fontsize=16)
 
+fname = 'pressure_ratio.png'
+plt.savefig(fname)
+
 plt.show()
