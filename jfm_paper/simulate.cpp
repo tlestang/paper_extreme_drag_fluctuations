@@ -1,3 +1,4 @@
+#include <iostream>
 #include <fstream>
 #include <algorithm>
 #include <python3.7/Python.h>
@@ -6,14 +7,15 @@
 
 static PyObject* method_simulate(PyObject *self, PyObject *args){
 
-  char* path_to_init;
+  char* path_to_init = NULL;
   int tmin;
   int tmax;
   int tvismin;
   int tvismax;
+  char* path_to_perturb;
 
-  bool parse_args_error = PyArg_ParseTuple(args, "siiii", &path_to_init, &tmin,
-					   &tmax, &tvismin, &tvismax);
+  bool parse_args_error = PyArg_ParseTuple(args, "siiii|s", &path_to_init, &tmin,
+					   &tmax, &tvismin, &tvismax, &path_to_perturb);
   if (!parse_args_error)
     return NULL;
 
@@ -42,8 +44,16 @@ static PyObject* method_simulate(PyObject *self, PyObject *args){
   obs[1] = &mySquare;
   myLB->setObstacles(obs, 2);
 
+  // Parameters of perturbation
+  std::string root = "pops";
+  int NN = 20;
+  int NbFiles = 10;
+  double eps = 0.002;
   // -------- Initialise simulation -----------
   myLB->initFromFile(std::string(path_to_init));
+  if(path_to_perturb){
+    myLB->makePerturbation(std::string(path_to_perturb), root, NN, NbFiles, eps);
+  }
 
   // -------- Simulate -------------------
   int N = std::min(tmax,tvismax)-std::max(tmin,tvismin)+1;
