@@ -12,7 +12,7 @@ static PyObject* method_simulate(PyObject *self, PyObject *args){
   int tmax;
   int tvismin;
   int tvismax;
-  char* path_to_perturb;
+  char* path_to_perturb = NULL;
 
   bool parse_args_error = PyArg_ParseTuple(args, "siiii|s", &path_to_init, &tmin,
 					   &tmax, &tvismin, &tvismax, &path_to_perturb);
