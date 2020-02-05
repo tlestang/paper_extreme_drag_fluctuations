@@ -1,5 +1,8 @@
 \newtheorem{theo}{Theorem}
 
+\section{The \ac{ams} algorithm}
+\label{app_ams}
+
 This appendix describes the \ac{ams} algorithm, gives a brief summary of the main
 mathematical results and discusses its use in practice.
 \subsection{Description of the algorithm}
@@ -100,6 +103,40 @@ Ultimately, because of the discretization induced by the numerical model, all tr
 \end{equation}
 and the iterations stop.
 This phenomenon is sometimes referred as the \textit{extinction} of the algorithm.
+
+\subsection{Illustration of the \ac{ams} on a simple case: the \acl{ou} process}
+\label{app:AMS_on_OU}
+
+\begin{figure}
+  \centering
+  \includegraphics[width=.7\linewidth]{AMS_OU/AMS_OU.png}
+  \caption{Efficiency of the \EL{\ac{ams} algorithm} with respect to direct sampling in the case of an Ornstein-Uhlenbeck process \citep{lestang_computing_2018}. The red line represents the evolution of the maximum obtained from re-sampled trajectories as a function of the computational cost $C_{AMS}$. The blue line is the analytical solution for the return time of amplitude $a$.}
+  \label{fig:comparaison_temps_de_retour}
+\end{figure}
+Fluid dynamics is temporarily left aside and a one-dimensional \acl{ou} process is considered:
+\begin{equation}
+  \label{eq:ou}
+  \dot{x} = -x + \eta (t),
+\end{equation}
+where $\eta$ is a Gaussian noise with $\langle \eta(t)\eta(t-t')\rangle = \delta(t-t')$.
+This basic stochastic process will allow us to highlight differences with fluid dynamics.
+
+
+The \ac{ams} is applied  to a set of $N=32$ trajectories $\{x_n(t)\}_{0\leq t \leq T_a}$ with $T_a=5\tau_c$.
+Let us note that the correlation time is $\tau_c = 1$ for the process defined by Eq.~\eqref{eq:ou}.
+Our objective is to sample fluctuations $x\geq a$ with $a$ being very large compared to the typical values of $x$.
+The score function is simply $x(t)$ and a single trajectory is re-sampled at each iteration.
+
+The computational cost of the algorithm after $J$ iterations is therefore related to the simulation of the $N$ initial trajectories and the re-sampling of $J$ trajectories.
+Fig.~\ref{fig:comparaison_temps_de_retour} compares the computational cost of the \ac{ams} algorithm with that of a direct sampling.
+In the latter, the typical computational cost is simply the return time $r(a)$.
+One can see that the successive re-samplings of the \ac{ams} algorithm lead rapidly to trajectories exhibiting extreme fluctuations.
+For large $a$, the computational cost is many orders of magnitude lower than that obtained by direct sampling.
+
+Undoubtedly, the \acl{ou} process has oversimplified dynamics to showcase the efficiency of the \ac{ams} algorithm.
+The state space is one-dimensional and the choice of the score function is straightforward: It is $x$ itself.
+In addition, the noise term in Eq.~\eqref{eq:ou} has no correlation in time, which implies that newly generated trajectories quickly separate from their parents. Such favorable features \EL{do not} \textit{a priori} persist in the case of fluid dynamics.
+  
 %%% Local Variables:
 %%% mode: latex
 %%% TeX-master: "draft_p2_jfm"
