@@ -13,6 +13,22 @@ def check_files(files, dtype=np.float32):
     return nbpoints_in_file
 
 
+def compute_moments(files, dtype=np.float32):
+    for filename in files:
+        if not (os.path.isfile(filename)):
+            raise FileNotFoundError("File {} not found.".format(filename))
+        nbpoints_in_file = int(os.path.getsize(files[0]) / np.dtype(dtype).itemsize)
+
+        mu_arr = np.zeros(len(files))
+        s2_arr = np.zeros(len(files))
+        for i, filename in enumerate(files):
+            x = np.fromfile(filename, dtype, -1, "")
+            mu_arr[i] = np.mean(x)
+            s2_arr[i] = np.var(x, ddof=1)
+
+    return np.mean(mu_arr), np.mean(s2_arr)
+
+
 def get_gktl_parameters(path_to_dir):
 
     found_input = False
