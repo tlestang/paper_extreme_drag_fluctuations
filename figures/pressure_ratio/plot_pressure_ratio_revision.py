@@ -21,6 +21,9 @@ flucts = [_tuple for i, _tuple in enumerate(flucts_reader) if os.path.isfile("..
 csv_file_handle.seek(0)
 event_dirs = ["../../data/event_{}".format(i) for i, _tuple in enumerate(flucts_reader) if os.path.isfile("../../data/event_{}/dragFile.dat".format(i))]
 csv_file_handle.close()
+NbExtremeEvents = 104
+prefix = '/home/tlestang/transition_hdd/thibault/These/lbm_code/seq/draft/etude_dynamique/instant_events/'
+extreme_event_dirs = [os.path.join(prefix, "event_{}_feb".format(i+1)) for i in range(NbExtremeEvents)]
 
 maxDrag = []
 frontContrib = []
@@ -39,12 +42,25 @@ for counter, fluct in enumerate(flucts):
     maxDrag.append(drag[t_star])
     frontContrib.append((pFront[t_star]-meanPf)/(maxDrag[counter]-meanDrag))
     rearContrib.append((meanPr+pRear[t_star])/(maxDrag[counter]-meanDrag))
+for dirname in extreme_event_dirs:
+    drag = np.fromfile(os.path.join(dirname,'data_force.datout'), float, -1, "")
+    pFront = np.fromfile(os.path.join(dirname,'pFront.dat'), float, -1, "")
+    pRear = np.fromfile(os.path.join(dirname,'pRear.dat'), float, -1, "")
+    vTop = np.fromfile(os.path.join(dirname,'viscousTop.dat'), float, -1, "")
+    vBot = np.fromfile(os.path.join(dirname,'viscousBot.dat'), float, -1, "")
+    vFront = np.fromfile(os.path.join(dirname,'viscousFront.dat'), float, -1, "")
+    vRear = np.fromfile(os.path.join(dirname,'viscousRear.dat'), float, -1, "")
 
+    _maxDrag = np.amax(drag)
+    maxDrag.append(_maxDrag)
+    I = np.argmax(drag)
+    frontContrib.append((pFront[I]-meanPf)/(_maxDrag-meanDrag));
+    rearContrib.append((meanPr+pRear[I])/(_maxDrag-meanDrag));
+    
 maxDrag = np.array(maxDrag)
 maxDrag = (maxDrag-mu) / sig
     
-fig,ax = plt.subplots(figsize=(9,5), constrained_layout=True)
-
+fig,ax = plt.subplots(figsize=(12,7), constrained_layout=True)
 
 lineRear, =ax.plot(maxDrag, rearContrib, marker='o', label=r'$-\Delta p^{\star}_{base}/\tilde{f}^{\star}_d$')
 lineRear.set_linestyle('None')
@@ -53,7 +69,7 @@ lineFront, =ax.plot(maxDrag, frontContrib, marker='^', label=r'$\Delta p^{\star}
 lineFront.set_linestyle('None')
 
 ax.set_xlabel(r'$\tilde{f}^{\star}_d / \sigma$',fontsize=22)
-ax.legend(loc='best', fontsize=22)
+ax.legend(loc='lower right', fontsize=22)
 plt.xticks(fontsize=16)
 plt.yticks(fontsize=16)
 
