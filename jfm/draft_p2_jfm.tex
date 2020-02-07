@@ -120,47 +120,34 @@ Beyond the study of applicability of rare-event sampling techniques to a fluid-m
 
 \include{rare_events_algorithms}
 
-
-
-
-
 \section{Conclusion}
 \label{conlusion}
 
-%In this study, the application of two rare-event sampling algorithms has been assessed for the simulation of extreme mechanical efforts on structures immersed in a turbulent flow; a situation relevant to many industrial applications.
-
-In a first part, we investigated the dynamics and statistics of extreme fluctuations of the drag acting on a square mounted in a turbulent channel flow, in two dimensions.
+In a first part, we showed that the phenomenology describing extreme drag fluctuations is very different from typical events.
 By means of a long simulation of reference, we observed that such extreme events are caused by the (temporary) trapping of vorticity very close to the base of the square.
-Extreme drag amplitudes do not persist over time since the mean flow eventually sweeps away the fluid structures responsible for this situation.
-%
-The lifetime of extreme drag fluctuations is therefore of the order of the turnover time, and the corresponding drag signal is very peaked around these extreme values.
-Our long drag timeseries also reveal that the tails of the \ac{pdf} for the drag are well described by an exponential \ac{pdf}.
-This property is linked to the phenomenology of extremes of the time-averaged drag.
-Especially, we observed that such extreme values for the average do not preferentially result from a small number of very large fluctuations, or an exceptional succession of moderate fluctuations that pile up to \EL{yield a large value} of the average.
-%Such a phenomenology is observed for stochastic processes with an exponential \ac{pdf}.
+The lifetime of extreme drag fluctuations of the order of the turnover time, and the corresponding drag signal is very peaked around these extreme values.
+Furthermore, this lifetime is of the order of the correlation timescale of the drag and therefore each successive extreme drag events are decorrelated for one another.
+From a timeseries spanning four million turn-over times we also illustrated that the phenomenology of extremes of the time-averaged drag cannot be reduced to a well defined scenario.
+Indeed, extreme average values result both from rare successions of typical fluctuations, of the occurrence a fewer number of rare extreme fluctuations of the instantaneous drag.
 
-The application of rare event algorithms relies on the definition of a score function for the selection of trajectories.
-The efficiency of the algorithm depends on the choice of the score function which has to be well suited to the phenomenology of the extreme dynamics.
-For complex dynamics including turbulent flows, this choice is  difficult because of the lack of characterisation of rare events. These latter are expected to depend on the dynamical regime (Reynolds number), the stirring mechanism and boundary conditions of the flow. In this context, the choice of the observable itself as score function is certainly a safe fall-back option, nevertheless not optimal.
+In order to extend our study, and consider its replication on more complex flows, we considered the application of two popular rare-event sampling algorithms.
+Because of the short lifetime of extreme drag fluctuations, the \ac{ams} does not lead to a better sampling
+when using the drag itself as a score function.
+The choice of the score function is difficult for complex dynamics, and optimal score function is problem-dependant.
+To enable the application of the \ac{ams} to a wide range of complex dynamical systems, an important question is the systematic estimation of the optimal score function, for instance using machine learning approaches.
 
-On the basis of the same two-dimensional test flow, we then applied the \ac{ams} algorithm choosing the drag itself as a score function.
-In this case, our results illustrate that the selection-mutation procedure is unable to generate rare trajectories at a better rate than a direct sampling.
-This can be related to the phenomenology of extreme drag fluctuations, \EL{whose lifetime} is shorter than the timescale over which re-sampled trajectories separate from their parent.
-%following the addition of a small perturbation in the initial conditions.
-The \ac{gktl} algorithm has been applied to the sampling of trajectories displaying extreme fluctuations of the time-averaged drag.
-In this case, we showed that using \ac{gktl} leads to a significant gain with respect to a direct approach, allowing for the simulation and computation of statistics for (very) rare trajectories.
-The sampling of extreme time-averages is aided by the selection of trajectories displaying an exceptional succession of drag fluctuations, resulting in an extreme value of the average.
-It is however unclear whether the \ac{gktl} is suited to sample trajectories for which the extreme fluctuations of the time-averaged drag results from a unique, exceptionally large drag fluctuation. This issue is postponed for future investigations.
-
-Importantly, successful usage of the \ac{ams}, \ac{gktl} or similar algorithms for complex flows relevant to industrial or environmental situations will require coping with the fact that optimal score functions
-are difficult to identify, if even possible.
-A promising direction explored in current research is to take advantage of recent advances in \emph{learning methods} to optimise score functions beforehand.
+We obtained more satisfactory results for the averaged drag using the \ac{gktl} algorithm.
+Indeed, using the algorithm we could sample trajectories corresponding to values of the time-averaged drag unreachable from a direct sampling of similar computational cost.
+Qualitatively, we found the phenomenology of the sampled extreme events to be consistent with the findings of the part of the study.
+However, a more quantitative analysis is required to assess the ability of the \ac{gktl} algorithm to equally sample the different dynamics leading to a given extreme value of the average drag.
+Nonetheless, our study shows that the sampled ensemble is useful to compute estimators over extreme events, such as return times of extreme fluctuations of the average drag.
 
 \section{Acknowledgements}
 The authors thank Francesco Ragone, Corentin Herbert, Charles-Edouard Bréhier and Eric Simonnet for useful discussions and suggestions on various aspects of this work.
 T.L and F.B acknowledge support from the European Research Council under the European Union's seventh Framework Program (FP7/2007-2013 Grant Agreement No. 616811).
 Simulations have been performed on the local HPC facilities at École Normale Supérieure de Lyon (PSMN) and École Centrale de Lyon (PMCS2I).
 The facilities at PSMN are supported by the Auvergne-Rhône-Alpes region (GRANT CPRT07-13 CIRA) and the national Equip@Meso grant (ANR-10-EQPX-29-01).
+Finally, the authors would like to thank the three anonymous referees for their detailed review and insightfull comments and suggestions.
 
 \appendix
 
