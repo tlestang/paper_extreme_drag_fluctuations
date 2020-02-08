@@ -1,7 +1,7 @@
 \newtheorem{theo}{Theorem}
 
 \section{The \ac{ams} algorithm}
-\label{app_ams}
+\label{app:ams}
 
 This appendix describes the \ac{ams} algorithm, gives a brief summary of the main
 mathematical results and discusses its use in practice.
@@ -22,7 +22,7 @@ Then, the trajectories corresponding to the lowest $\mathcal{Q}_n^{(j)}$ are sel
   \mathcal{Q}_{n_{j,1}^\star}^{(j)} = \cdots = \mathcal{Q}_{n_{j,\ell_j}^\star}^{(j)} = \mathcal{Q}_j^\star.
 \end{equation}
 One might expect intuitively that $\ell_j=1$.
-However, because of the discretization of the dynamical equations in the numerical model, two or more trajectories may yield the same level $\mathcal{Q}_n^{(j)}$, see~\cite{Brehier2016a}.
+However, because of the discretization of the dynamical equations in the numerical model, two or more trajectories may yield the same level $\mathcal{Q}_n^{(j)}$, see~\cite{brehier:hal-01142704}.
 The next step is known as the \textit{mutation step}: for each trajectory $x_{n_{j,\ell}^\star}^{(j-1)}$ ($1 \leq \ell \leq \ell_j$), we choose a trajectory $x_{n_\ell}^{(j-1)}$ ($n_{\ell} \neq n_{j,1},\ldots n_{j,\ell_j}$) randomly among the $N-\ell_j$ remaining trajectories, and define the time $t_{j,\ell}$ defined as the smallest time $t$ such that $\xi(t,x_{n_\ell}^{(j-1)}(t))>\mathcal{Q}_j^\star$.
 Finally, we define the new replica $x_{n_{j,\ell}^\star}^{(j)}$ by copying the trajectory $x_{n_\ell}^{(j-1)}$ from $t_0$ to $t_{j,\ell}$, and simulating the rest of the trajectory, from $t_{j,\ell}$ to $T_a$.
 For a Markov process, for instance a diffusion, a new realisation of the noise is used in order to simulate the new trajectory from $t_j$ to $T_a$.
@@ -41,7 +41,7 @@ After $N$ iterations of this selection-mutation procedure, the number of resampl
 $\tilde{J} = \sum_{j=1}^J \ell_j$.
 Ultimately, the algorithm generates $M=N+\tilde{J}$ trajectories, given explicitly by the set $\{x_n^{(0)}\}_{1 \leq n \leq N} \cup \{ x_{n_{j,\ell}^\star}^{(j)}\}_{1 \leq \ell \leq \ell_j, 1 \leq j \leq J}$, or equivalently, the set $\{x_n^{(J)}\}_{1 \leq n \leq N} \cup \{ x_{n_{j,\ell}^\star}^{(j-1)}\}_{1 \leq \ell \leq \ell_j, 1 \leq j \leq J}$.
 \subsection{How to compute the probability}
-Trajectories $x_n^{(j)}$ forming the ensemble at step $j$ are attributed a weight $w_j$ given by~\cite{Cerou2007,Cerou2011,Brehier2016a}:
+Trajectories $x_n^{(j)}$ forming the ensemble at step $j$ are attributed a weight $w_j$ given by~\cite{Cerou2007,Cerou2011,brehier:hal-01142704}:
 \begin{equation}
   w_j = \prod_{i=1}^j \left( 1 - \frac{\ell_i}{N}\right)=\left( 1 - \frac{\ell_j}{N}\right)w_{j-1}.
 \end{equation}
@@ -52,21 +52,21 @@ Normalising the weights with $W=\sum_{m=1}^M w_m$, we obtain the probabilities $
 \subsection{Summary of mathematical results}
 We now consider the final ensemble of trajectories sampled by the \ac{ams} algorithm, after a given number
 of iterations $N$.
-We call $a$ the lowest maximum among the trajectories in the ensemble, \textit{i.e.} the final value of the threshold $\mathcal{Q}^{\star}$ defined in Eq.~\eqref{ams_threshold_def}.
+We call $a$ the lowest maximum among the trajectories in the ensemble, \textit{i.e.} the final value of the threshold $\mathcal{Q}^{\star}$ defined in Eq.~\eqref{eq:ams_threshold_def}.
 The \ac{ams} provides an estimator of the probability that a the maximum of the score function over a trajectory of duration $T_a$ is above $a$, that is:
 \begin{equation}
   \label{eq:estimator_ams}
   q(a) = \mathbb{P}\left[ \underset{0\leq t \leq T_a}{\max} \xi(\mathbf{x}, t) > a \right]
 \end{equation}
 In the following we denote this estimator $\hat{q}_N(a)$.
-One of the main properties of the \ac{ams} algorithm is the following unbiasedness result, see~\cite{Brehier2016a} for more general statements, and discussion on the influence of the time discretization of the Markov dynamics.
+One of the main properties of the \ac{ams} algorithm is the following unbiasedness result, see~\cite{brehier:hal-01142704} for more general statements, and discussion on the influence of the time discretization of the Markov dynamics.
 \begin{theo}
   For every $N$, for every score function $\xi$, $\hat{q}_N$ is an unbiased estimator of $q$:
   \begin{equation}
     \mathbb{E}[\hat{q}_N]=q.
   \end{equation}
 \end{theo}
-Thus only the statistical error $\text{Var}(\hat{q}_N)$ depends on the choice of $N$, and, more importantly, on the score function $\xi$; see~\cite{Brehier2016a,Rolland2015} for extensive numerical simulations concerning the role of the score function.
+Thus only the statistical error $\text{Var}(\hat{q}_N)$ depends on the choice of $N$, and, more importantly, on the score function $\xi$; see~\cite{brehier:hal-01142704,rolland_statistical_2015} for extensive numerical simulations concerning the role of the score function.
 
 More precisely, it is proved in~\cite{Cerou2016}, that the estimator $\hat{q}_N$ satisfies a Central Limit Theorem,
 \begin{equation}

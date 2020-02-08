@@ -1,6 +1,18 @@
-* Introduction
-* Annexe AMS
-* Annexe GKTL
-* Annexe perturbation
-* Conclusion
-* figure 7
+* DONE figure 7
+  - State "DONE"       from "TODO"       [2020-02-07 Fri 11:08]
+* TODO La physique des algos
+* DONE Conclusion
+  - State "DONE"       from "TODO"       [2020-02-07 Fri 10:38]
+* DONE Abstract
+  - State "DONE"       from "TODO"       [2020-02-07 Fri 10:38]
+* TODO References overlap trajectories
+* Response to reviewers
+** Referee 3
+- [X] Limk between the guassianity of the average drag and success of gktl
+- [ ] Fig 9-11 are only descriptive
+- [ ] Paragraph on the physics of algorithms
+- [X] Better identify what are the main results and substantiate these in
+  their presentation
+** Referee 2
+- [X] Better motivate the second part
+- [ ] Add references 

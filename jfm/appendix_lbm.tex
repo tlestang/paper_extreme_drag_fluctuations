@@ -2,7 +2,7 @@
 \label{app:lbm}
 
 % details about LBM
-In the LB method, the fluid is viewed as a population of particles that collide, redistribute and propagate along the different links of a discrete lattice \EL{(see \cite{book_lbm} for a comprehensive introduction)}.
+In the LB method, the fluid is viewed as a population of particles that collide, redistribute and propagate along the different links of a discrete lattice (see \cite{kruger_lattice_2017} for a comprehensive introduction).
 In our two-dimensional situation, the so-called D2Q9 lattice with only nine possible velocities $\{\mathbf{c_i}\}_{i=0...8}$ at each node has been adopted (see  Fig.~\ref{fig:D2Q9}).
 Locally, the macroscopic flow variables (per unit volume) are recovered by summing over the densities of particles $\{f_i\}_{i=0...8}$ moving with the different velocities, i.e.
 \[
@@ -33,7 +33,7 @@ which achieves a relaxation of local densities towards an absolute equilibrium (
 \[
 \nu = \left( {\tau_\nu} - \frac 1 2 \right) c_s^2 ~\Delta t
 \]
-This simplification of the collision kernel is known as the BGK approximation in the kinetic theory of gas \EL{\citep{BGK}}.
+This simplification of the collision kernel is known as the BGK approximation in the kinetic theory of gas \citep{BGK}.
 %
 The equilibrium function is given by
 \begin{equation}
@@ -42,7 +42,7 @@ The equilibrium function is given by
     \frac{u_\alpha(\mathbf{x},t) u_\beta(\mathbf{x},t)({c_i}_\alpha {c_i}_\beta - c_s^2 \delta_{\alpha\beta})}{2 c_s^4} \right),
 \end{equation}
 with the weight factors $w_0=4/9,~w_{1...4} = 1/9$ and $w_{5...8}=1/36$ for the D2Q9 lattice.
-This discrete Lattice Boltzmann scheme is second-order accurate in $\Delta x $ and compliant to the weakly-compressible Navier-Stokes equations with a third-order error in $\mathrm{Ma}=|\mathbf{u}|/c_s$ as the lattice spacing vanishes, i.e. $\Delta x \to 0$ \EL{\citep{succi_book}}.
+This discrete Lattice Boltzmann scheme is second-order accurate in $\Delta x $ and compliant to the weakly-compressible Navier-Stokes equations with a third-order error in $\mathrm{Ma}=|\mathbf{u}|/c_s$ as the lattice spacing vanishes, i.e. $\Delta x \to 0$ \citep{succi_book}.
 
 As mentioned before, the pressure is directly accessible from the mass density: $p = \rho c_s^2$. The viscous stress is also obtained easily from the densities of particles by
 \[

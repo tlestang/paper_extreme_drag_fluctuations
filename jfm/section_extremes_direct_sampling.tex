@@ -3,14 +3,6 @@
 
 \begin{figure}
 	\centering
-	\includegraphics[width=\linewidth]{illustrate_return_time/illustrate_return_time}
-	\caption{\label{fig:illustrate_return_time} {The \textit{return time} $r(a)$  is the averaged waiting time between the occurrence of peak fluctuations of amplitude larger than $a$.
-            One observes that $r(a) >> \tau_c$ (correlation time) if $a$ is sufficiently large. The selected peak fluctuations are therefore well separated.}
-	}
-\end{figure}
-
-\begin{figure}
-	\centering
 	\includegraphics[width=.7\linewidth]{return_time/return_time.png}
 	\caption{Amplitude of drag fluctuations as a function of the corresponding return time. $\tilde{f}_d$ denotes the drag with zero mean, \textit{i.e.} $\tilde{f}_d = f_d - \overline{f_d}$.
 	}
@@ -23,7 +15,7 @@ The phenomenology of extreme fluctuations of the drag is first investigated thro
 Direct sampling is here used as opposed to approaches involving rare-events algorithms discussed in section~\ref{sec:rare_events_algorithms}.
 It will provide a trustworthy baseline for the validation of rare-events algorithms.
 
-The waiting times $\tau$ are defined as the time between two consecutive occurrences of peak fluctuations with amplitude $f_d \geq a$, as illustrated in Fig.~\ref{fig:illustrate_return_time}.
+The waiting times $\tau$ are defined as the time between two consecutive occurrences of peak fluctuations with amplitude $f_d \geq a$, as illustrated in Fig.~\ref{fig:typical_drag_signal}.
 The mixing time $\tau_m$ is the time needed for the dynamics to lose the memory of its initial condition.
 As soon as the typical waiting times are much larger than the mixing time $\tau_m$, the occurrences of such events follow a Poisson process and the distribution of the waiting times is exponential, \emph{i.e.} $P(\tau)=\lambda(a)\exp(-\lambda(a)\tau)$ where $r(a)=1/\lambda(a)$ is the averaged waiting time \cite{lestang_computing_2018}; $r(a)$ is called the {\it return time} of the level $a$.
 For systems without multi-stability, it is common for the mixing time $\tau_m$ to be of the order of the correlation time $\tau_c$.
@@ -205,7 +197,13 @@ F_T(t) = \frac{1}{T}\int_t^{t+T} f_d(t) \mathrm{d}t,
 \end{equation}
 where $f_d(t)$ denotes the instantaneous drag and $T$ is the investigated timescale (response time).
 In the following, we shall consider $T=10\tau_c$, where $\tau_c$ is the correlation of the instantaneous drag.
-In that case, the PDF of $F_T$ is found nearly Gaussian as a consequence of the Central Limit theorem (see Fig.~\ref{fig:IS_GKTL}).
+In that case, the PDF of $F_T$ is found nearly Gaussian as a consequence of the Central Limit theorem (see Fig.~\ref{fig:PDF_AVG}).
+\begin{figure}
+  \centering
+  \includegraphics[width=.7\linewidth]{PDF_AVG/PDF_AVG}
+  \caption{Estimate of the \ac{pdf} for the time-averaged drag $F_T$ with $T = 10\tau_c$. This estimate is based on a rolling average over a timeseries of the instantaneous drag $f_d$ of duration $4 \times 10^6 T_0$.}
+    \label{fig:PDF_AVG}
+\end{figure}
 
 %
 During a time interval $[t;t+T]$, a fluctuation of $F_T(t)$ may be roughly viewed as the overall contribution of  $T / \tau_c$ independent fluctuations of the {instantaneous} drag $f_d$.

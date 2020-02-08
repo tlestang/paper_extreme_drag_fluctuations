@@ -44,7 +44,7 @@ The simulated flow develops in a long plane channel of dimension $513 \times 129
 No-slip boundary conditions are enforced on top and bottom walls of the channel and on the surface of the obstacle by using an halfway bounce-back procedure~\citep{lbm_book}.
 %
 Upstream of the grid, a constant parabolic velocity profile and a constant mass density (equal to unity) are imposed as an inlet condition.
-The centerline velocity is $0.05$ in lattice units, \textit{i.e.} normalised by $\Delta x$ and $\Delta t$ referring to the lattice resolution and the time-step respectively. The initial distributions are imposed at equilibrium (see Appendix).
+The centerline velocity is $0.05$ in lattice units, \textit{i.e.} normalised by $\Delta x$ and $\Delta t$ referring to the lattice resolution and the time-step respectively. The initial distributions are imposed at equilibrium (see appendix~\ref{app:lbm}).
 In the bulk, the viscosity is adjusted so that grid turbulence is generated with Reynolds number $\mathrm{Re_{grid}}=1200$. The reference Mach number is equal to $0.06$ in agreement with the assumption of weak compressibility of the \ac{lbm}.
 Near the end of the channel, the flow is progressively damped within a \textit{sponge layer} where the viscosity is artificially enhanced.
 Finally, the outlet boundary condition relies on a second-order extrapolation of the velocity and mass density.
@@ -107,8 +107,10 @@ Typical fluctuations of the drag (within one standard deviation) do not result f
 
 \begin{figure}
 	\centering
-	\includegraphics[width=0.7\linewidth]{typical_drag_signal/typical_drag_signal.png}
-	\caption{Temporal evolution of the drag (in lattice units) acting on the square under the action of the impinging turbulent flow. The time is normalised by the turnover time related the mean-flow velocity and the size of the obstacle, \emph{i.e.} \EL{$T_0=R/U$}.}
+	\includegraphics[width=.9\linewidth]{illustrate_return_time/illustrate_return_time}
+	\caption{Temporal evolution of the drag (in lattice units) acting on the square under the action of the impinging turbulent flow. The \textit{return time} $r(a)$  is the averaged waiting time between the occurrence of peak fluctuations of amplitude larger than $a$.
+          One observes that $r(a) \gg \tau_c$ (correlation time) if $a$ is sufficiently large. The selected peak fluctuations are therefore well separated.
+          The time is normalised by the turnover time related the mean-flow velocity and the size of the obstacle, \emph{i.e.} $T_0=R/U$.}
 	\label{fig:typical_drag_signal}
 \end{figure}
 

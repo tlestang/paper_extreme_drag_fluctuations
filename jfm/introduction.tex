@@ -4,7 +4,7 @@
 %
 A characteristic feature of turbulent flows is the spontaneous development of intense and sporadic motions associated with extreme internal forces \citep{lesieur_book,donzis_sreenivasan_2010,Yeung}.
 By ``extreme'' we refer to fluctuations that can deviate from the mean value by ${\cal{O}}(10)$ standard deviations.
-In engineering, better understanding of the nature of such extreme dynamical events and their statistics is crucial for the control of excessive mechanical efforts, for instance extreme wind loads on tall structures such as buildings of wind turbines~\cite{kanev2019}.
+In engineering, better understanding of the nature of such extreme dynamical events and their statistics is crucial for the control of excessive mechanical efforts, for instance extreme wind loads on tall structures such as buildings of wind turbines~\cite{kanev2010}.
 %
 
 From the viewpoint of chaotic dynamical systems, turbulence in fluids is linked to non-linearity and strong departure from statistical equilibrium \citep{KRAICHNAN}.
@@ -16,7 +16,7 @@ In this context, tremendous computational requirements make the sole accurate si
 
 % general def on rare-event sampling %
 %
-More generally, the computational cost for sampling a fluctuation of very small probability grows like the inverse of this probability, and simulating rare events through direct numerical simulation is therefore not a scalable approach.
+More generally, the computational cost for sampling a fluctuation of very small probability grows like the inverse of this probability~\cite{wouters2016rare}, and simulating rare events through direct numerical simulation is therefore not a scalable approach.
 This issue is addressed by rare-event sampling algorithms, referring to a large body of methods that aim at exploring preferentially regions of phase space corresponding to rare events, that would otherwise be accessed with a very low probability through a brute-force direct sampling.
 %
 Even though such ideas date back to the early 1950s, they have received ever-growing interest over the the last twenty years with successful applications in various domains such as chemistry \citep{van_erp_elaborating_2005,escobedo_transition_2009,teo_adaptive_2016}, biophysics \citep{huber_weighted-ensemble_1996,zuckerman2017weighted,bolhuis2005kinetic}, nuclear physics \citep{louvin2017}, nonlinear dynamical systems \citep{tailleur_probing_2007} and communication networks simulation \citep{villen-altamirano_restart:_1994}.
