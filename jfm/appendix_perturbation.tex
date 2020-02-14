@@ -22,15 +22,7 @@ In other words, the perturbation is computed as a linear combination of $N$ solu
 Note that the Lattice Boltzmann Equation~\eqref{eq:lbe} is not linear, and therefore a linear combination of solutions cannot be assimilated as a solution of the numerical model.
 However, nonlinearities in~\eqref{eq:lbe} are located in the equilibrium distributions~\eqref{eq:lbe_eq} and are of order of the Mach number $\mathbf{u}/c_s$ that is kept small compared to $1$, see section~\ref{sec:test_flow}.
 
-\begin{figure}
-  \centering
-  \includegraphics[width=.7\linewidth]{effect_of_perturbation/effect_of_perturbation}
-  \caption[Illustration of the perturbation of the initial condition]{The blue line shows the evolution of the drag acting on the obstacle over time for a simulation initialised on a given initial condition. The second line represents the evolution of the drag for a simulation initialised on the same initial condition, however slightly perturbed as described in this appendix. $N=10$, $\epsilon=0.002$}
-  \label{fig:effect_of_perturbation}
-\end{figure}
-
 In this work, we chose $N = 10$ and $\epsilon = 0.002$.
-Figure~\ref{fig:effect_of_perturbation} illustrate the effect of applying a small perturbation on the evolution of the drag acting on the square obstacle.
 The value of $\epsilon$ was chosen so that the perturbation does not impact the statistics of the drag.
 In order to check this assumption, we generated a timeseries of duration $T_{tot} = 10^5 \tau_c$, and introduced a perturbation with a period $\tau = \tau_c / 2$, mimicking the perturbation of clones in the cloning algorithm.
 Figure~\ref{fig:pdf_drag_with_perturbation} shows that the correct statistics are obtained even in presence of this slight perturbation.
@@ -38,7 +30,8 @@ Figure~\ref{fig:pdf_drag_with_perturbation} shows that the correct statistics ar
 \begin{figure}
   \centering
   \includegraphics[width=.7\linewidth]{pdf_drag_with_perturbation/pdf_drag_with_perturbation}
-  \caption{Estimation of the \ac{pdf} with and without periodic perturbations}
+  \caption{Estimation of the \ac{pdf} with and without periodic perturbation.
+    Note that the \ac{pdf} with perturbation is based on a timeseries that is ten times shorter ($T_{tot} = 10^5 \tau_c$) than the one used to estimate the blue \ac{pdf} ($T_{tot} = 10^6 \tau_c$), hence the aspect of the tails of the former.}
   \label{fig:pdf_drag_with_perturbation}
 \end{figure}
 
