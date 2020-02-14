@@ -1,7 +1,7 @@
 #include <iostream>
 #include <fstream>
 #include <algorithm>
-#include <python3.7/Python.h>
+#include <Python.h>
 
 #include "libpipeLBM.h"
 
