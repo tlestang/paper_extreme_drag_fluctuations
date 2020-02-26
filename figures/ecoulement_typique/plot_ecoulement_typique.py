@@ -6,6 +6,8 @@ import csv
 import matplotlib.pyplot as plt
 from matplotlib.patches import Rectangle
 
+T0 = 500 # Turn-over time in lattice units
+
 Dx = 513
 Dy = 129
 N = Dx*Dy
@@ -55,14 +57,16 @@ for i in range(0,nplots-1):
         # The sign of the vorticity is wrong if using a right-handed coord. system.
         # The velocity field should probably be flipped upside-down
         vort = - vort
+        # Express vorticity in unit of T0 and R
+        vort = vort*T0
 
         # Print time as title
-        timeFromBeg=0.1+i*0.2
-        tit='$t={:2.1f}\\tau_c$'.format(timeFromBeg)
+        timeFromBeg=0.4+i*0.8
+        tit='$t={:2.1f}T_0$'.format(timeFromBeg)
 
         ax_list[i].set_title(tit,fontsize=20,bbox=bbox)
         # Print vorticity field
-        im=ax_list[i].imshow(vort, interpolation='spline36', cmap='BrBG', vmin=-0.09, vmax=0.09)
+        im=ax_list[i].imshow(vort, interpolation='spline36', cmap='BrBG', vmin=-35, vmax=35)
         # Adds a filled Rectangle to mark the square obstacle
         rect = ax_list[i].add_artist(Rectangle((21,25), 14, 14))
         rect.set_color('#545454')
@@ -87,19 +91,19 @@ cbar.ax.tick_params(labelsize=16)
 sig=0.0412
 m=0.0252
 Nt = 2000;
-fd = (np.fromfile('./data_force.datout',float,Nt,"")-m)/sig
-tspan = np.linspace(0,1,Nt)
+fd = (np.fromfile(prefix+'data_force.datout',float,Nt,"")-m)/sig
+tspan = np.linspace(0,4,Nt)
 ax_list[-1].plot(tspan,fd)
 # And plots nplots-1 dots for the nplots-1 snapshots
 for t in range(0,2000,400):
         ax_list[-1].plot(tspan[t+200],fd[t+200],marker='o',markersize=10,linestyle='None',color='k')
-ax_list[-1].set_xlim((0,1))
-ax_list[-1].set_xticklabels(['$0$','$0.2\\tau_c$','$0.4\\tau_c$','$0.6\\tau_c$','$0.8\\tau_c$','$1.0\\tau_c$'], fontsize=22)
+ax_list[-1].set_xlim((0,4))
+#ax_list[-1].set_xticklabels(['$0$','$0.2\\tau_c$','$0.4\\tau_c$','$0.6\\tau_c$','$0.8\\tau_c$','$1.0\\tau_c$'], fontsize=22)
 ax_list[-1].set_ylim((-1,2))
 ax_list[-1].set_yticks(range(-1,3,1))
 ax_list[-1].set_yticklabels(['$-\\sigma$','$0$','$\\sigma$','$2\\sigma$'], fontsize=22)
 ax_list[-1].set_ylabel('$f_d(t)$',fontsize=22)
-ax_list[-1].set_xlabel('$t$',fontsize=22)
+ax_list[-1].set_xlabel('$t/T_0$',fontsize=22)
 
 
 fname = 'ecoulement_typique.png'

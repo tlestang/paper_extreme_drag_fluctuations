@@ -1,0 +1,41 @@
+\section{Perturbation at branching time}
+\label{app:perturb_branching_time}
+As mentioned in sections~\ref{sec:ams} and~\ref{sec:gktl}, the application of the \ac{ams} and the cloning algorithm to deterministic systems requires the addition of a perturbation to the initial condition of
+resampled trajectories.
+In the absence of any perturbation, the resampling would not yield new trajectories, but instead exact copies of the trajectories the resampling is based on.
+
+The state of the flow at any point in time is given by the velocity field $\mathbf{u}$ and the pressure $p$, where the dependence on both space and time of both variables is implicit.
+A general strategy for perturbing the state of the flow is to construct a perturbative divergence-free field $\delta \mathbf{u}$ and a corresponding $\delta p$ solution of the
+Poisson equation.
+In the context of the \ac{lbm} , the state of the system is described at a mesoscopic level by the ensemble the populations $\{f_k(x_j, y_j)\}_{0\le k \le 8, 0 \le i <N_x, 0 \le j < N_y}$ (see appendix~\ref{app:lbm}).
+As a consequence, it is difficult to obtain the mesoscopic state from the knowledge of the macroscopic state $(\mathbf{u}+\delta \mathbf{u}, p + \delta p)$ from with the \ac{lbm} model can be initialised.
+
+In this work, we work around this issue by designing the perturbation directly at the level of the mesoscopic populations.
+At each lattice site $\mathbf{x}$, the populations $\{f_i\}_{0\le i \le 8}$ are replaced by
+\begin{equation}
+  f_{i}(\mathbf{x}) \longrightarrow f_i(\mathbf{x}) + \epsilon \sum_{n=1}^{N} \alpha_{n}f_{i}^{n}(\mathbf{x}), \,\,\, 0\leq i \leq 8,
+  \label{eq:perturb_pop}
+\end{equation}
+with each member of the set $\{\alpha_n\}_{1\leq m \leq N}$ drawn uniformly from $[0,1]$ and $\epsilon$ the amplitude of the perturbation. The perturbed populations are then rescaled so that no mass is added in the system.
+For more details concerning this procedure, see appendix C of~\cite{lestang:tel-01974316}.
+In other words, the perturbation is computed as a linear combination of $N$ solutions $\{f_i^{(n)}(\mathbf{x})\}_{1\le n \le N}$ of the numerical model~\eqref{eq:lbe}.
+Note that the Lattice Boltzmann Equation~\eqref{eq:lbe} is not linear, and therefore a linear combination of solutions cannot be assimilated as a solution of the numerical model.
+However, nonlinearities in~\eqref{eq:lbe} are located in the equilibrium distributions~\eqref{eq:lbe_eq} and are of order of the Mach number $\mathbf{u}/c_s$ that is kept small compared to $1$, see section~\ref{sec:test_flow}.
+
+In this work, we chose $N = 10$ and $\epsilon = 0.002$.
+The value of $\epsilon$ was chosen so that the perturbation does not impact the statistics of the drag.
+In order to check this assumption, we generated a timeseries of duration $T_{tot} = 10^5 \tau_c$, and introduced a perturbation with a period $\tau = \tau_c / 2$, mimicking the perturbation of clones in the cloning algorithm.
+Figure~\ref{fig:pdf_drag_with_perturbation} shows that the correct statistics are obtained even in presence of this slight perturbation.
+
+\begin{figure}
+  \centering
+  \includegraphics[width=.7\linewidth]{pdf_drag_with_perturbation/pdf_drag_with_perturbation}
+  \caption{Estimation of the \ac{pdf} with and without periodic perturbation.
+    Note that the \ac{pdf} with perturbation is based on a timeseries that is ten times shorter ($T_{tot} = 10^5 \tau_c$) than the one used to estimate the blue \ac{pdf} ($T_{tot} = 10^6 \tau_c$), hence the aspect of the tails of the former.}
+  \label{fig:pdf_drag_with_perturbation}
+\end{figure}
+
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: "draft_p2_jfm"
+%%% End:

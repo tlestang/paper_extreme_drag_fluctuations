@@ -33,7 +33,7 @@ def bundle_nearest_points(I, dist):
 
 plt.style.use('ggplot')
 
-path_to_file = "/home/tlestang/transition_hdd/thibault/These/lbm_code/seq/draft/control_run/control_1" \
+path_to_file = "/home/tlestang/articles/jfm_paper/data/control_2_2017_10_31_14_07_55" \
                + "/data_force.datout"
 tau_0 = 500 # Turnover time in units of LBM timesteps
              # The correlation time tau_c is 2000 timesteps, and the
@@ -81,7 +81,7 @@ for i, tup in enumerate(zip(point_array, point_array[1:])):
 # the threshold line
 plt.text(15, a+0.005, '$a$', color=line2.get_color(), fontsize=18)    
 
-ax.set_xlabel(r'$t / \tau_0$',fontsize=22)
+ax.set_xlabel(r'$t / T_0$',fontsize=22)
 plt.ylabel('$f_d(t)$',fontsize=22)
 plt.xticks(fontsize=16)
 plt.yticks(fontsize=16)

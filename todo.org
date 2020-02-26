@@ -1,64 +1,18 @@
-#+TODO: RELIRE TODO NEXT WAITING | DONE 
-* WAITING Introduction
-** DONE Integrer [[./brouillon_intro.tex]] et [[./biblio.bib]]
-** DONE Merger avec les notes dEmmanuel
-** WAITING Input Emmanuel
-* RELIRE Partie I
-** RELIRE II Description of the case study
-** DONE Figure 1
-** DONE Input Emmanuel caption figure 1
-** DONE Input Emmanuel descritpion boundary conditions
-*** RELIRE A. The drag force
-*** RELIRE B. The drag  random process: PDF and time correlations
-**** DONE typical_drag_signal: modify unit of time
-**** DONE figure PDF_autocorrelation \overline --> <>
-** RELIRE III. Direct sampling of extremes
-*** RELIRE Intro de la section
-*** RELIRE A. Extracting extremes from a long timeseries
-*** RELIRE B. Instant. drag
-**** RELIRE 1. Contrib. of forebody and base pressure
-**** RELIRE 2. Dynamical aspects of extremes
-*** RELIRE C. Extreme fluctuations of the time-avg drag
-**** DONE Faire la figure time_series_extrms_AVG
-[[./figures/timeseries_extrms_AVG/timeseries_extrms_AVG.py]]
-* RELIRE Partie II
-** RELIRE IV. Rare event algorithms
-*** RELIRE Intro de la section
-Elaguer ?? Cest un peu long
-*** RELIRE A. Extreme instant. drag forces with the AMS 
-**** DONE Diviser en deux parties: 1.OU et 2.drag
-**** DONE Justifier du choix de lAMS.. est-ce necessaire ?
-NON
-**** RELIRE 1. A simple example: OU process
-**** RELIRE 2. Applicatioxn to extremes of the drag
-***** DONE Fixer Y label figure AMS_drag_resampling (figure 16)
-***** DONE Fixer couleurs figure AMS_drag_resampling (figure 16)
-*** RELIRE B. Extreme time-avg forces with GKTL
-**** RELIRE 1. The GKTL algorithm
-**** RELIRE 2. Application to extremes of the time-avg drag
-***** DONE Enlever les references au run de controle.
-Lefficacite de GKTL est evalue par rapport a lestimation de la PDF de la trainee
-integree.
-***** DONE Trouver lequivalent de polyfit en python
-[[https://docs.scipy.org/doc/numpy/reference/generated/numpy.polyfit.html][numpy.polyfit]]
-***** DONE Fitter la queue positive de la PDF avec une exponentielle de polynome
-log(PDF) = ax2+bx+c
-***** DONE Mettre a jour le plot et le tableau du nombre devenement
-[[./figures/table_nb_traj/compute_efficiency.m]]
-- [ ] Transcrire =compute_efficiency.m= en python, comprendre
-- [ ] Pour le calcul du nb de traj. moyen par estimation directe,
-      utiliser le fit moindres carres de la PDF en lieu et place de 
-      l'approx gaussiene.
-- [ ] Comprendre la difference avec =compute_efficiency_normalized.m=
-***** DONE Mettre ajour le texte
-***** DONE Localiser les donnees des runs GKTL pour la courbe IS_GKTL
-***** DONE Recuperer le script matlab de la courbe IS_GKTL
-***** DONE Transcrire le script en python
-***** DONE Conclusion
-* RELIRE V. Conclusion 
-* DONE General 
-** DONE References
-** DONE Citations
-* Questions
-- [ ] Reference Lyapunov, section AMS
-- [ ] References Del Moral
+* DONE figure 7
+  - State "DONE"       from "TODO"       [2020-02-07 Fri 11:08]
+* TODO La physique des algos
+* DONE Conclusion
+  - State "DONE"       from "TODO"       [2020-02-07 Fri 10:38]
+* DONE Abstract
+  - State "DONE"       from "TODO"       [2020-02-07 Fri 10:38]
+* TODO References overlap trajectories
+* Response to reviewers
+** Referee 3
+- [X] Limk between the guassianity of the average drag and success of gktl
+- [ ] Fig 9-11 are only descriptive
+- [ ] Paragraph on the physics of algorithms
+- [X] Better identify what are the main results and substantiate these in
+  their presentation
+** Referee 2
+- [X] Better motivate the second part
+- [ ] Add references 
