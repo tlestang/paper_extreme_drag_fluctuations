@@ -104,29 +104,44 @@
 \maketitle
 
 \begin{abstract}
-	\EL{This study investigates, by means of numerical simulations, extreme mechanical efforts exerted by a  turbulent flow impinging onto a bluff body, and examines the relevance of two distinct statistical algorithms to efficiently sample these events. 
+	\EL{This study investigates, by means of numerical simulations, extreme mechanical efforts exerted by a turbulent flow impinging on a bluff body, and examines the relevance of two distinct rare-event algorithms to efficiently sample these events. 
 	%
 	The drag experienced by a squared obstacle placed in a turbulent channel flow (in two dimensions) is taken as a representative case study.
 	%
 	Direct sampling shows that extreme fluctuations are closely related to the presence of a strong vortex blocked in the near wake of the obstacle. This vortex is responsible for a significant pressure drop between the forebody and the base of the obstacle, thus yielding a very high value of the drag. 
 	%
-	Two algorithms are then considered to speed up the sampling of such flow scenarii related to extreme fluctuations of the drag, namely the \ac{ams} and the \ac{gktl} algorithms. 
-	The general idea behind these algorithms is to replace a long simulation by a set of much shorter ones, running in parallel, with dynamics that are replicated or pruned (according to some specific rules) to sample large-amplitude events more frequently.  
-	%
-	
-		\QQ{Justifier le choix de ces deux algorithmes et mentionner les différences et complémentarités ?}
-		%\ZZ{These latter are representative of the two main classes of algorithms applicable to deterministic out-of-equilibrium dynamics. Whilst the \ac{ams} is general, the \ac{gktl} algorithm is suited to sample trajectories based on the time-averaged value of the observable.} 
-
-	%
-	These algorithms have been shown to be relevant for a wide range of problems in statistical physics, computer science, biochemistry, but it is here the first application to a fluid-structure interaction problem. 
+	Two algorithms are then considered to speed up the sampling of such flow scenarii, namely the \ac{ams} and the \ac{gktl} algorithms. 
+	The general idea behind these algorithms is to replace a long simulation by a set of much shorter ones, running in parallel, with dynamics that are replicated or pruned, according to some specific rules designed to sample large-amplitude events more frequently.  These algorithms have been shown to be relevant for a wide range of problems in statistical physics, computer science, biochemistry.
+        The present study is the first application to a fluid-structure interaction problem. 
 	% allowing the simulation of rare  events otherwise out of reach by direct sampling. 
 	%
-	Practical evidence is given that the fast sweeping time of fluid structures past the obstacle has a strong influence on the efficiency of the \QQ{selection-mutation or selection-cloning (the terminology should be unified in the whole paper)} rules of these two algorithms. 
+	Practical evidence is given that the fast sweeping time of turbulent fluid structures past the obstacle has a strong influence on the efficiency of the rare-event algorithm. 
 	% 
-	While the \ac{ams} algorithm does not yield significant run-time savings as compared to direct sampling, the \ac{gktl} algorithm appears to be efficient to sample extreme fluctuations of the time-averaged drag and estimate related statistics such as return times.
-	%
-	\QQ{phrase de conclusion ?}
-}
+	While the \ac{ams} algorithm does not yield significant run-time savings as compared to direct sampling, the \ac{gktl} algorithm appears to be effective to sample very efficiently extreme fluctuations of the time-averaged drag and estimate related statistics such as return times.}
+%
+%	\EL{This study investigates, by means of numerical simulations, extreme mechanical efforts exerted by a  turbulent flow impinging onto a bluff body, and examines the relevance of two distinct statistical algorithms to efficiently sample these events. 
+%	%
+%	The drag experienced by a squared obstacle placed in a turbulent channel flow (in two dimensions) is taken as a representative case study.
+%	%
+%	Direct sampling shows that extreme fluctuations are closely related to the presence of a strong vortex blocked in the near wake of the obstacle. This vortex is responsible for a significant pressure drop between the forebody and the base of the obstacle, thus yielding a very high value of the drag. 
+%	%
+%	Two algorithms are then considered to speed up the sampling of such flow scenarii related to extreme fluctuations of the drag, namely the \ac{ams} and the \ac{gktl} algorithms. 
+%	The general idea behind these algorithms is to replace a long simulation by a set of much shorter ones, running in parallel, with dynamics that are replicated or pruned (according to some specific rules) to sample large-amplitude events more frequently.  
+%	%
+%	
+%		\QQ{Justifier le choix de ces deux algorithmes et mentionner les différences et complémentarités ?}
+%		%\ZZ{These latter are representative of the two main classes of algorithms applicable to deterministic out-of-equilibrium dynamics. Whilst the \ac{ams} is general, the \ac{gktl} algorithm is suited to sample trajectories based on the time-averaged value of the observable.} 
+%
+%	%
+%	These algorithms have been shown to be relevant for a wide range of problems in statistical physics, computer science, biochemistry, but it is here the first application to a fluid-structure interaction problem. 
+%	% allowing the simulation of rare  events otherwise out of reach by direct sampling. 
+%	%
+%	Practical evidence is given that the fast sweeping time of fluid structures past the obstacle has a strong influence on the efficiency of the \QQ{selection-mutation or selection-cloning (the terminology should be unified in the whole paper)} rules of these two algorithms. 
+%	% 
+%	While the \ac{ams} algorithm does not yield significant run-time savings as compared to direct sampling, the \ac{gktl} algorithm appears to be efficient to sample extreme fluctuations of the time-averaged drag and estimate related statistics such as return times.
+%	%
+%	\QQ{phrase de conclusion ?}
+%
 %\sout{This study evaluates the relevance of rare-event sampling techniques to accelerate the simulation of extreme mechanical efforts exerted by a turbulent flow impinging onto a bluff body.
 %The main idea is to replace a long simulation by a set of much shorter ones, running in parallel, with dynamics that are replicated or pruned in order to sample large-amplitude events more frequently. 
 %%
@@ -164,7 +179,7 @@ However, this requires very long simulations since these extreme events are rare
 %	
 % next two paragraphs may be too technical -- Find a way to summarize them in a few sentences accessible to a broad audience in fluid mechanics? Notion of action will be vague for many readers
 %
-In the present work, a computational study of extreme mechanical efforts acting on an immersed bluff body is \EL{conducted} by using both very long time-series (direct sampling) and rare-event sampling techniques.
+In the present work, a computational study of extreme mechanical efforts acting on an immersed bluff body is \EL{conducted} using both very long time-series (direct sampling) and rare-event sampling techniques.
 
 
 %
@@ -183,13 +198,13 @@ It is based on sampling algorithms relying on \emph{selection rules} applied to 
 %, and is designed to sample rare events of some observable with a higher frequency.
 %    
 %
-Even though such ideas date back to the early 1950s, they have received ever-growing interest over the the last twenty years with successful applications in various domains such as chemistry \citep{van_erp_elaborating_2005,escobedo_transition_2009,teo_adaptive_2016}, biophysics \citep{huber_weighted-ensemble_1996,zuckerman2017weighted,bolhuis2005kinetic}, nuclear physics \citep{louvin2017}, nonlinear dynamical systems \citep{tailleur_probing_2007} and communication networks simulation \citep{villen-altamirano_restart:_1994}.
-More importantly, these types of algorithms have been shown to be useful for the study of rare events in simple deterministic dynamics~\citep{wouters2016rare}.
+Even though such ideas date back to the early 1950s, they have received growing interest over the last twenty years with successful applications in various domains such as chemistry \citep{van_erp_elaborating_2005,escobedo_transition_2009,teo_adaptive_2016}, biophysics \citep{huber_weighted-ensemble_1996,zuckerman2017weighted,bolhuis2005kinetic}, nuclear physics \citep{louvin2017}, nonlinear dynamical systems \citep{tailleur_probing_2007} and communication networks simulation \citep{villen-altamirano_restart:_1994}.
+More importantly, such algorithms have been shown to be useful for the study of rare events in simple deterministic dynamics~\citep{wouters2016rare}.
 %
 %
-\EL{An original contribution of our study is certainly to test the application of rare-event sampling algorithms in the context of far-from-equilibrium dynamics with an irreducible very large number of degrees of freedom. 
+\EL{Certainly, an original contribution of our study is to test the application of rare-event sampling algorithms in the context of far-from-equilibrium dynamics with an irreducible very large number of degrees of freedom. 
 %
-Two algorithms a priori suitable for such dynamics are considered, namely, the Adaptive Multilevel Splitting (AMS) algorithm \citep{cerou_adaptive_2007} and the Giardina-Kurchan-Tailleur-Lecomte (GKTL) algorithm \citep{giardina_direct_2006}.}
+Two algorithms that are a priori suitable for such dynamics are considered, namely, the Adaptive Multilevel Splitting (AMS) algorithm \citep{cerou_adaptive_2007} and the Giardina-Kurchan-Tailleur-Lecomte (GKTL) algorithm \citep{giardina_direct_2006}.}
 %
 
 %
@@ -214,12 +229,12 @@ Firstly, it provides a detailed description of the statistics and dynamics relat
 Secondly, it yields reference results that are required to validate the outputs of rare-event algorithms and to evaluate the possible computational gain obtained from them. This assessment is developed in the second part of the paper.
 
 % Annonce du plan
-In more details,  the flow set-up is introduced and the dynamics related to typical
+The flow set-up is introduced and the dynamics related to typical
 drag fluctuations is described in section~\ref{sec:test_flow}.
 The statistical properties of the drag are then discussed.
 In section~\ref{sec:direct_sampling}, \EL{the phenomenology of  extreme drag fluctuations} is investigated based on direct sampling.
 Both the instantaneous drag and time-averaged drag are considered.
-It is found in particular that sampled extreme events for the instantaneous drag result from very similar dynamics. %Furthermore, extreme fluctuations for the time-averaged drag can be connected to the statistics of the instantaneous drag.
+It is found in particular that sampled extreme fluctuations of the instantaneous drag result from very similar dynamics. %Furthermore, extreme fluctuations for the time-averaged drag can be connected to the statistics of the instantaneous drag.
 %\sout{This feature is well supported by theoretical arguments applied to simplified stochastic dynamics.}
 Section~\ref{sec:rare_events_algorithms} examines the applicability of both the \ac{ams} and \ac{gktl} algorithms to the simulation of extreme drag fluctuations in the same flow configuration.
 In subsection~\ref{sec:ams}, we show that the use of the \ac{ams} algorithm is not successful, or at least not straightforwardly. This difficulty is put in perspective with the phenomenology of extreme drag fluctuations developed in  section \ref{sec:direct_sampling}.
@@ -262,7 +277,7 @@ The dimension of the grid is such that the size of the eddies that hit the squar
 
 % lattice Boltzmann method 
 %
-The flow dynamics is integrated numerically by the \ac{lbm} \EL{\citep{book_lbm}}. 
+The flow dynamics is integrated numerically by the \ac{lbm} \EL{\citep{kruger_lattice_2017}}. 
 While traditional methods in computational fluid dynamics rely on a discretization of the Navier-Stokes equations, the \ac{lbm} considers the fluid at an underlying  mesoscopic level.
 Capturing the dynamics of collections of fluid particles moving and colliding on a lattice is here preferred to solving non-linear PDEs. 
 %This seems crazy, however, most details at the mesoscopic level play actually no role at the macroscopic level. Therefore, the LB algorithm may be viewed as a minimal kinetic scheme compliant to the fluid dynamics at the macroscopic level.
@@ -272,7 +287,7 @@ In our context, this numerical method has been chosen principally for its comput
 
 % geometry
 %
-The simulated flow develops in a long plane channel of dimension $513 \times 129$ mesh points. The square obstacle has size $R=16$ (in mesh unit) and is located at the centre of the channel. The spacing and bar height of the entrance grid are both equal to $R/2$ (see Fig.~\ref{fig:illustr_ecoulement}). 
+The simulated flow develops in a long plane channel of dimension $513 \times 129$ mesh points. The square obstacle has size $R=16$ (in mesh units) and is located at the centre of the channel. The spacing and bar height of the entrance grid are both equal to $R/2$ (see Fig.~\ref{fig:illustr_ecoulement}). 
 % boundary conditions
 %
 No-slip boundary conditions are enforced on top and bottom walls of the channel and on the surface of the obstacle by using an halfway bounce-back procedure~\citep{lbm_book}.  
@@ -282,7 +297,7 @@ The centerline velocity is $0.05$ in lattice units, \textit{i.e.} normalised by 
 In the bulk, the viscosity is adjusted so that grid turbulence is generated with Reynolds number $\mathrm{Re_{grid}}=1200$. The reference Mach number is equal to $0.06$ in agreement with the assumption of weak compressibility of the \ac{lbm}. 
 Near the end of the channel, the flow is progressively damped within a \textit{sponge zone} where the viscosity is artificially enhanced.
 Finally, the outlet boundary condition relies on a second-order extrapolation of the velocity and mass density.
-The extrapolated distributions are evaluated through a regularization procedure relying on a finite difference estimation of the local stress tensor, as introduced in \cite{latt2008straight}. 
+The extrapolated distributions are evaluated through a regularization procedure relying on a finite difference estimation of the local stress tensor, as introduced in \citep{latt2008straight}. For more details about the implementation of the flow, see the software repository attached to this paper \textbf{?????????}.
 
 
 \subsection{The drag force}
@@ -373,7 +388,7 @@ Therefore, it is natural to model the drag as a (scalar) random process.
 % pdf
 Drag fluctuations have been sampled along a simulation of duration \EL{$T_{tot} = 4\times 10^6~T_0$}.
 This long simulation will be referred to as the \textit{control run} in the following.
-It has been made possible by the relative simplicity of the investigated flow and the computational efficiency of the lattice Boltzmann method. 
+It has been made possible by the relative simplicity of the investigated flow and the computational efficiency of the \ac{lbm}.
 The \ac{pdf} of drag fluctuations is shown in Fig.~\ref{fig:pdf_drag_a}.
 It deviates from a normal law and shows an exponential tail for large positive fluctuations, \textit{i.e.}  \EL{${\mathbb{P}}(f_d) \propto e^{-\ell f_d}$}.
 %
@@ -384,12 +399,11 @@ In that case, the \ac{pdf} is quasi-symmetric and does not display exponential t
 	\centering
 	\subfloat[\ac{pdf} of normalised drag fluctuations]
 	{\label{fig:pdf_drag_a}
-		\includegraphics[width=.45\linewidth]{./PDF_drag/PDF_drag.png}}
+		\includegraphics[width=.4\linewidth]{./PDF_drag/PDF_drag.png}}
 	\subfloat[Autocorrelation of drag fluctuations]
 	{\label{fig:pdf_drag_b}
 		\includegraphics[width=.45\linewidth]{autocorrelation_drag/autocorrelation_drag.png}}  
 	\caption{{(a)} \ac{pdf} of normalised drag fluctuations ($\tilde f_d = f_d - \bar{f_d}$) where $\mu = \bar{f_d}$ denotes the time-averaged value and $\sigma = \sqrt{\overline{{\tilde f_d}^2}}$ is the standard deviation. The drag is evaluated both in the presence (blue) and in the absence (red) of the obstacle. %Note that the amplitudes have not been normalized.
-		\QQ{x-axis should be $x = (f_d-\mu)/\sigma)$ and y-axis $P(x)$)}
 		{(b)} Autocorrelation function of the drag defined as $C(\tau) = \overline{ \tilde f_d(t+\tau)\tilde f_d(t)} ~/~ \overline{{\tilde f_d}^2}$. The correlation time \EL{$\tau_c\simeq 4 T_0$} is given by $C(\tau_c)=0$.
 		%$\tau_c$ may therefore be considered as the correlation time of the drag signal.
 	}
@@ -438,8 +452,8 @@ If one assumes that  $r(a) = t(a)~/~\mathbb{P}(f_d\geq a)$   where the time scal
 % As the PDF ${\mathbb{P}(f_d\geq a)}$ was shown to be well approximated by an exponential (see figure Fig.~\ref{fig:pdf_drag})
 one might expect that 
 \begin{equation}
-\label{eq:return_time}
-\EL{r(a) \underset{a\to\infty}{\propto} \exp(la)}
+  \label{eq:return_time}
+  \EL{r(a) \underset{a\to\infty}{\propto} \exp(\ell a)}
 \end{equation}
 where $l$ is the rate describing the positive tail of the \ac{pdf} of the drag (shown in Fig.~\ref{fig:pdf_drag}).
 Fig.~\ref{fig:return_time_instant} shows the evolution of the return time $r(a)$ with the amplitude of fluctuation $a$, computed from {direct sampling} of the drag signal $f_d(t)$~\citep{lestang_computing_2018}.
@@ -458,8 +472,8 @@ We have extracted the fluctuations of the drag with a return time $r(a)$ greater
 This set will be considered as representative of \emph{extreme events} in the upcoming study.
 The choice of this particular threshold has been driven by the need to collect enough events with large amplitude and to possibly identify generic features.
 %
-According to Fig.~\ref{fig:return_time_instant}, the related amplitude $a$ is found equal to $7.6~\sigma$ with $\sigma =\sqrt{\overline{\tilde{f_d}^2}}$ being the standard deviation of the drag process.
-Precisely, 104 independent fluctuations with $f_d(t) \geq 7.6\sigma$ have been identified. Each fluctuation is characterized by its maximal value, $f_d^{\star}$, and the time, $t^{\star}$, at which this maximum is reached.
+According to Fig.~\ref{fig:return_time_instant}, the related amplitude $a$ is found equal to $7.6~\sigma$ with $\sigma =\sqrt{\overline{\tilde{f_d}^2}}$ being the standard deviation of the drag process, where $\tilde{f_d}$ denotes the drag with zero-mean, \textit{i.e.} $\tilde{f}_d = f_d - \overline{f_d}$.
+Precisely, 104 independent fluctuations with $\tilde{f}_d(t) \geq 7.6\sigma$ have been identified. Each fluctuation is characterized by its maximal value, $f_d^{\star}$, and the time, $t^{\star}$, at which this maximum is reached.
 %
 In the following, the phenomenology of extreme drag fluctuations will be examined on the basis of this set of events.
 
@@ -481,7 +495,7 @@ In the following, the phenomenology of extreme drag fluctuations will be examine
 %
 %\sout{In section~\ref{sec:test_flow}, it was pointed out that typical drag fluctuations originate mostly from the variation of the forebody pressure, \textit{i.e.} from the upstream turbulent flow. We shall see that the situation is different in the case of {extreme} drag fluctuations.} 
 \EL{In section~\ref{sec:test_flow}, it was pointed out that drag fluctuations within one standard deviation were not associated with any particular arrangement of the   vorticity around the obstacle. We shall see in the following that the situation is different in the case of {extreme} drag fluctuations. }
-
+%
 % relative contribution of forebody and base pressure
 %
 Let $(t^{\star}, f_d^{\star})$ refer to an extreme-drag event.
@@ -493,7 +507,7 @@ where $\Delta p_{fb}^{\star}$ and $\Delta p_{base}^{\star}$ denote the variation
 %
 Fig.~\ref{fig:pressure_ratio} displays the relative contributions
 $\Delta p_{fb}^{\star}/\tilde{f}_d^{\star}$ and $-\Delta p_{base}^{\star}/\tilde{f}_d^{\star}$ to \EL{the drag fluctuation $\tilde f_d^{\star}$.
-	It is found that very large fluctuations of the drag result mainly ($\sim 80\%$) from the drop of the base pressure, whereas the variation of forebody pressure contributes much less to $\tilde{f}_d^{\star}$. On the contrary, moderate fluctuations arise from combined variations of the forebody and base pressures without any particular predominance, which is in agreement with the previous observations (see Fig.\ref{fig:typical_vorticity}).}
+	It is found that very large fluctuations of the drag result mainly ($\sim 80\%$) from a drop in base pressure, whereas the variation of forebody pressure contributes much less to $\tilde{f}_d^{\star}$. On the contrary, moderate fluctuations arise from combined variations of the forebody and base pressures without any particular predominance, which is in agreement with the previous observations (see Fig.\ref{fig:typical_vorticity}).}
 
 %\sout{It is found that the base pressure variation contributes typically to $80\%$ of the overall drag fluctuation. Therefore, extreme amplitudes of the drag are dominated by the variation of the pressure in the vicinity of the base of the obstacle, \emph{i.e.} downstream of the obstacle. Furthermore, Fig.~\ref{fig:pressure_ratio} suggests that the larger the fluctuation, the more important is the relative contribution of the base pressure.}
 
@@ -512,7 +526,7 @@ $\Delta p_{fb}^{\star}/\tilde{f}_d^{\star}$ and $-\Delta p_{base}^{\star}/\tilde
 The focus is now on the flow scenarii that yield extreme values of the drag. 
 Fig.~\ref{fig:timeseries_extremes} displays the mean profile (in time) of the drag signal around extreme events. A peaked profile is observed with a width roughly corresponding to one correlation time $\tau_c$. This shows that the duration of extreme events corresponds typically to the sweeping time of the flow past the obstacle. 
 %Starting from typical values, extreme drags are typically reached in less than a correlation time. 
-Interestingly, the profile is also slightly skewed indicating that the step up of the drag is slower than the return to typical values past the peak value.
+Interestingly, the profile is also slightly skewed, indicating that the step up of the drag is slower than the return to typical values past the peak value.
 %This is reminiscent of time-irreversibility in turbulent dynamics. 
 \EL{This asymmetry (under time reversal) is closely linked to the symmetry breaking in what happens before and after the obstacle.}
 %Moreover, such very high drag levels do not persist over time.
@@ -601,7 +615,7 @@ In this representation, we also observe that the path related to the increase of
 	\includegraphics[width=.7\linewidth]{PDF_AVG/PDF_AVG}
 	\caption{\ac{pdf} of the time-averaged drag $F_T$ with $T = 10\tau_c$. 
 		%This estimate is based on a moving average over a timeseries of the instantaneous drag $f_d$ of duration $4 \times 10^6 T_0$.
-				\QQ{x-axis should be $x = F_T$ and y-axis $P(x)$ in agreement with Fig. 4(a). Gaussian PDF should be replaced by Gaussian estimate for the same reason. No need to mention PDF of $F_T$.}
+%				\QQ{x-axis should be $x = F_T$ and y-axis $P(x)$ in agreement with Fig. 4(a). Gaussian PDF should be replaced by Gaussian estimate for the same reason. No need to mention PDF of $F_T$.}
 	}
 	\label{fig:PDF_AVG}
 \end{figure}
@@ -625,7 +639,7 @@ F_T(t) = \frac{1}{T}\int_t^{t+T} f_d(t) \mathrm{d}t,
 \end{equation}
 where $f_d(t)$ denotes the instantaneous drag and $T$ is the investigated timescale (response time).
 %\sout{Relevant values of $T$ are application dependant.}
-\EL{In the following, we shall consider $T=10\tau_c$, where $\tau_c$ is the correlation of the instantaneous drag.
+\EL{In the following, we shall consider $T=10\tau_c$, where $\tau_c$ is the correlation time of the instantaneous drag.
 In that case, the PDF of $F_T$ is found nearly Gaussian as a consequence of the Central Limit theorem (see Fig.~\ref{fig:PDF_AVG}).}
 
 %
@@ -638,7 +652,7 @@ It is thus legitimate to ask whether a large value of the averaged drag results 
 %
 %The averaged drag signal $\{F_T(t)\}_{0 \leq t \leq T_{tot}-T}$ is obtained by filtering in time the instantaneous drag signal $f_d(t)$. 
 In the same way as in section \ref{sec:extreme_extraction}, one can identify extreme fluctuations of $F_T$ exceeding some fixed threshold $a$, and sample a set of extreme events.
-By taking $a=5.2\sigma_T$ with $\sigma_T$ being the standard deviation of $F_T$, $84$ independent extreme events have been selected. \EL{Again, this choice results from a compromise between the need to consider large deviations from the mean value and the requirement to sample a sufficient number of events for meaningful statistics. As a rule of thumb, the threshold has been set so that around one hundred events are selected.}
+Setting $a=5.2\sigma_T$ with $\sigma_T$ being the standard deviation of $F_T$, $84$ independent extreme events were sampled. \EL{Again, this choice results from a compromise between the need to consider large deviations from the mean value and the requirement to sample a sufficient number of events for meaningful statistics. As a rule of thumb, the threshold has been set so that about one hundred events are sampled.}
 
 
 % neither case (1) nor case (2)
@@ -677,21 +691,21 @@ very large value of the averaged-drag appear to result from either a very large 
 
 % limitation of direct sampling
 %
-In the limit of very rare events and complex dynamics such as turbulent flows, the computational cost of  direct sampling becomes prohibitive. Indeed, the return time of fluctuations $f_d \geq a$ scales as $r(a) \propto e^{l a}~(l>0)$ according to Eq.~\eqref{eq:return_time}.
-As a consequence, the computational cost required to sample events of amplitude $f_d \geq a$ through brute-force sampling diverges typically as $e^{l a}$.
+In the limit of very rare events and complex dynamics such as turbulent flows, the computational cost of  direct sampling becomes prohibitive. Indeed, the return time of fluctuations $f_d \geq a$ scales as $r(a) \propto e^{\ell a}~(\ell>0)$ according to Eq.~\eqref{eq:return_time}.
+As a consequence, the computational cost required to sample events of amplitude $f_d \geq a$ through brute-force sampling diverges typically as $e^{\ell a}$.
 %% objective
 % In this section we discuss the application of \textit{rare event algorithms} to the numerical sampling of extreme drag forces on immersed objects, on the example of the flow presented in section~\ref{sec:test_flow}.
-The aim of rare-event sampling algorithms is therefore to sample extreme fluctuations for a  computational cost much lower than their return time. 
+\EL{The aim of rare-event sampling algorithms is therefore to sample extreme fluctuations for a  computational cost much lower than their return time. 
 %\QQ{referee 3 asks for a general sentence about the physics behind these algorithms:}
 %\QQ{Add a sentence to motivate the choice of these two algorithms for the present study. To what extent they are representative of rare-event sampling algorithms? Complementarity of the two algorithms? Make the link between fluid mechanics and statistical algorithms ?}
 %
-\EL{Rare-event (sampling) algorithms compute an ensemble of $N$ trajectories $\{\mathbf{x}_n(t)\}_{0\leq t \leq T_a}$ with $n=1 \cdots N$, where $\{\mathbf{x}_n(t)\}_{0\leq t \leq T_a}$ refers to a trajectory of duration $T_a$ in the phase space of the system.
-At each step of the algorithm, certain trajectories are discarded and others are replicated in order to preferably sample trajectories with extreme fluctuations. The algorithm tracks the ratio of the probability of the new ensemble with the probability of the previous one, which makes it possible to estimate the statistical bias and, therefore, to infer the statistics of extreme events. 
+Rare-event (sampling) algorithms compute an ensemble of $N$ trajectories $\{\mathbf{x}_n(t)\}_{0\leq t \leq T_a}$ with $n=1 \cdots N$, where $\{\mathbf{x}_n(t)\}_{0\leq t \leq T_a}$ refers to a trajectory of duration $T_a$ in the phase space of the system.
+At each step of the algorithm, some trajectories are discarded and others are replicated in order to preferably sample trajectories with extreme fluctuations. The algorithm tracks the ratio of the probability of the new ensemble with the probability of the previous one, allowing the estimation of the statistical bias and therefore the inference of the statistics of extreme events. 
 
 Different algorithms use different \emph{selection rules}. 
-The success of the algorithm essentially depends on the quality of the selection rule to select the precursors of the extreme event \citep{rolland_statistical_2015}. 
+The success of the algorithm essentially depends on the quality of the selection rule to detect the precursors of the extreme event \citep{rolland_statistical_2015}. 
 However, with the exception of rare analytical cases, the optimal selection rules are not a priori known \citep{lestang_computing_2018}. 
-In the following we consider the \acl{ams} (\ac{ams}) and \acl{gktl} (\ac{gktl}) algorithms. They both proved to be efficient for various dynamics but adopt opposite strategies:  The \ac{ams} algorithm uses as a selection rule the value of a predetermined score function, while the \ac{gktl} uses a selection rule based on the increment of a score function.} \EL{A complete description of these two algorithms and their operating details are provided in the appendixes \ref{app:ams-short} and \ref{app:gktl_description}.}
+In the following we consider the \acl{ams} (\ac{ams}) and \acl{gktl} (\ac{gktl}) algorithms. They both proved to be efficient for various dynamics but adopt opposite strategies: the \ac{ams} algorithm uses as a selection rule the value of a predetermined score function, whereas the \ac{gktl} uses a selection rule based on the increment of a score function.} \EL{A complete description of these two algorithms and their operating principles are provided in appendices \ref{app:ams-short} and \ref{app:gktl_description}.}
 
 %
 %\ZZ{paragraph moved from introduction}
@@ -704,7 +718,7 @@ or stochastic partial differential equations for the computation of rare traject
 %
 
 During the last decade, the main theoretical framework for the study of rare events in statistical physics has been the theory of large deviations \citep{touchette_large_2009}.
-Alongside numerical methods have been developed to sample rare events \citep{DelMoralBook}. 
+Alongside, numerical methods have been developed to sample rare events \citep{DelMoralBook}. 
 Among them the \ac{gktl} algorithm \citep{giardina_direct_2006} is particularly suitable for \EL{estimating the probability of observables which are temporal integrals over a very long period \citep{giardina_simulating_2011,Laffargue_2013}.
 %
 Recently the \ac{gktl} algorithm has proven to be extremely efficient to simulate extreme heat waves in a comprehensive climate model \citep{ragone_computation_2018}, with a gain of a factor 100 to 1000 for the computation time.}
@@ -731,8 +745,8 @@ This achievement already represents a significant leap in the applicability of r
 % Introduction of AMS
 %
 %The \acl{ams} algorithm~\citep{cerou_adaptive_2007} builds on previous ideas of splitting algorithms \citep{KahnHarris1951}.
-\EL{In the version of the \ac{ams} algorithm used in this work,  %a sequence of events that can be sampled with a higher probability  
-trajectories have a fixed duration $T_a$~\citep{lestang_computing_2018}.
+\EL{The \ac{ams} algorithm is here used with,  %a sequence of events that can be sampled with a higher probability  
+trajectories of fixed duration $T_a$~\citep{lestang_computing_2018}.
 %The selection-mutation step relies on the introduction of a \textit{score function} $\xi (\mathbf{x}(t),t)$. 
 %
 % As already mentioned in the introduction, the \ac{ams} has been successfully applied to a large body of problems for the past ten years. 
@@ -741,7 +755,7 @@ trajectories have a fixed duration $T_a$~\citep{lestang_computing_2018}.
 %
 % Quick description of TAMS
 %
- At each iteration, the trajectories with the lowest maxima of the score function $\xi (\mathbf{x}(t),t)$ during the time interval $0\leq t \leq T_a$ are discarded. 
+At each iteration, trajectories with the lowest maxima of the score function $\xi (\mathbf{x}(t),t)$ during the time interval $0\leq t \leq T_a$ are discarded. 
 %The discarded trajectories are then re-sampled according to the remaining trajectories.
 These trajectories are re-sampled by branching them from the remaining trajectories.
 %The operating principle of this procedure is sketched in Fig.~\ref{fig:illustr_AMS}.
@@ -803,7 +817,7 @@ These trajectories are re-sampled by branching them from the remaining trajector
 %\sout{The \ac{ams} algorithm allows for a very efficient sampling of rare events in the case of a Ornstein-Uhlenbeck stochastic process, as reported in Appendix \ref{app:AMS_on_OU}.}
 
 
-The objective here is to sample flow evolutions which exhibit extreme fluctuations of the drag $f_d(t)$ acting on the square obstacle.
+The objective is here to sample flow evolutions which exhibit extreme fluctuations of the drag $f_d(t)$ acting on the square obstacle.
 %\sout{In contrast with the \acl{ou} process, } 
 %The phase space is highly-dimensional with deterministic chaotic dynamics.
 %In such situation, the choice of the score function $\xi (\mathbf{x}(t),t)$ 
@@ -818,7 +832,7 @@ Since the Navier--Stokes dynamics is deterministic, small random perturbations a
 %at branching points.
 % (see Fig.~\ref{fig:illustr_AMS} and~\cite{wouters2016rare}).
 	%
-The chaotic dynamics then ensures that re-sampled trajectories separate from their parents over a time interval usually referred to as the Lyapunov timescale.}
+The chaotic dynamics then ensures that re-sampled trajectories separate from their parents over a time interval $\tau_L$, usually referred to as the Lyapunov timescale.}
 	% The timescale over which two trajectories separate due to an infinitesimal perturbation is known as the \textit{Lyapunov timescale}. It is denoted $\tau_L$ in the remainder of this paper.
 \EL{Based on linear response theory, we expect this small perturbation to have a negligible impact on the statistics of the sampled rare events.} This has been tested by performing a long simulation of the dynamics and by regularly perturbing the flow. We checked that the obtained statistics of the drag were consistent, within an error of the same amplitude as the perturbation amplitude, with the statistics computed from the (unperturbed) control simulation (see Appendix \ref{app:perturb_branching_time}). %\EL{Freddy: provide reference for Lyapunov timescale. \#12}
 
@@ -839,7 +853,9 @@ The chaotic dynamics then ensures that re-sampled trajectories separate from the
 %The re-sampled trajectories never exceed the amplitude of the highest maximum already attained in the initial set of trajectories.
 %%Note that the red points in figure~\ref{fig:AMS_drag_resampling} are analogous to the red line in Fig.~\ref{fig:comparaison_temps_de_retour} for the \ac{ou} process.
 
-\EL{In addition to the score function, two important parameters are the number, $N$, and the duration, $T_a$, of trajectories. The size of the ensemble $N$ governs the statistical error affecting quantities averaged over the sampled set of trajectories. Therefore, $N$ should be taken as large as possible to reduce these errors with, nevertheless, a practical limit given by the available computational resources. In this work, we have performed two numerical simulations with $N=32$ and $N=256$.} \EL{ Concerning $T_a$, it should be chosen much larger than $\tau_c$~\citep{lestang_computing_2018} but, again, kept small enough to limit the computational effort. In practice, the duration of the trajectories was eventually set to $T_a=5\tau_c$ in both simulations; we checked in particular that larger values of $T_a$ did not improve the results.}
+\EL{In addition to the score function, two important parameters are the number of trajectories $N$ and their duration $T_a$.
+  The size of the ensemble $N$ governs the statistical error affecting quantities averaged over the sampled set of trajectories. Therefore, $N$ should be taken as large as possible to reduce these errors with, nevertheless, a practical limit given by the available computational resources. In this work, we have performed two numerical simulations with $N=32$ and $N=256$.}
+\EL{The duration $T_a$ should be much larger than $\tau_c$~\citep{lestang_computing_2018} but, again, kept small enough to limit the computational effort. In practice, the duration of the trajectories was eventually set to $T_a=5\tau_c$ in both simulations; we checked in particular that larger values of $T_a$ did not improve the results.}
 
 
 
@@ -855,7 +871,7 @@ The chaotic dynamics then ensures that re-sampled trajectories separate from the
 \begin{figure}
 	\centering
 	\includegraphics[width=.7\linewidth]{AMS_drag_resampling/AMS_drag_resampling.png}
-	\caption{\label{fig:AMS_drag_resampling} Maxima of the instantaneous drag throughout $256$ re-sampled trajectories (vertical axis) as a function of the corresponding \EL{computational cost $C_{AMS}$} in correlation-time unit. The \ac{ams} algorithm fails to efficiently sample rare trajectories associated to drag fluctuations higher than the largest fluctuation already captured in the initial ensemble. \QQ{Change TAMS to AMS in horizontal axis}}
+	\caption{\label{fig:AMS_drag_resampling} Maxima of the instantaneous drag throughout $256$ re-sampled trajectories (vertical axis) as a function of the corresponding \EL{computational cost $C_{AMS}$} in correlation-time unit. The \ac{ams} algorithm fails to efficiently sample rare trajectories associated to drag fluctuations higher than the largest fluctuation already captured in the initial ensemble.}
 \end{figure}
 
 
@@ -880,15 +896,15 @@ However, the re-sampled trajectories never exceed the amplitude of the highest m
 %
 
 
-It takes a certain time $\tau_L$ (Lyapunov timescale) before a re-sampled trajectory separates from its parent. In our situation, this ``memory effect'' is related to the fact that the score function is of dimension much smaller (one) than the dimension of the phase space\EL{ or, in other words, that the score function results from the contribution of a very large number of degrees of freedom.}  
+It takes a time $\tau_L$ (Lyapunov timescale) before a re-sampled trajectory separates from its parent. In our situation, this ``memory effect'' is related to the fact that the score function is of dimension much smaller (one) than the dimension of the phase space\EL{ or, in other words, that the score function results from the contribution of a very large number of degrees of freedom.}  
 %
-\EL{As shown in section \ref{sec:dynamical_aspects}, extreme drag fluctuations have a lifetime $\tau_c$ corresponding to the timescale over which a vortex remains trapped against the base of the obstacle. After $\tau_c$, the vortex is swept away by the flow and further large fluctuations of the drag can only result from the trapping of new vortices.
+\EL{As shown in section \ref{sec:dynamical_aspects}, extreme drag fluctuations have a lifetime $\tau_c$ related to the timescale over which a vortex remains trapped against the base of the obstacle. After $\tau_c$, the vortex is swept away by the flow and further large fluctuations of the drag can only result from the trapping of new vortices.
 %
 Fig.~\ref{fig:AMS_drag_trajectories} shows that $\tau_c$ is shorter than the Lyapunov's timescale $\tau_L$. }
 %
 %
 Therefore, the re-sampling of a trajectory branched close to $t=t^{\star}$ (when the maximum drag occurs) cannot lead to larger values at $t^{\star} \leq t \leq t^{\star}+\tau_L$.
-For $t - t^{\star} >\tau_L$, the drag process has lost the memory of the drag fluctuations on which the re-sampling was based and, thus, the probability of observing a new extreme fluctuation is also very low.
+For $t - t^{\star} >\tau_L$, the drag process has lost the memory of the drag fluctuations on which the re-sampling was based and, thus, the probability of observing a new extreme fluctuation is also very low. 
 %
 %
 
@@ -917,7 +933,7 @@ In summary, a straightforward application of the \ac{ams} algorithm with the sco
 %
 %Furthermore, such ``tuning'' is problem dependent.
 %
-\EL{This behaviour is independent of the choice of $N$ and $T_a$. Increasing the size of the initial ensemble, or the duration of each trajectory, can only increase the amplitude of the global maximum reached initially, but does not solve the issue of overlapping trajectories.}
+\EL{This behaviour is independent of the choice of $N$ and $T_a$. Increasing the size of the initial ensemble, or the duration of each trajectory, can only increase the amplitude of the global maximum reached initially but does not solve the issue of overlapping trajectories.}
 %Nevertheless, a possible line of improvement could  be to explicitly \EL{account for the correlation time of the observable being smaller than the Lyapunov time of the system} by re-sampling the trajectories at a Lyapunov time {before} the maximum is reached. That way, new events associated to higher fluctuations may have the opportunity to develop. However, such modification of the procedure should be implemented with care especially to preserve the mathematical properties of the algorithm, \emph{e.g} the evaluation of the statistical bias.
 % 
 
@@ -940,9 +956,9 @@ At regular time intervals, some elements of the ensemble are killed and others a
 %
 The weights are chosen so that, after several iterations of the algorithm, the trajectories in the ensemble are distributed according to a biased probability distribution that favors trajectories related to large values of the time average of the observable.
 %
-The \ac{gktl} algorithm belongs to a family of algorithms called ``go with the winners'' \citep{aldous1994go,grassberger2002go}.
+The \ac{gktl} algorithm belongs to a family of algorithms known as ``go-with-the-winners'' \citep{aldous1994go,grassberger2002go}.
 {Similar ideas have already been applied in a wide range of fields such as polymer physics~\citep{grassberger1998perm}, out of equilibrium statistical physics~\citep{PhysRevLett.118.115702}, computer science~\citep{aldous1994go}, dynamical systems~\citep{tailleur_probing_2007}, quantum mechanics~\citep{intro_DMC_kosztin}.}
-The application of a go-with-the-winners approach to the computation of large deviations in non-equilibrium systems has first been proposed in \cite{giardina_direct_2006}.
+The application of a go-with-the-winners approach to the computation of large deviations in non-equilibrium systems has first been proposed in \citep{giardina_direct_2006}.
 Over the last ten years, it has been successfully applied to investigate rare events in both stochastic \citep{giardina_direct_2006,lecomte_numerical_2007,garrahan2007dynamical} and deterministic systems \citep{giardina_direct_2006,tailleur_probing_2007}.
 \EL{The operating principle of the \ac{gktl} algorithm is developed in Appendix \ref{app:gktl_description}.}
 
@@ -1022,13 +1038,13 @@ Over the last ten years, it has been successfully applied to investigate rare ev
 	}
 \end{figure}
 
-The application of the \ac{gktl} algorithm is considered for the flow dynamics introduced in section~\ref{sec:test_flow}. \EL{The purpose is to speed-up the sampling of trajectories with extreme fluctuations of the \textit{time-averaged} drag, $F_T$.} 
+The application of the \ac{gktl} algorithm is considered for the flow dynamics introduced in section~\ref{sec:test_flow}. \EL{The purpose is to speed-up the sampling of trajectories with extreme fluctuations of the \textit{time-averaged drag}, $F_T$.} 
 %Referring to the notations used in Appendix \ref{app:gktl_description}, 
-Our observable of interest is therefore the drag $f_d(t)$ and the duration $T_a$ of each trajectory corresponds to the period of averaging of the drag, \emph{i.e.} $T_a=T$.    
+Our observable of interest is therefore the drag $f_d(t)$ and the duration $T_a$ of each trajectory corresponds to the period of averaging, \emph{i.e.} $T_a=T$.    
 %Referring to the previous notations, $A(\mathbf{x}(t))=f_d(t)$ is our observable of interest and the duration $T_a$ of each trajectory corresponds to the period of averaging of the drag, \emph{i.e.} $T_a=T$.    
 %
-\EL{In brief, trajectories are first evolved in time  independently up to $t=\tau $ with $\tau < T_a$ referring to a cloning period. Then, the selection-and-cloning rules apply according to the average of the observable of interest, here $f_d(t)$, over the interval $[0,\tau]$. 
-This procedure is repeated $n-1$ times over the intervals $[\tau, 2\tau],~...,~[(n-1)\tau, n\tau = T_a]$. As a result, the resampled trajectories are distributed according to a probability distribution that is tilted towards large values of the averaged observable. Further details are provided in the Appendix \ref{app:gktl_description}. }
+\EL{In a nutshell, trajectories are first evolved in time  independently up to $t=\tau $, with $\tau < T_a$ referring to a cloning period. Then, the selection (and cloning) rules apply according to the average of the observable of interest, here $f_d(t)$, over the interval $[0,\tau]$. 
+This procedure is repeated $n-1$ times over the intervals $[\tau, 2\tau],~...,~[(n-1)\tau, n\tau = T_a]$. As a result, the resampled trajectories are distributed according to a probability distribution that is tilted towards large values of the averaged observable. Further details are provided in Appendix~\ref{app:gktl_description}. }
 
 
 
@@ -1037,9 +1053,9 @@ This procedure is repeated $n-1$ times over the intervals $[\tau, 2\tau],~...,~[
 
 \EL{The algorithm depends on three parameters: the cloning strength $k$, the number of trajectories $N$ and the resampling period $\tau$. The higher $k$, the larger is the bias involved in the statistical resampling. 
 %, as illustrated in Fig.~\ref{fig:IS_GKTL}. 
-As for the \ac{ams} algorithm, $N$ governs the error affecting the averaged quantities evaluated from the biased ensemble of trajectories, and should be chosen as high as possible. Finally, the cloning period $\tau$ determines how often the resampling is performed. The choice of the cloning period $\tau$ is important in practice.
-A  cloning period too-short can result in a loss of information if the clones do not separate from their parents between two cloning steps. On the contrary, choosing $\tau$ much higher than  $\tau_c$  results in insufficient cloning steps to allow for efficient importance sampling.
-As a result, a safe rule of thumb is to take $\tau$ of the order of $\tau_c$.}
+Similar to the \ac{ams} algorithm, $N$ governs the error affecting the averaged quantities evaluated from the biased ensemble of trajectories, and should be chosen as high as possible. The cloning period $\tau$ determines how often the resampling is performed. 
+A small cloning period can result in a loss of information if the clones do not separate from their parents between two cloning steps. On the contrary, choosing $\tau$ much higher than  $\tau_c$  results in insufficient cloning steps.
+As a result, a rule of thumb is $\tau \approx \tau_c$.}
 
 \EL{In the following experiments, $N=1024$ and $T_a = 10\tau_c$, which yields a computational cost $C_{gktl} = N \times T_a \approx 10^4 \tau_c$. We fixed $\tau = \tau_c /2$ as a satisfactory compromise in order to ensure an efficient sampling \citep{lestang:tel-01974316}.}
 %
@@ -1070,7 +1086,7 @@ Three numerical experiments corresponding to three different values of the stren
 %in addition to the unbiased \ac{pdf} based on the control run.
 %As expected, the biased PDFs obtained by applying the \ac{gktl} algorithm are centered around increasing fluctuations with the parameter $k$.
 %%
-\EL{Fig.~\ref{fig:IS_GKTL} shows the histograms of the biased \ac{pdf}s of the (zero-mean) time-averaged drag for the three ensembles of trajectories, in addition to the unbiased \ac{pdf} based on the control run (with the same computational cost). 
+\EL{Fig.~\ref{fig:IS_GKTL} shows the histograms of the (zero-mean) time-averaged drag for the three ensembles of trajectories, in addition to the unbiased histogram based on a gaussian approximation of the \ac{pdf} of the time-averaged drag.
 As expected, the algorithm samples preferentially trajectories with a higher value of the averaged drag. Furthermore, the higher $k$, the stronger the bias.}
 %
 %
@@ -1079,7 +1095,7 @@ As expected, the algorithm samples preferentially trajectories with a higher val
 Nevertheless, it should be mentioned that for a given number $N$ of trajectories, there is necessarily an upper limit $k_{max}$ of the strength parameter over which the finite number of trajectories becomes detrimental to the efficiency and accuracy of the selection procedure.
 %
 For $k \gtrsim k_{max}$, the re-sampling relies only on a small number of ``independent trajectories'' and most of the trajectories in the biased ensemble overlap. 
-This effect is highlighted in Fig.~\ref{fig:IS_GKTL} where the biased \ac{pdf} corresponding to $k=0.03$ becomes artificially peaked.
+This effect is highlighted in Fig.~\ref{fig:IS_GKTL} where the histogram corresponding to $k=0.03$ becomes artificially peaked.
 %
 %Such a finite-size effect is expected to gradually increase as the bias amplitude $k$ is increased.
 %
@@ -1087,7 +1103,7 @@ This effect is highlighted in Fig.~\ref{fig:IS_GKTL} where the biased \ac{pdf} c
 %Let us mention that this issue has been addressed in recent studies \citep{nemoto2017finite,Guevara_Hidalgo_2018}.
 %
 % how to assess the value of k_max ?
-\EL{In the present simulations with $N=1024$ trajectories, one can empirically estimate that  $k$ should be smaller than $k_{max} \approx 0.03$ to ensure the independence of the trajectories in the biased ensemble.}
+\EL{In the present simulations with $N=1024$ trajectories, one can empirically estimate that  $k$ should be kept smaller than $k_{max} \approx 0.03$ to ensure the independence of the trajectories in the biased ensemble.}
 %This diversity has been monitored at each selection step of the algorithm by calculating the proportion of trajectories sharing the same ancestor trajectory.
 
 %\begin{table}
@@ -1148,8 +1164,8 @@ This effect is highlighted in Fig.~\ref{fig:IS_GKTL} where the biased \ac{pdf} c
 	\label{fig:timeseries_extrms_AVG_GKTL}
 \end{figure}
 In addition, Fig.~\ref{fig:illustr_extrms_vorticity_GKTL} displays the vorticity field related to the maximum of the drag in sampled trajectories.
-One observes that extreme events are consistent with the picture of strong vorticity being trapped in the vicinity of the base of the obstacle, as pointed out in section~\ref{sec:instantaneous_drag}.
-Nevertheless, it should be stressed that the computational cost for sampling the events shown in Fig.~\ref{fig:timeseries_extrms_AVG_GKTL} and Fig.~\ref{fig:illustr_extrms_vorticity_GKTL} is roughly one hundred time lower than the computational cost required to capture by direct sampling the events displayed in  Fig.~\ref{fig:top_4_events_vorticity} and Fig.~\ref{fig:extreme_avg}.
+One observes that the extreme events are consistent with the picture of strong vorticity being trapped in the vicinity of the base of the obstacle, as pointed out in section~\ref{sec:instantaneous_drag}. Qualitatively, the related drag signals are also found very similar to those obtained from direct sampling. 
+However, it should be stressed that the computational cost for sampling the events shown in Fig.~\ref{fig:timeseries_extrms_AVG_GKTL} and Fig.~\ref{fig:illustr_extrms_vorticity_GKTL} is roughly one hundred time lower than the computational cost required to capture by direct sampling the events displayed in  Fig.~\ref{fig:top_4_events_vorticity} and Fig.~\ref{fig:extreme_avg}.
 
 \begin{figure}
 	\centering
@@ -1169,7 +1185,7 @@ Nevertheless, it should be stressed that the computational cost for sampling the
 \subsubsection{Computation of return times}
 \label{sec:return_times}
 
-\EL{Importantly, the \ac{gktl} algorithm provides an ensemble of trajectories over which statistics of rare events can be evaluated. In this section, we show in particular that this ensemble allows for the estimate of return times for fluctuation amplitudes that would be unreachable by direct sampling (with the same computational cost). Analytical details about the estimate of return times are provided in Appendix \ref{sec:return-time-gktl}.}
+\EL{Importantly, the \ac{gktl} algorithm provides an ensemble of trajectories over which statistics of rare events can be evaluated. In this section, we show in particular that this ensemble allows for the estimate of return times for fluctuation amplitudes that would be unreachable by direct sampling (with the same computational cost). The method for estimating return times is described in Appendix~\ref{sec:return-time-gktl}.}
 
 %Statistics of extreme events can be computed from the biased ensemble by inverting Eq.~\eqref{eq:Biased_Path_Approximation}. For instance, it is possible to compute return times for
 % events unreachable by a direct approach.
@@ -1198,8 +1214,8 @@ Nevertheless, it should be stressed that the computational cost for sampling the
 Fig.~\ref{fig:return_times_gktl} displays the return times for extreme fluctuations of the time-averaged drag obtained by using the \ac{gktl} algorithm with two different values of the strength parameter $k$.  
 %
 Both estimates have been obtained with the same computational cost $N\times T_a$.
-An estimate given by direct sampling with a time-series of the same effective duration $T_{tot}=N\times T_a$, is also shown. 
-Whilst a direct approach cannot access (by definition) events with a return time greater than $T_{tot}$, the \ac{gktl} algorithm allows us to estimate the statistics of drag fluctuations having a return time several orders of magnitude above $T_{tot}$. Alternatively, for a fixed target return time, the use of the \ac{gktl} algorithm can reduce the computational cost of the estimation by several orders of magnitude. This is  obviously a major advantage of this rare-event sampling algorithm. 
+An estimate given by direct sampling with a time-series of the same effective duration $T_{tot}=N\times T_a$ is also shown. 
+Whilst a direct approach cannot access (by definition) events with a return time greater than $T_{tot}$, the \ac{gktl} algorithm allows us to estimate the statistics of time-averaged drag fluctuations having a return time several orders of magnitude above $T_{tot}$. Alternatively, for a fixed target return time, the use of the \ac{gktl} algorithm can reduce the computational cost of the estimation by several orders of magnitude. This is  obviously a major advantage of this rare-event sampling algorithm. 
 %
 %\EL{More generally, the successful estimation of return times indicates that, despite the complex dynamics and the overlapping trajectories, the biased ensemble generated by the \ac{gktl} algorithm may be used to compute statistical estimators in a very efficient manner.}
 
@@ -1213,40 +1229,53 @@ Whilst a direct approach cannot access (by definition) events with a return time
 \label{conlusion}
 
 %In this study, the application of two rare-event sampling algorithms has been assessed for the simulation of extreme mechanical efforts on structures immersed in a turbulent flow; a situation relevant to many industrial applications.
-
  
-The dynamics and statistics of extreme fluctuations of the drag acting on a square obstacle placed in a turbulent two-dimensional channel flow are investigated numerically. 
-By means of a long simulation of reference, we observed that such extreme events are caused by the (temporary) trapping of vorticity very close to the base of the square.
-Extreme drag amplitudes do not persist over time since the mean flow eventually sweeps away the fluid structures responsible for this situation.
+%The dynamics and statistics of extreme fluctuations of the drag acting on a squared obstacle mounted in a turbulent channel flow (in two dimensions) have been investigated numerically through both direct and rare-event sampling methods. 
+%By means of direct sampling throughout a very long simulation, it was first observed that such extreme events are generically related to the trapping of a strong vortex against the base of the obstacle.
+%This arrangement does not persist over time since the main stream eventually sweeps away the surrounding fluid structures responsible for this trapping. Therefore, the lifetime of extreme drag fluctuations is found of the order of the sweeping time of the flow past the obstacle, and the corresponding drag signal is very peaked around  extreme fluctuations.
+%%Our long drag timeseries also reveal that the tails of the \ac{pdf} for the drag are well described by an exponential \ac{pdf}.
+%%This property is linked to the phenomenology of extremes of the time-averaged drag.
+%%Especially, we observed that such extreme values for the average do not preferentially result from a small number of very large fluctuations, or an exceptional succession of moderate fluctuations that pile up to \EL{yield a large value} of the average.
+%Concerning the time-averaged drag, it was found that extreme fluctuations do not preferentially result from a small number of very large fluctuations or an exceptional succession of moderate fluctuations that pile up to \EL{yield a large value} of the average.
+%%Such a phenomenology is observed for stochastic processes with an exponential \ac{pdf}.
 %
-The lifetime of extreme drag fluctuations is therefore of the order of the turnover time, and the corresponding drag signal is very peaked around these extreme values.
+%A second part of this study has been dedicated to the application of two representative rare-event algorithms, namely the \acl{ams} and \acl{gktl} algorithms, to our fluid-mechanical problem. These algorithms rely on selection rules that determine how an initial ensemble of trajectories is evolved to possibly accelerate the sampling of extreme fluctuations. 
+%%
+%Interestingly, the \ac{ams} and \ac{gktl} algorithms rely on different selection rules and have different fortunes.
+%%
+%On the one hand, the \ac{ams} algorithm fails to generate trajectories exhibiting extreme events at a better rate than a direct sampling, which can be related to the phenomenology of extreme drag fluctuations, \EL{whose lifetime} is shorter than the timescale over which the replicated trajectories manage to separate from their parent. Therefore, the algorithm is unable to capitalize on the precursors of extreme fluctuations to enhance the realization of new rare-event trajectories. 
+%%
+%On the other hand, the \ac{gktl} algorithm leads to a computational gain of several orders of magnitude. However, this latter is based on the cumulative evolution of the system rather than its instantaneous behaviour, as in the \ac{ams} algorithm. The counterpart is that the algorithm provides only  statistics of extreme values of the time-averaged fluctuations, which can nevertheless be of great interest for computing return times of extreme (time-averaged) fluctuations, for instance.   
+%
+%%Our conclusions on the applicability of rare-event algorithms to turbulent flows and fluid-structure interaction are mitigate, and obviously calls for further investigation and deeper understanding.  
+%%
+%Selection rules entering in rare-event algorithms rely heavily on the choice of a score function that drives the selection and replication of trajectories. 
+%Here, the observable itself was chosen as score function, as a safe fallback solution.
+%Optimizing the choice of this score function is certainly desirable but difficult in practice, since it should account for the phenomenology of the extreme events themselves, how these events build up.
+%Our study shows this quite clearly. A possible direction would then be to take advantage of recent advances in \emph{learning methods} to dynamically optimise the score function. 
+
+\EL{The dynamics and statistics of extreme fluctuations of the drag acting on a squared obstacle mounted in a turbulent channel flow (in two dimensions) have been investigated numerically through both direct and rare-event sampling methods. 
+By means of direct sampling based on a very long simulation, it was first observed that such extreme events are generically related to the trapping of a strong vortex against the base of the obstacle by a streamline cap.
+This arrangement does not persist over time, however, since the main flow eventually sweeps away the surrounding fluid structures responsible for this trapping. Therefore, the lifetime of extreme drag fluctuations is found of the order of the sweeping time of the flow past the obstacle, and the corresponding drag signal is very peaked around extreme fluctuations.
 %Our long drag timeseries also reveal that the tails of the \ac{pdf} for the drag are well described by an exponential \ac{pdf}.
 %This property is linked to the phenomenology of extremes of the time-averaged drag.
 %Especially, we observed that such extreme values for the average do not preferentially result from a small number of very large fluctuations, or an exceptional succession of moderate fluctuations that pile up to \EL{yield a large value} of the average.
-Concerning the time-averaged drag, extreme fluctuations do not preferentially result from a small number of very large fluctuations or an exceptional succession of moderate fluctuations that pile up to \EL{yield a large value} of the average.
+In addition, it was found that extreme fluctuations of the time-averaged drag do not preferentially result from a small number of very large fluctuations or an exceptional succession of moderate fluctuations that pile up to \EL{yield a large value} of the average; both configurations are observed. 
+% but can be either formed by one of these two cases or by a combination of both.
 %Such a phenomenology is observed for stochastic processes with an exponential \ac{pdf}.
 
-The second part is dedicated to the application of two rare-event algorithms, namely the \ac{ams} and \ac{gktl} algorithms, to possibly accelerate the sampling of extreme fluctuations of the drag. 
-%While such algorithms have already proved to be efficient for a wide range of dynamical systems, its applicability in the context of turbulent flows remains open.   
-
-
-Importantly, rare-event algorithms relies on the definition of a score function for the selection of trajectories. The efficiency of the algorithm depends on the choice of this score function, which is expected to select the precursors of the extreme events.  
-%For complex dynamics such as turbulent flows, this choice is difficult because of the lack of characterisation of rare events. 
-%These latter are expected to depend on the dynamical regime, the stirring mechanism and boundary conditions of the flow. 
-In the present case, the choice of the observable itself as score function is certainly a safe fall-back option, nevertheless not optimal.
+A second part of this study has been dedicated to the application of two representative rare-event algorithms, namely the \acl{ams} and the \acl{gktl} algorithms, to our fluid-mechanical problem. These algorithms rely on selection rules that determine how an initial ensemble of trajectories is evolved to possibly enhance the sampling of extreme fluctuations. 
 %
-Therefore, we applied the \ac{ams} algorithm choosing the drag itself as a score function.
-In this case, our results illustrate that the selection-mutation procedure is unable to generate rare trajectories at a better rate than a direct sampling.
-This can be related to the phenomenology of extreme drag fluctuations, \EL{whose lifetime} is shorter than the timescale over which re-sampled trajectories separate from their parent. 
-%following the addition of a small perturbation in the initial conditions.
-The \ac{gktl} algorithm has been applied to the sampling of trajectories displaying extreme fluctuations of the time-averaged drag.
-In this case, we showed that using \ac{gktl} leads to a significant gain with respect to a direct approach, allowing for the simulation and computation of statistics for (very) rare trajectories.
-The sampling of extreme time-averages is aided by the selection of trajectories displaying an exceptional succession of drag fluctuations, resulting in an extreme value of the average.
-It is however unclear whether the \ac{gktl} is suited to sample trajectories for which the extreme fluctuations of the time-averaged drag results from a unique, exceptionally large drag fluctuation. This issue is postponed for future investigations.
+On the one hand, the \ac{ams} algorithm fails (for this specific application) to generate trajectories exhibiting extreme events at a better rate than a direct sampling. This result can be related to the phenomenology of extreme drag fluctuations, whose lifetime is shorter than the timescale over which the replicated trajectories manage to separate from their duplicate.
+Therefore, the algorithm is unable to benefit from the precursors of extreme fluctuations to enhance the realization of new rare-event trajectories. 
+%
+On the other hand, the \ac{gktl} algorithm leads to a computational gain of several orders of magnitude. The latter is based on the cumulative evolution of the system rather than its instantaneous behaviour, as opposed to the \ac{ams} algorithm. The counterpart is that the algorithm provides only  statistics of extreme values of the time-averaged fluctuations. This can nevertheless be of great interest for computing return times of extreme (time-averaged) fluctuations, for instance.   
 
-Importantly, successful usage of the \ac{ams}, \ac{gktl} or similar algorithms for complex flows relevant to industrial or environmental situations will require coping with the fact that optimal score functions
-are difficult to identify, if even possible.
-A promising direction explored in current research is to take advantage of recent advances in \emph{learning methods} to optimise score functions beforehand.
+%Our conclusions on the applicability of rare-event algorithms to turbulent flows and fluid-structure interaction are mitigate, and obviously calls for further investigation and deeper understanding.  
+%
+Selection rules at the heart of rare-event algorithms rely heavily on the choice of a score function that drives the selection and replication of trajectories. 
+In this study, the observable itself (the drag) has been chosen as the score function.
+Optimizing the choice of this score function is desirable (especially for the \ac{ams} algorithm) but difficult in practice, since it should account for the phenomenology of the extreme events themselves, how these events build up. Our study shows this quite clearly. A possible direction would then be to take advantage of recent advances in \emph{learning methods} to dynamically optimise the score function.}
 
 \section{Acknowledgements}
 The authors thank Francesco Ragone, Corentin Herbert, Charles-Edouard Bréhier and Eric Simonnet for useful discussions and suggestions on various aspects of this work.
@@ -1271,7 +1300,7 @@ The facilities at PSMN are supported by the Auvergne-Rhône-Alpes region (GRANT 
 \label{app:lbm}
 
 % details about LBM
-In the LB method, the fluid is viewed as a population of particles that collide, redistribute and propagate along the different links of a discrete lattice \EL{(see \cite{book_lbm} for a comprehensive introduction)}. 
+In the LB method, the fluid is viewed as a population of particles that collide, redistribute and propagate along the different links of a discrete lattice \EL{(see \citep{kruger_lattice_2017} for a comprehensive introduction)}. 
 In our two-dimensional situation, the so-called D2Q9 lattice with only nine possible velocities $\{\mathbf{c_i}\}_{i=0...8}$ at each node has been adopted (see  Fig.~\ref{fig:D2Q9}).
 Locally, the macroscopic flow variables (per unit volume) are recovered by summing over the densities of particles $\{f_i\}_{i=0...8}$ moving with the different velocities, i.e.
 \[
@@ -1507,7 +1536,7 @@ The trajectories 1, 2 and 3 represent the evolution of the \emph{score function}
 	\begin{figure}
 		\centering
 		\includegraphics[width=.7\linewidth]{AMS_OU/AMS_OU.png}
-		\caption{\QQ{Change TAMS TO AMS} Efficiency of the \EL{\ac{ams} algorithm} with respect to direct sampling in the case of an Ornstein-Uhlenbeck process \citep{lestang_computing_2018}. The red line represents the evolution of the maximum obtained from re-sampled trajectories as a function of the computational cost $C_{AMS}$. The blue line is the analytical solution for the return time of amplitude $a$.}
+		\caption{Efficiency of the \EL{\ac{ams} algorithm} with respect to direct sampling in the case of an Ornstein-Uhlenbeck process \citep{lestang_computing_2018}. The red line represents the evolution of the maximum obtained from re-sampled trajectories as a function of the computational cost $C_{AMS}$. The blue line is the analytical solution for the return time of amplitude $a$.}
 		\label{fig:comparaison_temps_de_retour}
 	\end{figure}
 	A one-dimensional \acl{ou} process is considered:
@@ -1539,11 +1568,6 @@ The trajectories 1, 2 and 3 represent the evolution of the \emph{score function}
 
 
 
-
-
-s
-
-
 \section{The \acl{gktl} algorithm}
 \label{app:gktl_description}
 
@@ -1563,7 +1587,7 @@ W_{n}^{i}=\frac{e^{k\intop_{t_{i-1}}^{t_{i}}A(\mathbf{x}_{n}(t))dt}}{R_{i}}\quad
 so that $\sum_{n=1}^N W_n^i = N$.
 %
 %
-{The weights $\{W_{n}^{i}\}_{n=1\cdots N}$ determine how many copies of each trajectory are made at time $t=t_i$. The parameter $k$ characterizes the amplitude of the statistical bias involved in the algorithm (see Fig.~\ref{fig:IS_GKTL}). For more information about the practical implementation of the algorithm, the interested reader can refer to~\cite{brewer2018efficient, lestang:tel-01974316}}.
+{The weights $\{W_{n}^{i}\}_{n=1\cdots N}$ determine how many copies of each trajectory are made at time $t=t_i$. The parameter $k$ characterizes the amplitude of the statistical bias involved in the algorithm (see Fig.~\ref{fig:IS_GKTL}). For more information about the practical implementation of the algorithm, the interested reader can refer to~\citep{brewer2018efficient, lestang:tel-01974316}}.
 The application of this re-sampling at each step $t_i$ eventually leads to a biased sampling in the trajectory space; the trajectories corresponding to extreme values of $\int_{0}^{T_a}A(\mathbf{x}_{n}(t))dt$ have a higher probability.
 %
 The sampled biased distribution writes
@@ -1631,14 +1655,6 @@ with $s_j(a) = 1$ if $\max_{T\leq t \leq T_a}[F_T^{(j)}] \geq a$ and $s_j(a) = 0
 
 
 
-
-
-
-
-
-
-\newpage
-
 \EL{
 \section{Perturbation at branching time}
 \label{app:perturb_branching_time}
@@ -1671,10 +1687,10 @@ Eventually, the perturbed densities are rescaled so that the mass of the system 
 %	\label{fig:effect_of_perturbation}
 %\end{figure}
 %
-In practice, we chose $\epsilon = 0.002$ and $N_s = 10$ to ensure that the perturbations remain sufficiently small, random and independent.  \QQ{is it correct?}.
+In practice, we chose $\epsilon = 0.002$ and $N_s = 10$ to ensure that the perturbations remain sufficiently small, random and independent.
 %Fig.~\ref{fig:effect_of_perturbation} illustrates the effect of applying such perturbation to the drag acting on the square obstacle. We observe that the trajectory separates from its ancestor after a few $\tau_c$ (correlation time of the drag).   
 %
-In order to check that this perturbation does not impact the statistics of drag fluctuations, a long simulation of duration $T_{tot} = 10^5 \tau_c$ have been performed with a periodic perturbation (with period $\tau_c / 2$) mimicking the perturbation of the clones in the algorithm (see section \ref{sec:rare_events_algorithms}).
+In order to check that this perturbation does not impact the statistics of drag fluctuations, a long simulation of duration $T_{tot} = 10^5 \tau_c$ has been performed with a periodic perturbation (with period $\tau_c / 2$) mimicking the perturbation of the clones in the algorithm (see section \ref{sec:rare_events_algorithms}).
 %
 %The value of $\epsilon$ was chosen so that the perturbation does not impact the statistics of the drag. In order to check this assumption, we generated a timeseries of duration $T_{tot} = 10^5 \tau_c$, and introduced a perturbation with a period $ \tau_c / 2$, mimicking the perturbation of clones in the cloning algorithm.
 Fig.~\ref{fig:pdf_drag_with_perturbation} shows that the statistics of the perturbed and unperturbed simulations are equivalent.
@@ -1682,7 +1698,7 @@ Fig.~\ref{fig:pdf_drag_with_perturbation} shows that the statistics of the pertu
 \begin{figure}
   \centering
 \includegraphics[width=.7\linewidth]{pdf_drag_with_perturbation/pdf_drag_with_perturbation}
-\caption{\EL{\ac{pdf}s of (normalised) drag fluctuations obtained from the perturbed (at branching points) and unperturbed numerical simulations; $\epsilon$ is the relative amplitude of the perturbation.} \QQ{indicate $x=(f_d-\mu)/\sigma$ and ${\cal P}(x)$  as before}}
+\caption{\EL{\ac{pdf}s of (normalised) drag fluctuations obtained from the perturbed (at branching points) and unperturbed numerical simulations; $\epsilon$ is the relative amplitude of the perturbation.}}
 \label{fig:pdf_drag_with_perturbation}
 \end{figure}
 }
