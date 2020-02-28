@@ -8,6 +8,7 @@
 \usepackage{graphicx}
 \usepackage{acro}
 \usepackage{subfig}
+\usepackage{hyperref}
 %\usepackage{caption}
 
 \usepackage[normalem]{ulem}
@@ -118,6 +119,7 @@
 	Practical evidence is given that the fast sweeping time of turbulent fluid structures past the obstacle has a strong influence on the efficiency of the rare-event algorithm. 
 	% 
 	While the \ac{ams} algorithm does not yield significant run-time savings as compared to direct sampling, the \ac{gktl} algorithm appears to be effective to sample very efficiently extreme fluctuations of the time-averaged drag and estimate related statistics such as return times.}
+      This paper is supplemented by a software repository containing the codes for the simulations and data analysis involved in this study: \url{https://github.com/tlestang/paper_extreme_drag_fluctuations}.
 %
 %	\EL{This study investigates, by means of numerical simulations, extreme mechanical efforts exerted by a  turbulent flow impinging onto a bluff body, and examines the relevance of two distinct statistical algorithms to efficiently sample these events. 
 %	%
@@ -297,7 +299,7 @@ The centerline velocity is $0.05$ in lattice units, \textit{i.e.} normalised by 
 In the bulk, the viscosity is adjusted so that grid turbulence is generated with Reynolds number $\mathrm{Re_{grid}}=1200$. The reference Mach number is equal to $0.06$ in agreement with the assumption of weak compressibility of the \ac{lbm}. 
 Near the end of the channel, the flow is progressively damped within a \textit{sponge zone} where the viscosity is artificially enhanced.
 Finally, the outlet boundary condition relies on a second-order extrapolation of the velocity and mass density.
-The extrapolated distributions are evaluated through a regularization procedure relying on a finite difference estimation of the local stress tensor, as introduced in \citep{latt2008straight}. For more details about the implementation of the flow, see the software repository attached to this paper \textbf{?????????}.
+The extrapolated distributions are evaluated through a regularization procedure relying on a finite difference estimation of the local stress tensor, as introduced in \citep{latt2008straight}. For more details about the implementation of the flow, see the software repository attached to this paper (\url{https://github.com/tlestang/paper_extreme_drag_fluctuations}).
 
 
 \subsection{The drag force}
