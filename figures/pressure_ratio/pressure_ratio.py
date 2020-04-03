@@ -3,8 +3,13 @@ import os
 import numpy as np
 import matplotlib.style
 import matplotlib.pyplot as plt
+from os.path import abspath, dirname, join, basename, splitext
 
 plt.style.use('ggplot')
+
+prefix = join(
+    abspath(dirname(__file__)), "data"
+    )
 
 meanPf = 5.68;
 meanPr = 5.65;
@@ -13,13 +18,13 @@ M = (meanPf + meanPr)/2;
 sig = 0.0412;
 mu = 0.0252;
 
-path_csv = "../../utilities/peaks.csv"
+path_csv = join(prefix, "peaks.csv")
 csv_file_handle = open(path_csv, "r")
 
 flucts_reader = csv.reader(csv_file_handle, delimiter=",")
-flucts = [_tuple for i, _tuple in enumerate(flucts_reader) if os.path.isfile("../../data/event_{}/dragFile.dat".format(i))]
+flucts = [_tuple for i, _tuple in enumerate(flucts_reader) if os.path.isfile(join(prefix, "event_{}/dragFile.dat".format(i)))]
 csv_file_handle.seek(0)
-event_dirs = ["../../data/event_{}".format(i) for i, _tuple in enumerate(flucts_reader) if os.path.isfile("../../data/event_{}/dragFile.dat".format(i))]
+event_dirs = [join(prefix, "event_{}".format(i)) for i, _tuple in enumerate(flucts_reader) if os.path.isfile(join(prefix, "event_{}/dragFile.dat".format(i)))]
 csv_file_handle.close()
 NbExtremeEvents = 104
 prefix = '/home/tlestang/transition_hdd/thibault/These/lbm_code/seq/draft/etude_dynamique/instant_events/'
@@ -29,7 +34,7 @@ maxDrag = []
 frontContrib = []
 rearContrib = []
 for counter, fluct in enumerate(flucts):
-    dirname, init_file, nb_timesteps, peak, value = fluct
+    dir_name, init_file, nb_timesteps, peak, value = fluct
     drag = np.fromfile(os.path.join(event_dirs[counter],'dragFile.dat'), float, -1, "")
     pFront = np.fromfile(os.path.join(event_dirs[counter],'pFront.dat'), float, -1, "")
     pRear = np.fromfile(os.path.join(event_dirs[counter],'pRear.dat'), float, -1, "")
@@ -42,14 +47,14 @@ for counter, fluct in enumerate(flucts):
     maxDrag.append(drag[t_star])
     frontContrib.append((pFront[t_star]-meanPf)/(maxDrag[counter]-meanDrag))
     rearContrib.append((meanPr+pRear[t_star])/(maxDrag[counter]-meanDrag))
-for dirname in extreme_event_dirs:
-    drag = np.fromfile(os.path.join(dirname,'data_force.datout'), float, -1, "")
-    pFront = np.fromfile(os.path.join(dirname,'pFront.dat'), float, -1, "")
-    pRear = np.fromfile(os.path.join(dirname,'pRear.dat'), float, -1, "")
-    vTop = np.fromfile(os.path.join(dirname,'viscousTop.dat'), float, -1, "")
-    vBot = np.fromfile(os.path.join(dirname,'viscousBot.dat'), float, -1, "")
-    vFront = np.fromfile(os.path.join(dirname,'viscousFront.dat'), float, -1, "")
-    vRear = np.fromfile(os.path.join(dirname,'viscousRear.dat'), float, -1, "")
+for dir_name in extreme_event_dirs:
+    drag = np.fromfile(os.path.join(dir_name,'data_force.datout'), float, -1, "")
+    pFront = np.fromfile(os.path.join(dir_name,'pFront.dat'), float, -1, "")
+    pRear = np.fromfile(os.path.join(dir_name,'pRear.dat'), float, -1, "")
+    vTop = np.fromfile(os.path.join(dir_name,'viscousTop.dat'), float, -1, "")
+    vBot = np.fromfile(os.path.join(dir_name,'viscousBot.dat'), float, -1, "")
+    vFront = np.fromfile(os.path.join(dir_name,'viscousFront.dat'), float, -1, "")
+    vRear = np.fromfile(os.path.join(dir_name,'viscousRear.dat'), float, -1, "")
 
     _maxDrag = np.amax(drag)
     maxDrag.append(_maxDrag)
@@ -73,7 +78,8 @@ ax.legend(loc='lower right', fontsize=22)
 plt.xticks(fontsize=16)
 plt.yticks(fontsize=16)
 
-fname = 'pressure_ratio.eps'
-plt.savefig(fname)
+fname = join(
+    abspath(dirname(__file__)), basename(splitext(__file__)[0]) + ".eps"
+    )
 
-plt.show()
+plt.savefig(fname)

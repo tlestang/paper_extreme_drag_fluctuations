@@ -1,6 +1,7 @@
 import numpy as np
 import matplotlib.style
 import matplotlib.pyplot as plt
+from os.path import abspath, dirname, join
 
 def bundle_nearest_points(I, dist):
     """
@@ -86,8 +87,8 @@ plt.ylabel('$f_d(t)$',fontsize=22)
 plt.xticks(fontsize=16)
 plt.yticks(fontsize=16)
 
+fname = join(
+    abspath(dirname(__file__)), "illustrate_return_time.eps"
+    )
 
-fname= 'illustrate_return_time.eps'
 plt.savefig(fname)
-
-plt.show()

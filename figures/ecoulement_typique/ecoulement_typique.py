@@ -5,6 +5,7 @@ import numpy as np
 import csv
 import matplotlib.pyplot as plt
 from matplotlib.patches import Rectangle
+from os.path import abspath, dirname, join
 
 Dx = 513
 Dy = 129
@@ -12,8 +13,9 @@ N = Dx*Dy
 F = np.zeros(104)
 idx = np.zeros(104)
 
-prefix = "./data/"
-print(prefix)
+prefix = join(
+    abspath(dirname(__file__)), "data"
+    )
 
 fig = plt.figure(figsize=(16,7), constrained_layout=True)
 # Declares a 2x5 grid.
@@ -28,8 +30,8 @@ plt.subplot(grid[1,:])
 ax_list = fig.axes
 nplots = len(ax_list)
 
-path_to_file_ux = prefix+'ux.dat'
-path_to_file_uy = prefix+'uy.dat'
+path_to_file_ux = join(prefix, 'ux.dat')
+path_to_file_uy = join(prefix, "uy.dat")
 fx = open(path_to_file_ux, "rb")  # reopen the file
 fy = open(path_to_file_uy, "rb")  # reopen the file
 bbox = dict(boxstyle="round", fc="0.9")
@@ -87,7 +89,7 @@ cbar.ax.tick_params(labelsize=16)
 sig=0.0412
 m=0.0252
 Nt = 2000;
-fd = (np.fromfile(prefix+'data_force.datout',float,Nt,"")-m)/sig
+fd = (np.fromfile(join(prefix,"data_force.datout"),float,Nt,"")-m)/sig
 tspan = np.linspace(0,4,Nt)
 ax_list[-1].plot(tspan,fd)
 # And plots nplots-1 dots for the nplots-1 snapshots
@@ -102,8 +104,7 @@ ax_list[-1].set_ylabel('$f_d(t)$',fontsize=22)
 ax_list[-1].set_xlabel('$t/T_0$',fontsize=22)
 
 
-fname = 'ecoulement_typique.eps'
-plt.savefig(fname)
-
-plt.show()
-            
+fname = join(
+    abspath(dirname(__file__)), "ecoulement_typique.eps"
+    )
+plt.savefig(fname)            

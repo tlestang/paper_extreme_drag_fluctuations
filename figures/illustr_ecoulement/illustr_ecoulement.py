@@ -2,6 +2,7 @@
 import numpy as np
 import matplotlib.pyplot as plt
 from matplotlib.patches import Rectangle
+from os.path import abspath, dirname, join, basename, splitext
 
 Dx = 513
 Dy = 129
@@ -72,8 +73,8 @@ ax.set_ylabel(r'$y/R$',fontsize=24)
 #cbar=fig.colorbar(im, ax=ax,location='top')
 #cbar.ax.tick_params(labelsize=16)
 
-fname = 'illustr_ecoulement.eps'
+fname = join(
+    abspath(dirname(__file__)), basename(splitext(__file__)[0]) + ".eps"
+    )
 plt.savefig(fname)
-
-plt.show()
             

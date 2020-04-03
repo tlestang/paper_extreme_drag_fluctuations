@@ -1,6 +1,7 @@
 import numpy as np
 import matplotlib.style
 import matplotlib.pyplot as plt
+from os.path import abspath, dirname, join
 
 plt.style.use('ggplot')
 
@@ -31,7 +32,8 @@ ax.set_yticklabels((r'$3\sigma$',r'$5\sigma$',r'$7\sigma$',r'$9\sigma$'))
 plt.xticks(fontsize=16)
 plt.yticks(fontsize=16)
 
-fname = 'return_time.eps'
-plt.savefig(fname)
+fname = join(
+    abspath(dirname(__file__)), splitext(__file__)[0] + ".eps"
+    )
 
-plt.show()
+plt.savefig(fname)
