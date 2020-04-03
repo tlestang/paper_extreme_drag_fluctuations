@@ -12,7 +12,7 @@ plt.style.use('ggplot')
 # /home/thibault/transition_hdd/thibault/These/AMS/libTAMS/tests/experience_lbm/plots_instant_32_5/
 # Original MATLAB script is plot_pre_extinct.m
 
-prefix = '/home/thibault/transition_hdd/thibault/These/AMS/libTAMS/tests/experience_lbm/' \
+prefix = '/home/tlestang/transition_hdd/thibault/These/AMS/libTAMS/tests/experience_lbm/' \
         +'data/instant_32_5/'
 
 # Defines average and std of drag process, compute over the control run

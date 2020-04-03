@@ -12,7 +12,8 @@ N = Dx*Dy
 F = np.zeros(104)
 idx = np.zeros(104)
 
-prefix = '../../data/ecoulement_typique/'
+prefix = "./data/"
+print(prefix)
 
 fig = plt.figure(figsize=(16,7), constrained_layout=True)
 # Declares a 2x5 grid.

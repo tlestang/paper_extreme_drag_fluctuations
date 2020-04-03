@@ -11,9 +11,9 @@ color_list = plt.rcParams['axes.prop_cycle'].by_key()['color']
 # transition_hdd/thibault/These/AMS/libTAMS/tests/experience_lbm/courbe_efficacite_instant
 # Original MATLAB script is make_plot_256.m
 
-# prefix = '/home/tlestang/transition_hdd/thibault/These/AMS/libTAMS/tests/experience_lbm/' \
-#         +'data/instant_256_20/'
-prefix = "../../data/AMS_instant_256_20/"
+prefix = '/home/tlestang/transition_hdd/thibault/These/AMS/libTAMS/tests/experience_lbm/' \
+        +'data/instant_256_20/'
+# prefix = "../../data/AMS_instant_256_20/"
 # Defines average and std of drag process, compute over the control run
 m = 0.0252
 sig = 0.0412

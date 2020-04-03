@@ -14,7 +14,7 @@ sortedI = np.loadtxt('list.txt', dtype=int)
 sig=0.0412
 m=0.0252
 # Gets the value of mu and sigma for time-averaged drag
-musigma = np.fromfile("musigma_AVG_10.dat", float, -1, "");
+musigma = np.fromfile("../../data/musigma_AVG_10.dat", float, -1, "");
 
 T = 10 # Physical duration of instant. trajectories
 
