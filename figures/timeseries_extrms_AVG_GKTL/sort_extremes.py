@@ -14,10 +14,10 @@ import matplotlib.pyplot as plt
 
 from jfm_paper import utils
 
-gktl_dir = "../../er_lannic"
+gktl_dir = "../../data/er_lannic"
 
 musimga = np.fromfile(
-    "/home/tlestang/articles/jstat_paper/data/musigma_AVG_10.dat", float, -1, ""
+    "../../data/musigma_AVG_10.dat", float, -1, ""
 )
 sig=0.0412 # Standard deviation of instant. drag computed over CR
 m=0.0252 # Average instant. drag computed over CR

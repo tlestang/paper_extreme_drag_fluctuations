@@ -30,14 +30,14 @@ nbfiles = 10
 tau_c = 2000
 T = 10
 
-mu_and_sigma_file = './data/musigma_AVG_10.dat'
+mu_and_sigma_file = '../../data/return_times_GKTL/musigma_AVG_10.dat'
 musigma = np.fromfile(mu_and_sigma_file, float, -1, "")
 
 fig, ax = plt.subplots(figsize=(8,5),constrained_layout=True)
 ax.set_xscale('log')
 
 for k in [0.005, 0.01]:
-    GKTL_dir_template = './data/gktl_test_{}_k_{}_T_{}'.format(N,k,Ta)
+    GKTL_dir_template = '../../data/return_times_GKTL/gktl_test_{}_k_{}_T_{}'.format(N,k,Ta)
     directories = ['{}_{}'.format(GKTL_dir_template, i) for i in range(0,nbfiles)]
     ra_interp, df = get_interpolated_return_times(directories, Ta, T,
                                                   k, N, nb_points=30)
@@ -49,7 +49,7 @@ for k in [0.005, 0.01]:
     plt.fill_between(ra_interp, mean-error, mean+error, color=line.get_color(), alpha=0.2)
     
 
-direct_sampling_file='./data/rt_Nc1024_Ta30_T10.csv'
+direct_sampling_file='../../data/return_times_GKTL/rt_Nc1024_Ta30_T10.csv'
 # Direct sampling file contains M rows (blocks) and K columns (repetitions).
 # Numbers are the block maxima
 df = pd.read_csv(direct_sampling_file, comment='#', index_col=0)
@@ -77,7 +77,8 @@ ax.plot([np.amax(ra), np.amax(ra)], [0, 6], linestyle='--', linewidth=0.7, color
 plt.text(np.amax(ra), 0.5, '$T_{tot}$', fontsize=20)
 ax.set_ylim((0,6))
 # Prints figure
-fname = 'return_times_GKTL.png'
+fname = 'return_times_GKTL.eps'
+fname = 'return_times_GKTL.eps'
 plt.savefig(fname)
 
 plt.show()

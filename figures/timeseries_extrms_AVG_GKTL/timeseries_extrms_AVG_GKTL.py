@@ -4,7 +4,7 @@ import matplotlib.pyplot as plt
 
 plt.style.use('ggplot')
 
-gktl_dir = "../../er_lannic"
+gktl_dir = "../../data/er_lannic"
 
 # list.txt is generated with ./sort_extremes.py
 # contains the sorted list of extremes according to the
@@ -62,7 +62,8 @@ for i in range(0,6):
                                    for x in axes[row,col].get_xticks()])
     axes[row,col].tick_params(axis='both', which='major', labelsize=22)
 
-fname = 'timeseries_extrms_AVG.png'
+fname = 'timeseries_extrms_AVG.eps'
+fname = 'timeseries_extrms_AVG.eps'
 plt.savefig(fname)
 
 plt.show()
