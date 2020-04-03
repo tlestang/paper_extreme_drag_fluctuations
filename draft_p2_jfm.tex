@@ -1,0 +1,145 @@
+\documentclass{jfm}
+\pdfoutput=1
+\usepackage[english]{babel}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath,amssymb}
+\usepackage[svgnames]{xcolor}
+\usepackage{graphicx}
+\usepackage{acro}
+\usepackage{subfig}
+\usepackage{hyperref}
+
+\usepackage[normalem]{ulem}
+\usepackage{soul}
+
+\graphicspath{{./figures/}}
+
+\captionsetup[figure]{justification=raggedright}
+
+\newcommand{\set}[1]{\ensuremath{\mathcal{#1}}}
+
+\DeclareAcronym{pdf}{
+	short=PDF,
+	long=Probability Density Function,
+}
+\DeclareAcronym{iid}{
+	short=i.i.d.,
+	long=Independent Identically Distributed
+}
+\DeclareAcronym{ou}{
+	short=OU,
+	long=Ornstein-Uhlenbeck,
+}
+\DeclareAcronym{gktl}{
+	short=GKTL,
+	long=Giardina-Kurchan-Tailleur-Lecomte,
+}
+\DeclareAcronym{ams}{
+	short=AMS,
+	long=Adaptive Multilevel Splitting,
+}
+\DeclareAcronym{tams}{
+	short=TAMS,
+	long=Trajectory Adaptive Multilevel Splitting,
+}
+\DeclareAcronym{scgf}{
+	short=SCGF,
+	long=Scaled Cumulant Generating Function,
+}
+\DeclareAcronym{lbm}{
+	short=LBM,
+	long=Lattice Boltzmann Method,
+}
+\DeclareAcronym{lbe}{
+	short=LBE,
+	long=Lattice Boltzmann Equation,
+}
+\DeclareAcronym{lgca}{
+	short=LGCA,
+	long=Lattice Gas Cellular Automata,
+}
+\DeclareAcronym{lbgk}{
+	short=LBGK,
+	long=Lattice Bhatnagar-Gross-Krook
+}
+\DeclareAcronym{OU}{
+	short=O-U,
+	long=Ornstein--Ulhenbeck
+}
+\DeclareAcronym{dns}{
+	short=DNS,
+	long=Direct Numerical Simulation,
+}
+\DeclareAcronym{md}{
+	short=MD,
+	long=Molecular Dynamics,
+}
+\DeclareAcronym{cfd}{
+	short=CFD,
+	long=Computational Fluid Dynamics,
+}
+
+\definecolor{myred}{HTML}{b30000}
+\definecolor{mygreen}{HTML}{008000}
+\newcommand{\EL}[1]{{\color{myred}{#1}}}
+\newcommand{\TL}[1]{{\color{mygreen}{#1}}}
+
+\newcommand{\ZZ}[1]{{\color{magenta}{#1}}}
+\newcommand{\QQ}[1]{{\color{green}{#1}}}
+
+\title{
+\EL{Numerical study of extreme mechanical efforts exerted by a turbulent flow on a bluff body by direct and rare-event sampling techniques}
+}
+
+\author{Thibault Lestang\aff{1}\aff{2}
+  \corresp{\email{thibault.lestang@cs.ox.ac.uk}},
+  Freddy Bouchet\aff{1}
+  \and Emmanuel L\'evêque\aff{2}}
+\affiliation{\aff{1}Univ Lyon, ENS de Lyon, Univ Claude Bernard de Lyon, CNRS, Laboratoire de Physique, F-69342 Lyon, France
+\aff{2}Univ Lyon, Ecole Centrale de Lyon, Univ Claude Bernard de Lyon, INSA de Lyon, CNRS, Laboratoire de M\'ecanique des Fluides et d'Acoustique, F-69134 Ecully cedex, France}
+\begin{document}
+	
+\maketitle
+
+\begin{abstract}
+	\EL{This study investigates, by means of numerical simulations, extreme mechanical efforts exerted by a turbulent flow impinging on a bluff body, and examines the relevance of two distinct rare-event algorithms to efficiently sample these events. 
+	%
+	The drag experienced by a squared obstacle placed in a turbulent channel flow (in two dimensions) is taken as a representative case study.
+	%
+	Direct sampling shows that extreme fluctuations are closely related to the presence of a strong vortex blocked in the near wake of the obstacle. This vortex is responsible for a significant pressure drop between the forebody and the base of the obstacle, thus yielding a very high value of the drag. 
+	%
+	Two algorithms are then considered to speed up the sampling of such flow scenarii, namely the \ac{ams} and the \ac{gktl} algorithms. 
+	The general idea behind these algorithms is to replace a long simulation by a set of much shorter ones, running in parallel, with dynamics that are replicated or pruned, according to some specific rules designed to sample large-amplitude events more frequently.  These algorithms have been shown to be relevant for a wide range of problems in statistical physics, computer science, biochemistry.
+        The present study is the first application to a fluid-structure interaction problem. 
+	% allowing the simulation of rare  events otherwise out of reach by direct sampling. 
+	%
+	Practical evidence is given that the fast sweeping time of turbulent fluid structures past the obstacle has a strong influence on the efficiency of the rare-event algorithm. 
+	% 
+	While the \ac{ams} algorithm does not yield significant run-time savings as compared to direct sampling, the \ac{gktl} algorithm appears to be effective to sample very efficiently extreme fluctuations of the time-averaged drag and estimate related statistics such as return times.}
+      This paper is supplemented by a software repository containing the codes for the simulations and data analysis involved in this study: \url{https://github.com/tlestang/paper_extreme_drag_fluctuations}.
+\end{abstract}
+	
+\include{section1}
+\include{section2}
+\include{section3}
+\include{section4}
+\include{section5}
+
+\section{Acknowledgements}
+The authors thank Francesco Ragone, Corentin Herbert, Charles-Edouard Bréhier and Eric Simonnet for useful discussions and suggestions on various aspects of this work.
+T.L and F.B acknowledge support from the European Research Council under the European Union's seventh Framework Program (FP7/2007-2013 Grant Agreement No. 616811).
+Simulations have been performed on the local HPC facilities at École Normale Supérieure de Lyon (PSMN) and École Centrale de Lyon (PMCS2I).
+The facilities at PSMN are supported by the Auvergne-Rhône-Alpes region (GRANT CPRT07-13 CIRA) and the national Equip@Meso grant (ANR-10-EQPX-29-01).
+
+\appendix
+\include{appendixA}
+\include{appendixB}
+\include{appendixC}
+\include{appendixD}
+
+\bibliographystyle{jfm}
+\bibliography{biblio}
+
+\end{document}
+

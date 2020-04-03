@@ -1,0 +1,48 @@
+\section{The \ac{ams} algorithm}
+\label{app:ams-short}
+
+\subsection{Operating principle}
+
+\begin{figure}
+	\centering
+	\includegraphics[width=\linewidth]{fig21/fig21}
+	\caption{\label{fig:illustr_AMS} \EL{Operating principle of the \ac{ams} algorithm with three trajectories of duration $T_a$. $\xi(x(t))$ is a prescribed score function defined along each trajectory. 
+	Selection and branching rules are applied in order to reach a maximum score value within the time interval $[0,T_a]$.} }
+\end{figure}
+
+
+The operating principe of the AMS algorithm is sketched in Fig.~\ref{fig:illustr_AMS}.
+%
+The trajectories 1, 2 and 3 represent the evolution of the \emph{score function} for the current ensemble of trajectories. On the basis of their respective maximum: $Q_1$, $Q_2$ and $Q_3$, the trajectory with the lowest maximum is discarded in the ensemble (dashed line). Among the two remaining trajectories, trajectory 3 is chosen randomly and copied until it reaches the value $Q_1$. It is then simulated from this branching point to the final time $T_a$. In the present case of deterministic dynamics, a small perturbation is introduced at the branching to separate the trajectories. This re-sampling procedure can \EL{be iterated} $J$ times or until all trajectories do exceed a fixed threshold $Q$.
+
+\subsection{Application to a simple case: the \acl{ou} process}
+	
+	\begin{figure}
+		\centering
+		\includegraphics[width=.7\linewidth]{fig22/fig22}
+		\caption{Efficiency of the \EL{\ac{ams} algorithm} with respect to direct sampling in the case of an Ornstein-Uhlenbeck process \citep{lestang_computing_2018}. The red line represents the evolution of the maximum obtained from re-sampled trajectories as a function of the computational cost $C_{AMS}$. The blue line is the analytical solution for the return time of amplitude $a$.}
+		\label{fig:comparaison_temps_de_retour}
+	\end{figure}
+	A one-dimensional \acl{ou} process is considered:
+	\begin{equation}
+	\label{eq:ou}
+	\dot{x} = -x + \eta (t),
+	\end{equation}
+	where $\eta$ is a Gaussian noise with $\langle \eta(t)\eta(t-t')\rangle = \delta(t-t')$.
+	
+	
+	The \ac{ams} is applied  to a set of $N=32$ trajectories $\{x_n(t)\}_{0\leq t \leq T_a}$ with $T_a=5\tau_c$.
+	Let us note that the correlation time is $\tau_c = 1$ for the process defined by Eq.~\eqref{eq:ou}.
+	Our objective is to sample fluctuations $x\geq a$ with $a$ being very large compared to the typical values of $x$.
+	The score function is simply $x(t)$ and only one trajectory is re-sampled at each iteration.
+	%
+	%
+	The computational cost of the algorithm after $J$ iterations is therefore related to the simulation of the $N$ initial trajectories and the number of re-sampled trajectories.
+	Fig.~\ref{fig:comparaison_temps_de_retour} compares the computational cost of the \ac{ams} algorithm with that of a direct sampling. 
+	In the latter, the typical computational cost is simply the return time $r(a)$.
+	One can see that the successive re-samplings of the \ac{ams} algorithm lead rapidly to trajectories exhibiting extreme fluctuations.
+	For large $a$, the computational cost is many orders of magnitude lower than that obtained by direct sampling.
+	
+	The \acl{ou} process showcases the efficiency of the \ac{ams} algorithm.
+	However, the state space is here one-dimensional and the choice of the score function is straightforward: it is $x$ itself.
+	In addition, the noise term in Eq.~\eqref{eq:ou} has no correlation in time, which implies that newly generated trajectories quickly separate from their parents. Such favourable features \EL{do not} persist in the case of fluid dynamics.

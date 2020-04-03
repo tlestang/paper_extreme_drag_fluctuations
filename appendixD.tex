@@ -1,0 +1,28 @@
+\section{Perturbation at branching time}
+\label{app:perturb_branching_time}
+The application  of the \ac{ams} and \ac{gktl} algorithms to a \emph{deterministic} dynamical system requires a perturbation at initial time of the
+resampled trajectories. In the absence of such perturbation, the resampling would not yield new trajectories but exact copies of the original trajectories.
+In the framework of Lattice Boltzmann simulations, the state of the system is described at a mesoscopic level by the particle densities $\{f_i(\mathbf{x},t)\}_{i=0\cdots8}$ (see appendix~\ref{app:lbm}).
+%
+Therefore, the perturbation of the solution at time $t_0$ applies directly to the $f_i$'s with 
+\begin{equation}
+f_{i}(\mathbf{x},t_0) \longrightarrow f_i(\mathbf{x},t_0) + \epsilon \sum_{n=1}^{N_s} \alpha_{n}f_{i}^{(n)}(\mathbf{x}),
+\label{eq:perturb_pop}
+\end{equation}
+where the $\alpha_n$'s are random numbers uniformly picked in the interval $[0,1]$, $\epsilon$ is the relative amplitude of the perturbation and $\{f_i^{(n)}\}_{n=1 \cdots N_s}$ is a set of arbitrary snapshots of the flow. 
+%
+In other words, the perturbation is a  random linear combination of $N_s$ snapshots.
+Eventually, the perturbed densities are rescaled so that the mass of the system is preserved.
+%
+In practice, we chose $\epsilon = 0.002$ and $N_s = 10$ to ensure that the perturbations remain sufficiently small, random and independent.
+%
+In order to check that this perturbation does not impact the statistics of drag fluctuations, a long simulation of duration $T_{tot} = 10^5 \tau_c$ has been performed with a periodic perturbation (with period $\tau_c / 2$) mimicking the perturbation of the clones in the algorithm (see section \ref{sec:rare_events_algorithms}).
+%
+Fig.~\ref{fig:pdf_drag_with_perturbation} shows that the statistics of the perturbed and unperturbed simulations are equivalent.
+
+\begin{figure}
+  \centering
+\includegraphics[width=.7\linewidth]{fig23/fig23}
+\caption{\EL{\ac{pdf}s of (normalised) drag fluctuations obtained from the perturbed (at branching points) and unperturbed numerical simulations; $\epsilon$ is the relative amplitude of the perturbation.}}
+\label{fig:pdf_drag_with_perturbation}
+\end{figure}

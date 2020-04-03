@@ -1,0 +1,17 @@
+\section{Conclusion}
+\label{conlusion}
+\EL{The dynamics and statistics of extreme fluctuations of the drag acting on a squared obstacle mounted in a turbulent channel flow (in two dimensions) have been investigated numerically through both direct and rare-event sampling methods. 
+By means of direct sampling based on a very long simulation, it was first observed that such extreme events are generically related to the trapping of a strong vortex against the base of the obstacle by a streamline cap.
+This arrangement does not persist over time, however, since the main flow eventually sweeps away the surrounding fluid structures responsible for this trapping. Therefore, the lifetime of extreme drag fluctuations is found of the order of the sweeping time of the flow past the obstacle, and the corresponding drag signal is very peaked around extreme fluctuations.
+In addition, it was found that extreme fluctuations of the time-averaged drag do not preferentially result from a small number of very large fluctuations or an exceptional succession of moderate fluctuations that pile up to \EL{yield a large value} of the average; both configurations are observed. 
+A second part of this study has been dedicated to the application of two representative rare-event algorithms, namely the \acl{ams} and the \acl{gktl} algorithms, to our fluid-mechanical problem. These algorithms rely on selection rules that determine how an initial ensemble of trajectories is evolved to possibly enhance the sampling of extreme fluctuations. 
+%
+On the one hand, the \ac{ams} algorithm fails (for this specific application) to generate trajectories exhibiting extreme events at a better rate than a direct sampling. This result can be related to the phenomenology of extreme drag fluctuations, whose lifetime is shorter than the timescale over which the replicated trajectories manage to separate from their duplicate.
+Therefore, the algorithm is unable to benefit from the precursors of extreme fluctuations to enhance the realization of new rare-event trajectories. 
+%
+On the other hand, the \ac{gktl} algorithm leads to a computational gain of several orders of magnitude. The latter is based on the cumulative evolution of the system rather than its instantaneous behaviour, as opposed to the \ac{ams} algorithm. The counterpart is that the algorithm provides only  statistics of extreme values of the time-averaged fluctuations. This can nevertheless be of great interest for computing return times of extreme (time-averaged) fluctuations, for instance.   
+
+%
+Selection rules at the heart of rare-event algorithms rely heavily on the choice of a score function that drives the selection and replication of trajectories. 
+In this study, the observable itself (the drag) has been chosen as the score function.
+Optimizing the choice of this score function is desirable (especially for the \ac{ams} algorithm) but difficult in practice, since it should account for the phenomenology of the extreme events themselves, how these events build up. Our study shows this quite clearly. A possible direction would then be to take advantage of recent advances in \emph{learning methods} to dynamically optimise the score function.}
