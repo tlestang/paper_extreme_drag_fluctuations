@@ -5,13 +5,15 @@ import numpy as np
 import csv
 import matplotlib.pyplot as plt
 from matplotlib.patches import Rectangle
+from os.path import abspath, dirname, join, basename, splitext
 
 Dx = 513
 Dy = 129
 N = Dx*Dy
 F = np.zeros(104)
 idx = np.zeros(104)
-prefix = '/home/tlestang/transition_hdd/thibault/These/lbm_code/seq/draft/etude_dynamique/instant_events/'
+
+prefix = "/home/tlestang/transition_hdd/thibault/These/lbm_code/seq/draft/etude_dynamique/instant_events/"
 # Files extremes.csv contains the index of the events and the corresponding
 # peak drag amplitude, in units of sigma
 # First row is lowest fluctuation
@@ -23,29 +25,29 @@ with open(prefix+'extremes.csv', mode='r') as extremes_file:
             F[line_count]=row[1]
             line_count += 1
 
-fig = plt.figure(figsize=(16,6),constrained_layout=True)
+fig = plt.figure(figsize=(16,7), constrained_layout=True)
 # Declares a 2x5 grid.
-# the last axes spans 4 cells
+
 grid = plt.GridSpec(2, 5, figure=fig)
-for i in range(0,4):
+for i in range(0,5):
     plt.subplot(grid[0,i])
     plt.subplot(grid[1,i])
-plt.subplot(grid[0:,3:])
 
-fig = plt.gcf()
 ax_list = fig.axes
-Nevents = len(ax_list)
+nplots = len(ax_list)
 
-for i in range(0,Nevents):
-        path_to_file_ux = prefix+'event_{:d}_feb/ux.dat'.format(int(idx[Nevents-i-1]+1))
-        path_to_file_uy = prefix+'event_{:d}_feb/uy.dat'.format(int(idx[Nevents-i-1]+1))
-
-        # Opens the files and jump to peak drag
-        # (middle of timeseries)
-        fx = open(path_to_file_ux, "rb")  # reopen the file
-        fy = open(path_to_file_uy, "rb")  # reopen the file
-        fx.seek(49*N*8, 0)  
-        fy.seek(49*N*8, 0)  
+path_to_file_ux = prefix+'event_{:d}_feb/ux.dat'.format(int(idx[1]+1))
+path_to_file_uy = prefix+'event_{:d}_feb/uy.dat'.format(int(idx[1]+1))
+fx = open(path_to_file_ux, "rb")  # reopen the file
+fy = open(path_to_file_uy, "rb")  # reopen the file
+bbox = dict(boxstyle="round", fc="0.9")
+for i in range(0,nplots):
+        # trick to advance in time with row major ordering
+        I = 2*(i%5) + i//5
+        
+        offset=(40+2*i)-1
+        fx.seek(offset*N*8, 0)  
+        fy.seek(offset*N*8, 0)  
 
         # Get velocity fields
         ux = np.fromfile(fx, float, N, "")
@@ -64,32 +66,38 @@ for i in range(0,Nevents):
         vort = - vort
 
         # Print fluctuation amplitude as title
-        tit='{:2.1f}$\\sigma$'.format(F[Nevents-i-1])
-        ax_list[i].set_title(tit,fontsize=22)
+        timeFromPeak=(offset+1-50)*0.04
+        if timeFromPeak<0:
+                tit=r'$t=t^{\star}-'+'{:2.2f}\\tau_c$'.format(-timeFromPeak)
+        elif timeFromPeak>0:
+                tit=r'$t=t^{\star}+'+'{:2.2f}\\tau_c$'.format(timeFromPeak)
+        else:
+                tit=r'$t=t^{\star}$'
+        ax_list[I].set_title(tit,fontsize=20,bbox=bbox)
         # Print vorticity field
-        im=ax_list[i].imshow(vort, interpolation='spline36', cmap='BrBG', vmin=-0.15, vmax=0.15)
+        im=ax_list[I].imshow(vort, interpolation='spline36', cmap='BrBG', vmin=-0.15, vmax=0.15)
         # Adds a filled Rectangle to mark the square obstacle
-        rect = ax_list[i].add_artist(Rectangle((21,25), 14, 14))
+        rect = ax_list[I].add_artist(Rectangle((21,25), 14, 14))
         rect.set_color('#545454')
 
         # Write ticks and labels
-        xticks = ax_list[i].get_xticks()
+        xticks = ax_list[I].get_xticks()
         xticks[:] = [(x+xmin) / 17 for x in xticks]
         xticklabels = ['{:2.1f}'.format(x) for x in xticks]
-        ax_list[i].set_xticklabels(xticklabels, fontsize=16)
-        yticks = ax_list[i].get_yticks()
+        ax_list[I].set_xticklabels(xticklabels, fontsize=16)
+        yticks = ax_list[I].get_yticks()
         yticks[:] = [(x+ymin) / 17 for x in yticks]
         yticklabels = ['{:2.1f}'.format(x) for x in yticks]
-        ax_list[i].set_yticklabels(yticklabels[::-1], fontsize=16)
-
+        ax_list[I].set_yticklabels(yticklabels[::-1], fontsize=16)
+        
         ax_list[i].set_xlabel(r'$x/R$',fontsize=22)
         ax_list[i].set_ylabel(r'$y/R$',fontsize=22)
+        
+#cbar=fig.colorbar(im, ax=ax_list)
+#cbar.ax.tick_params(labelsize=16)
 
-cbar=fig.colorbar(im, ax=ax_list)
-cbar.ax.tick_params(labelsize=16)
-
-fname = 'illustr_extrms_vorticity.eps'
+fname = join(
+    abspath(dirname(__file__)), basename(splitext(__file__)[0]) + ".eps"
+    )
 plt.savefig(fname)
-
-plt.show()
             

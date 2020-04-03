@@ -1,6 +1,6 @@
 import numpy as np
 import matplotlib.pyplot as plt
-
+from os.path import abspath, dirname, join, basename, splitext
 
 prefix = '/home/tlestang/transition_hdd/thibault/These/lbm_code/seq/draft/etude_dynamique/instant_events/'
 
@@ -37,7 +37,7 @@ ax.set_xlabel('$t$',fontsize=22)
 plt.xticks(fontsize=18)
 plt.yticks(fontsize=18)
 
-fname = 'timeseries_extremes.eps'
+fname = join(
+    abspath(dirname(__file__)), basename(splitext(__file__)[0]) + ".eps"
+    )
 plt.savefig(fname)
-
-plt.show()

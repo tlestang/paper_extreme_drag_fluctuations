@@ -1,7 +1,7 @@
 import numpy as np
 import matplotlib.style
 import matplotlib.pyplot as plt
-from os.path import abspath, dirname, join
+from os.path import abspath, dirname, join, basename, splitext
 
 plt.style.use('ggplot')
 
@@ -33,7 +33,7 @@ plt.xticks(fontsize=16)
 plt.yticks(fontsize=16)
 
 fname = join(
-    abspath(dirname(__file__)), splitext(__file__)[0] + ".eps"
+    abspath(dirname(__file__)), basename(splitext(__file__)[0]) + ".eps"
     )
 
 plt.savefig(fname)

@@ -1,20 +1,25 @@
 import numpy as np
 import matplotlib.pyplot as plt
+from os.path import abspath, dirname, join, basename, splitext
 
 plt.style.use('ggplot')
 
-prefix = '/home/tlestang/transition_hdd/thibault/These/lbm_code/seq/draft/etude_dynamique/' \
+path_events = '/home/tlestang/transition_hdd/thibault/These/lbm_code/seq/draft/etude_dynamique/' \
          + 'averaged_drag/'
+
+prefix = join(
+    abspath(dirname(__file__)), "data"
+    )
 
 # list.txt is generated with ./sort_extremes.py
 # contains the sorted list of extremes according to the
 # time-averaged drag (highest value first)
-sortedI = np.loadtxt('list.txt', dtype=int)
+sortedI = np.loadtxt(join(prefix, "list.txt"), dtype=int)
 
 sig=0.0412
 m=0.0252
 # Gets the value of mu and sigma for time-averaged drag
-musigma = np.fromfile("../../data/musigma_AVG_10.dat", float, -1, "");
+musigma = np.fromfile(join(prefix, "musigma_AVG_10.dat"), float, -1, "");
 
 T = 10 # Physical duration of instant. trajectories
 
@@ -23,7 +28,7 @@ minArray=np.zeros(Nsubplots) # containers for max and min over instant. drag
 maxArray=np.zeros(Nsubplots) # timeseries
 fig, axes = plt.subplots(nrows=2,ncols=3, figsize=(18,6), constrained_layout=True)
 for i in range(0,Nsubplots):
-    fileName=prefix+'event_{:d}_AVG/'.format(sortedI[i]+1)+'data_force.datout'
+    fileName=path_events+'event_{:d}_AVG/'.format(sortedI[i]+1)+'data_force.datout'
     f = np.fromfile(fileName, float, -1, "")
     # amplitude of fluctuation for time-average
     F_avg = np.sum(f)/(len(f)-1)
@@ -62,7 +67,7 @@ for i in range(0,6):
                                    for x in axes[row,col].get_xticks()])
     axes[row,col].tick_params(axis='both', which='major', labelsize=22)
 
-fname = 'timeseries_extrms_AVG.eps'
+fname = join(
+    abspath(dirname(__file__)), basename(splitext(__file__)[0]) + ".eps"
+    )
 plt.savefig(fname)
-
-plt.show()

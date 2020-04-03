@@ -29,5 +29,5 @@ for i in range(0,Nevents):
     f = np.fromfile(fileName, float, -1, "")
     F[i] = np.mean(f)
 
-np.savetxt('list.txt', np.argsort(-F), '%0.2d')
+np.savetxt('data/list.txt', np.argsort(-F), '%0.2d')
 
