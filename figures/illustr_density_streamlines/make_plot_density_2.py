@@ -109,7 +109,7 @@ ax_list.set_xlabel(r'$x/R$',fontsize=22)
 ax_list.set_ylabel(r'$y/R$',fontsize=22)
 
 
-fname = 'illustr_density_streamlines.png'
+fname = 'illustr_density_streamlines.eps'
 plt.savefig(fname)
 
 plt.show()

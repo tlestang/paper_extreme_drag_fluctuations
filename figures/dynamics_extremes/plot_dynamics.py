@@ -97,7 +97,7 @@ for i in range(0,nplots):
 
 
 
-fname = 'dynamics_extremes.png'
+fname = 'dynamics_extremes.eps'
 plt.savefig(fname)
 
 plt.show()

@@ -37,7 +37,7 @@ ax.set_xlabel('$t$',fontsize=22)
 plt.xticks(fontsize=18)
 plt.yticks(fontsize=18)
 
-fname = 'timeseries_extremes.png'
+fname = 'timeseries_extremes.eps'
 plt.savefig(fname)
 
 plt.show()

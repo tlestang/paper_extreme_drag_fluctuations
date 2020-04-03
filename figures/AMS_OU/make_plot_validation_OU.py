@@ -36,7 +36,7 @@ ax.legend(loc='best', fontsize=18)
 plt.xticks(fontsize=18)
 plt.yticks(fontsize=18)
 
-fname = 'AMS_OU.png'
+fname = 'AMS_OU.eps'
 plt.savefig(fname)
 
 plt.show()

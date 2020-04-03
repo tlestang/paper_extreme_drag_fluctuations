@@ -20,7 +20,7 @@ ax.legend(["No perturbation", "$\\epsilon = 0.002$"], fontsize=18)
 ax.tick_params(axis='both', which='major', labelsize=18)
 
 ax.set_yscale("log")
-fname = splitext(__file__)[0] + ".png"
+fname = splitext(__file__)[0] + ".eps"
 plt.savefig(fname)
 
 plt.show()

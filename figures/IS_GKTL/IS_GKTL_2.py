@@ -47,7 +47,7 @@ ax.tick_params(axis="both", which="major", labelsize=16)
 ax.legend(loc="best", fontsize=16)
 plt.xlim((-2, 6))
 
-fname = os.path.splitext(__file__)[0] + ".png"
+fname = os.path.splitext(__file__)[0] + ".eps"
 plt.savefig(fname)
 
 plt.show()

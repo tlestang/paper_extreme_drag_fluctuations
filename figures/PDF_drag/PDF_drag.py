@@ -27,7 +27,7 @@ plt.xlabel("$x=(f_d - \\mu)/\\sigma$", fontsize=20)
 plt.ylabel("$P(x)$", fontsize=20)
 plt.legend(["With obstacle", "Without obstacle", "Gaussian estimate"], fontsize=18)
 plt.yscale("log")
-fname = splitext(__file__)[0] + ".png"
+fname = splitext(__file__)[0] + ".eps"
 plt.savefig(fname)
 
 plt.show()

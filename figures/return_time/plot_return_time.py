@@ -31,7 +31,7 @@ ax.set_yticklabels((r'$3\sigma$',r'$5\sigma$',r'$7\sigma$',r'$9\sigma$'))
 plt.xticks(fontsize=16)
 plt.yticks(fontsize=16)
 
-fname = 'return_time.png'
+fname = 'return_time.eps'
 plt.savefig(fname)
 
 plt.show()

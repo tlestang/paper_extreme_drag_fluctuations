@@ -30,7 +30,7 @@ plt.plot(np.arange(0,C.size)*dt, C,lw=2)
 plt.xlabel('$\\tau / T_0$', fontsize=18)
 plt.ylabel('$C(\\tau)$', fontsize=18)
 
-fname = splitext(__file__)[0]+'.png'
+fname = splitext(__file__)[0]+'.eps'
 plt.savefig(fname)
 
 plt.show()

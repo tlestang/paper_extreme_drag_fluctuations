@@ -87,7 +87,7 @@ plt.xticks(fontsize=16)
 plt.yticks(fontsize=16)
 
 
-fname= 'illustrate_return_time.png'
+fname= 'illustrate_return_time.eps'
 plt.savefig(fname)
 
 plt.show()

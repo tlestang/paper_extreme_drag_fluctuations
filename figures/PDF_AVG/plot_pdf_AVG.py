@@ -44,7 +44,7 @@ plt.ylabel('$P(x)$',fontsize=22)
 ax.legend(loc='best',fontsize=22)
 
 # Prints figure
-fname = 'PDF_AVG.png'
+fname = 'PDF_AVG.eps'
 plt.savefig(fname)
 
 plt.show()

@@ -58,7 +58,7 @@ ax.tick_params(axis="y", labelsize=18)
 ax.legend(loc='best', fontsize=18)
 ax.set_xlim((0,5))
 
-fname = 'AMS_drag_trajectories.png'
+fname = 'AMS_drag_trajectories.eps'
 plt.savefig(fname)
 
 plt.show()

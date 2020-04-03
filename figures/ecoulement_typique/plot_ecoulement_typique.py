@@ -101,7 +101,7 @@ ax_list[-1].set_ylabel('$f_d(t)$',fontsize=22)
 ax_list[-1].set_xlabel('$t/T_0$',fontsize=22)
 
 
-fname = 'ecoulement_typique.png'
+fname = 'ecoulement_typique.eps'
 plt.savefig(fname)
 
 plt.show()

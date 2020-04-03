@@ -73,7 +73,7 @@ ax.legend(loc='lower right', fontsize=22)
 plt.xticks(fontsize=16)
 plt.yticks(fontsize=16)
 
-fname = 'pressure_ratio.png'
+fname = 'pressure_ratio.eps'
 plt.savefig(fname)
 
 plt.show()

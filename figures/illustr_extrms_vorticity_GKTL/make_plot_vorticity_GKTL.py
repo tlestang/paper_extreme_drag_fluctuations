@@ -92,7 +92,7 @@ for i in range(0, Nevents):
 cbar = fig.colorbar(im, ax=ax_list)
 cbar.ax.tick_params(labelsize=16)
 
-fname = "illustr_extrms_vorticity.png"
+fname = "illustr_extrms_vorticity.eps"
 plt.savefig(fname)
 
 plt.show()
