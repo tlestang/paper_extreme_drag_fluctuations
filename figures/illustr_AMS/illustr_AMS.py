@@ -1,8 +1,8 @@
 import os
-
 import numpy as np
 import matplotlib.pyplot as plt
 import pandas as pd
+from os.path import abspath, dirname, join, basename, splitext
 
 prefix = '/home/tlestang/transition_hdd/thibault/These/AMS/AMS_OU_AVG/run_for_figure_AMS/'
 with open(os.path.join(prefix, 'input.in'), 'r') as f:
@@ -73,6 +73,7 @@ plt.xticks(fontsize=28)
 ax.set_xlim((0,9))
 ax.set_xlabel(r'$t$', fontsize=30)
 
-fname = 'illustr_AMS.pdf'
+fname = join(
+    abspath(dirname(__file__)), basename(splitext(__file__)[0]) + ".eps"
+    )
 plt.savefig(fname)
-plt.show()

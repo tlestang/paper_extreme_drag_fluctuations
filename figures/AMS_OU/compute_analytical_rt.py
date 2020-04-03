@@ -1,6 +1,11 @@
 import numpy as np
 import scipy.integrate as integrate
 import matplotlib.pyplot as plt
+from os.path import abspath, dirname, join, basename
+
+prefix = join(
+    abspath(dirname(__file__)), "data"
+    )
 
 def g(z):
     return np.exp(z*z)
@@ -23,7 +28,7 @@ for a in avec:
     rstat[k] = np.sqrt(prefact) * integrate.quad(fstat,-20,a)[0]
     k = k+1;
 
-fo = open("return_time_analytical.dat", "wb")
+fo = open(join(prefix, "return_time_analytical.dat"), "wb")
 avec.tofile(fo, "")
 rstat.tofile(fo, "")
 fo.close()

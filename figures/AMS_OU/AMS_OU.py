@@ -1,20 +1,25 @@
 import numpy as np
 import matplotlib.style
 import matplotlib.pyplot as plt
+from os.path import abspath, dirname, join, basename, splitext
 
 plt.style.use('ggplot')
+
+prefix = join(
+    abspath(dirname(__file__)), "data"
+    )
 
 Ta = 5;
 Nc = 32;
 sig = 1/np.sqrt(2);
 
-compTime = np.fromfile("./comp.dat", float, -1, "")
-amax = np.fromfile("./amax.dat", float, -1, "")
-Z = np.fromfile("./Z.dat", float, -1, "")
+compTime = np.fromfile(join(prefix, "comp.dat"), float, -1, "")
+amax = np.fromfile(join(prefix, "amax.dat"), float, -1, "")
+Z = np.fromfile(join(prefix, "Z.dat"), float, -1, "")
 
 xx = Ta*Nc + np.cumsum(compTime);
 
-buf = np.fromfile("./return_time_analytical.dat", float, -1, "")
+buf = np.fromfile(join(prefix, "return_time_analytical.dat"), float, -1, "")
 n = int(len(buf)/2)
 avec = buf[0:n]
 rtheo = buf[n:]
@@ -36,7 +41,7 @@ ax.legend(loc='best', fontsize=18)
 plt.xticks(fontsize=18)
 plt.yticks(fontsize=18)
 
-fname = 'AMS_OU.eps'
+fname = join(
+    abspath(dirname(__file__)), basename(splitext(__file__)[0]) + ".eps"
+    )
 plt.savefig(fname)
-
-plt.show()
