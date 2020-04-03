@@ -1,21 +1,22 @@
-* [[./illustr_vort]]
-* [[./typical_drag_signal]]
-* [[./PDF_drag]]
-* [[./autocorr_drag]]
-* [[./ecoulement_typique]]
-* [[./return_time]]
-* [[./pressure_ratio]]
-* [[./illustr_extrms_vorticity]]
-* [[./dynamics_extremes]]
-* [[./timeseries_extremes]]
-* [[./illustr_density_streamlines]]
-* [[./shear_asof_drag]]
-Pas de script python pour le moment
-Je ne comprends plus ce que sont 'inverse events'
-* [[./timeseries_extrms_AVG]]
-* [[./illustr_AMS]]
-* [[./AMS_OU]]
-* [[./AMS_drag_resampling]]
-* [[AMS_drag_trajectories]]
-* [[./IS_GKTL]]
-* [[./PDF_AVG]]
+illustr_ecoulement/plot_ecoulement.py
+ecoulement_typique/plot_ecoulement_typique.py
+illustrate_return_time/illustrate_return_time.py
+PDF_drag/PDF_drag.py
+autocorrelation_drag/autocorrelation_drag.py
+return_time/plot_return_time.py
+pressure_ratio/plot_pressure_ratio_revision.py
+timeseries_extremes/plot_force.py
+illustr_extrms_vorticity/make_plot_vorticity.py
+illustr_density_streamlines/make_plot_density_2.py
+dynamics_extremes/plot_dynamics.py
+timeseries_extrms_AVG/timeseries_extrms_AVG.py
+PDF_AVG/plot_pdf_AVG.py
+AMS_drag_trajectories/plot_pre_extinct.py
+AMS_drag_resampling/make_plot_256.py
+IS_GKTL/IS_GKTL_2.py
+timeseries_extrms_AVG_GKTL/timeseries_extrms_AVG_GKTL.py
+illustr_extrms_vorticity_GKTL/make_plot_vorticity_GKTL.py
+return_times_GKTL/plot_return_times_GKTL.py
+illustr_AMS/make_figure_AMS.py
+AMS_OU/make_plot_validation_OU.py
+pdf_drag_with_perturbation/pdf_drag_with_perturbation.py
