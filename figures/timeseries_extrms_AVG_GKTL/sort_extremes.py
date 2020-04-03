@@ -11,14 +11,19 @@
 from os.path import join
 import numpy as np
 import matplotlib.pyplot as plt
+from os.path import abspath, dirname, join, basename, splitext
+from pathlib import PurePath
 
 from jfm_paper import utils
 
-gktl_dir = "../../data/er_lannic"
+main_data_path = PurePath(abspath(dirname(__file__))).parent.parent / "data"
+prefix = join(
+    abspath(dirname(__file__)), "data"
+    )
 
-musimga = np.fromfile(
-    "../../data/musigma_AVG_10.dat", float, -1, ""
-)
+gktl_dir = join(str(main_data_path), "er_lannic")
+
+musigma = np.fromfile(join(str(main_data_path), "musigma_AVG_10.dat"), float, -1, "");
 sig=0.0412 # Standard deviation of instant. drag computed over CR
 m=0.0252 # Average instant. drag computed over CR
 
@@ -50,5 +55,5 @@ for counter, common_ancestor_idx in enumerate(dict_of_parents):
     f = np.fromfile(fileName, float, -1, "")
     F.append(np.mean(f))
 
-np.savetxt('list.txt', [traj_idx[ii] for ii in np.argsort(-np.array(F))], '%0.2d')
+np.savetxt(join(prefix, "list.txt"), [traj_idx[ii] for ii in np.argsort(-np.array(F))], '%0.2d')
 

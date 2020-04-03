@@ -1,5 +1,6 @@
 import numpy as np
 import matplotlib.pyplot as plt
+from os.path import abspath, dirname, join, basename, splitext
 
 plt.style.use('ggplot')
 
@@ -58,7 +59,8 @@ ax.tick_params(axis="y", labelsize=18)
 ax.legend(loc='best', fontsize=18)
 ax.set_xlim((0,5))
 
-fname = 'AMS_drag_trajectories.eps'
+fname = join(
+    abspath(dirname(__file__)), basename(splitext(__file__)[0]) + ".eps"
+    )
 plt.savefig(fname)
 
-plt.show()

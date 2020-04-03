@@ -1,20 +1,27 @@
 from os.path import join
 import numpy as np
 import matplotlib.pyplot as plt
+from os.path import abspath, dirname, join, basename, splitext
+from pathlib import PurePath
 
 plt.style.use('ggplot')
 
-gktl_dir = "../../data/er_lannic"
+main_data_path = PurePath(abspath(dirname(__file__))).parent.parent / "data"
+prefix = join(
+    abspath(dirname(__file__)), "data"
+    )
+
+gktl_dir = join(str(main_data_path), "er_lannic")
 
 # list.txt is generated with ./sort_extremes.py
 # contains the sorted list of extremes according to the
 # time-averaged drag (highest value first)
-sortedI = np.loadtxt('list.txt', dtype=int)
+sortedI = np.loadtxt(join(prefix, "list.txt"), dtype=int)
 
 sig=0.0412
 m=0.0252
 # Gets the value of mu and sigma for time-averaged drag
-musigma = np.fromfile("../../data/musigma_AVG_10.dat", float, -1, "");
+musigma = np.fromfile(join(str(main_data_path), "musigma_AVG_10.dat"), float, -1, "");
 
 T = 10 # Physical duration of instant. trajectories
 
@@ -62,8 +69,7 @@ for i in range(0,6):
                                    for x in axes[row,col].get_xticks()])
     axes[row,col].tick_params(axis='both', which='major', labelsize=22)
 
-fname = 'timeseries_extrms_AVG.eps'
-fname = 'timeseries_extrms_AVG.eps'
+fname = join(
+    abspath(dirname(__file__)), basename(splitext(__file__)[0]) + ".eps"
+    )
 plt.savefig(fname)
-
-plt.show()

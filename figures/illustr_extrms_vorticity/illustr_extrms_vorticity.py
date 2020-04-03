@@ -93,6 +93,4 @@ fname = join(
     abspath(dirname(__file__)), basename(splitext(__file__)[0]) + ".eps"
     )
 plt.savefig(fname)
-
-plt.show()
             

@@ -2,6 +2,8 @@ import os
 import numpy as np
 import argparse
 import matplotlib.pyplot as plt
+from os.path import abspath, dirname, join, basename, splitext
+from pathlib import PurePath
 
 from jfm_paper import utils
 from jfm_paper.resimulate_extreme_GKTL import resimulate
@@ -21,8 +23,13 @@ parser.add_argument(
 
 args = parser.parse_args()
 
+main_data_path = PurePath(abspath(dirname(__file__))).parent.parent / "data"
+prefix = join(
+    abspath(dirname(__file__)), "data"
+    )
+
 musimga = np.fromfile(
-    "/home/tlestang/articles/jstat_paper/data/musigma_AVG_10.dat", float, -1, ""
+    join(str(main_data_path), "musigma_AVG_10.dat"), float, -1, ""
 )
 sig = 0.0412  # Standard deviation of instant. drag computed over CR
 m = 0.0252  # Average instant. drag computed over CR
@@ -53,7 +60,7 @@ for counter, common_ancestor_idx in enumerate(dict_of_parents):
     traj_idx.append(j)
     drag_maxima.append(np.amax(drag_maxima_ingroup))
 
-with open("extremes.csv", "w") as f:
+with open(join(prefix, "extremes.csv"), "w") as f:
     for i, idx in enumerate(np.argsort(-np.array(drag_maxima))):
         fileName = os.path.join(
             args.directory, "recon_rep_0_clone_{}.traj".format(traj_idx[idx])

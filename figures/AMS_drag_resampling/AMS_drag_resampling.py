@@ -1,5 +1,6 @@
 import numpy as np
 import matplotlib.pyplot as plt
+from os.path import abspath, dirname, join, basename, splitext
 
 plt.style.use('ggplot')
 color_list = plt.rcParams['axes.prop_cycle'].by_key()['color']
@@ -65,7 +66,7 @@ ax.tick_params(axis="y", labelsize=18)
 
 ax.legend(loc='best', fontsize=18)
 
-fname = 'AMS_drag_resampling.eps'
+fname = join(
+    abspath(dirname(__file__)), basename(splitext(__file__)[0]) + ".eps"
+    )
 plt.savefig(fname)
-
-plt.show()

@@ -6,17 +6,24 @@ import numpy as np
 import csv
 import matplotlib.pyplot as plt
 from matplotlib.patches import Rectangle
+from os.path import abspath, dirname, join, basename, splitext
+from pathlib import PurePath
+
+main_data_path = PurePath(abspath(dirname(__file__))).parent.parent / "data"
+prefix = join(
+    abspath(dirname(__file__)), "data"
+    )
 
 Dx = 513
 Dy = 129
 N = Dx * Dy
 F = []
 idx = []
-gktl_dir = "../../er_lannic"
+gktl_dir = join(str(main_data_path), "er_lannic")
 # Files extremes.csv contains the index of the events and the corresponding
 # peak drag amplitude, in units of sigma
 # First row is highest fluctuation
-with open("extremes.csv", mode="r") as extremes_file:
+with open(join(prefix, "extremes.csv"), mode="r") as extremes_file:
     extremes_reader = csv.reader(extremes_file, delimiter=",")
     for _idx, _F, t_star in extremes_reader:
         idx.append(int(_idx))
@@ -92,7 +99,7 @@ for i in range(0, Nevents):
 cbar = fig.colorbar(im, ax=ax_list)
 cbar.ax.tick_params(labelsize=16)
 
-fname = "illustr_extrms_vorticity.eps"
+fname = join(
+    abspath(dirname(__file__)), basename(splitext(__file__)[0]) + ".eps"
+    )
 plt.savefig(fname)
-
-plt.show()
