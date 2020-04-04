@@ -1,3 +1,4 @@
+buffer-name
 \section{Introduction}
 
 % general comments on physical problem %
@@ -5,21 +6,21 @@
 Turbulent flows are important in a variety of natural phenomena, industrial and civil applications.
 Their characteristic feature is the spontaneous development of intense and sporadic motions associated with extreme internal forces \citep{lesieur_book,donzis_sreenivasan_2010,Yeung}.
 ``Extreme'' refers here to fluctuations that can deviate from the mean value by ${\cal{O}}(10)$ standard deviations.
-In engineering, the nature of such extreme dynamical events and their statistics are of crucial interest to predict excessive mechanical efforts, which can threaten the structural integrity of embedded structures \EL{\citep{kanev2010}}.
+In engineering, the nature of such extreme dynamical events and their statistics are of crucial interest to predict excessive mechanical efforts, which can threaten the structural integrity of embedded structures \citep{kanev2010}.
 %
 
 From the viewpoint of chaotic dynamical systems, turbulence in fluids is linked to non-linearity and strong departure from statistical equilibrium \citep{KRAICHNAN}.
 The use of analytical perturbative methods in identifying resonant interactions (among degrees of freedom) responsible for extreme fluctuations is unsuccessful.
 Alternatively, simulation offers a practical approach to gain physical insight into these events, quantifying their intensity and estimating their frequency of occurrence.
-However, this requires very long simulations since these extreme events are rare. \EL{The computational cost for sampling a fluctuation of very small probability typically grows as the inverse of this probability~\citep{wouters2016rare}.}
+However, this requires very long simulations since these extreme events are rare. The computational cost for sampling a fluctuation of very small probability typically grows as the inverse of this probability~\citep{wouters2016rare}.
 %
 %
-{Rare-event sampling \EL{refers} to a large body of methods that aim at \emph{preferentially} exploring  regions of phase space corresponding to  events that would otherwise be accessed with a very low probability through a brute-force direct sampling.}
+{Rare-event sampling refers to a large body of methods that aim at \emph{preferentially} exploring  regions of phase space corresponding to  events that would otherwise be accessed with a very low probability through a brute-force direct sampling.}
 %
 %	
 % next two paragraphs may be too technical -- Find a way to summarize them in a few sentences accessible to a broad audience in fluid mechanics? Notion of action will be vague for many readers
 %
-In the present work, a computational study of extreme mechanical efforts acting on an immersed bluff body is \EL{conducted} using both very long time-series (direct sampling) and rare-event sampling techniques.
+In the present work, a computational study of extreme mechanical efforts acting on an immersed bluff body is conducted using both very long time-series (direct sampling) and rare-event sampling techniques.
 
 
 %
@@ -40,11 +41,11 @@ Even though such ideas date back to the early 1950s, they have received growing 
 More importantly, such algorithms have been shown to be useful for the study of rare events in simple deterministic dynamics~\citep{wouters2016rare}.
 %
 %
-\EL{Certainly, an original contribution of our study is to test the application of rare-event sampling algorithms in the context of far-from-equilibrium dynamics with an irreducible very large number of degrees of freedom. 
+Certainly, an original contribution of our study is to test the application of rare-event sampling algorithms in the context of far-from-equilibrium dynamics with an irreducible very large number of degrees of freedom. 
 %
-Two algorithms that are a priori suitable for such dynamics are considered, namely, the Adaptive Multilevel Splitting (AMS) algorithm \citep{cerou_adaptive_2007} and the Giardina-Kurchan-Tailleur-Lecomte (GKTL) algorithm \citep{giardina_direct_2006}.}
+Two algorithms that are a priori suitable for such dynamics are considered, namely, the Adaptive Multilevel Splitting (AMS) algorithm \citep{cerou_adaptive_2007} and the Giardina-Kurchan-Tailleur-Lecomte (GKTL) algorithm \citep{giardina_direct_2006}.
 %
-\EL{Another problem related to rare events is the estimation of parameters or statistics from a limited number of samples.  Several authors have proposed original strategies  \citep{Mohamad-ws,Blonigan-ws} such as sequential sampling. These approaches and rare event algorithms could also be considered for applications in wave-structure problems, ship motion and load acting on offshore platforms \citep{belenky-ws}.}
+Another problem related to rare events is the estimation of parameters or statistics from a limited number of samples.  Several authors have proposed original strategies  \citep{Mohamad-ws,Blonigan-ws} such as sequential sampling. These approaches and rare event algorithms could also be considered for applications in wave-structure problems, ship motion and load acting on offshore platforms \citep{belenky-ws}.
 %
 The paper is organized in two parts. The first part highlights the phenomenology of extreme fluctuations of the drag force acting on a square placed in a two-dimensional turbulent channel flow. This study is based on the simulation of the flow over a very long duration, made possible by the relative simplicity of the flow.
 %
@@ -56,12 +57,12 @@ Secondly, it yields reference results that are required to validate the outputs 
 The flow set-up is introduced and the dynamics related to typical
 drag fluctuations is described in section~\ref{sec:test_flow}.
 The statistical properties of the drag are then discussed.
-In section~\ref{sec:direct_sampling}, \EL{the phenomenology of  extreme drag fluctuations} is investigated based on direct sampling.
+In section~\ref{sec:direct_sampling}, the phenomenology of  extreme drag fluctuations is investigated based on direct sampling.
 Both the instantaneous drag and time-averaged drag are considered.
 It is found in particular that sampled extreme fluctuations of the instantaneous drag result from very similar dynamics. 
 Section~\ref{sec:rare_events_algorithms} examines the applicability of both the \ac{ams} and \ac{gktl} algorithms to the simulation of extreme drag fluctuations in the same flow configuration.
 In subsection~\ref{sec:ams}, we show that the use of the \ac{ams} algorithm is not successful, or at least not straightforwardly. This difficulty is put in perspective with the phenomenology of extreme drag fluctuations developed in  section \ref{sec:direct_sampling}.
 Subsection~\ref{sec:gktl} presents the computation of extremes of the time-averaged drag by using the \ac{gktl} algorithm.
 This latter allows for an exceptional reduction of the computational cost needed to simulate trajectories corresponding to extreme values of the time-averaged drag.
-As a specific \EL{successful} application, the \ac{gktl} algorithm is used to compute the return times of extreme fluctuations of the time-averaged drag acting on the immersed obstacle.
+As a specific successful application, the \ac{gktl} algorithm is used to compute the return times of extreme fluctuations of the time-averaged drag acting on the immersed obstacle.
 Perspectives and conclusion end this work.

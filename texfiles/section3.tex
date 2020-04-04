@@ -4,7 +4,7 @@
 \begin{figure}
 	\centering
 	\includegraphics[width=.6\linewidth]{fig5/fig5}
-	\caption{Amplitude of drag fluctuations as a \EL{function of} the corresponding return time. $\tilde{f}_d$ denotes the drag with zero mean, \textit{i.e.} $\tilde{f}_d = f_d - \overline{f_d}$.
+	\caption{Amplitude of drag fluctuations as a function of the corresponding return time. $\tilde{f}_d$ denotes the drag with zero mean, \textit{i.e.} $\tilde{f}_d = f_d - \overline{f_d}$.
 	}
 	\label{fig:return_time_instant}
 \end{figure}
@@ -16,7 +16,7 @@ Direct sampling is here used as opposed to approaches involving rare-events algo
 It will provide a trustworthy baseline for the validation of rare-events algorithms. 
 
 The waiting times $\tau$ are defined as the time between two consecutive occurrences of peak fluctuations with amplitude $f_d \geq a$, as illustrated in Fig.~\ref{fig:illustrate_return_time}.
-The mixing time $\tau_m$ is the time needed for the dynamics to \EL{lose the memory} of its initial condition.
+The mixing time $\tau_m$ is the time needed for the dynamics to lose the memory of its initial condition.
 As soon as the typical waiting times are much larger than the mixing time $\tau_m$, the occurrences of such events follow a Poisson process and the distribution of the waiting times is exponential, \emph{i.e.} $P(\tau)=\lambda(a)\exp(-\lambda(a)\tau)$ where $r(a)=1/\lambda(a)$ is the averaged waiting time \citep{lestang_computing_2018}; $r(a)$ is called the {\it return time} of the level $a$.
 For systems without multi-stability, it is common for the mixing time $\tau_m$ to be of the order of the correlation time $\tau_c$.
 
@@ -27,7 +27,7 @@ If one assumes that  $r(a) = t(a)~/~\mathbb{P}(f_d\geq a)$   where the time scal
 one might expect that 
 \begin{equation}
   \label{eq:return_time}
-  \EL{r(a) \underset{a\to\infty}{\propto} \exp(\ell a)}
+  r(a) \underset{a\to\infty}{\propto} \exp(\ell a)
 \end{equation}
 where $l$ is the rate describing the positive tail of the \ac{pdf} of the drag (shown in Fig.~\ref{fig:pdf_drag}).
 Fig.~\ref{fig:return_time_instant} shows the evolution of the return time $r(a)$ with the amplitude of fluctuation $a$, computed from {direct sampling} of the drag signal $f_d(t)$~\citep{lestang_computing_2018}.
@@ -47,7 +47,7 @@ Precisely, 104 independent fluctuations with $\tilde{f}_d(t) \geq 7.6\sigma$ hav
 %
 In the following, the phenomenology of extreme drag fluctuations will be examined on the basis of this set of events.
 
-\subsection{\EL{Extreme fluctuations of the instantaneous drag}}
+\subsection{Extreme fluctuations of the instantaneous drag}
 \label{sec:instantaneous_drag}
 
 \subsubsection{Contribution of forebody and base pressure fluctuations to the overall drag fluctuation}
@@ -58,7 +58,7 @@ In the following, the phenomenology of extreme drag fluctuations will be examine
 	\includegraphics[width=.8\linewidth]{fig6/fig6}
 	\caption{\label{fig:pressure_ratio} Relative contributions of the forebody and base pressure variations to extreme amplitudes of the drag fluctuation $\tilde f_d$. An extreme event corresponds to an amplitude $\tilde f^{\star}_d$ and a unique pair  ($\tilde{p}^{\star}_{base}$,~$\tilde{p}^{\star}_{fb}$).}
 \end{figure}
-\EL{In section~\ref{sec:test_flow}, it was pointed out that drag fluctuations within one standard deviation were not associated with any particular arrangement of the   vorticity around the obstacle. We shall see in the following that the situation is different in the case of {extreme} drag fluctuations. }
+In section~\ref{sec:test_flow}, it was pointed out that drag fluctuations within one standard deviation were not associated with any particular arrangement of the   vorticity around the obstacle. We shall see in the following that the situation is different in the case of {extreme} drag fluctuations.
 %
 % relative contribution of forebody and base pressure
 %
@@ -70,8 +70,8 @@ The (zero-mean) fluctuation $\tilde{f}_d^{\star} = f_d^{\star} - \overline{f_d}$
 where $\Delta p_{fb}^{\star}$ and $\Delta p_{base}^{\star}$ denote the variations of the forebody and base pressure, respectively.
 %
 Fig.~\ref{fig:pressure_ratio} displays the relative contributions
-$\Delta p_{fb}^{\star}/\tilde{f}_d^{\star}$ and $-\Delta p_{base}^{\star}/\tilde{f}_d^{\star}$ to \EL{the drag fluctuation $\tilde f_d^{\star}$.
-	It is found that very large fluctuations of the drag result mainly ($\sim 80\%$) from a drop in base pressure, whereas the variation of forebody pressure contributes much less to $\tilde{f}_d^{\star}$. On the contrary, moderate fluctuations arise from combined variations of the forebody and base pressures without any particular predominance, which is in agreement with the previous observations (see Fig.\ref{fig:typical_vorticity}).}
+$\Delta p_{fb}^{\star}/\tilde{f}_d^{\star}$ and $-\Delta p_{base}^{\star}/\tilde{f}_d^{\star}$ to the drag fluctuation $\tilde f_d^{\star}$.
+	It is found that very large fluctuations of the drag result mainly ($\sim 80\%$) from a drop in base pressure, whereas the variation of forebody pressure contributes much less to $\tilde{f}_d^{\star}$. On the contrary, moderate fluctuations arise from combined variations of the forebody and base pressures without any particular predominance, which is in agreement with the previous observations (see Fig.\ref{fig:typical_vorticity}).
 
 \subsubsection{Fluid dynamics related to extreme drag fluctuations}
 \label{sec:dynamical_aspects}
@@ -87,7 +87,7 @@ $\Delta p_{fb}^{\star}/\tilde{f}_d^{\star}$ and $-\Delta p_{base}^{\star}/\tilde
 The focus is now on the flow scenarii that yield extreme values of the drag. 
 Fig.~\ref{fig:timeseries_extremes} displays the mean profile (in time) of the drag signal around extreme events. A peaked profile is observed with a width roughly corresponding to one correlation time $\tau_c$. This shows that the duration of extreme events corresponds typically to the sweeping time of the flow past the obstacle. 
 Interestingly, the profile is also slightly skewed, indicating that the step up of the drag is slower than the return to typical values past the peak value.
-\EL{This asymmetry (under time reversal) is closely linked to the symmetry breaking in what happens before and after the obstacle.}
+This asymmetry (under time reversal) is closely linked to the symmetry breaking in what happens before and after the obstacle.
 To better understand the flow scenarii leading to these events, the vorticity fields around the obstacle are now examined.
 
 \begin{figure}
@@ -150,7 +150,7 @@ Before and after the extremal fluctuation, \textit{i.e.} for $t^{\star}-2\tau_c 
 On the contrary, the drag abruptly varies for $t^{\star}-\tau_c \leq t \leq t^{\star}+\tau_c$ near the extremal amplitude.
 These excursions always go clockwise, that is, $\overline{\gamma}$ attains its maximum value before $f_d$ does. 
 This is consistent with an increase of $\overline{\gamma}$ acting as a precursor for extreme drag fluctuations.
-In this representation, we also observe that the path related to the increase of the drag is longer than the path related to the return to typical values\EL{, which may be related to the asymmetry of the mean profile displayed in Fig.~\ref{fig:timeseries_extremes}}. 
+In this representation, we also observe that the path related to the increase of the drag is longer than the path related to the return to typical values, which may be related to the asymmetry of the mean profile displayed in Fig.~\ref{fig:timeseries_extremes}. 
 
 \subsection{Extreme fluctuations of the time-averaged drag }
 \label{sec:time_avg}
@@ -182,8 +182,8 @@ F_T(t) = \frac{1}{T}\int_t^{t+T} f_d(t) \mathrm{d}t,
 \end{equation}
 where $f_d(t)$ denotes the instantaneous drag and $T$ is the investigated timescale (response time).
 %\sout{Relevant values of $T$ are application dependant.}
-\EL{In the following, we shall consider $T=10\tau_c$, where $\tau_c$ is the correlation time of the instantaneous drag.
-In that case, the PDF of $F_T$ is found nearly Gaussian as a consequence of the Central Limit theorem (see Fig.~\ref{fig:PDF_AVG}).}
+In the following, we shall consider $T=10\tau_c$, where $\tau_c$ is the correlation time of the instantaneous drag.
+In that case, the PDF of $F_T$ is found nearly Gaussian as a consequence of the Central Limit theorem (see Fig.~\ref{fig:PDF_AVG}).
 
 %
 During a time interval $[t;t+T]$, a fluctuation of $F_T(t)$ may be roughly viewed as the overall contribution of  $T / \tau_c$ independent fluctuations of the {instantaneous} drag $f_d$.  
@@ -193,13 +193,12 @@ It is thus legitimate to ask whether a large value of the averaged drag results 
 %
 %
 In the same way as in section \ref{sec:extreme_extraction}, one can identify extreme fluctuations of $F_T$ exceeding some fixed threshold $a$, and sample a set of extreme events.
-Setting $a=5.2\sigma_T$ with $\sigma_T$ being the standard deviation of $F_T$, $84$ independent extreme events were sampled. \EL{Again, this choice results from a compromise between the need to consider large deviations from the mean value and the requirement to sample a sufficient number of events for meaningful statistics. As a rule of thumb, the threshold has been set so that about one hundred events are sampled.}
+Setting $a=5.2\sigma_T$ with $\sigma_T$ being the standard deviation of $F_T$, $84$ independent extreme events were sampled. Again, this choice results from a compromise between the need to consider large deviations from the mean value and the requirement to sample a sufficient number of events for meaningful statistics. As a rule of thumb, the threshold has been set so that about one hundred events are sampled.
 
 
 % neither case (1) nor case (2)
 %
 Fig.~\ref{fig:extreme_avg} displays the time-series $\{f_d(t)\}_{t^{\star} \leq t \leq t^{\star}+T}$ for several extreme fluctuations of $F_T$ occurring at $t=t^\star$.
-\EL{Qualitatively, it is found that extreme fluctuations of the time-averaged drag can neither be reduced to case (1) nor case (2). 
-Indeed, both cases are %equally 
-featured in Fig.~\ref{fig:extreme_avg};
-very large value of the averaged-drag appear to result from either a very large fluctuation, or a significant succession of moderate (positive) fluctuations of the instantaneous drag.}
+Qualitatively, it is found that extreme fluctuations of the time-averaged drag can neither be reduced to case (1) nor case (2). 
+Indeed, both cases are featured in Fig.~\ref{fig:extreme_avg};
+very large value of the averaged-drag appear to result from either a very large fluctuation, or a significant succession of moderate (positive) fluctuations of the instantaneous drag.

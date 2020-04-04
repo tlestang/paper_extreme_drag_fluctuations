@@ -16,7 +16,7 @@ The drag exerted by a grid-generated turbulent flow onto a fixed squared obstacl
 Although real-world applications would eventually imply three-dimensional dynamics, a simplified two-dimensional setting has been chosen here to reduce the computational cost and allow for a systematic study. 
 % 
 We believe that this system embeds the characteristic features that make
-\EL{this study} both relevant and challenging for fluid-structure-interaction problems. 
+this study both relevant and challenging for fluid-structure-interaction problems. 
 
 % rapid description of the flow
 Turbulent eddies generated in the near-wake of the grid are carried downstream.
@@ -24,7 +24,7 @@ They interact with each other and grow in size as expected for two-dimensional t
 The dimension of the grid is such that the size of the eddies that hit the square is comparable to its size, resulting in strong fluctuations of the drag acting on the square. 
 % lattice Boltzmann method 
 %
-The flow dynamics is integrated numerically by the \ac{lbm} \EL{\citep{kruger_lattice_2017}}. 
+The flow dynamics is integrated numerically by the \ac{lbm} \citep{kruger_lattice_2017}. 
 While traditional methods in computational fluid dynamics rely on a discretization of the Navier-Stokes equations, the \ac{lbm} considers the fluid at an underlying  mesoscopic level.
 Capturing the dynamics of collections of fluid particles moving and colliding on a lattice is here preferred to solving non-linear PDEs. 
 %This seems crazy, however, most details at the mesoscopic level play actually no role at the macroscopic level. Therefore, the LB algorithm may be viewed as a minimal kinetic scheme compliant to the fluid dynamics at the macroscopic level.
@@ -53,7 +53,7 @@ The extrapolated distributions are evaluated through a regularization procedure 
 \begin{figure}
 	\centering
 	\includegraphics[width=\linewidth]{fig2/fig2}
-	\caption{Snapshots of the vorticity related to typical drag fluctuations (within one standard deviation) over a time interval of length \EL{$\tau_c \simeq 4T_0$}; $\tau_c$ will later be identified as the correlation time of the drag signal.
+	\caption{Snapshots of the vorticity related to typical drag fluctuations (within one standard deviation) over a time interval of length $\tau_c \simeq 4T_0$; $\tau_c$ will later be identified as the correlation time of the drag signal.
 		The vorticity is given in lattice units.}
 	\label{fig:typical_vorticity}
 \end{figure}
@@ -78,7 +78,7 @@ As a consequence, the drag can eventually be expressed as the difference
 f_d(t) = p_{fb}(t) - p_{base}(t)
 \end{equation}
 between the pressure integrated over the upstream side of the obstacle or \textit{forebody}, $p_{fb}(t)$, and the downstream side or \textit{base} $p_{base}(t)$.
-Pressure fluctuations are related to the dynamics of the vorticity \EL{field}.
+Pressure fluctuations are related to the dynamics of the vorticity field.
 Regions of strong vorticity correspond to strong local pressure gradients, \emph{e.g.} as demonstrated analytically with a Rankine vortex.
 %
 
@@ -87,13 +87,13 @@ Regions of strong vorticity correspond to strong local pressure gradients, \emph
 The typical timescale (turnover time) of drag fluctuations can be estimated from dimensional analysis as
 \begin{equation}
 \label{eq:turnover_time}
-\EL{T_0 = \frac{R}{U}},
+T_0 = \frac{R}{U},
 \end{equation}
 where $R$ is the size of the square and $U$ is the averaged velocity in the channel. 
 %
 Fig.~\ref{fig:typical_vorticity} displays the evolution of the vorticity field around the obstacle for typical drag fluctuations.
 %\sout{Because the vorticity generated along the forebody is swept away by the mean flow, the pressure field in the vicinity of the base is only slightly perturbed.}
-\EL{Vorticity is generated along the forebody and eventually carried away by the flow. Typical fluctuations of the drag (within one standard deviation) do not result from some preferred arrangement of the vorticity around the obstacle.}
+Vorticity is generated along the forebody and eventually carried away by the flow. Typical fluctuations of the drag (within one standard deviation) do not result from some preferred arrangement of the vorticity around the obstacle.
 
 \subsection{The drag as a random process
 	%: Probability Density Function and correlation in time
@@ -104,7 +104,7 @@ Fig.~\ref{fig:typical_vorticity} displays the evolution of the vorticity field a
 	\centering
 	\includegraphics[width=\linewidth]{fig3/fig3}
 	\caption{
-	\EL{Temporal evolution of the drag (in lattice units) acting on the square under the action of the impinging turbulent flow. The time has been normalised by the turnover time related to the mean-flow velocity and the size of the obstacle, \emph{i.e.} $T_0=R/U$.} The \textit{return time} $r(a)$  is the averaged waiting time between the occurrence of peak fluctuations of amplitude larger than $a$. If the threshold $a$ is sufficiently high, one observes that $r(a)$ is much larger than the correlation time of the signal. The selected peak fluctuations are therefore well separated.}
+	Temporal evolution of the drag (in lattice units) acting on the square under the action of the impinging turbulent flow. The time has been normalised by the turnover time related to the mean-flow velocity and the size of the obstacle, \emph{i.e.} $T_0=R/U$. The \textit{return time} $r(a)$  is the averaged waiting time between the occurrence of peak fluctuations of amplitude larger than $a$. If the threshold $a$ is sufficiently high, one observes that $r(a)$ is much larger than the correlation time of the signal. The selected peak fluctuations are therefore well separated.}
 		\label{fig:illustrate_return_time}
 \end{figure}
 
@@ -118,11 +118,11 @@ Therefore, it is natural to model the drag as a (scalar) random process.
 
 % drag statistics
 % pdf
-Drag fluctuations have been sampled along a simulation of duration \EL{$T_{tot} = 4\times 10^6~T_0$}.
+Drag fluctuations have been sampled along a simulation of duration $T_{tot} = 4\times 10^6~T_0$.
 This long simulation will be referred to as the \textit{control run} in the following.
 It has been made possible by the relative simplicity of the investigated flow and the computational efficiency of the \ac{lbm}.
 The \ac{pdf} of drag fluctuations is shown in Fig.~\ref{fig:pdf_drag_a}.
-It deviates from a normal law and shows an exponential tail for large positive fluctuations, \textit{i.e.}  \EL{${\mathbb{P}}(f_d) \propto e^{-\ell f_d}$}.
+It deviates from a normal law and shows an exponential tail for large positive fluctuations, \textit{i.e.} ${\mathbb{P}}(f_d) \propto e^{-\ell f_d}$.
 %
 Fig.~\ref{fig:pdf_drag_a} also displays the \ac{pdf} of drag fluctuations acting on a control surface corresponding to the periphery of the obstacle but in the absence of the obstacle. 
 %
@@ -136,7 +136,7 @@ In that case, the \ac{pdf} is quasi-symmetric and does not display exponential t
 	{\label{fig:pdf_drag_b}
 		\includegraphics[width=.45\linewidth]{fig4b/fig4b}}  
 	\caption{{(a)} \ac{pdf} of normalised drag fluctuations ($\tilde f_d = f_d - \bar{f_d}$) where $\mu = \bar{f_d}$ denotes the time-averaged value and $\sigma = \sqrt{\overline{{\tilde f_d}^2}}$ is the standard deviation. The drag is evaluated both in the presence (blue) and in the absence (red) of the obstacle. %Note that the amplitudes have not been normalized.
-		{(b)} Autocorrelation function of the drag defined as $C(\tau) = \overline{ \tilde f_d(t+\tau)\tilde f_d(t)} ~/~ \overline{{\tilde f_d}^2}$. The correlation time \EL{$\tau_c\simeq 4 T_0$} is given by $C(\tau_c)=0$.
+		{(b)} Autocorrelation function of the drag defined as $C(\tau) = \overline{ \tilde f_d(t+\tau)\tilde f_d(t)} ~/~ \overline{{\tilde f_d}^2}$. The correlation time $\tau_c\simeq 4 T_0$ is given by $C(\tau_c)=0$.
 		%$\tau_c$ may therefore be considered as the correlation time of the drag signal.
 	}
 	\label{fig:pdf_drag}
@@ -144,9 +144,9 @@ In that case, the \ac{pdf} is quasi-symmetric and does not display exponential t
 
 % drag statistics
 % correlation time
-Lastly, the autocorrelation function of the drag $C(\tau)$ is shown in Fig.~\ref{fig:pdf_drag_b}. It is found that drag fluctuations are correlated over a time interval \EL{$\tau_c \simeq 4T_0$}, illustrating that \EL{the drag loses its memory}  over a time scale corresponding to the sweeping of a few eddies past the obstacle.
+Lastly, the autocorrelation function of the drag $C(\tau)$ is shown in Fig.~\ref{fig:pdf_drag_b}. It is found that drag fluctuations are correlated over a time interval $\tau_c \simeq 4T_0$, illustrating that the drag loses its memory  over a time scale corresponding to the sweeping of a few eddies past the obstacle.
 %
 This observation is important for the application of rare-event algorithms as it will be discussed in section~\ref{sec:rare_events_algorithms}.
 %
 In the following, $\tau_c$ will be referred to as the \textit{correlation time} of the drag process.
-The ratio \EL{$T_0 / \tau_c$} may be viewed as a {Strouhal number}. The value $St=0.25$ is consistent with common observations for flows past blunt structures at comparable Reynolds numbers \EL{\citep{rodi1998}}.
+The ratio $T_0 / \tau_c$ may be viewed as a {Strouhal number}. The value $St=0.25$ is consistent with common observations for flows past blunt structures at comparable Reynolds numbers \citep{rodi1998}.
