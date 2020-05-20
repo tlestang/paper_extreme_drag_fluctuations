@@ -4,7 +4,7 @@
 \begin{figure}
 	\centering
 	\includegraphics[width=\linewidth]{fig1/fig1}
-	\caption{Our case study is a grid-generated turbulent flow impinging onto a fixed squared obstacle (of size $R$) located at the centre of a channel in two dimensions. The flow is artificially damped near the end of the channel. In the developed flow, turbulent eddies have typically the size of the square, which results in strong fluctuations of mechanical efforts acting on the square. The vorticity is displayed with an arbitrary colour map from blue (negative values) to red (positive values).}
+	\caption{Our case study is a grid-generated turbulent flow impinging onto a fixed squared obstacle (of size $R$) located at the centre of a channel in two dimensions. The flow is artificially damped near the end of the channel. In the developed flow, turbulent eddies have typically the size of the square, which results in strong load fluctuations. The vorticity is displayed with an arbitrary colour map from blue (negative values) to red (positive values).}
 	\label{fig:illustr_ecoulement}
 \end{figure}
 
@@ -26,7 +26,7 @@ The dimension of the grid is such that the size of the eddies that hit the squar
 %
 The flow dynamics is integrated numerically by the \ac{lbm} \citep{kruger_lattice_2017}. 
 While traditional methods in computational fluid dynamics rely on a discretization of the Navier-Stokes equations, the \ac{lbm} considers the fluid at an underlying  mesoscopic level.
-Capturing the dynamics of collections of fluid particles moving and colliding on a lattice is here preferred to solving non-linear PDEs. 
+Capturing the dynamics of collections of fluid particles moving and colliding on a lattice is here preferred to solving nonlinear \acp{pde}. 
 %This seems crazy, however, most details at the mesoscopic level play actually no role at the macroscopic level. Therefore, the LB algorithm may be viewed as a minimal kinetic scheme compliant to the fluid dynamics at the macroscopic level.
 Further details about the \ac{lbm} are given in Appendix \ref{app:lbm} and references therein.
 In our context, this numerical method has been chosen principally for its computational efficiency. 
@@ -40,7 +40,7 @@ The simulated flow develops in a long plane channel of dimension $513 \times 129
 No-slip boundary conditions are enforced on top and bottom walls of the channel and on the surface of the obstacle by using an halfway bounce-back procedure~\citep{lbm_book}.  
 %
 Upstream of the grid, a constant parabolic velocity profile and a constant mass density (equal to unity) are imposed as an inlet condition. 
-The centerline velocity is $0.05$ in lattice units, \textit{i.e.} normalised by $\Delta x$ and $\Delta t$ referring to the lattice resolution and the time-step respectively. The initial distributions are imposed at equilibrium (see Appendix \ref{app:lbm}). 
+The centreline velocity is $0.05$ in lattice units, \textit{i.e.} normalised by $\Delta x$ and $\Delta t$ referring to the lattice resolution and the time-step respectively. The initial distributions are imposed at equilibrium (see Appendix \ref{app:lbm}). 
 In the bulk, the viscosity is adjusted so that grid turbulence is generated with Reynolds number $\mathrm{Re_{grid}}=1200$. The reference Mach number is equal to $0.06$ in agreement with the assumption of weak compressibility of the \ac{lbm}. 
 Near the end of the channel, the flow is progressively damped within a \textit{sponge zone} where the viscosity is artificially enhanced.
 Finally, the outlet boundary condition relies on a second-order extrapolation of the velocity and mass density.
@@ -62,7 +62,7 @@ The extrapolated distributions are evaluated through a regularization procedure 
 
 % drag signal
 %
-The incoming turbulent flow exerts fluctuating mechanical efforts onto the squared obstacle.
+The incoming turbulent flow exerts a fluctuating force onto the squared obstacle.
 The \textit{drag} is defined as the resulting force in the streamwise $x$-direction. Formally 
 \begin{equation}
 \label{eq:drag_definition}

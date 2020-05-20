@@ -51,7 +51,7 @@ Based on linear response theory, we expect this small perturbation to have a neg
 
 In addition to the score function, two important parameters are the number of trajectories $N$ and their duration $T_a$.
   The size of the ensemble $N$ governs the statistical error affecting quantities averaged over the sampled set of trajectories. Therefore, $N$ should be taken as large as possible to reduce these errors with, nevertheless, a practical limit given by the available computational resources. In this work, we have performed two numerical simulations with $N=32$ and $N=256$.
-The duration $T_a$ should be much larger than $\tau_c$~\citep{lestang_computing_2018} but, again, kept small enough to limit the computational effort. In practice, the duration of the trajectories was eventually set to $T_a=5\tau_c$ in both simulations; we checked in particular that larger values of $T_a$ did not improve the results.
+The duration $T_a$ should be much larger than $\tau_c$~\citep{lestang_computing_2018} but, again, kept small enough to limit the computational cost. In practice, the duration of the trajectories was eventually set to $T_a=5\tau_c$ in both simulations; we checked in particular that larger values of $T_a$ did not improve the results.
 
 \begin{figure}
 	\centering
@@ -96,7 +96,7 @@ For $t - t^{\star} >\tau_L$, the drag process has lost the memory of the drag fl
 
 The difference between the typical duration of drag fluctuations $\tau_c$ and the Lyapunov timescale $\tau_L$ may be heuristically associated with the so-called \emph{turbulence rate} \citep{frisch_book}.
 %
-As discussed previously, the duration of extreme fluctuations of the drag is closely related to the sweeping time of the flow past the obstacle, and consequently to the mean-flow velocity $U$. On the contrary, the Lyapunov timescale is rather associated with the intrinsic evolution of turbulent fluctuations in the reference frame of the mean flow, \textit{i.e.} with the fluctuating velocity $u_{rms}$. The ratio $u_{rms}/U$ (turbulence rate) is much lower than one in our case of grid-generated turbulence, which thus justifies that $\tau_L > \tau_c$.
+As discussed previously, the duration of extreme fluctuations of the drag is closely related to the sweeping time of the flow past the obstacle, and consequently to the mean-flow velocity $U$. On the contrary, the Lyapunov timescale is rather associated with the intrinsic evolution of turbulent fluctuations in the reference frame of the mean flow, \textit{i.e.} with the root mean square velocity $u_{rms}$. The ratio $u_{rms}/U$ (turbulence rate) is much lower than one in our case of grid-generated turbulence, which thus justifies that $\tau_L > \tau_c$.
 
 % perspectives
 %

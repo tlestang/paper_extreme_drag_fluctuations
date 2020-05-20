@@ -79,11 +79,15 @@
 	short=CFD,
 	long=Computational Fluid Dynamics,
 }
+\DeclareAcronym{pde}{
+	short=PDE,
+	long=Partial Differential Equation,
+}
 
 \DeclareGraphicsExtensions{.eps,.png}
 
 \title{
-Numerical study of extreme mechanical efforts exerted by a turbulent flow on a bluff body by direct and rare-event sampling techniques
+Numerical study of extreme mechanical force exerted by a turbulent flow on a bluff body by direct and rare-event sampling techniques
 }
 
 \author{Thibault Lestang\aff{1}\aff{2}
@@ -93,27 +97,27 @@ Numerical study of extreme mechanical efforts exerted by a turbulent flow on a b
 \affiliation{\aff{1}Univ Lyon, ENS de Lyon, Univ Claude Bernard de Lyon, CNRS, Laboratoire de Physique, F-69342 Lyon, France
 \aff{2}Univ Lyon, Ecole Centrale de Lyon, Univ Claude Bernard de Lyon, INSA de Lyon, CNRS, Laboratoire de M\'ecanique des Fluides et d'Acoustique, F-69134 Ecully cedex, France}
 \begin{document}
-	
+
 \maketitle
 
 \begin{abstract}
-	This study investigates, by means of numerical simulations, extreme mechanical efforts exerted by a turbulent flow impinging on a bluff body, and examines the relevance of two distinct rare-event algorithms to efficiently sample these events. 
+	This study investigates, by means of numerical simulations, extreme mechanical force exerted by a turbulent flow impinging on a bluff body, and examines the relevance of two distinct rare-event algorithms to efficiently sample these events.
 	%
-	The drag experienced by a squared obstacle placed in a turbulent channel flow (in two dimensions) is taken as a representative case study.
+	The drag experienced by a square obstacle placed in a turbulent channel flow (in two dimensions) is taken as a representative case study.
 	%
-	Direct sampling shows that extreme fluctuations are closely related to the presence of a strong vortex blocked in the near wake of the obstacle. This vortex is responsible for a significant pressure drop between the forebody and the base of the obstacle, thus yielding a very high value of the drag. 
+	Direct sampling shows that extreme fluctuations are closely related to the presence of a strong vortex blocked in the near wake of the obstacle. This vortex is responsible for a significant pressure drop between the forebody and the base of the obstacle, thus yielding a very high value of the drag.
 	%
-	Two algorithms are then considered to speed up the sampling of such flow scenarii, namely the \ac{ams} and the \ac{gktl} algorithms. 
+	Two algorithms are then considered to speed up the sampling of such flow scenarii, namely the \ac{ams} and the \ac{gktl} algorithms.
 	The general idea behind these algorithms is to replace a long simulation by a set of much shorter ones, running in parallel, with dynamics that are replicated or pruned, according to some specific rules designed to sample large-amplitude events more frequently.  These algorithms have been shown to be relevant for a wide range of problems in statistical physics, computer science, biochemistry.
-        The present study is the first application to a fluid-structure interaction problem. 
-	% allowing the simulation of rare  events otherwise out of reach by direct sampling. 
+        The present study is the first application to a fluid-structure interaction problem.
+	% allowing the simulation of rare  events otherwise out of reach by direct sampling.
 	%
-	Practical evidence is given that the fast sweeping time of turbulent fluid structures past the obstacle has a strong influence on the efficiency of the rare-event algorithm. 
-	% 
+	Practical evidence is given that the fast sweeping time of turbulent fluid structures past the obstacle has a strong influence on the efficiency of the rare-event algorithm.
+	%
 	While the \ac{ams} algorithm does not yield significant run-time savings as compared to direct sampling, the \ac{gktl} algorithm appears to be effective to sample very efficiently extreme fluctuations of the time-averaged drag and estimate related statistics such as return times.
       Software used for simulations and data processing is available at \url{https://github.com/tlestang/paper_extreme_drag_fluctuations}.
 \end{abstract}
-	
+
 \include{./texfiles/section1}
 \include{./texfiles/section2}
 \include{./texfiles/section3}
@@ -136,4 +140,3 @@ The facilities at PSMN are supported by the Auvergne-Rhône-Alpes region (GRANT 
 \bibliography{biblio}
 
 \end{document}
-
